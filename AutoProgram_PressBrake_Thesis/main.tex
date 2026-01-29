@@ -1,0 +1,57 @@
+% !TeX program = xelatex
+\documentclass[12pt,a4paper,twoside]{report}
+
+\input{preamble}
+
+\begin{document}
+
+% -------- FRONT MATTER --------
+\input{frontmatter/titlepage}
+
+\pagenumbering{Roman}
+
+% Declaration (if you want it in TOC, add \addcontentsline inside declaration.tex)
+\input{frontmatter/declaration}
+\cleardoublepage
+
+% Abstract (should use \chapter* + \addcontentsline inside abstract.tex)
+\input{frontmatter/abstract}
+\cleardoublepage
+
+% Acknowledgements (create this file; use \chapter* + \addcontentsline inside)
+\input{frontmatter/acknowledgements}
+\cleardoublepage
+
+% Lists (add them to TOC manually)
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+\cleardoublepage
+
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+\cleardoublepage
+
+% Abbreviations (should use \chapter* + \addcontentsline inside abbreviations.tex)
+\input{frontmatter/abbreviations}
+\cleardoublepage
+
+% Table of contents
+\tableofcontents
+\cleardoublepage
+
+% -------- MAIN CONTENT --------
+\pagenumbering{arabic}
+
+\input{chapters/ch1_introduction}
+\input{chapters/ch2_state_of_art}
+\input{chapters/ch3_System_Concept_and_Methodology}
+
+% -------- APPENDIX --------
+\appendix
+\input{appendix/appendixA}
+
+% -------- REFERENCES --------
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\end{document}
