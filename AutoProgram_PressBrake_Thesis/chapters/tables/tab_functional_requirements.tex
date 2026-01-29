@@ -3,15 +3,9 @@
 \caption{Functional Requirements for Automatic Robot Program Generation}
 \label{tab:functional_requirements}
 
-\renewcommand{\arraystretch}{2.5}
+\renewcommand{\arraystretch}{2.0}
 
-\begin{tabular}{%
-    p{2cm}  % ID
-    p{9cm}    % Functional Requirement (SMART)
-    p{9cm}    % Acceptance Criteria
-    p{4cm}  % Verification Method
-    p{2cm}    % Priority
-}
+\begin{tabular}{p{2cm} p{9cm} p{9cm} p{4cm}}
 \toprule
 \textbf{ID} &
 \textbf{Functional Requirement (SMART)} &
@@ -20,46 +14,39 @@
 \midrule
 
 FR-01 &
-The system shall detect unreachable target poses before robot motion execution &
-Robot does not execute motion to unreachable poses and provides an error message &
-Simulation Based &
- \\
+The system shall detect unreachable target poses before robot motion execution. &
+The robot shall not execute motion to unreachable poses and shall provide an error message. &
+Simulation Based \\
 
 FR-02 &
-The system shall allow the operator-side selection prior to program Execution &
-Selected bend side is applied correctly to the generated robot program &
-Simulation Based &
- \\
+The system shall allow operator-side selection prior to program execution. &
+The selected bend side shall be applied correctly to the generated robot program. &
+Simulation Based \\
 
 FR-03 &
-The system shall execute a regripping sequence when a target pose is unreachable within the current bend side &
-Regripping is performed successfully and execution continues without interruption &
-Simulation Based &
- \\
+The system shall execute a regripping sequence when a target pose is unreachable within the current bend side. &
+Regripping shall be performed successfully and execution shall continue without interruption. &
+Simulation Based \\
 
 FR-04 &
-The system shall handle workpiece orientation changes during program execution &
-orientational changes are applied correctly without interrupting the kinematic limits &
-Simulation Based &
- \\
+The system shall handle workpiece orientation changes during program execution. &
+Orientation changes shall be applied correctly without violating kinematic limits. &
+Simulation Based \\
 
 FR-05 &
-The system shall support opposite side bending operations when required  &
-correctly handles opposite side bending operations &
-Simulation Based &
- \\
+The system shall support opposite-side bending operations when required. &
+The system shall correctly execute opposite-side bending operations. &
+Simulation Based \\
 
 FR-06 &
-The system shall determine and apply suitable grip positions for each workpiece state &
-Grip positions are determined and applied correctly for each workpiece state &
-Simulation Based &
- \\     
+The system shall determine and apply suitable grip positions for each workpiece state. &
+Grip positions shall be determined and applied correctly for each workpiece state. &
+Simulation Based \\
 
 FR-07 &
-The system shall terminate execution when an unsafe operation is detected &
-Robots terminate execution and display an error message &
-Simulation Based &
- \\
+The system shall terminate execution when an unsafe operation is detected. &
+The robot shall terminate execution and display an error message. &
+Simulation Based \\
 
 \bottomrule
 \end{tabular}
