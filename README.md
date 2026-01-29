@@ -147,7 +147,7 @@ From now on, use the **same daily workflow**:
 ```bash
 git status
 git add -A
-git commit -m "Update chapter X"
+git commit -m "Updated chapter "
 git push
 ```
 
@@ -164,4 +164,3 @@ git push
 git pull
 ```
 
-fdhf
