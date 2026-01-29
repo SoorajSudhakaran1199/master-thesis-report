@@ -1,0 +1,54 @@
+# =========================
+# LaTeX build files
+# =========================
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb
+
+# =========================
+# PDF outputs
+# =========================
+# *.pdf   # keep thesis PDF in repo (recommended)
+
+# =========================
+# Backup / temp
+# =========================
+*.bak
+*.tmp
+*.swp
+*.~*
+
+# =========================
+# OS junk
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# VS Code
+# =========================
+.vscode/
+
+# =========================
+# Build folders
+# =========================
+build/
+out/
+
+# =========================
+# Python cache (if any)
+# =========================
+__pycache__/
+*.pyc
