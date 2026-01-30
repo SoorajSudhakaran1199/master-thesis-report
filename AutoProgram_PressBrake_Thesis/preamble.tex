@@ -1,22 +1,20 @@
 % !TeX program = xelatex
 % =========================
-% PREAMBLE (THD / Campus Cham — thesis-ready)
+% PREAMBLE.tex (THD thesis-ready, XeLaTeX, Verdana, Biber)
 % =========================
 
 % -------------------------
 % FONT (Verdana, XeLaTeX)
 % -------------------------
 \usepackage{fontspec}
-\setmainfont{Verdana}[
-  Ligatures=TeX
-]
+\setmainfont{Verdana}[Ligatures=TeX]
 
 % -------------------------
 % TYPOGRAPHY / LINE BREAKS
-% (fix Overfull \hbox, improve justification)
 % -------------------------
-\usepackage{microtype} % safe with XeLaTeX, improves spacing
-\emergencystretch=2em  % gives LaTeX flexibility before overfull boxes
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath}
+\emergencystretch=2em
 
 % -------------------------
 % PAGE LAYOUT (double-sided)
@@ -30,36 +28,39 @@
 ]{geometry}
 
 % -------------------------
-% LINE SPACING
+% LINE SPACING + JUSTIFICATION
 % -------------------------
 \usepackage{setspace}
 \onehalfspacing
 
-% -------------------------
-% JUSTIFIED TEXT
-% -------------------------
 \usepackage{ragged2e}
 \justifying
 
 % -------------------------
-% BASIC UTILITIES (safe)
+% BASIC UTILITIES
 % -------------------------
 \usepackage{graphicx}
+\usepackage{xurl}      % better URL line breaking
+\usepackage{csquotes}  % recommended for biblatex
+\usepackage{enumitem}  % clean lists
 
-% Captions
+% Optional: set figure folders (edit if you use them)
+% \graphicspath{{figures/}{images/}}
+
+% -------------------------
+% CAPTIONS
+% -------------------------
 \usepackage{caption}
 \captionsetup{font=small, labelfont=bf}
 
 % -------------------------
 % TABLES (incl. landscape)
 % -------------------------
-\usepackage{booktabs}  % professional table rules
-\usepackage{tabularx}  % flexible tables
-\usepackage{array}     % better column control
-
-% Landscape / rotated tables
-\usepackage{rotating}  % provides sidewaystable (recommended)
-\usepackage{pdflscape} % provides landscape environment (optional but useful)
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{rotating}  % sidewaystable
+\usepackage{pdflscape} % landscape env (optional)
 
 % -------------------------
 % MATH / UNITS
@@ -69,9 +70,40 @@
 \sisetup{detect-all=true}
 
 % -------------------------
+% HEADING FORMATTING (report class)
+% -------------------------
+\usepackage{titlesec}
+
+% Chapter (14 pt)
+\titleformat{\chapter}
+  {\normalfont\bfseries\fontsize{14}{16}\selectfont}
+  {\thechapter}{1em}{}
+
+% Section (12 pt)
+\titleformat{\section}
+  {\normalfont\bfseries\fontsize{12}{14}\selectfont}
+  {\thesection}{1em}{}
+
+% Subsection (11 pt)
+\titleformat{\subsection}
+  {\normalfont\bfseries\fontsize{11}{13}\selectfont}
+  {\thesubsection}{1em}{}
+
+% Chapter spacing (moderate)
+\titlespacing*{\chapter}{0pt}{20pt}{20pt}
+
+% -------------------------
+% NUMBERING DEPTH
+% -------------------------
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% -------------------------
 % HEADERS / FOOTERS (odd-right, even-left)
 % -------------------------
 \usepackage{fancyhdr}
+\setlength{\headheight}{14.5pt} % avoids fancyhdr warnings
+
 \pagestyle{fancy}
 \fancyhf{}
 \fancyfoot[RO]{\thepage} % odd pages -> right
@@ -79,7 +111,6 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% Apply same footer to chapter/TOC pages (plain style)
 \fancypagestyle{plain}{
   \fancyhf{}
   \fancyfoot[RO]{\thepage}
@@ -89,50 +120,8 @@
 }
 
 % -------------------------
-% NUMBERING DEPTH
+% HYPERLINKS (keep near the end)
 % -------------------------
-\setcounter{secnumdepth}{3}
-\setcounter{tocdepth}{3}
-
-% -------------------------
-% HEADING FORMATTING (KOMA-safe + fallback)
-% - If you use scrreprt (KOMA), do NOT rely only on titlesec.
-% - This block automatically chooses the right method.
-% -------------------------
-\makeatletter
-\@ifclassloaded{scrreprt}{%
-  % ===== KOMA-Script way (recommended if scrreprt) =====
-  \setkomafont{chapter}{\bfseries\fontsize{14}{16}\selectfont}
-  \setkomafont{section}{\bfseries\fontsize{12}{14}\selectfont}
-  \setkomafont{subsection}{\bfseries\fontsize{11}{13}\selectfont}
-}{%
-  % ===== Standard report/book way =====
-  \usepackage{titlesec}
-
-  % Chapter (14 pt)
-  \titleformat{\chapter}
-    {\normalfont\bfseries\fontsize{14}{16}\selectfont}
-    {\thechapter}{1em}{}
-
-  % Section (12 pt)
-  \titleformat{\section}
-    {\normalfont\bfseries\fontsize{12}{14}\selectfont}
-    {\thesection}{1em}{}
-
-  % Subsection (11 pt)
-  \titleformat{\subsection}
-    {\normalfont\bfseries\fontsize{11}{13}\selectfont}
-    {\thesubsection}{1em}{}
-
-  % Chapter spacing (moderate)
-  \titlespacing*{\chapter}{0pt}{20pt}{20pt}
-}%
-\makeatother
-
-% -------------------------
-% HYPERLINKS
-% -------------------------
-\usepackage{xurl} % better URL line-breaking
 \usepackage{hyperref}
 \hypersetup{
   colorlinks=false,
@@ -142,7 +131,12 @@
 }
 
 % -------------------------
-% PARAGRAPH INDENT (THESIS DEFAULT = keep indent)
-% If you want no indent, UNCOMMENT:
+% REFERENCES (BibLaTeX + Biber, IEEE style)
+% -------------------------
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{references.bib}
+
+% -------------------------
+% OPTIONAL: no paragraph indent (THD often allows indent; keep default)
 % \setlength{\parindent}{0pt}
 % -------------------------

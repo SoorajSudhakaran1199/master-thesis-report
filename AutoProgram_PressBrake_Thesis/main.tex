@@ -1,4 +1,7 @@
 % !TeX program = xelatex
+% =========================
+% main.tex (THD thesis-ready, robust file-includes)
+% =========================
 \documentclass[12pt,a4paper,twoside]{report}
 
 \input{preamble}
@@ -10,19 +13,22 @@
 
 \pagenumbering{Roman}
 
-% Declaration (if you want it in TOC, add \addcontentsline inside declaration.tex)
-\input{frontmatter/declaration}
-\cleardoublepage
+% Declaration
+\IfFileExists{frontmatter/declaration.tex}{%
+  \input{frontmatter/declaration}\cleardoublepage
+}{}
 
-% Abstract (should use \chapter* + \addcontentsline inside abstract.tex)
-\input{frontmatter/abstract}
-\cleardoublepage
+% Abstract
+\IfFileExists{frontmatter/abstract.tex}{%
+  \input{frontmatter/abstract}\cleardoublepage
+}{}
 
-% Acknowledgements (create this file; use \chapter* + \addcontentsline inside)
-\input{frontmatter/acknowledgements}
-\cleardoublepage
+% Acknowledgements (optional)
+\IfFileExists{frontmatter/acknowledgements.tex}{%
+  \input{frontmatter/acknowledgements}\cleardoublepage
+}{}
 
-% Lists (add them to TOC manually)
+% Lists
 \listoftables
 \addcontentsline{toc}{chapter}{List of Tables}
 \cleardoublepage
@@ -31,27 +37,29 @@
 \addcontentsline{toc}{chapter}{List of Figures}
 \cleardoublepage
 
-% Abbreviations (should use \chapter* + \addcontentsline inside abbreviations.tex)
-\input{frontmatter/abbreviations}
-\cleardoublepage
+% Abbreviations (optional)
+\IfFileExists{frontmatter/abbreviations.tex}{%
+  \input{frontmatter/abbreviations}\cleardoublepage
+}{}
 
-% Table of contents
+% TOC
 \tableofcontents
 \cleardoublepage
 
 % -------- MAIN CONTENT --------
 \pagenumbering{arabic}
 
-\input{chapters/ch1_introduction}
-\input{chapters/ch2_state_of_art}
-\input{chapters/ch3_System_Concept_and_Methodology}
+\IfFileExists{chapters/ch1_introduction.tex}{\input{chapters/ch1_introduction}}{}
+\IfFileExists{chapters/ch2_state_of_art.tex}{\input{chapters/ch2_state_of_art}}{}
+\IfFileExists{chapters/ch3_System_Concept_and_Methodology.tex}{\input{chapters/ch3_System_Concept_and_Methodology}}{}
 
 % -------- APPENDIX --------
 \appendix
-\input{appendix/appendixA}
+\IfFileExists{appendix/appendixA.tex}{\input{appendix/appendixA}}{}
 
 % -------- REFERENCES --------
-\bibliographystyle{ieeetr}
-\bibliography{references}
+\cleardoublepage
+\addcontentsline{toc}{chapter}{References}
+\printbibliography
 
 \end{document}
