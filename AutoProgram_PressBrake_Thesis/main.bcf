@@ -2410,6 +2410,7 @@
     <bcf:citekey order="26" intorder="1">Siciliano2016Robotics</bcf:citekey>
     <bcf:citekey order="26" intorder="2">Gupta1998SheetMetalBending</bcf:citekey>
     <bcf:citekey order="27" intorder="1">Siciliano2016Robotics</bcf:citekey>
+    <bcf:citekey order="28" intorder="1">VacuumGripperModeling</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

@@ -59,6 +59,9 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{array}
+% --- Better table columns (prevents header overlap + ugly spacing) ---
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
 \usepackage{rotating}  % sidewaystable
 \usepackage{pdflscape} % landscape env (optional)
 

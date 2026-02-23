@@ -1,0 +1,74 @@
+\begin{table}[htbp]
+\centering
+\caption{Requirement Traceability Matrix}
+\label{tab:req_traceability_matrix}
+
+\renewcommand{\arraystretch}{1.2}
+\small
+
+\begin{tabularx}{\textwidth}{L{2.8cm} Y L{3.6cm} L{3.0cm}}
+\toprule
+\textbf{Requirement ID} &
+\textbf{Requirement Description} &
+\textbf{Implemented In} &
+\textbf{Verified In} \\
+\midrule
+
+FR-01 &
+Detect unreachable target poses before execution. &
+Reachability check module &
+Simulation test case TC-01 \\
+
+FR-02 &
+Allow operator-side selection before execution. &
+User interaction logic &
+Execution test case TC-02 \\
+
+FR-03 &
+Execute regripping sequence when required. &
+Regrip handling module &
+Regrip validation test case TC-03 \\
+
+FR-04 &
+Handle orientation changes during execution. &
+Orientation management logic &
+Orientation validation test case TC-04 \\
+
+FR-05 &
+Support opposite-side bending workflow. &
+Opposite-side runner module &
+Opposite-side validation test case TC-05 \\
+
+FR-06 &
+Terminate safely on critical errors. &
+Safety monitoring and error-handling module &
+Safety validation test case TC-06 \\
+
+NFR-01 &
+Ensure minimal operator interaction. &
+Dialog configuration logic &
+Usability validation \\
+
+NFR-02 &
+Allow configuration without source code modification. &
+Configuration management module &
+Configuration validation test \\
+
+NFR-03 &
+Provide clear warning and error messages. &
+Warning generation module &
+Warning message validation \\
+
+NFR-04 &
+Ensure robustness under repeated execution cycles. &
+Execution loop logic &
+Repeated run validation test \\
+
+NFR-05 &
+Tolerate moderate pose deviations within defined limits. &
+Pose validation logic &
+Perturbation validation test \\
+
+\bottomrule
+\end{tabularx}
+\end{table}

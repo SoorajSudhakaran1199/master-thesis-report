@@ -1,6 +1,8 @@
 \chapter{System Concept and Methodology}
+
 \section{Problem Definition and Objectives}
 \label{Problem-Definition-and-Objectives}
+
 The state of the art has shown clearly that industrial robots are widely used for the press brake sheet metal bending, primarily through manual programming or predefined programming methods. These methods perform well in structured scenarios with fixed part position, geometries, and bending sequences. However, as product variants increase, the adoption of such robot programming approaches requires manual reprogramming and time consuming.
 \par In press brake bending, after each bending operation, the shape of the sheet metal changes. Each geometric change affects robot reachability, gripping feasibility and grip point calculations, motion trajectories. Consequently, handling and regripping should be planned carefully. Previous research shows that managing this constraint is one of the most time-consuming and complex aspects of robotic bending processes particularly when handled manually. 
 \par From a methodological perspective, the limitations of this robot programming approaches related to their low-level nature. programmers must define the robot paths, position of tools and individual waypoints. This makes the programming, tightly coupled to a specific robot, grip positions or tool setups and making the reorientation or regripping strategies difficult to adapt. Robotic literature clearly indicates that such low-level programming does not scale well as system complexity increases and flexibility requirements grow \cite{Siciliano2016Robotics}.
@@ -10,6 +12,7 @@ This observation motivated research into the higher-level representation, where 
 
 \section{Requirement Definition and Management}
 \label{Requirement-Definition-and-Management}
+
 To ensure a systematic and verifiable development of the proposed automatic robot program generation approach, the system design is guided by explicitly defined requirements. These requirements turn the research gap and problem formulation into engineering objectives that can later be verified and validated.
 The requirement that are explained in this chapter are directly derived from the limitations identified in the state of art and from the objectives formulated in \ref{Problem-Definition-and-Objectives}. Rather than describing implementation details , the requirement specify  what the system must achieve under which condition it must operate .This separation ensures that design decision  remain traceable and that verification activities can be performed objectively.
 The requirement are classified into functional and non-functional requirements .Functional requirements describe the expected system behavior and capabilities , while nonfunctional requirements define the quality attributes such  as usability , robustness and safety .In addition , system constraints and assumptions are explicitly stated to scope of the work and to define the operational boundaries of the proposed solution
@@ -34,3 +37,60 @@ In addition, the system shall determine and apply appropriate grip positions on 
 The system shall be capable of detecting infeasible target poses or unsafe execution conditions before execution. When such conditions are detected, the system shall initiate a warning message to the user, trigger appropriate recovery actions instead of continuing execution. Recovery actions may include regripping or repositioning the workpiece to restore reachability.
 Regripping operation shall be supported as functional capability of the system .The system shall be able to integrate regripping sequence into generated robot program when direct trajectories to the target are unreachable or unsafe .If a critical error cannot be resolved through recovery actions , the system shall terminate execution in controlled regripping or repositioning manner to prevent unsafe robot behavior.
 \input{chapters/tables/tab_functional_requirements}
+
+\subsection{Non-functional Requirements}
+\label{non-functional-requirements}
+
+NFR defines the quality attributes and operation characteristics that elaborates how well the system performs its functions. While the functional requirements specify the system capabilities, non-functional requirements describe constraints related to usability, maintainability, robustness and safety. These aspects are important for automated robotic systems, where corrected system behavior alone is not sufficient if the system is difficult to use, fails under complex variations or behaves unsafely during execution.
+The NFR of the system are derived from the operational context of press brake sheet metal bending, where industrial robot operates in close proximity to tooling, workpieces and cell boundaries. The system is intended to support flexible manufacturing scenarios with minimal operator programming while maintaining the user conditions and safe behavior. To ensure clarity, the NFRs are grouped into the following categories.
+\paragraph{Usability Requirements:}
+The system should be designed such that the user can operate the system easily by minimizing the operator interaction during normal operation. 	Configuration steps required prior to execution shall be limited to essential parameters and shall be presented in a clear and understandable manner. The system should give meaningful feedback to operator, including warning information and error messages when unreachable waypoints or unsafe condition are detected. These messages shall support the operator in understanding the cause of an issue without requiring expert knowledge of robot programming.
+\paragraph{Maintainability Requirements:}
+The system shall support maintainability by enabling configuration changes without requiring modifications to the source code. Process parameters, handling strategies and system setting shall be adjustable through configuration mechanisms that are separated from the core program logic. In addition, the system should provide sufficient logging or terminal output to support debugging, monitoring and future extensions. These measures are intended to facilitate adaptation of the system to new workpiece, process variations, with minimal programming effort.
+\paragraph{Robustness Requirements:}
+The system shall exhibit robust behavior under repeated execution cycles. Small variations in workpiece, orientation or exceptions timing or path shall not lead to system failure or unsafe behavior. The system shall handle such behavior deviation in controlled manner, ensuring smooth operations whenever feasible or triggering appropriate recovery actions when required. Robustness is particularly important in flexible manufacturing environments where idealized conditions cannot be assumed.
+\paragraph{Safety Requirements:}
+The system should always ensure safe operations by validating generated robot motion trajectories, informing the user about unsafe conditions and enforcing defined safety constraints and forbidden zones to prevent unreachable or unsafe poses during program execution. In the events of critical errors or unsafe conditions that cannot be resolved through recovery actions, the system shall terminate execution in a controlled manner. 
+
+\subsection{System Constraints and Assumptions}
+\label{System-Constraints-and-Assumptions}
+
+In addition to functional and non-functional requirements, the development of the proposed automatic robot program generation system is subject to a defined sets of constraints and assumptions. These Constraints delimit the scope of the thesis and clarify the operational boundaries within which the system is designed to function. Explicitly stating these limitations ensures transparency and prevents misinterpretation of the intended system capabilities.
+The proposed approach is developed for a predefined robotic press brake cell configuration. The mechanical layout of the robot, press brake, tooling and auxiliary components is assumed to remain fixed throughout the system operations. Changes to physical robotic position and tool geometry, and non-collision movement planning are out of scope of this work.
+The system assumes the availability of accurate geometrical models of the robot, workpiece, press brake, and related components within the virtual environments. The correctness of reachability analysis and motion feasibility check depends on the validaty of these models. Model inaccuracies, calibration errors or unmodeled physical effects are not explicitly compensated within the proposed framework.
+Explicitly defining these limitations ensures transparency and prevents over interpretation of the system capabilities.
+The constraints are grouped into geometric, process related, cell layout, handling and safety limitations.
+\paragraph{Sheet geometry Constraints : }
+The system is designed for rectangular sheet metal workpiece only. All geometric reasoning, grip position calculations and edge distance check assumes a rectangular shape with four orthogonal edges. Nonrectangular geometries, polygonal shapes or free form contours are not supported.
+The sheet geometry is parameterized by its length, width thickness and mass. Optional circular holes may be defined using radial parameters. However, only circular holes are supported, irregular polygonal cuts are not considered. All hole’s related checks are performed using radial distance evaluation.
+Furthermore, only a single global wall height parameter is considered during the handling. Per edge height customization is not supported.
+\paragraph{Bend and process constraints:} 
+The bending process is restricted to 90 degrees of bend angles. Variable user defined bend angles are not supported. The bending logic assumes one bend per edge and each edge can be associated with at most one bending operation.
+A maximum of four bends per side is supported. For opposite side operation, the number of bends is similarly limited to four. The program logic prevents the duplicate bend assignments and multiple bend assignments on the same edge. This ensures a consistent one bend per edge configuration and simplifies the geometric reasoning required for the automatic program generation.
+\paragraph{Robot and cell layout constraints:} 
+The robotic cell configuration is assumed to be fixed. The robot base, press brake, fixtures and auxiliary components are defined relative to a constant world coordinate frame. Relocation or reconfiguration of these elements invalidates the area logic, reachability assumptions and orientation constraints. In this case, system requires manual updates of configuration values for adaptation.
+Tool configuration is also assumed to be fixed. The system operates with a predefined TCP (tool center point) and attachment frame (Flange) Changes tool geometry, TCP definition or IO wiring require configuration updates and may necessitate software adaptation.
+Vacuum gripping is controlled via single digital output. Alternative control schemes are not considered.
+\paragraph{Gripping constraints:} 
+The system is designed exclusively for vacuum based gripping. Grip feasibility checks are based on physical considerations including pressure difference friction and rated shear force. The holding capability of a vacuum gripper depends primarily on the achievable pressure difference between suction cup and the ambient atmosphere, the effective contact area and the frictional interaction between workpieces surfaces and the suction elements.\cite{VacuumGripperModeling}.
+Mechanical magnetic or finger-based grippers are not supported within the current framework.
+\paragraph{Safety and warning system constraints:} 
+The safety and warning logic monitors only a predefined ser of fixtures and reference objects within the cells. Full collision detection, dynamic safety trajectory planning and advanced real time safety validation are not implemented. Safety evaluation is limited to predefined geometric checks and rule-based constraints within virtual environment.
+Object tracking and naming assumptions -The systems rely on predefined object identifiers within the virtual environment. Specific object names are expected as key to finding to process or finding the objects. Renaming or removing these objects disrupts the workflow logic and may lead to execution failure. Therefore, renaming objects requires manual updates in the program configuration.
+
+\subsection{System Traceability}
+\label{System Traceability}
+
+Requirements Traceability is a fundamental principle in systematic engineering development, ensuring that all defined requirements are consistently reflected in the system design, implementation and validation stages. In the context of the proposed automatic robot program generation system, traceability guarantees that the transition from conceptual objectives to executable functionality remains transparent, structured and verifiable.
+Each requirement is defined in section \ref{functional-Requirement} (functional requirement) and Section \ref{non-functional-requirements}(Nonfunctional requirements) is assigned to a unique identifier (e.g. FR-01, NFR -019:) .These identifiers serve as persistent reference throughout the entire development lifecycle. The identifiers are used consistently in the following aspects:
+\begin{itemize}
+    \item Every requirement is implemented within a specific module.
+    \item Every requirement is verified through a defined test scenario.
+    \item No requirement remains unnoticed.
+    \item No implementation functionality exists without requirement justification.
+\end{itemize}
+Forward traceability- confirms that every requirement is realized in a specific system components or logic module.
+Backward Traceability- confirms that every implemented functionality can be tracked back to an explicitly defined requirement.
+By mapping each requirement to a corresponding implementation module and validation scenario , the development process become auditable and reproducible, which is particularly important in systems involving automated decision making , such as traceability evaluation , regripping logic , and opposite side handling .In addition tractability improves  maintainability and future extensibility, such as adapting to a new gripper type or extending bend angle support . This structure allows systematic impact analysis. Affected requirements and modules can be identified quickly, thereby reducing development risk.
+\input{chapters/tables/req_traceability_matrix}
+
