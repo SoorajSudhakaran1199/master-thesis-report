@@ -89,8 +89,37 @@ Each requirement is defined in section \ref{functional-Requirement} (functional 
     \item No requirement remains unnoticed.
     \item No implementation functionality exists without requirement justification.
 \end{itemize}
-Forward traceability- confirms that every requirement is realized in a specific system components or logic module.
-Backward Traceability- confirms that every implemented functionality can be tracked back to an explicitly defined requirement.
+\paragraph{Forward traceability:} confirms that every requirement is realized in a specific system components or logic module.
+\paragraph{Backward traceability:} confirms that every implemented functionality can be tracked back to an explicitly defined requirement.\\
 By mapping each requirement to a corresponding implementation module and validation scenario , the development process become auditable and reproducible, which is particularly important in systems involving automated decision making , such as traceability evaluation , regripping logic , and opposite side handling .In addition tractability improves  maintainability and future extensibility, such as adapting to a new gripper type or extending bend angle support . This structure allows systematic impact analysis. Affected requirements and modules can be identified quickly, thereby reducing development risk.
 \input{chapters/tables/req_traceability_matrix}
+
+\section{System Architecture and Design}
+\label{System-Architecture-and-Design}
+
+The system architecture is directly derived from the functional and nonfunctional requirements defined in section \ref{Requirement-Definition-and-Management}. Its purpose is to transform the sheet metal bending program inputs into executable robot programs while ensuring deterministic behavior and modular extensibility.
+Each architecture layer performs a clearly defined responsibility in the transformation chain from high level task specification of robot motion execution. Separation of responsibility ensures traceability, maintainability and controlled evolution.
+The architecture is composed of five main conceptual layers:
+\subsection{Input and configuration layer} 
+This layer serves as the formal interface between operator defined process parameters and internal system logic. It collects all necessary geometric and process related information required for programming generation, including sheet dimensions, bending sides and configurations parameters for executable programming. This layer performs preliminary validation to ensure parameters completeness and consistency before forwarding structured data. It checks whether all required parameters are provided, whether the values are complete and whether the data is logically consistent, thereby preventing errors in the later stages of the process. The input layer is separated from the core design logic of the system, meaning that user interaction (configuration) is independent of the robot execution logic. Changing configuration parameters does not directly affect the system structure. This supports maintainability and minimizes unintended side effects when configuration parameters are modified. The output of this layer is a structured task representation describing the desired bending operation and associated handling operations.
+\subsection{Geometry and Constraint Evaluation Layer}
+The geometry Evaluation layer is responsible for interpreting the workpiece model and applying geometric feasibility rules which include, Identification of sheet edges and their orientation are related to the global coordinate system, determination of candidate grip positions based on geometry, Validation of edge distance and hole clearance and Verification of compatibility with defined wall height and spatial constraints.
+This layer ensures that all the operations comply with the geometric assumption defined in section \ref{System-Constraints-and-Assumptions} only geometrical valid configurations are forwarded to process the program. If a violation is detected, execution is halted and warning message is generated  before the motion generation begins.
+The valuation process is deterministic, and rule based, avoiding heuristic or probabilistic decision mechanisms. This ensures reproducibility and simplifies validation.
+\subsection{Planning and Decision Logic layer} 
+The planning and decision logic layer determines the logical sequence of operations required to achieve the requested bending configurations on reachability and geometric feasibility, it decides:
+\begin{itemize}
+    \item Whether a bend can be executed directly 
+    \item Whether intermediate regripping is required 
+    \item Whether opposite side handling logic must be invoked 
+    \item The ordering of sequential bending operations
+\end{itemize}
+The decision logic implements conditional rules derived from the functional requirements. It does not generate low level trajectories but defines a high-level execution sequence consisting of discrete operational states. This separation between decision logic and motion generation enhances clarity and simplifies system debugging. Changes in bending or regripping strategy can be implemented at this level without modifying lower-level motion structures.
+\subsection{Motion generation layer} 
+This motion generation section transforms all the planned operation sequences into executable robot command, it defines, Target poses for gripping and placement, Orientation transformation for bend execution, Intermediate transfer positions and TCP alignment with workpiece reference frame.
+Motion generation operates under the assumption of a fixed world coordinates frame and predefines tool configuration. All transformations are determined and derived from geometric and process inputs. This layer also ensures the logical trajectories planning while respecting robot kinematics and spatial constraints. 
+\subsection{Safety and validation layer} 
+This layer acts as the final verification stage before the motion executes. It performs the reachability verification, evaluation of forbidden zones, constraints re checking prior to execution-controlled termination in case of unfeasible or unsafe states. By isolating safety logic in a dedicated layer, the architecture ensures that safety validation remains independent of planning and motion algorithms, decision making logic and motion computation, which ensures the safety rules are always applied and it supports compliances with NFR such as robustness and operational safety.
+\subsection{Architectural Rationale}
+The chosen layered structure ensures a clear separation between configuration handlings, geometric reasoning, planning logic and motion execution. This separation enhances transparency and reduces the coupling between components, thereby supporting maintainability and modular refinement. The deterministic and rule based nature of the architecture ensures predictability system behaviors and structured decision making, which is an important aspect for industrial environments .In addition the explicit mapping between architectural components and defined FRs enables direct traceability and systematic verification .Finally the structure supports controlled extensibility and allows future enhancement such as additional gripping strategies or extending bending capabilities to be integrated without fundamental redesign of the system architecture .This architecture intentional avoids adaptive and learning approaches , thereby prioritizing reliability and predictability execution in the context of robotic press brake automation.
 
