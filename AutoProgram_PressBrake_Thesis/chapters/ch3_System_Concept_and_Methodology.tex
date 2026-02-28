@@ -1,4 +1,5 @@
 \chapter{System Concept and Methodology}
+\label{CH_3_System Concept and Methodology}
 
 \section{Problem Definition and Objectives}
 \label{Problem-Definition-and-Objectives}
@@ -176,7 +177,6 @@ Described workflow is entirely deterministic and constraint driven. Cah processi
 \par This structure validation constitutes methodological proof that the system operates in a logically consistent manner. By ensuring that executed motion originates from a verified and constraints compliant state, the workflow satisfies the FR related to correct waypoint generation, as well as NFR concerning predictability and safety. The absence of adaptive learning-based components further strengthen reproducibility and transparency, which are essential characteristics in industrial robotic press brake automation.
 \subsection{State Management and Object Tracking}
 The workflow relies on a consistent state management system that tracks the current configuration of the workpiece, including its position, orientation and grip state. This state information is updated at each stage of the workflow and is used to inform decision making in subsequent stages. Object tracking is performed using predefined identifiers within the virtual environment, ensuring that the system can reliably reference the workpiece and related fixtures throughout the execution process. This structured state management supports traceability and ensures that all operations are based on accurate and up-to-date information about the system's current state.
-
 
 
 
