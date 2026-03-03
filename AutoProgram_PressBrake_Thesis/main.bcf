@@ -2411,8 +2411,20 @@
     <bcf:citekey order="26" intorder="2">Gupta1998SheetMetalBending</bcf:citekey>
     <bcf:citekey order="27" intorder="1">Siciliano2016Robotics</bcf:citekey>
     <bcf:citekey order="28" intorder="1">VacuumGripperModeling</bcf:citekey>
-    <bcf:citekey order="29" intorder="1">Thramboulidis2013MDE</bcf:citekey>
-    <bcf:citekey order="30" intorder="1">Bar2018VirtualCommissioning</bcf:citekey>
+    <bcf:citekey order="29" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
+    <bcf:citekey order="30" intorder="1">Siciliano2016Robotics</bcf:citekey>
+    <bcf:citekey order="31" intorder="1">Pan2012Survey</bcf:citekey>
+    <bcf:citekey order="32" intorder="1">Siciliano2016Robotics</bcf:citekey>
+    <bcf:citekey order="33" intorder="1">Siciliano2016Robotics</bcf:citekey>
+    <bcf:citekey order="34" intorder="1">Pan2012Survey</bcf:citekey>
+    <bcf:citekey order="35" intorder="1">Siciliano2016Robotics</bcf:citekey>
+    <bcf:citekey order="36" intorder="1">Siciliano2016Robotics</bcf:citekey>
+    <bcf:citekey order="37" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
+    <bcf:citekey order="38" intorder="1">Thramboulidis2013MDE</bcf:citekey>
+    <bcf:citekey order="39" intorder="1">VacuumGripperModeling</bcf:citekey>
+    <bcf:citekey order="40" intorder="1">VacuumGripperModeling</bcf:citekey>
+    <bcf:citekey order="41" intorder="1">Gupta1998SheetMetalBending</bcf:citekey>
+    <bcf:citekey order="42" intorder="1">VacuumGripperModeling</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">
