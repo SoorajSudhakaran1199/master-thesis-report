@@ -2425,6 +2425,35 @@
     <bcf:citekey order="40" intorder="1">VacuumGripperModeling</bcf:citekey>
     <bcf:citekey order="41" intorder="1">Gupta1998SheetMetalBending</bcf:citekey>
     <bcf:citekey order="42" intorder="1">VacuumGripperModeling</bcf:citekey>
+    <bcf:citekey order="43" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
+    <bcf:citekey order="44" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
+    <bcf:citekey order="45" intorder="1">Pan2012Survey</bcf:citekey>
+    <bcf:citekey order="46" intorder="1">Bar2018VirtualCommissioning</bcf:citekey>
+    <bcf:citekey order="47" intorder="1">Siciliano2016Robotics</bcf:citekey>
+    <bcf:citekey order="48" intorder="1">Pan2012Survey</bcf:citekey>
+    <bcf:citekey order="49" intorder="1">Siciliano2016Robotics</bcf:citekey>
+    <bcf:citekey order="50" intorder="1">Bar2018VirtualCommissioning</bcf:citekey>
+    <bcf:citekey order="51" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
+    <bcf:citekey order="70" intorder="1">Siciliano2016Robotics</bcf:citekey>
+    <bcf:citekey order="71" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
+    <bcf:citekey order="72" intorder="1">Pan2012Survey</bcf:citekey>
+    <bcf:citekey order="73" intorder="1">Aomura2002RoboticBending</bcf:citekey>
+    <bcf:citekey order="74" intorder="1">Aomura2002RoboticBending</bcf:citekey>
+    <bcf:citekey order="75" intorder="1">Gupta1998SheetMetalBending</bcf:citekey>
+    <bcf:citekey order="76" intorder="1">Bar2018VirtualCommissioning</bcf:citekey>
+    <bcf:citekey order="77" intorder="1">Gupta1998SheetMetalBending</bcf:citekey>
+    <bcf:citekey order="78" intorder="1">Bar2018VirtualCommissioning</bcf:citekey>
+    <bcf:citekey order="79" intorder="1">Siciliano2016Robotics</bcf:citekey>
+    <bcf:citekey order="80" intorder="1">Pan2012Survey</bcf:citekey>
+    <bcf:citekey order="81" intorder="1">Pan2012Survey</bcf:citekey>
+    <bcf:citekey order="82" intorder="1">Bar2018VirtualCommissioning</bcf:citekey>
+    <bcf:citekey order="83" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
+    <bcf:citekey order="84" intorder="1">Pan2012Survey</bcf:citekey>
+    <bcf:citekey order="85" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
+    <bcf:citekey order="86" intorder="1">Siciliano2016Robotics</bcf:citekey>
+    <bcf:citekey order="87" intorder="1">Gupta1998SheetMetalBending</bcf:citekey>
+    <bcf:citekey order="88" intorder="1">Pahl2007EngineeringDesign</bcf:citekey>
+    <bcf:citekey order="89" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

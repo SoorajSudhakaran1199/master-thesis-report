@@ -1,0 +1,62 @@
+\begin{table}[htbp]
+\centering
+\caption{Structural comparison of Concept A, Concept B, and Concept C across key design features}
+\label{tab:concept_comparison}
+
+\setlength{\tabcolsep}{3pt}      % reduce column spacing
+\renewcommand{\arraystretch}{1.0} % reduce row height
+\scriptsize
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+\begin{tabularx}{\textwidth}{L{3.0cm} L{3.5cm} L{4.5cm} L{4.0cm}}
+\toprule
+\textbf{Design Feature} &
+\textbf{Concept A} &
+\textbf{Concept B} &
+\textbf{Concept C} \\
+\midrule
+
+Waypoint Generation Method &
+Manual operator teach-in for every new part geometry \cite{Siciliano2016Robotics} &
+Automatic derivation from sheet geometry and YAML configuration parameters \cite{dragandbot_anyrobot_2025} &
+CAD-based OLP solver algorithms; new CAD model required per variant \cite{Pan2012Survey} \\
+
+Regrip Automation &
+No automation. Operator plans and executes each regrip sequence manually \cite{Aomura2002RoboticBending} &
+Full automation via dedicated regrip module: IO control, attach/detach, and rotation sequencing under YAML-configurable parameters \cite{Aomura2002RoboticBending}\cite{Gupta1998SheetMetalBending} &
+Regrip positions defined in CAD simulation; execution not automated at runtime \cite{Bar2018VirtualCommissioning} \\
+
+Opposite-Side Bending &
+Manual sheet flip by operator; no software support &
+Dedicated flip module executes structured sheet transfer via predefined cell objects; same validation hierarchy as primary bending \cite{Gupta1998SheetMetalBending} &
+CAD simulation resolves flip; runtime execution remains manual \cite{Bar2018VirtualCommissioning} \\
+
+Pre-Execution Pose Validation &
+None. Unreachable poses discovered at runtime during physical robot motion \cite{Siciliano2016Robotics} &
+Orientation validation evaluates admissibility using a three-level priority strategy &
+Orientation validation performed in CAD simulation; no runtime checks \cite{Pan2012Survey} \\
+
+Configuration Adaptability &
+Not supported. Full re-teaching required per geometry variant \cite{Pan2012Survey} &
+sheet dimensions, bend sides, and grip parameters configurable without code modification &
+CAD-based approach requires new model and re-simulation for each variant \cite{Bar2018VirtualCommissioning} \\
+
+Communication with Robot Runtime &
+Direct manual control; no software communication &
+ROS-based interface with drag\&bot AnyRobot middleware for real-time command execution \cite{dragandbot_anyrobot_2025} &
+Post-processor generates controller-specific code; proprietary OLP-to-controller interface \cite{Pan2012Survey} \\
+
+Implementation Scope Feasibility &
+High feasibility but provides no automation contribution to thesis objective &
+Fully implementable in Python within dragand bot virtual simulation; achievable within thesis scope \cite{dragandbot_anyrobot_2025} &
+Requires commercial OLP software, accurate cell CAD models, and custom integration; exceeds thesis scope \cite{Siciliano2016Robotics} \\
+
+Research Gap Addressed &
+No automation; manual processes dominate &
+Automated waypoint generation, regrip sequencing, and flip execution with real-time validation; addresses key automation gaps in current state of the art \cite{Gupta1998SheetMetalBending} &
+Partial - Focuses on CAD-based simulation and OLP without runtime automation; does not address real-time adaptability \\
+\bottomrule
+\end{tabularx}
+
+\end{table}

@@ -56,15 +56,20 @@
 % -------------------------
 % TABLES (incl. landscape)
 % -------------------------
+% --- Tables ---
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{array}
-% --- Better table columns (prevents header overlap + ugly spacing) ---
-\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
-\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
-\usepackage{rotating}  % sidewaystable
-\usepackage{pdflscape} % landscape env (optional)
+\usepackage{ragged2e}   % REQUIRED for \RaggedRight
 
+% --- Optional: rotate/landscape tables ---
+\usepackage{rotating}   % provides sidewaystable
+\usepackage{pdflscape}  % provides landscape environment (optional)
+
+% --- Better table columns ---
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}} % fixed width, ragged-right
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}        % tabularx auto-width, ragged-right
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}   % fixed width, centered (useful for Wt/Sc)
 % -------------------------
 % MATH / UNITS
 % -------------------------

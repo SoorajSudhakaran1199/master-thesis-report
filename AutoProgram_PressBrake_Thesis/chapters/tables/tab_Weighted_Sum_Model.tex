@@ -1,0 +1,97 @@
+\begin{table}[htbp]
+\centering
+\caption{Structural comparison of Concept A, Concept B, and Concept C across key design features}
+\label{tab:weighted_sum_model}
+
+\setlength{\tabcolsep}{3pt}      % reduce column spacing
+\renewcommand{\arraystretch}{1.0} % reduce row height
+\scriptsize
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+\begin{tabularx}{\textwidth}{
+L{2.5cm} 
+L{0.5cm} 
+L{3.2cm} 
+L{0.5cm} 
+L{3.2cm} 
+L{0.5cm} 
+L{3.2cm} 
+L{0.5cm}
+}
+
+\toprule
+\textbf{Evaluation Criterion} &
+\textbf{Wt.} &
+\textbf{Concept A — Justification} &
+\textbf{Sc.} &
+\textbf{Concept B — Justification} &
+\textbf{Sc.} &
+\textbf{Concept C — Justification} &
+\textbf{Sc.} \\
+\midrule
+
+Programming Effort Reduction &
+25\% &
+All waypoints defined manually per session; no reduction in programming effort &
+1 &
+Waypoints derived automatically from geometric parameters; no manual teaching required &
+5 &
+CAD solver reduces teaching effort but requires model setup per variant &
+3 \\
+
+Automated Regrip and Opposite-Side Support &
+20\% &
+No regrip logic; operator plans and executes all regrip and flip operations manually &
+1 &
+Full automation via regrips and opposite-side modules with IO and attach control &
+5 &
+Regrip targets defined in simulation; execution not automated at runtime &
+2 \\
+
+Pre-Execution Pose Validation &
+20\% &
+No validation; unreachable poses detected only during physical robot motion &
+1 &
+Orientation validation and spatial zone classification executed before motion generation &
+5 &
+Simulation validates program before export; no runtime check available &
+3 \\
+
+Flexibility for Varying Part Geometries &
+15\% &
+Full re-teaching required per geometry variant; scales poorly &
+1 &
+Sheet parameters stored in YAML; new geometry requires only configuration update &
+5 &
+New CAD model and re-simulation required for each variant &
+3 \\
+
+Implementation Feasibility within Thesis Scope &
+10\% &
+High feasibility but provides no automation contribution to the thesis objective &
+4 &
+Fully implementable in Python within drag\&bot virtual simulation; achievable within thesis scope &
+5 &
+Requires commercial OLP software and accurate cell CAD models; exceeds thesis scope &
+2 \\
+
+Operator Usability &
+10\% &
+Expert robot programming knowledge required for each session; high cognitive load &
+2 &
+Operator selects bend side and confirms execution; decisions handled by the system &
+5 &
+CAD interface reduces robot expertise requirement; specialist CAD knowledge required &
+3 \\
+
+\midrule
+\textbf{Weighted Total Score} &
+\textbf{100\%} &
+Concept A & \textbf{1.40} &
+Concept B --- SELECTED $\checkmark$ & \textbf{5.00} &
+Concept C & \textbf{2.70} \\
+\bottomrule
+\end{tabularx}
+
+\end{table}
