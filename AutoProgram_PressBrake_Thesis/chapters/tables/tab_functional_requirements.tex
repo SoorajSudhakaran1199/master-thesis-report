@@ -1,11 +1,21 @@
-\begin{sidewaystable}[p]
+\begin{table}[htbp]
 \centering
 \caption{Functional Requirements for Automatic Robot Program Generation}
 \label{tab:functional_requirements}
 
-\renewcommand{\arraystretch}{2.0}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.0}
+\scriptsize
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
 
-\begin{tabular}{p{2cm} p{9cm} p{9cm} p{4cm}}
+\begin{tabularx}{\textwidth}{
+L{1.5cm}
+L{6.0cm}
+L{4.5cm}
+L{2.5cm}
+}
+
 \toprule
 \textbf{ID} &
 \textbf{Functional Requirement (SMART)} &
@@ -16,38 +26,51 @@
 FR-01 &
 The system shall detect unreachable target poses before robot motion execution. &
 The robot shall not execute motion to unreachable poses and shall provide an error message. &
-Simulation Based \\
+Simulation based \\
+
+\midrule
 
 FR-02 &
 The system shall allow operator-side selection prior to program execution. &
 The selected bend side shall be applied correctly to the generated robot program. &
-Simulation Based \\
+Simulation based \\
+
+\midrule
 
 FR-03 &
 The system shall execute a regripping sequence when a target pose is unreachable within the current bend side. &
 Regripping shall be performed successfully and execution shall continue without interruption. &
-Simulation Based \\
+Simulation based \\
+
+\midrule
 
 FR-04 &
 The system shall handle workpiece orientation changes during program execution. &
 Orientation changes shall be applied correctly without violating kinematic limits. &
-Simulation Based \\
+Simulation based \\
+
+\midrule
 
 FR-05 &
 The system shall support opposite-side bending operations when required. &
 The system shall correctly execute opposite-side bending operations. &
-Simulation Based \\
+Simulation based \\
+
+\midrule
 
 FR-06 &
 The system shall determine and apply suitable grip positions for each workpiece state. &
 Grip positions shall be determined and applied correctly for each workpiece state. &
-Simulation Based \\
+Simulation based \\
+
+\midrule
 
 FR-07 &
 The system shall terminate execution when an unsafe operation is detected. &
 The robot shall terminate execution and display an error message. &
-Simulation Based \\
+Simulation based \\
 
 \bottomrule
-\end{tabular}
-\end{sidewaystable}
+\end{tabularx}
+
+\end{table}

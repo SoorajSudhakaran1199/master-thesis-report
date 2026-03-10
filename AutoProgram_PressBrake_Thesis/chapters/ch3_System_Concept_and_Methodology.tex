@@ -54,6 +54,7 @@ The system shall support maintainability by enabling configuration changes witho
 The system shall exhibit robust behavior under repeated execution cycles. Small variations in workpiece, orientation or exceptions timing or path shall not lead to system failure or unsafe behavior. The system shall handle such behavior deviation in controlled manner, ensuring smooth operations whenever feasible or triggering appropriate recovery actions when required. Robustness is particularly important in flexible manufacturing environments where idealized conditions cannot be assumed.
 \paragraph{Safety Requirements:}
 The system should always ensure safe operations by validating generated robot motion trajectories, informing the user about unsafe conditions and enforcing defined safety constraints and forbidden zones to prevent unreachable or unsafe poses during program execution. In the events of critical errors or unsafe conditions that cannot be resolved through recovery actions, the system shall terminate execution in a controlled manner. 
+\input{chapters/tables/tab_non_functional_requirements}
 
 \subsection{System Constraints and Assumptions}
 \label{System-Constraints-and-Assumptions}
@@ -81,6 +82,8 @@ Mechanical magnetic or finger-based grippers are not supported within the curren
 The safety and warning logic monitors only a predefined ser of fixtures and reference objects within the cells. Full collision detection, dynamic safety trajectory planning and advanced real time safety validation are not implemented. Safety evaluation is limited to predefined geometric checks and rule-based constraints within virtual environment.
 Object tracking and naming assumptions -The systems rely on predefined object identifiers within the virtual environment. Specific object names are expected as key to finding to process or finding the objects. Renaming or removing these objects disrupts the workflow logic and may lead to execution failure. Therefore, renaming objects requires manual updates in the program configuration.
 
+\subsection{Software platform and tool requirements}
+
 \subsection{System Traceability}
 \label{System Traceability}
 
@@ -98,86 +101,3 @@ By mapping each requirement to a corresponding implementation module and validat
 \input{chapters/tables/req_traceability_matrix}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{System Architecture and Design}
-\label{System-Architecture-and-Design}
-
-The system architecture is directly derived from the functional and nonfunctional requirements defined in section \ref{Requirement-Definition-and-Management}. Its purpose is to transform the sheet metal bending program inputs into executable robot programs while ensuring deterministic behavior and modular extensibility.
-Each architecture layer performs a clearly defined responsibility in the transformation chain from high level task specification of robot motion execution. Separation of responsibility ensures traceability, maintainability and controlled evolution.
-The architecture is composed of five main conceptual layers:
-\subsection{Input and configuration layer} 
-This layer serves as the formal interface between operator defined process parameters and internal system logic. It collects all necessary geometric and process related information required for programming generation, including sheet dimensions, bending sides and configurations parameters for executable programming. This layer performs preliminary validation to ensure parameters completeness and consistency before forwarding structured data. It checks whether all required parameters are provided, whether the values are complete and whether the data is logically consistent, thereby preventing errors in the later stages of the process. The input layer is separated from the core design logic of the system, meaning that user interaction (configuration) is independent of the robot execution logic. Changing configuration parameters does not directly affect the system structure. This supports maintainability and minimizes unintended side effects when configuration parameters are modified. The output of this layer is a structured task representation describing the desired bending operation and associated handling operations.
-\subsection{Geometry and Constraint Evaluation Layer}
-The geometry Evaluation layer is responsible for interpreting the workpiece model and applying geometric feasibility rules which include, Identification of sheet edges and their orientation are related to the global coordinate system, determination of candidate grip positions based on geometry, Validation of edge distance and hole clearance and Verification of compatibility with defined wall height and spatial constraints.
-This layer ensures that all the operations comply with the geometric assumption defined in section \ref{System-Constraints-and-Assumptions} only geometrical valid configurations are forwarded to process the program. If a violation is detected, execution is halted and warning message is generated  before the motion generation begins.
-The valuation process is deterministic, and rule based, avoiding heuristic or probabilistic decision mechanisms. This ensures reproducibility and simplifies validation.
-\subsection{Planning and Decision Logic layer} 
-The planning and decision logic layer determines the logical sequence of operations required to achieve the requested bending configurations on reachability and geometric feasibility, it decides:
-\begin{itemize}
-    \item Whether a bend can be executed directly 
-    \item Whether intermediate regripping is required 
-    \item Whether opposite side handling logic must be invoked 
-    \item The ordering of sequential bending operations
-\end{itemize}
-The decision logic implements conditional rules derived from the functional requirements. It does not generate low level trajectories but defines a high-level execution sequence consisting of discrete operational states. This separation between decision logic and motion generation enhances clarity and simplifies system debugging. Changes in bending or regripping strategy can be implemented at this level without modifying lower-level motion structures.
-\subsection{Motion generation layer} 
-This motion generation section transforms all the planned operation sequences into executable robot command, it defines, Target poses for gripping and placement, Orientation transformation for bend execution, Intermediate transfer positions and TCP alignment with workpiece reference frame.
-Motion generation operates under the assumption of a fixed world coordinates frame and predefines tool configuration. All transformations are determined and derived from geometric and process inputs. This layer also ensures the logical trajectories planning while respecting robot kinematics and spatial constraints. 
-\subsection{Safety and validation layer} 
-This layer acts as the final verification stage before the motion executes. It performs the reachability verification, evaluation of forbidden zones, constraints re checking prior to execution-controlled termination in case of unfeasible or unsafe states. By isolating safety logic in a dedicated layer, the architecture ensures that safety validation remains independent of planning and motion algorithms, decision making logic and motion computation, which ensures the safety rules are always applied and it supports compliances with NFR such as robustness and operational safety.
-\subsection{Architectural Rationale}
-The chosen layered structure ensures a clear separation between configuration handlings, geometric reasoning, planning logic and motion execution. This separation enhances transparency and reduces the coupling between components, thereby supporting maintainability and modular refinement. The deterministic and rule based nature of the architecture ensures predictability system behaviors and structured decision making, which is an important aspect for industrial environments .In addition the explicit mapping between architectural components and defined FRs enables direct traceability and systematic verification .Finally the structure supports controlled extensibility and allows future enhancement such as additional gripping strategies or extending bending capabilities to be integrated without fundamental redesign of the system architecture .This architecture intentional avoids adaptive and learning approaches , thereby prioritizing reliability and predictability execution in the context of robotic press brake automation.
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Algorithmic Implementation and Workflow}
-\label{Algorithmic Implementation and Workflow}
-
-
-Building upon the layered system architecture introduced in section \ref{System-Architecture-and-Design}, this section formalizes the algorithmic workflow that transform validated configuration inputs into executable and constraints compliant robot motion sequences. The workflow represents the operational realization of the FR and NFR defined in section \ref{Requirement-Definition-and-Management}. Its structure is strictly hierarchical, geometric validation precedes grip determination, grip validation precedes reachability assessment, and reachability evaluation preceded motion generation. This ordering is deliberate and ensures that no invalid state can propagate towards execution.
-An overview of the workflow is provided in Figure \ref{fig:system_architecture}, with further details discussed in the subsequent sections.
-\begin{figure}[p]
-  \centering
-  \includegraphics[
-    width=\linewidth,
-    height=0.94\textheight,
-    keepaspectratio
-  ]{figures/system_architecture.pdf}
-  \caption{System architecture of the automatic robot program generation framework}
-  \label{fig:system_architecture}
-\end{figure}
-
-\subsection{Initialization and configurations validation}
-The workflow begins with structured configuration section. At this stage, the bending sequence and associated parameters are defined. This configuration stage establishes the deterministic input boundary of the system. The purpose of this stage is to ensure completeness and internal consistency of operator defined parameters before geometric verification begins. By enforcing configuration validation at the outset, the system satisfies the requirement that execution shall not begin under incomplete or ambiguous input conditions.
-\par Following configuration stage, a pre-execution validation stage is performed. This stage verifies required objects and fixtures that are available in the workspace. The rationale behind this step is to isolate environmental failures before geometric planning occurs. This design decision guarantees compliance with robustness and safety requirements by preventing downstream computation on invalid environmental assumptions.
-\par Subsequently, the areas where the sheet is identified and corresponding spatial constraints are applied. The reason for performing area classification at this stage is to ensure that orientation and reachability check operate within the context dependent boundaries. By adapting limits to the detected area, the system ensures that subsequent decision stages evaluate feasibility relative to the correct operational region.
-
-\subsection{Pose Acquisition and Orientation Normalization}
-After initial validation, the system retrieves the current pose of the system from the tracking subsystem. The retrieved pose reflects the measured position and orientation in the global coordinates frame. However, the original pose from the tracking subsystem alone is insufficient for the consistent geometric reasoning because it may not align with the defined bending reference.
-Therefore, the orientation is normalized relative to a predefined reference side. This normalization is to eliminate ambiguity in geometric interpretation and to ensure that subsequent reasoning is performed within a consistent frame of reference. This design always guarantees reproducibility across bending steps and prevents inconsistent interpretation of identical geometric states.
-\par The normalized orientation is then evaluated against predefined rotational constraints. These constraints represent the spatial and kinematic limitations of the robotic cell. The validation step exist to ensure that planning decisions are based on physically admissible states .If the orientation violates the allowed limits of the robot , a reorientation procedure is triggered .The workpiece is repositioned and pose acquisition is repeated .This loop ensures that no planning is made under invalid orientation conditions .By enforcing this validation hierarchy , the system prevents unstable geometric states from influencing grip or motion generation.
-
-\subsection{Grip Position Determination and Validation}
-Once orientation is valid and has been established, the workflow proceeds to grip determination. Grip positions are computed based on the geometric boundary conditions and predefined constraint rules. The objective of this stage is to identify the position to grip by satisfying spatial clearance and conditions.
-\par Grip feasibility evaluation is performed prior to reachability assessment’s ordering is intentional because a grip configuration that violates geometric constraints must be rejected before evaluating whether the robot can reach a bending pose. This validation layer prevents errors and ensures that reachability is never evaluated for an invalid handling state.
-\par If the initial grip configuration violates defined constraints, and alternate orientation is evaluated. Grip feasibility is re assessed under the modified orientation. If feasibility cannot be achieved even after the reorientation, the workflow transition will undergo controlled termination. This explicit termination condition serves as proof that the system enforces safety and does not attempt to execute undefined or unstable handling states. The termination branch directly satisfies the safety requirement that invalid configuration shall not propagate to execution.
-
-
-\subsection{Reachability Assessment and strategy selection}
-After confirming the grip feasibility, the system evaluates the bending pose is reachable with kinematics and orientation constraints. The purpose of this stage is to analyze whether the robot operation can be executed directly or require intermediate repositioning. 
-\par If the target pose is reachable, the direct execution is triggered. This choice minimizes the intermediate handling and reduces the process complexity. If in case of target pose not reachable, a regrip strategy is then triggered. The regrip strategy introduces an intermediate repositioning stage that transforms the sheet into a compatible position with reachable limits. The decision between direct and regrip strategies is automated based on the sheet tracking position and orientation. No optimization and adaptive mechanism are involved. The convergence of both strategies into a unified motion generation stage ensures structural consistency of the execution methods. This design ensures that the trajectory generation is performed only after full validation of grip and reachability conditions, which reduces unwanted trajectory of robot.
-\subsection{Motion generation and execution} 
-Following strategy selection, motion segment and intermediate waypoint are generated. These waypoints are generated exclusively from the validated geometry and kinematics states. The system does not introduce ethe new geometric assumptions at this stage; it translates previously validated decisions into executable robot trajectories. Execution occurs only after completion of all preceding validation. This ordering ensures compliance with robust requirements by guaranteeing that every executed motion originates from a constraint complainant state. The deterministic generation ensures reproducibility, transparency, easier debugging and verification.
-\subsection{Iterative Multi bend processing}
-After completion of the one bending operation, the workflow evaluates whether bends remain in the selected sequence. This will evaluate to maintain full validation integrity across multi step operations. If further bend is required, the next bending operations are selected, and the returns to normalization stage again and undergoes again the validation, including orientation verification, grip feasibility assessment and reachability analysis. This design ensures each bend undergoes complete validation. By reapplying this full validation hierarchy for each bend, the system prevents accumulation errors, keeps the geometry consistent and guarantees controlled state transition throughout multistep execution.
-\subsection{opposite side handling and controlled completion} 
-Upon completion of all primary bending operations , the workflow evaluates whether opposite bend side has been selected .If such operations are selected for bending , a different execution phase is initiated under the same validation hierarchy .orientation normalization , grip feasibility and reachability check are enforced consistently .along with that, for opposite side bending , a separate trajectories and operation are triggered to flip the sheet to make the opposite side bending process. After this process the regrip station with dedicated loops are executed according to the bend side. 
-After all bending tasks have been completed, the workpiece is transferred to a predefined end pose and unloaded. The system then transitions to a controlled terminations state. The explicit separation between execution and termination ensures that the process terminates in a safe configuration.
-\subsection{Deterministic and constraint driven proof of correctness} 
-Described workflow is entirely deterministic and constraint driven. Cah processing stages enforces validation prior to execution derived from the system requirements. The hierarchical validation structure guarantees that geometric inconsistencies, infeasible grips or unreachable poses are detected before ethe program execution.
-\par This structure validation constitutes methodological proof that the system operates in a logically consistent manner. By ensuring that executed motion originates from a verified and constraints compliant state, the workflow satisfies the FR related to correct waypoint generation, as well as NFR concerning predictability and safety. The absence of adaptive learning-based components further strengthen reproducibility and transparency, which are essential characteristics in industrial robotic press brake automation.
-\subsection{State Management and Object Tracking}
-The workflow relies on a consistent state management system that tracks the current configuration of the workpiece, including its position, orientation and grip state. This state information is updated at each stage of the workflow and is used to inform decision making in subsequent stages. Object tracking is performed using predefined identifiers within the virtual environment, ensuring that the system can reliably reference the workpiece and related fixtures throughout the execution process. This structured state management supports traceability and ensures that all operations are based on accurate and up-to-date information about the system's current state.
-
-
-

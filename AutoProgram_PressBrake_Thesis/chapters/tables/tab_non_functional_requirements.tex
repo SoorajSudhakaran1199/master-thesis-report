@@ -1,0 +1,61 @@
+\begin{table}[htbp]
+\centering
+\caption{Non-Functional Requirements — NFR-01 to NFR-04 with acceptance criteria and verification methods}
+\label{tab:nfr_table}
+
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.0}
+\scriptsize
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+\begin{tabularx}{\textwidth}{
+L{1.5cm}
+L{2.2cm}
+L{4.2cm}
+L{3.8cm}
+L{2.3cm}
+}
+
+\toprule
+\textbf{ID} &
+\textbf{Category} &
+\textbf{Non-Functional Requirement} &
+\textbf{Acceptance Criteria} &
+\textbf{Verification Method} \\
+\midrule
+
+NFR-01 &
+Usability &
+The system shall minimise operator interaction during normal execution. Configuration steps prior to execution shall be limited to essential parameters. The system shall provide meaningful warning and error messages that do not require expert robot programming knowledge. &
+Operator interaction limited to bend side selection and execution confirmation. Warning messages displayed for all detected unsafe conditions. &
+Usability validation \\
+
+\midrule
+
+NFR-02 &
+Maintainability &
+The system shall allow process parameters, handling strategies, and system settings to be modified through configuration mechanisms that are fully separated from the core program logic, with no source code changes required. Sufficient terminal logging shall be provided to support systematic debugging, monitoring, and future extension of the system. &
+New workpiece geometry configurable via YAML file update only, without source code modification. Configuration change validated without rebuild. &
+Configuration validation test \\
+
+\midrule
+
+NFR-03 &
+Robustness &
+The system shall exhibit robust behaviour under repeated execution cycles. Small variations in workpiece orientation or timing shall not lead to system failure or unsafe behaviour. The system shall handle deviations in a controlled manner. &
+System completes at least five consecutive bending cycles without failure under nominal variation conditions. &
+Repeated run validation test \\
+
+\midrule
+
+NFR-04 &
+Robustness &
+The system shall tolerate moderate pose deviations within defined limits without triggering an error or aborting execution. Deviations exceeding the threshold shall trigger a warning and controlled stop. &
+Pose deviations within the defined tolerance threshold do not cause execution termination. Deviations exceeding the threshold trigger a warning and controlled stop. &
+Perturbation validation test \\
+
+\bottomrule
+\end{tabularx}
+
+\end{table}

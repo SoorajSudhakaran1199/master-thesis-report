@@ -1,14 +1,22 @@
 \begin{table}[htbp]
 \centering
-\caption{Requirement Traceability Matrix}
+\caption{Requirement Traceability Matrix --- all fifteen requirements (FR-01 to FR-07, NFR-01 to NFR-05, SR-01 to SR-03) mapped to implementation modules and verification scenarios}
 \label{tab:req_traceability_matrix}
 
-\renewcommand{\arraystretch}{1.2}
-\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\scriptsize
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
 
-\begin{tabularx}{\textwidth}{L{2.8cm} Y L{3.6cm} L{3.0cm}}
+\begin{tabularx}{\textwidth}{
+L{1.4cm}
+L{4.2cm}
+L{5.2cm}
+L{3.2cm}
+}
 \toprule
-\textbf{Requirement ID} &
+\textbf{Req.\ ID} &
 \textbf{Requirement Description} &
 \textbf{Implemented In} &
 \textbf{Verified In} \\
@@ -16,59 +24,80 @@
 
 FR-01 &
 Detect unreachable target poses before execution. &
-Reachability check module &
+Reachability checking and admissibility validation logic &
 Simulation test case TC-01 \\
 
 FR-02 &
-Allow operator-side selection before execution. &
-User interaction logic &
+Allow operator-side selection of bending configuration before execution. &
+Operator dialog and configuration collection logic &
 Execution test case TC-02 \\
 
 FR-03 &
-Execute regripping sequence when required. &
-Regrip handling module &
+Execute regripping sequence when a target pose is unreachable. &
+Automatic regrip cycle logic with I/O and attach/detach control &
 Regrip validation test case TC-03 \\
 
 FR-04 &
-Handle orientation changes during execution. &
-Orientation management logic &
+Handle workpiece orientation changes during program execution. &
+Orientation conversion, rotation normalisation, and strategy selection logic &
 Orientation validation test case TC-04 \\
 
 FR-05 &
-Support opposite-side bending workflow. &
-Opposite-side runner module &
+Support opposite-side bending operations when required. &
+Opposite-side bending workflow with sheet-flip and regrip completion logic &
 Opposite-side validation test case TC-05 \\
 
 FR-06 &
-Terminate safely on critical errors. &
-Safety monitoring and error-handling module &
-Safety validation test case TC-06 \\
+Determine and apply suitable grip positions for each workpiece state. &
+Grip planning logic with edge-clearance, spacing, and vacuum-force feasibility checks &
+Grip validation test case TC-06 \\
+
+FR-07 &
+Terminate execution when an unsafe operation is detected. &
+Safety warning and pre-execution deviation checking logic with operator confirmation dialog &
+Safety validation test case TC-07 \\
 
 NFR-01 &
-Ensure minimal operator interaction. &
-Dialog configuration logic &
+Ensure minimal operator interaction during normal execution. &
+Operator interaction limited to bend-side selection and execution confirmation &
 Usability validation \\
 
 NFR-02 &
-Allow configuration without source code modification. &
-Configuration management module &
+Allow process parameter changes without source code modification. &
+Configuration reader and YAML-based single-source process configuration &
 Configuration validation test \\
 
 NFR-03 &
-Provide clear warning and error messages. &
-Warning generation module &
+Provide clear warning and error messages for unsafe conditions. &
+Warning generation and modal operator notification logic &
 Warning message validation \\
 
 NFR-04 &
 Ensure robustness under repeated execution cycles. &
-Execution loop logic &
+Deterministic execution loop with automatic waypoint generation and path logging &
 Repeated run validation test \\
 
 NFR-05 &
-Tolerate moderate pose deviations within defined limits. &
-Pose validation logic &
+Tolerate moderate pose deviations within defined tolerance limits. &
+Configurable pose-deviation threshold and perturbation handling logic &
 Perturbation validation test \\
+
+SR-01 &
+drag\&bot GmbH runtime platform shall be the exclusive robot execution environment. &
+Runtime client connection logic for communication with the configured drag\&bot host and port &
+Platform integration check: runtime connection and command dispatch verified \\
+
+SR-02 &
+AirRobot Interface shall be the exclusive software communication layer between planning system and robot runtime. &
+Authenticated WebSocket communication layer with JSON command exchange &
+Interface integration check: authenticated connection and JSON command round-trip verified \\
+
+SR-03 &
+TCP shall be configured as project\_3\_tcp: $x=0.000$ m, $y=0.034$ m, $z=0.194$ m, $R_x=-90.0^\circ$, $R_y=-50.0^\circ$, $R_z=0.0^\circ$. &
+Default TCP pose definition applied in all flange-to-TCP transformations &
+TCP configuration check: flange pose computed correctly for reference target poses \\
 
 \bottomrule
 \end{tabularx}
+
 \end{table}
