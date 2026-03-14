@@ -42,10 +42,15 @@ Not supported. Full re-teaching required per geometry variant \cite{Pan2012Surve
 sheet dimensions, bend sides, and grip parameters configurable without code modification &
 CAD-based approach requires new model and re-simulation for each variant \cite{Bar2018VirtualCommissioning} \\
 
-Communication with Robot Runtime &
-Direct manual control; no software communication &
+Platform Compatibility  &
+No dependency on drag and bot or AnyRobot Interface; operates via teach pendant only. Does not satisfy SR-01 or SR-02  &
 ROS-based interface with drag\&bot AnyRobot middleware for real-time command execution \cite{dragandbot_anyrobot_2025} &
-Post-processor generates controller-specific code; proprietary OLP-to-controller interface \cite{Pan2012Survey} \\
+Incompatible: standard OLP tools do not support direct integration with the drag and bot runtime or AnyRobot Interface; violates SR-01 and SR-02  \\
+
+Tool Centre Point Definition &
+TCP not software-defined; operator sets tool geometry manually on teach pendant. SR-03 (project\_3\_tcp) cannot be enforced &
+All motion targets computed relative to the project\_3\_tcp TCP registered in the drag and bot tool management system, satisfying SR-03 &
+TCP defined within OLP CAD model; independent of the project\_3\_tcp constraint required by SR-03 \\
 
 Implementation Scope Feasibility &
 High feasibility but provides no automation contribution to thesis objective &

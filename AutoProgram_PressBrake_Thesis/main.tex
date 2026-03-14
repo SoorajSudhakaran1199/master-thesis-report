@@ -2,6 +2,7 @@
 % =========================
 % main.tex (THD thesis-ready, robust file-includes)
 % =========================
+
 \documentclass[12pt,a4paper,twoside]{report}
 
 \input{preamble}
@@ -15,48 +16,71 @@
 
 % Declaration
 \IfFileExists{frontmatter/declaration.tex}{%
-  \input{frontmatter/declaration}\cleardoublepage
+  \input{frontmatter/declaration}
+  \cleardoublepage
 }{}
 
 % Abstract
 \IfFileExists{frontmatter/abstract.tex}{%
-  \input{frontmatter/abstract}\cleardoublepage
+  \input{frontmatter/abstract}
+  \cleardoublepage
 }{}
 
 % Acknowledgements (optional)
 \IfFileExists{frontmatter/acknowledgements.tex}{%
-  \input{frontmatter/acknowledgements}\cleardoublepage
+  \input{frontmatter/acknowledgements}
+  \cleardoublepage
 }{}
 
-% Lists
+% List of Tables
 \listoftables
 \addcontentsline{toc}{chapter}{List of Tables}
 \cleardoublepage
 
+% List of Figures
 \listoffigures
 \addcontentsline{toc}{chapter}{List of Figures}
 \cleardoublepage
 
 % Abbreviations (optional)
 \IfFileExists{frontmatter/abbreviations.tex}{%
-  \input{frontmatter/abbreviations}\cleardoublepage
+  \input{frontmatter/abbreviations}
+  \cleardoublepage
 }{}
 
-% TOC
+% Table of Contents
 \tableofcontents
 \cleardoublepage
 
 % -------- MAIN CONTENT --------
 \pagenumbering{arabic}
 
-\IfFileExists{chapters/ch1_introduction.tex}{\input{chapters/ch1_introduction.tex}}{}
-\IfFileExists{chapters/ch2_state_of_art.tex}{\input{chapters/ch2_state_of_art.tex}}{}
-\IfFileExists{chapters/ch3_System_Concept_and_Methodology.tex}{\input{chapters/ch3_System_Concept_and_Methodology.tex}}{}
-\IfFileExists{chapters/ch4_Development_of_Concepts.tex}{\input{chapters/ch4_Development_of_Concepts.tex}}{}
+\IfFileExists{chapters/ch1_introduction.tex}{%
+  \input{chapters/ch1_introduction}
+}{}
+
+\IfFileExists{chapters/ch2_state_of_art.tex}{%
+  \input{chapters/ch2_state_of_art}
+}{}
+
+\IfFileExists{chapters/ch3_System_Concept_and_Methodology.tex}{%
+  \input{chapters/ch3_System_Concept_and_Methodology}
+}{}
+
+\IfFileExists{chapters/ch4_Development_of_Concepts.tex}{%
+  \input{chapters/ch4_Development_of_Concepts}
+}{}
+
+\IfFileExists{chapters/ch5_Implementation.tex}{%
+  \input{chapters/ch5_Implementation}
+}{}
 
 % -------- APPENDIX --------
 \appendix
-\IfFileExists{appendix/appendixA.tex}{\input{appendix/appendixA}}{}
+
+\IfFileExists{appendix/appendixA.tex}{%
+  \input{appendix/appendixA}
+}{}
 
 % -------- REFERENCES --------
 \cleardoublepage

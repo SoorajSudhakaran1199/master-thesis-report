@@ -40,11 +40,12 @@
 % BASIC UTILITIES
 % -------------------------
 \usepackage{graphicx}
-\usepackage{xurl}      % better URL line breaking
-\usepackage{csquotes}  % recommended for biblatex
-\usepackage{enumitem}  % clean lists
+\usepackage{wrapfig}
+\usepackage{xurl}
+\usepackage{csquotes}
+\usepackage{enumitem}
 
-% Optional: set figure folders (edit if you use them)
+% Optional: set figure folders
 % \graphicspath{{figures/}{images/}}
 
 % -------------------------
@@ -56,20 +57,17 @@
 % -------------------------
 % TABLES (incl. landscape)
 % -------------------------
-% --- Tables ---
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{array}
-\usepackage{ragged2e}   % REQUIRED for \RaggedRight
+\usepackage{rotating}
+\usepackage{pdflscape}
 
-% --- Optional: rotate/landscape tables ---
-\usepackage{rotating}   % provides sidewaystable
-\usepackage{pdflscape}  % provides landscape environment (optional)
+% Better table columns
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 
-% --- Better table columns ---
-\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}} % fixed width, ragged-right
-\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}        % tabularx auto-width, ragged-right
-\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}   % fixed width, centered (useful for Wt/Sc)
 % -------------------------
 % MATH / UNITS
 % -------------------------
@@ -97,7 +95,7 @@
   {\normalfont\bfseries\fontsize{11}{13}\selectfont}
   {\thesubsection}{1em}{}
 
-% Chapter spacing (moderate)
+% Chapter spacing
 \titlespacing*{\chapter}{0pt}{20pt}{20pt}
 
 % -------------------------
@@ -107,15 +105,15 @@
 \setcounter{tocdepth}{3}
 
 % -------------------------
-% HEADERS / FOOTERS (odd-right, even-left)
+% HEADERS / FOOTERS
 % -------------------------
 \usepackage{fancyhdr}
-\setlength{\headheight}{14.5pt} % avoids fancyhdr warnings
+\setlength{\headheight}{14.5pt}
 
 \pagestyle{fancy}
 \fancyhf{}
-\fancyfoot[RO]{\thepage} % odd pages -> right
-\fancyfoot[LE]{\thepage} % even pages -> left
+\fancyfoot[RO]{\thepage}
+\fancyfoot[LE]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
@@ -128,7 +126,7 @@
 }
 
 % -------------------------
-% HYPERLINKS (keep near the end)
+% HYPERLINKS
 % -------------------------
 \usepackage{hyperref}
 \hypersetup{
@@ -145,6 +143,6 @@
 \addbibresource{references.bib}
 
 % -------------------------
-% OPTIONAL: no paragraph indent (THD often allows indent; keep default)
-% \setlength{\parindent}{0pt}
+% OPTIONAL
 % -------------------------
+% \setlength{\parindent}{0pt}
