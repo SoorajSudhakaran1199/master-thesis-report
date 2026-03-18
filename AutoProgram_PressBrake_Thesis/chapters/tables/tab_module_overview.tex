@@ -1,0 +1,60 @@
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+
+\begin{longtable}{p{0.8cm} p{1.0cm} p{3.2cm} p{8.6cm}}
+\caption{Software modules across system layers and their primary responsibilities}
+\label{tab:module_overview}\\
+
+\toprule
+\textbf{No.} & \textbf{Layer} & \textbf{Module} & \textbf{Primary Responsibility} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{No.} & \textbf{Layer} & \textbf{Module} & \textbf{Primary Responsibility} \\
+\midrule
+\endhead
+
+\bottomrule
+\endfoot
+
+1 & L1 & Session launcher & Coordinates YAML loading, 3D viewer initialisation, and session start-up before runtime connection. \\
+
+2 & L1 & Configuration reader & Loads and validates configuration data and provides a consistent parameter source for the remaining modules. \\
+
+3 & L5 & Safety checker & Enforces operator confirmation and safety validation before execution begins. \\
+
+4 & L2 & Zone classifier & Classifies tracker data into spatial zones and determines admissible orientation strategies. \\
+
+5 & L2 & Orientation selector & Determines the pickup orientation on the basis of geometric evaluation of the workpiece. \\
+
+6 & L2 & Face orientation converter & Converts tracker pose data into a reference-face representation using rotation transformations. \\
+
+7 & L2 & Grip position planner & Computes feasible grip positions while considering edge clearance and holding constraints. \\
+
+8 & L2 & Pickup orientation validator & Verifies tool alignment and applies corrective transformations where required. \\
+
+9 & L4 & Trajectory generator & Generates waypoint sequences with path refinement, sampling control, and singularity avoidance. \\
+
+10 & L4 & Regrip motion executor & Executes regrip operations, including transport, release, and re-acquisition. \\
+
+11 & L3 & Primary bending orchestrator & Coordinates execution flow across orientation, planning, and motion modules. \\
+
+12 & L3 & Regrip sequencer & Determines transition sequences between grip configurations. \\
+
+13 & L3 & Opposite-side runner & Evaluates and executes alternative orientation strategies when required. \\
+
+14 & L3 & Multi-stage regrip loop & Handles iterative repositioning for complex bending sequences. \\
+
+15 & L3 & Post-bend unload sequencer & Controls unloading of completed workpieces to the designated buffer location. \\
+
+16 & L4 & Waypoint data structure & Encapsulates robot motion parameters, including pose, velocity, and blending information. \\
+
+17 & L4 & Digital IO handler & Manages vacuum control and safety-related input/output signals. \\
+
+18 & L4 & WebSocket client & Handles authentication, session management, and message transmission to the runtime interface. \\
+
+19 & L4 & Command type definitions & Defines motion categories, coordinate conventions, and JSON message formats. \\
+
+\end{longtable}
