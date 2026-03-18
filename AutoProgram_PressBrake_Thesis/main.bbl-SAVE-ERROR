@@ -517,6 +517,65 @@
       \verb 10.1109/TII.2013.2251233
       \endverb
     \endentry
+    \entry{wiki:euler_angles}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=b6aea1a416c89509a7df1cbb69249cb6}{%
+           family={{Wikipedia contributors}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{bibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorbibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authornamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Online; accessed 9-March-2026]}
+      \field{title}{Euler angles --- Wikipedia{,} The Free Encyclopedia}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Euler_angles
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Euler_angles
+      \endverb
+    \endentry
+    \entry{craig2005robotics}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=57c29b307f6e70b7216c8c696af16b58}{%
+           family={Craig},
+           familyi={C\bibinitperiod},
+           given={John\bibnamedelima J.},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Upper Saddle River, NJ, USA}%
+      }
+      \list{publisher}{1}{%
+        {Pearson Prentice Hall}%
+      }
+      \strng{namehash}{57c29b307f6e70b7216c8c696af16b58}
+      \strng{fullhash}{57c29b307f6e70b7216c8c696af16b58}
+      \strng{fullhashraw}{57c29b307f6e70b7216c8c696af16b58}
+      \strng{bibnamehash}{57c29b307f6e70b7216c8c696af16b58}
+      \strng{authorbibnamehash}{57c29b307f6e70b7216c8c696af16b58}
+      \strng{authornamehash}{57c29b307f6e70b7216c8c696af16b58}
+      \strng{authorfullhash}{57c29b307f6e70b7216c8c696af16b58}
+      \strng{authorfullhashraw}{57c29b307f6e70b7216c8c696af16b58}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3rd}
+      \field{isbn}{978-0-13-123629-5}
+      \field{title}{Introduction to Robotics: Mechanics and Control}
+      \field{year}{2005}
+    \endentry
     \entry{Bar2018VirtualCommissioning}{article}{}{}
       \name{author}{3}{}{%
         {{hash=dd288b3b306526057c091ab7a920ddd9}{%
@@ -543,8 +602,8 @@
       \strng{authornamehash}{2206e1948c0c591c115b0cc25608abab}
       \strng{authorfullhash}{468c38d855a5f5242903501b6a2eb129}
       \strng{authorfullhashraw}{468c38d855a5f5242903501b6a2eb129}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Procedia CIRP}
@@ -553,6 +612,116 @@
       \field{year}{2018}
       \field{pages}{129\bibrangedash 134}
       \range{pages}{6}
+    \endentry
+    \entry{Pahl2007EngineeringDesign}{book}{}{}
+      \name{author}{4}{}{%
+        {{hash=735e36404e9bc9b7de895e612055291e}{%
+           family={Pahl},
+           familyi={P\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=4322d513aec14d9c25507967c25281ee}{%
+           family={Beitz},
+           familyi={B\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod}}}%
+        {{hash=1b910cb6c6ee818aee5edece9cfea78b}{%
+           family={Feldhusen},
+           familyi={F\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=556d8ce8f95c0eee10de8a658d8687de}{%
+           family={Grote},
+           familyi={G\bibinitperiod},
+           given={K.\bibnamedelimi H.},
+           giveni={K\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {London}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{55df7c2e26678a7038c6804c8b4bf2e2}
+      \strng{fullhash}{2355626270d9e2792a178161372521c1}
+      \strng{fullhashraw}{2355626270d9e2792a178161372521c1}
+      \strng{bibnamehash}{2355626270d9e2792a178161372521c1}
+      \strng{authorbibnamehash}{2355626270d9e2792a178161372521c1}
+      \strng{authornamehash}{55df7c2e26678a7038c6804c8b4bf2e2}
+      \strng{authorfullhash}{2355626270d9e2792a178161372521c1}
+      \strng{authorfullhashraw}{2355626270d9e2792a178161372521c1}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3}
+      \field{title}{Engineering Design: A Systematic Approach}
+      \field{year}{2007}
+      \verb{doi}
+      \verb 10.1007/978-1-84628-319-2
+      \endverb
+    \endentry
+    \entry{quigley2009ros}{inproceedings}{}{}
+      \name{author}{8}{}{%
+        {{hash=9404eebbe5c52f5580a6f6515ebcbb80}{%
+           family={Quigley},
+           familyi={Q\bibinitperiod},
+           given={Morgan},
+           giveni={M\bibinitperiod}}}%
+        {{hash=03be3bc097356f7d1ec26652c7045241}{%
+           family={Conley},
+           familyi={C\bibinitperiod},
+           given={Ken},
+           giveni={K\bibinitperiod}}}%
+        {{hash=a8ad4a5f43253f69552460c946e34e49}{%
+           family={Gerkey},
+           familyi={G\bibinitperiod},
+           given={Brian},
+           giveni={B\bibinitperiod}}}%
+        {{hash=960c70f75f497debf10c247f8076241e}{%
+           family={Faust},
+           familyi={F\bibinitperiod},
+           given={Josh},
+           giveni={J\bibinitperiod}}}%
+        {{hash=0d11ace6e44e4742ea1692d7ddf4819e}{%
+           family={Foote},
+           familyi={F\bibinitperiod},
+           given={Tully},
+           giveni={T\bibinitperiod}}}%
+        {{hash=fae0a680822c97400d0807bb44b87838}{%
+           family={Leibs},
+           familyi={L\bibinitperiod},
+           given={Jeremy},
+           giveni={J\bibinitperiod}}}%
+        {{hash=1afca7d350a45f78259bb8af3f168e7d}{%
+           family={Wheeler},
+           familyi={W\bibinitperiod},
+           given={Rob},
+           giveni={R\bibinitperiod}}}%
+        {{hash=49e889356ff39df159461bc2895c7e16}{%
+           family={Ng},
+           familyi={N\bibinitperiod},
+           given={Andrew\bibnamedelima Y.},
+           giveni={A\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Kobe, Japan}%
+      }
+      \strng{namehash}{b774a9d43f5be3e4c87661f157618116}
+      \strng{fullhash}{a91a45c430d95c385cb29e58b6b9fd6e}
+      \strng{fullhashraw}{a91a45c430d95c385cb29e58b6b9fd6e}
+      \strng{bibnamehash}{b774a9d43f5be3e4c87661f157618116}
+      \strng{authorbibnamehash}{b774a9d43f5be3e4c87661f157618116}
+      \strng{authornamehash}{b774a9d43f5be3e4c87661f157618116}
+      \strng{authorfullhash}{a91a45c430d95c385cb29e58b6b9fd6e}
+      \strng{authorfullhashraw}{a91a45c430d95c385cb29e58b6b9fd6e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the ICRA Workshop on Open Source Software}
+      \field{title}{{ROS: an Open-Source Robot Operating System}}
+      \field{year}{2009}
     \endentry
   \enddatalist
 \endrefsection
