@@ -1,6 +1,7 @@
 % !TeX program = xelatex
 % =========================
-% PREAMBLE.tex (THD thesis-ready, XeLaTeX, Verdana, Biber)
+% PREAMBLE.tex
+% THD thesis-ready, XeLaTeX, Verdana, Biber
 % =========================
 
 % -------------------------
@@ -44,15 +45,20 @@
 \usepackage{xurl}
 \usepackage{csquotes}
 \usepackage{enumitem}
+\usepackage{float}      % for [H]
+\usepackage{placeins}   % for \FloatBarrier
 
 % Optional: set figure folders
-% \graphicspath{{figures/}{images/}}
+\graphicspath{{figures/}{images/}}
 
 % -------------------------
 % CAPTIONS
 % -------------------------
 \usepackage{caption}
-\captionsetup{font=small, labelfont=bf}
+\captionsetup{
+  font=small,
+  labelfont=bf
+}
 
 % -------------------------
 % TABLES (incl. landscape)
@@ -62,6 +68,7 @@
 \usepackage{array}
 \usepackage{rotating}
 \usepackage{pdflscape}
+\usepackage{longtable}
 
 % Better table columns
 \newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
@@ -71,7 +78,9 @@
 % -------------------------
 % MATH / UNITS
 % -------------------------
-\usepackage{amsmath, amssymb, mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
 \usepackage{siunitx}
 \sisetup{detect-all=true}
 
@@ -139,10 +148,47 @@
 % -------------------------
 % REFERENCES (BibLaTeX + Biber, IEEE style)
 % -------------------------
-\usepackage[backend=biber,style=ieee]{biblatex}
+\usepackage[
+  backend=biber,
+  style=ieee
+]{biblatex}
 \addbibresource{references.bib}
 
 % -------------------------
-% OPTIONAL
+% OPTIONAL PARAGRAPH FORMATTING
 % -------------------------
+% Uncomment one of these styles if needed
+
+% No paragraph indent, small space between paragraphs
 % \setlength{\parindent}{0pt}
+% \setlength{\parskip}{0.5em}
+
+% Default paragraph indent, no extra paragraph space
+% \setlength{\parindent}{15pt}
+% \setlength{\parskip}{0pt}
+
+% -------------------------
+% FIGURE / TABLE FLOAT CONTROL
+% -------------------------
+% Prevent floats from drifting too far away
+\setcounter{topnumber}{5}
+\setcounter{bottomnumber}{5}
+\setcounter{totalnumber}{10}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.8}
+
+% -------------------------
+% RECOMMENDED USAGE IN CHAPTERS
+% -------------------------
+% Before a new section if you want previous figures to stay above:
+% \FloatBarrier
+%
+% For strict in-place figures:
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=\textwidth,height=0.75\textheight,keepaspectratio]{...}
+%   \caption{...}
+%   \label{...}
+% \end{figure}
