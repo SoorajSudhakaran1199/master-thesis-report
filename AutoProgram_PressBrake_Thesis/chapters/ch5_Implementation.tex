@@ -377,3 +377,21 @@ However, since this orientation may not strictly satisfy the predefined admissib
 \paragraph{Strategy Outcome}
 
 The three-level strategy guarantees that a pickup orientation is always determined while prioritising configurations that are both kinematically feasible and geometrically consistent. By enforcing a strict evaluation order and incorporating a controlled fallback mechanism, the approach balances robustness and operational safety. The final selected orientation, together with its admissibility status, is forwarded to subsequent planning stages for execution.
+
+\subsection{Vacuum Gripper Digital IO Sequence}
+The vacuum gripper is actuated using two digital output signals on the UR5e controller, mapped to DO[0] and DO[1] in the drag\&bot IO management system. DO[0] activates the vacuum by closing the suction valve, while DO[1] releases the vacuum by opening the exhaust valve. These signals are strictly mutually exclusive; at no point are both outputs activated simultaneously, as this would result in conflicting pressure states and potential hardware damage.
+\par Control commands are issued via the \texttt{/robot/set\_digital\_ios} service of the AnyRobot Interface, which accepts structured IO commands specifying the target pin and its Boolean state. To ensure reliable gripping, a dwell period of 250~ms is applied after activating the vacuum. This delay allows sufficient time for the suction cups to establish a stable seal with the sheet surface\cite{mahler2017dexnet} . Initiating further operations before this stabilization would result in a virtual attachment being applied to a physically unstable grasp.
+A secondary delay of 150~ms is introduced after each IO operation to ensure that the state transition propagates through the ROS communication layer before subsequent commands are executed. This prevents race conditions between command execution and system state updates.
+
+\subsection{Kinematic Object Attachment and Detachment}
+
+In the simulation environment, the physical coupling between the gripper and the sheet is represented through kinematic attachment. When the gripper successfully grasps the sheet, the corresponding object is attached to the robot’s tool frame, ensuring that all subsequent robot motions are reflected in the sheet’s pose. Conversely, when the vacuum is released, the object is detached and remains fixed in its last known position.
+\par Attachment is performed using the \texttt{/dnb\_object\_manager/attach} service without enforcing a position override. This avoids introducing discontinuities between the tracked object pose and the simulated state, as the tracker may not exactly match the instantaneous tool frame position. Position override is reserved exclusively for controlled initialization procedures where explicit alignment is required.
+\par Detachment is executed through the \texttt{/dnb\_object\_manager/detach} service using the same reference frame. To maintain consistency, attachment and detachment operations are always executed in a fixed sequence together with the corresponding IO commands:
+
+\begin{itemize}
+\item Grasp sequence: vacuum ON $\rightarrow$ dwell $\rightarrow$ attach
+\item Release sequence: vacuum OFF $\rightarrow$ dwell $\rightarrow$ detach
+\end{itemize}
+
+This sequence is encapsulated within centralized helper routines that are invoked by all modules performing grasp or release actions. Centralizing this logic ensures that the physical and virtual states remain synchronised at all times and prevents invalid states where the vacuum is active without a corresponding attachment, or vice versa.

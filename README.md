@@ -163,4 +163,19 @@ git push
 ```bash
 git pull
 ```
+xelatex main.tex
+biber main
+xelatex main.tex
+xelatex main.tex
 
+######
+
+When adding a NEW reference
+
+Ctrl + Alt + B
+
+(or use latexmk (xelatex + biber))
+
+latexmk -pdfxe main.tex
+
+again ctrl+ s 
