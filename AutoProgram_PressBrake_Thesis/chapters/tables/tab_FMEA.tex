@@ -1,0 +1,80 @@
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{Failure Mode and Effects Analysis (FMEA) of the robotic bending system}
+\label{tab:fmea}
+
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.1}
+\scriptsize
+
+\begin{tabularx}{\textheight}{
+L{3.0cm}
+L{3.5cm}
+c c c c
+L{3.8cm}
+L{5.5cm}
+}
+\toprule
+\textbf{Failure Mode} &
+\textbf{Effect} &
+\textbf{S} &
+\textbf{O} &
+\textbf{D} &
+\textbf{RPN} &
+\textbf{Cause} &
+\textbf{Mitigation} \\
+\midrule
+
+Sheet unreachable during pickup &
+Robot stops mid-trajectory; session aborted &
+7 & 3 & 3 & 63 &
+Invalid spatial placement or orientation outside admissible zone &
+Spatial zone classification and orientation constraints applied before motion; system halts with operator notification \\
+
+Incorrect grip position (cup over hole) &
+Vacuum failure; sheet may fall during transport &
+8 & 2 & 2 & 32 &
+Incomplete feature detection in hole map &
+Clearance offsets applied around detected holes; final validation ensures no suction cup overlaps with holes \\
+
+Vacuum holding force insufficient &
+Sheet slips or drops during motion &
+8 & 2 & 1 & 16 &
+Insufficient gripping force due to load or acceleration &
+Force feasibility check applied for each candidate grip; safety factor enforced and invalid grips rejected \\
+
+Motion command rejected by controller &
+Robot stops; process interruption &
+6 & 3 & 2 & 36 &
+Invalid or inconsistent motion command format &
+Command validation and structured message formatting ensure consistent communication with controller \\
+
+Trajectory exits workspace boundary &
+Motion infeasible; execution halted &
+6 & 4 & 3 & 72 &
+Target pose near or beyond reachable workspace limits &
+Workspace clamping applied to all trajectory points; limits enforced on radial and vertical reach \\
+
+Inverse kinematics failure due to excessive attachments &
+Robot cannot compute valid configuration &
+5 & 2 & 3 & 30 &
+Multiple simultaneous object attachments causing solver overload &
+Strict attach-detach discipline enforced; each attachment preceded by release of previous objects \\
+
+Self-collision in simulation &
+Invalid motion path generated without warning &
+4 & 3 & 5 & 60 &
+Lack of self-collision detection in simulation environment &
+Three-phase trajectory structure reduces collision risk; limitation acknowledged for physical deployment \\
+
+Configuration error (invalid or missing parameters) &
+System fails at startup; no execution &
+3 & 3 & 1 & 9 &
+Missing or incorrectly defined configuration parameters &
+Configuration validation performed at startup; errors detected before motion execution \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+\end{landscape}

@@ -176,6 +176,7 @@ Ctrl + Alt + B
 
 (or use latexmk (xelatex + biber))
 
+cd .\AutoProgram_PressBrake_Thesis\
 latexmk -pdfxe main.tex
 
 again ctrl+ s 
