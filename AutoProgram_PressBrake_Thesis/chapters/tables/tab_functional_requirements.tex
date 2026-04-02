@@ -23,6 +23,11 @@ L{2.5cm}
 \textbf{Verification Method} \\
 \midrule
 
+FR-00 &
+Automatic robot program generation shall be implemented for press brake operations. &
+The system shall generate robot programs automatically for press brake operations. &
+Simulation based \\
+\midrule
 FR-01 &
 The system shall detect unreachable target poses before robot motion execution. &
 The robot shall not execute motion to unreachable poses and shall provide an error message. &
@@ -66,8 +71,8 @@ Simulation based \\
 \midrule
 
 FR-07 &
-The system shall terminate execution when an unsafe operation is detected. &
-The robot shall terminate execution and display an error message. &
+Detect unsafe conditions and perform replanning or terminate execution &
+System replans sucessfully with warning  &
 Simulation based \\
 
 \bottomrule

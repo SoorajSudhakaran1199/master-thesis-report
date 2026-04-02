@@ -1,14 +1,12 @@
 \begin{table}[htbp]
 \centering
-\caption{Requirement Traceability Matrix --- all fifteen requirements (FR-01 to FR-07, NFR-01 to NFR-05, SR-01 to SR-03) mapped to implementation modules and verification scenarios}
+\caption{Requirement Traceability Matrix --- all requirements (FR-00 to FR-07, NFR-01 to NFR-05, SR-01 to SR-03) mapped to implementation modules and verification scenarios}
 \label{tab:req_traceability_matrix}
-
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.05}
 \scriptsize
 \hyphenpenalty=10000
 \exhyphenpenalty=10000
-
 \begin{tabularx}{\textwidth}{
 L{1.4cm}
 L{4.2cm}
@@ -21,6 +19,12 @@ L{3.2cm}
 \textbf{Implemented In} &
 \textbf{Verified In} \\
 \midrule
+
+
+FR-00 &
+Automatic robot program generation for press brake operations. &
+Integrated planning pipeline combining geometry processing, trajectory generation, and execution logic &
+End-to-end simulation validation \\
 
 FR-01 &
 Detect unreachable target poses before execution. &
@@ -53,8 +57,8 @@ Grip planning logic with edge-clearance, spacing, and vacuum-force feasibility c
 Grip validation test case TC-06 \\
 
 FR-07 &
-Terminate execution when an unsafe operation is detected. &
-Safety warning and pre-execution deviation checking logic with operator confirmation dialog &
+Detect unsafe conditions and perform replanning or terminate execution. &
+Safety validation and pre-execution checking logic with replanning mechanism and controlled stop handling &
 Safety validation test case TC-07 \\
 
 NFR-01 &
@@ -83,21 +87,21 @@ Configurable pose-deviation threshold and perturbation handling logic &
 Perturbation validation test \\
 
 SR-01 &
-drag\&bot GmbH runtime platform shall be the exclusive robot execution environment. &
-Runtime client connection logic for communication with the configured drag\&bot host and port &
-Platform integration check: runtime connection and command dispatch verified \\
+drag\&bot platform shall be the virtual execution environment for robot program validation. &
+Runtime client connection logic for communication with the configured drag\&bot environment &
+Platform integration check: runtime connection and command execution verified \\
 
 SR-02 &
-AirRobot Interface shall be the exclusive software communication layer between planning system and robot runtime. &
-Authenticated WebSocket communication layer with JSON command exchange &
-Interface integration check: authenticated connection and JSON command round-trip verified \\
+AnyRobot interface shall be the communication layer between planning system and robot runtime. &
+WebSocket-based communication layer enabling structured command exchange &
+Interface integration check: connection established and commands successfully executed \\
 
 SR-03 &
-TCP shall be configured as project\_3\_tcp: $x=0.000$ m, $y=0.034$ m, $z=0.194$ m, $R_x=-90.0^\circ$, $R_y=-50.0^\circ$, $R_z=0.0^\circ$. &
-Default TCP pose definition applied in all flange-to-TCP transformations &
-TCP configuration check: flange pose computed correctly for reference target poses \\
+All motion targets shall be defined with respect to the configured TCP. &
+TCP-based transformation applied in all trajectory generation and motion execution steps &
+TCP configuration check: consistent pose transformation verified \\
 
 \bottomrule
 \end{tabularx}
-
 \end{table}
+

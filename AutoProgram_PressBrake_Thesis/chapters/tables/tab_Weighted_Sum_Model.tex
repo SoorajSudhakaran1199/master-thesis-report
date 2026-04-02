@@ -1,14 +1,12 @@
 \begin{table}[htbp]
 \centering
-\caption{Structural comparison of Concept A, Concept B, and Concept C across key design features}
+\caption{Weighted Sum Model (WSM) evaluation of Concept A, Concept B, and Concept C}
 \label{tab:weighted_sum_model}
-
-\setlength{\tabcolsep}{3pt}      % reduce column spacing
-\renewcommand{\arraystretch}{1.0} % reduce row height
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.0}
 \scriptsize
 \hyphenpenalty=10000
 \exhyphenpenalty=10000
-
 \begin{tabularx}{\textwidth}{
 L{2.5cm} 
 L{0.5cm} 
@@ -19,7 +17,6 @@ L{0.5cm}
 L{3.2cm} 
 L{0.5cm}
 }
-
 \toprule
 \textbf{Evaluation Criterion} &
 \textbf{Wt.} &
@@ -33,65 +30,65 @@ L{0.5cm}
 
 Programming Effort Reduction &
 25\% &
-All waypoints defined manually per session; no reduction in programming effort &
+All waypoints and process logic defined manually; no reduction in programming effort &
 1 &
-Waypoints derived automatically from geometric parameters; no manual teaching required &
-5 &
-CAD solver reduces teaching effort but requires model setup per variant &
+Waypoints and process logic generated automatically from configuration parameters; minimal manual intervention required &
+4 &
+CAD-based programming reduces manual teaching but requires model setup and adjustment for each variant &
 3 \\
 
-Automated Regrip and Opposite-Side Support &
+Automated Regrip and Opposite-Side Handling &
 20\% &
-No regrip logic; operator plans and executes all regrip and flip operations manually &
+No automated regrip or opposite-side handling; fully operator-dependent &
 1 &
-Full automation via regrips and opposite-side modules with IO and attach control &
-5 &
-Regrip targets defined in simulation; execution not automated at runtime &
-2 \\
-
-Pre-Execution Pose Validation &
-20\% &
-No validation; unreachable poses detected only during physical robot motion &
-1 &
-Orientation validation and spatial zone classification executed before motion generation &
-5 &
-Simulation validates program before export; no runtime check available &
+Automated regrip and opposite-side handling implemented through rule-based modules &
+4 &
+Regrip and handling planned in simulation but not dynamically adapted during execution &
 3 \\
 
-Configuration Adaptability  &
+Pre-Execution Validation and Safety &
+20\% &
+No integrated validation; infeasible conditions detected only during execution &
+1 &
+Pre-execution validation detects infeasible conditions and supports replanning or safe termination &
+4 &
+Validation performed in simulation environment; no runtime validation during execution &
+3 \\
+
+Adaptability to Changing Workpiece Geometry &
 15\% &
-Full re-teaching required per geometry variant; scales poorly &
+Manual reprogramming required for each geometry change; low adaptability &
 1 &
-Sheet parameters stored in YAML; new geometry requires only configuration update &
-5 &
-New CAD model and re-simulation required for each variant &
+Configuration-driven approach allows adaptation through parameter changes without code modification &
+4 &
+Requires modification of CAD models and re-simulation for each new geometry &
 3 \\
 
 Platform Compatibility &
 10\% &
-No dependency on drag\&bot or AnyRobot Interface; incompatible with the required industrial partner development platform. SR-01 and SR-02 not satisfied &
+Can be executed within drag\&bot as a manual workflow but does not utilise the AnyRobot Interface; partially satisfies platform requirements &
+2 &
+Fully compatible with drag\&bot runtime and AnyRobot Interface as defined in SR-01 and SR-02 &
 4 &
-Fully implementable in Python within drag\&bot virtual simulation; achievable within thesis scope &
-5 &
-Standard OLP tools cannot integrate with drag\&bot runtime or AnyRobot WebSocket Interface; violates SR-01 and SR-02  &
-2 \\
+Not compatible with drag\&bot runtime or AnyRobot Interface; does not satisfy platform requirements &
+1 \\
 
 Operator Usability &
 10\% &
-Expert robot programming knowledge required for each session; high cognitive load &
+Requires expert knowledge and continuous manual input; high operator dependency &
 2 &
-Operator selects bend side and confirms execution; decisions handled by the system &
-5 &
-CAD interface reduces robot expertise requirement; specialist CAD knowledge required &
+Minimal operator interaction; system handles planning and execution logic &
+4 &
+Moderate usability; reduced robot expertise required but requires CAD knowledge &
 3 \\
 
 \midrule
 \textbf{Weighted Total Score} &
 \textbf{100\%} &
-Concept A & \textbf{1.40} &
-Concept B --- SELECTED $\checkmark$ & \textbf{5.00} &
-Concept C & \textbf{2.70} \\
+Concept A & \textbf{1.25} &
+Concept B --- SELECTED $\checkmark$ & \textbf{4.00} &
+Concept C & \textbf{2.95} \\
 \bottomrule
 \end{tabularx}
-
 \end{table}
+

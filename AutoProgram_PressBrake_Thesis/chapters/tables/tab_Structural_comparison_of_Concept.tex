@@ -2,13 +2,11 @@
 \centering
 \caption{Structural comparison of Concept A, Concept B, and Concept C across key design features}
 \label{tab:concept_comparison}
-
-\setlength{\tabcolsep}{3pt}      % reduce column spacing
-\renewcommand{\arraystretch}{1.0} % reduce row height
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.0}
 \scriptsize
 \hyphenpenalty=10000
 \exhyphenpenalty=10000
-
 \begin{tabularx}{\textwidth}{L{3.0cm} L{3.5cm} L{4.5cm} L{4.0cm}}
 \toprule
 \textbf{Design Feature} &
@@ -16,52 +14,52 @@
 \textbf{Concept B} &
 \textbf{Concept C} \\
 \midrule
-
+ 
 Waypoint Generation Method &
-Manual operator teach-in for every new part geometry \cite{Siciliano2016Robotics} &
-Automatic derivation from sheet geometry and YAML configuration parameters \cite{dragandbot_anyrobot_2025} &
-CAD-based OLP solver algorithms; new CAD model required per variant \cite{Pan2012Survey} \\
-
-Regrip Automation &
-No automation. Operator plans and executes each regrip sequence manually \cite{Aomura2002RoboticBending} &
-Full automation via dedicated regrip module: IO control, attach/detach, and rotation sequencing under YAML-configurable parameters \cite{Aomura2002RoboticBending}\cite{Gupta1998SheetMetalBending} &
-Regrip positions defined in CAD simulation; execution not automated at runtime \cite{Bar2018VirtualCommissioning} \\
-
+Manually defined by the operator for each task using teach-in or function blocks; no automation \cite{Siciliano2016Robotics} &
+Automatically generated from sheet geometry and configuration parameters; no manual waypoint definition required \cite{dragandbot_anyrobot_2025} &
+Generated using CAD-based offline programming; requires model setup for each geometry variant \cite{Pan2012Survey} \\
+ 
+Regrip Handling &
+No automation; regripping is manually planned and executed by the operator \cite{Aomura2002RoboticBending} &
+Automated through dedicated regrip logic including IO control, attach/detach operations, and sequence management \cite{Aomura2002RoboticBending,Gupta1998SheetMetalBending} &
+Regrip positions defined in simulation; execution remains manual or pre-defined without runtime adaptation \cite{Bar2018VirtualCommissioning} \\
+ 
 Opposite-Side Bending &
-Manual sheet flip by operator; no software support &
-Dedicated flip module executes structured sheet transfer via predefined cell objects; same validation hierarchy as primary bending \cite{Gupta1998SheetMetalBending} &
-CAD simulation resolves flip; runtime execution remains manual \cite{Bar2018VirtualCommissioning} \\
-
-Pre-Execution Pose Validation &
-None. Unreachable poses discovered at runtime during physical robot motion \cite{Siciliano2016Robotics} &
-Orientation validation evaluates admissibility using a three-level priority strategy &
-Orientation validation performed in CAD simulation; no runtime checks \cite{Pan2012Survey} \\
-
-Configuration Adaptability &
-Not supported. Full re-teaching required per geometry variant \cite{Pan2012Survey} &
-sheet dimensions, bend sides, and grip parameters configurable without code modification &
-CAD-based approach requires new model and re-simulation for each variant \cite{Bar2018VirtualCommissioning} \\
-
-Platform Compatibility  &
-No dependency on drag and bot or AnyRobot Interface; operates via teach pendant only. Does not satisfy SR-01 or SR-02  &
-ROS-based interface with drag\&bot AnyRobot middleware for real-time command execution \cite{dragandbot_anyrobot_2025} &
-Incompatible: standard OLP tools do not support direct integration with the drag and bot runtime or AnyRobot Interface; violates SR-01 and SR-02  \\
-
-Tool Centre Point Definition &
-TCP not software-defined; operator sets tool geometry manually on teach pendant. SR-03 (project\_3\_tcp) cannot be enforced &
-All motion targets computed relative to the project\_3\_tcp TCP registered in the drag and bot tool management system, satisfying SR-03 &
-TCP defined within OLP CAD model; independent of the project\_3\_tcp constraint required by SR-03 \\
-
-Implementation Scope Feasibility &
-High feasibility but provides no automation contribution to thesis objective &
-Fully implementable in Python within dragand bot virtual simulation; achievable within thesis scope \cite{dragandbot_anyrobot_2025} &
-Requires commercial OLP software, accurate cell CAD models, and custom integration; exceeds thesis scope \cite{Siciliano2016Robotics} \\
-
-Research Gap Addressed &
-No automation; manual processes dominate &
-Automated waypoint generation, regrip sequencing, and flip execution with real-time validation; addresses key automation gaps in current state of the art \cite{Gupta1998SheetMetalBending} &
-Partial - Focuses on CAD-based simulation and OLP without runtime automation; does not address real-time adaptability \\
+Manual sheet flipping and repositioning; no system support &
+Structured flip and handling sequence implemented through predefined logic and validated execution workflow \cite{Gupta1998SheetMetalBending} &
+Simulated in CAD environment; execution logic not dynamically adapted during runtime \cite{Bar2018VirtualCommissioning} \\
+ 
+Pre-Execution Validation &
+Not supported; infeasible poses identified only during execution \cite{Siciliano2016Robotics} &
+Integrated validation of orientation, reachability, and feasibility prior to execution, with support for replanning or safe termination &
+Validation performed in simulation environment; no runtime validation during execution \cite{Pan2012Survey} \\
+ 
+Adaptability to Geometry Changes &
+Requires manual reprogramming for each new workpiece; low adaptability \cite{Pan2012Survey} &
+Configuration-driven approach allows parameter updates without modifying program logic &
+Requires modification of CAD models and re-simulation for each geometry variation \cite{Bar2018VirtualCommissioning} \\
+ 
+Platform Compatibility &
+Can be executed within drag\&bot as a manually constructed workflow, but does not utilise the AnyRobot Interface and therefore does not satisfy SR-02 &
+Fully compatible with drag\&bot runtime and AnyRobot Interface as defined in SR-01 and SR-02 \cite{dragandbot_anyrobot_2025} &
+Not compatible with drag\&bot runtime or AnyRobot Interface; does not satisfy SR-01 and SR-02 \\
+ 
+Tool Centre Point (TCP) Handling &
+Defined manually by the operator; not enforced through system-level configuration &
+All motion targets defined relative to a predefined TCP, ensuring consistency with system configuration (SR-03) &
+Defined within CAD model; not aligned with system-specific TCP requirements \\
+ 
+Implementation Feasibility &
+Easy to implement but provides no automation capability &
+Fully implementable within the defined software environment and thesis scope &
+Requires commercial OLP tools and detailed digital models; exceeds practical scope \cite{Siciliano2016Robotics} \\
+ 
+Research Gap Coverage &
+Does not address automation; relies on manual programming &
+Directly addresses the research gap through automatic program generation, regripping, and validation &
+Partially addresses the gap through simulation and planning, but lacks runtime adaptability \\
+ 
 \bottomrule
 \end{tabularx}
-
 \end{table}

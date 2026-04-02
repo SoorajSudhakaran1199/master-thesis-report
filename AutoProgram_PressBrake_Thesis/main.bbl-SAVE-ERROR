@@ -19,6 +19,48 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global/global}
+    \entry{ISO8373}{standard}{}{}
+      \list{organization}{1}{%
+        {International Organization for Standardization}%
+      }
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labeltitlesource}{title}
+      \field{number}{ISO 8373:2012}
+      \field{title}{Robots and robotic devices — Vocabulary}
+      \field{year}{2012}
+    \endentry
+    \entry{craig2005robotics}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=57c29b307f6e70b7216c8c696af16b58}{%
+           family={Craig},
+           familyi={C\bibinitperiod},
+           given={John\bibnamedelima J.},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Upper Saddle River, NJ, USA}%
+      }
+      \list{publisher}{1}{%
+        {Pearson Prentice Hall}%
+      }
+      \strng{namehash}{57c29b307f6e70b7216c8c696af16b58}
+      \strng{fullhash}{57c29b307f6e70b7216c8c696af16b58}
+      \strng{fullhashraw}{57c29b307f6e70b7216c8c696af16b58}
+      \strng{bibnamehash}{57c29b307f6e70b7216c8c696af16b58}
+      \strng{authorbibnamehash}{57c29b307f6e70b7216c8c696af16b58}
+      \strng{authornamehash}{57c29b307f6e70b7216c8c696af16b58}
+      \strng{authorfullhash}{57c29b307f6e70b7216c8c696af16b58}
+      \strng{authorfullhashraw}{57c29b307f6e70b7216c8c696af16b58}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3rd}
+      \field{isbn}{978-0-13-123629-5}
+      \field{title}{Introduction to Robotics: Mechanics and Control}
+      \field{year}{2005}
+    \endentry
     \entry{Siciliano2016Robotics}{book}{}{}
       \name{author}{4}{}{%
         {{hash=38f7a70abf2d86e432d63826f560ab93}{%
@@ -56,14 +98,158 @@
       \strng{authornamehash}{87b7a62a01263043a997b937dfe79845}
       \strng{authorfullhash}{ee90168e098b65fb796c51b65c7348da}
       \strng{authorfullhashraw}{ee90168e098b65fb796c51b65c7348da}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{2}
       \field{isbn}{978-1-4471-1500-0}
       \field{title}{Robotics: Modelling, Planning and Control}
       \field{year}{2016}
+    \endentry
+    \entry{LozanoPerez1983}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=fa3b21328d9a26110e031a7007b17a07}{%
+           family={Lozano-Pérez},
+           familyi={L\bibinithyphendelim P\bibinitperiod},
+           given={Tomas},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{fa3b21328d9a26110e031a7007b17a07}
+      \strng{fullhash}{fa3b21328d9a26110e031a7007b17a07}
+      \strng{fullhashraw}{fa3b21328d9a26110e031a7007b17a07}
+      \strng{bibnamehash}{fa3b21328d9a26110e031a7007b17a07}
+      \strng{authorbibnamehash}{fa3b21328d9a26110e031a7007b17a07}
+      \strng{authornamehash}{fa3b21328d9a26110e031a7007b17a07}
+      \strng{authorfullhash}{fa3b21328d9a26110e031a7007b17a07}
+      \strng{authorfullhashraw}{fa3b21328d9a26110e031a7007b17a07}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the IEEE}
+      \field{number}{7}
+      \field{title}{Robot Programming}
+      \field{volume}{71}
+      \field{year}{1983}
+      \field{pages}{821\bibrangedash 841}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1109/PROC.1983.12678
+      \endverb
+    \endentry
+    \entry{Kruger2019}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{2}{}{%
+        {{hash=6a7f88dd8cd857a74336c1a938573dc2}{%
+           family={Krüger},
+           familyi={K\bibinitperiod},
+           given={Jens},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3f3b311a8f2ec30ffd53afb450a76164}{%
+           family={Krüger},
+           familyi={K\bibinitperiod},
+           given={Torsten},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{10b8799ca6080b80b42cbb0ffff52910}
+      \strng{fullhash}{10b8799ca6080b80b42cbb0ffff52910}
+      \strng{fullhashraw}{10b8799ca6080b80b42cbb0ffff52910}
+      \strng{bibnamehash}{10b8799ca6080b80b42cbb0ffff52910}
+      \strng{authorbibnamehash}{10b8799ca6080b80b42cbb0ffff52910}
+      \strng{authornamehash}{10b8799ca6080b80b42cbb0ffff52910}
+      \strng{authorfullhash}{10b8799ca6080b80b42cbb0ffff52910}
+      \strng{authorfullhashraw}{10b8799ca6080b80b42cbb0ffff52910}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{CIRP Annals}
+      \field{number}{2}
+      \field{title}{Skill-Based Programming of Industrial Robots}
+      \field{volume}{68}
+      \field{year}{2019}
+      \field{pages}{661\bibrangedash 684}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1016/j.cirp.2019.05.002
+      \endverb
+    \endentry
+    \entry{Pahl2007EngineeringDesign}{book}{}{}
+      \name{author}{4}{}{%
+        {{hash=735e36404e9bc9b7de895e612055291e}{%
+           family={Pahl},
+           familyi={P\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=4322d513aec14d9c25507967c25281ee}{%
+           family={Beitz},
+           familyi={B\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod}}}%
+        {{hash=1b910cb6c6ee818aee5edece9cfea78b}{%
+           family={Feldhusen},
+           familyi={F\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=556d8ce8f95c0eee10de8a658d8687de}{%
+           family={Grote},
+           familyi={G\bibinitperiod},
+           given={K.\bibnamedelimi H.},
+           giveni={K\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {London}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{55df7c2e26678a7038c6804c8b4bf2e2}
+      \strng{fullhash}{2355626270d9e2792a178161372521c1}
+      \strng{fullhashraw}{2355626270d9e2792a178161372521c1}
+      \strng{bibnamehash}{2355626270d9e2792a178161372521c1}
+      \strng{authorbibnamehash}{2355626270d9e2792a178161372521c1}
+      \strng{authornamehash}{55df7c2e26678a7038c6804c8b4bf2e2}
+      \strng{authorfullhash}{2355626270d9e2792a178161372521c1}
+      \strng{authorfullhashraw}{2355626270d9e2792a178161372521c1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3}
+      \field{title}{Engineering Design: A Systematic Approach}
+      \field{year}{2007}
+      \verb{doi}
+      \verb 10.1007/978-1-84628-319-2
+      \endverb
+    \endentry
+    \entry{acieta_press_brake}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=56dac5f60a140e638a0124825efe3c7e}{%
+           family={{Acieta}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{56dac5f60a140e638a0124825efe3c7e}
+      \strng{fullhash}{56dac5f60a140e638a0124825efe3c7e}
+      \strng{fullhashraw}{56dac5f60a140e638a0124825efe3c7e}
+      \strng{bibnamehash}{56dac5f60a140e638a0124825efe3c7e}
+      \strng{authorbibnamehash}{56dac5f60a140e638a0124825efe3c7e}
+      \strng{authornamehash}{56dac5f60a140e638a0124825efe3c7e}
+      \strng{authorfullhash}{56dac5f60a140e638a0124825efe3c7e}
+      \strng{authorfullhashraw}{56dac5f60a140e638a0124825efe3c7e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Robotic Press Brake, Welding \& Palletizing Cell for Cotterman}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://www.acieta.com/automation-application/robotically-integrated-bending-solutions-ribs/ (Accessed: 27 March 2026)
+      \endverb
+      \verb{url}
+      \verb https://www.acieta.com/automation-application/robotically-integrated-bending-solutions-ribs/%20(Accessed:%2027%20March%202026)
+      \endverb
     \endentry
     \entry{Aomura2002RoboticBending}{article}{}{}
       \name{author}{2}{}{%
@@ -86,8 +272,8 @@
       \strng{authornamehash}{b0a776dcc2c087b7cfebe693806d2972}
       \strng{authorfullhash}{b0a776dcc2c087b7cfebe693806d2972}
       \strng{authorfullhashraw}{b0a776dcc2c087b7cfebe693806d2972}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Journal of Materials Processing Technology}
@@ -98,192 +284,6 @@
       \range{pages}{6}
       \verb{doi}
       \verb 10.1016/S0924-0136(02)00744-1
-      \endverb
-    \endentry
-    \entry{Pan2012Survey}{article}{}{}
-      \name{author}{5}{}{%
-        {{hash=122a619d5d4a194a20b783cd1142a9ce}{%
-           family={Pan},
-           familyi={P\bibinitperiod},
-           given={Z.},
-           giveni={Z\bibinitperiod}}}%
-        {{hash=be15cda92329e6a014f65fcd2dcd918c}{%
-           family={Polden},
-           familyi={P\bibinitperiod},
-           given={J.},
-           giveni={J\bibinitperiod}}}%
-        {{hash=09b51373b99a0c6dbb7c960299f3fe44}{%
-           family={Larkin},
-           familyi={L\bibinitperiod},
-           given={N.},
-           giveni={N\bibinitperiod}}}%
-        {{hash=a09a14f215172d1d3852245aebeb526b}{%
-           family={Duin},
-           familyi={D\bibinitperiod},
-           given={S.},
-           giveni={S\bibinitperiod},
-           prefix={van},
-           prefixi={v\bibinitperiod}}}%
-        {{hash=156179d670c7e503c392e2c023d8e5db}{%
-           family={Norrish},
-           familyi={N\bibinitperiod},
-           given={J.},
-           giveni={J\bibinitperiod}}}%
-      }
-      \strng{namehash}{512a8d6e0be1e28a2e3802c56edad13a}
-      \strng{fullhash}{ed55ebc970ed0598966227f8dbf4ba0c}
-      \strng{fullhashraw}{ed55ebc970ed0598966227f8dbf4ba0c}
-      \strng{bibnamehash}{ed55ebc970ed0598966227f8dbf4ba0c}
-      \strng{authorbibnamehash}{ed55ebc970ed0598966227f8dbf4ba0c}
-      \strng{authornamehash}{512a8d6e0be1e28a2e3802c56edad13a}
-      \strng{authorfullhash}{ed55ebc970ed0598966227f8dbf4ba0c}
-      \strng{authorfullhashraw}{ed55ebc970ed0598966227f8dbf4ba0c}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Robotics and Computer-Integrated Manufacturing}
-      \field{number}{2}
-      \field{title}{Recent progress on programming methods for industrial robots}
-      \field{volume}{20}
-      \field{year}{2012}
-      \field{pages}{137\bibrangedash 150}
-      \range{pages}{14}
-      \verb{doi}
-      \verb 10.1016/j.rcim.2003.07.004
-      \endverb
-    \endentry
-    \entry{Kruger2009SkillBasedRobotics}{article}{}{}
-      \name{author}{3}{}{%
-        {{hash=f55e88f40f648f7d74454052e01716d7}{%
-           family={Krüger},
-           familyi={K\bibinitperiod},
-           given={Jürgen},
-           giveni={J\bibinitperiod}}}%
-        {{hash=ecefecba2062b8d741aa52dc4f3cdb12}{%
-           family={Lien},
-           familyi={L\bibinitperiod},
-           given={Thomas\bibnamedelima K.},
-           giveni={T\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
-        {{hash=58620efe20578d73bd6e280ddb43001a}{%
-           family={Verl},
-           familyi={V\bibinitperiod},
-           given={Alexander},
-           giveni={A\bibinitperiod}}}%
-      }
-      \strng{namehash}{e94b8300b56a0ff39f99c15a34753529}
-      \strng{fullhash}{19bfcf305981160e261f87e58f66ca4d}
-      \strng{fullhashraw}{19bfcf305981160e261f87e58f66ca4d}
-      \strng{bibnamehash}{19bfcf305981160e261f87e58f66ca4d}
-      \strng{authorbibnamehash}{19bfcf305981160e261f87e58f66ca4d}
-      \strng{authornamehash}{e94b8300b56a0ff39f99c15a34753529}
-      \strng{authorfullhash}{19bfcf305981160e261f87e58f66ca4d}
-      \strng{authorfullhashraw}{19bfcf305981160e261f87e58f66ca4d}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{CIRP Annals}
-      \field{number}{2}
-      \field{title}{Cooperation of human and machines in assembly lines}
-      \field{volume}{58}
-      \field{year}{2009}
-      \field{pages}{628\bibrangedash 646}
-      \range{pages}{19}
-      \verb{doi}
-      \verb 10.1016/j.cirp.2009.09.009
-      \endverb
-    \endentry
-    \entry{Schou2013SkillBasedProgramming}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=007f49e5743efa354121797fc1ab0709}{%
-           family={Schou},
-           familyi={S\bibinitperiod},
-           given={Casper},
-           giveni={C\bibinitperiod}}}%
-        {{hash=30cfdc8262e8e95d1b3c8b97c753f686}{%
-           family={Damgaard},
-           familyi={D\bibinitperiod},
-           given={Jakob\bibnamedelima S.},
-           giveni={J\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-        {{hash=67a96e11752e6ae7f4c4dde31050ba61}{%
-           family={B{ø}gh},
-           familyi={B\bibinitperiod},
-           given={Simon},
-           giveni={S\bibinitperiod}}}%
-        {{hash=5b6a5a3fb0686ba892dd9b442b67ac7e}{%
-           family={Madsen},
-           familyi={M\bibinitperiod},
-           given={Ole},
-           giveni={O\bibinitperiod}}}%
-      }
-      \strng{namehash}{ea98cb498cb55c844924fbb1a09696bd}
-      \strng{fullhash}{2e2157c8399fb384e058bd2a629e4f5e}
-      \strng{fullhashraw}{2e2157c8399fb384e058bd2a629e4f5e}
-      \strng{bibnamehash}{2e2157c8399fb384e058bd2a629e4f5e}
-      \strng{authorbibnamehash}{2e2157c8399fb384e058bd2a629e4f5e}
-      \strng{authornamehash}{ea98cb498cb55c844924fbb1a09696bd}
-      \strng{authorfullhash}{2e2157c8399fb384e058bd2a629e4f5e}
-      \strng{authorfullhashraw}{2e2157c8399fb384e058bd2a629e4f5e}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Robotics and Computer-Integrated Manufacturing}
-      \field{number}{6}
-      \field{title}{Human--robot interface for instructing industrial robots using skill primitives}
-      \field{volume}{29}
-      \field{year}{2013}
-      \field{pages}{403\bibrangedash 412}
-      \range{pages}{10}
-      \verb{doi}
-      \verb 10.1016/j.rcim.2013.06.002
-      \endverb
-    \endentry
-    \entry{Bjorkelund2012KnowledgeBasedProgramming}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=41beb8c2438a4485a27ba5273cca87b7}{%
-           family={Björkelund},
-           familyi={B\bibinitperiod},
-           given={Anders},
-           giveni={A\bibinitperiod}}}%
-        {{hash=f38ee0b6aa4a511b720fcbe9b36a41c4}{%
-           family={Malec},
-           familyi={M\bibinitperiod},
-           given={Jacek},
-           giveni={J\bibinitperiod}}}%
-        {{hash=c34a5092013ac7ed690625f215699309}{%
-           family={Nilsson},
-           familyi={N\bibinitperiod},
-           given={Klas},
-           giveni={K\bibinitperiod}}}%
-        {{hash=721a36f2c025689fc086cc6355e7e8e3}{%
-           family={Nugues},
-           familyi={N\bibinitperiod},
-           given={Pierre},
-           giveni={P\bibinitperiod}}}%
-      }
-      \strng{namehash}{7dcd0cc5698517f84986093790b387c5}
-      \strng{fullhash}{a3f8bc05d236b6fbf3d0d1f70d06d10f}
-      \strng{fullhashraw}{a3f8bc05d236b6fbf3d0d1f70d06d10f}
-      \strng{bibnamehash}{a3f8bc05d236b6fbf3d0d1f70d06d10f}
-      \strng{authorbibnamehash}{a3f8bc05d236b6fbf3d0d1f70d06d10f}
-      \strng{authornamehash}{7dcd0cc5698517f84986093790b387c5}
-      \strng{authorfullhash}{a3f8bc05d236b6fbf3d0d1f70d06d10f}
-      \strng{authorfullhashraw}{a3f8bc05d236b6fbf3d0d1f70d06d10f}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Robotics and Computer-Integrated Manufacturing}
-      \field{number}{5}
-      \field{title}{Knowledge-based industrial robot task planning and execution}
-      \field{volume}{28}
-      \field{year}{2012}
-      \field{pages}{558\bibrangedash 568}
-      \range{pages}{11}
-      \verb{doi}
-      \verb 10.1016/j.rcim.2012.01.003
       \endverb
     \endentry
     \entry{Gupta1998SheetMetalBending}{article}{}{}
@@ -384,88 +384,13 @@
       \strng{authornamehash}{e28ba344a41c866256cc5ca9d637919a}
       \strng{authorfullhash}{e28ba344a41c866256cc5ca9d637919a}
       \strng{authorfullhashraw}{e28ba344a41c866256cc5ca9d637919a}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE/RSJ International Conference on Intelligent Robots and Systems}
       \field{title}{Regrasp Planning using 10,000s of Grasps}
       \field{year}{2017}
-    \endentry
-    \entry{bohg2014data}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=49e0ca937af486456ef5f0603eafb7dc}{%
-           family={Bohg},
-           familyi={B\bibinitperiod},
-           given={Jeannette},
-           giveni={J\bibinitperiod}}}%
-        {{hash=f9683a27376773549a8668e7d270c768}{%
-           family={Morales},
-           familyi={M\bibinitperiod},
-           given={Antonio},
-           giveni={A\bibinitperiod}}}%
-        {{hash=18a04aafb9383b17f48fbb380c708c5e}{%
-           family={Asfour},
-           familyi={A\bibinitperiod},
-           given={Tamim},
-           giveni={T\bibinitperiod}}}%
-        {{hash=d8a72b3bd29e9244932e7c10628e6b03}{%
-           family={Kragic},
-           familyi={K\bibinitperiod},
-           given={Danica},
-           giveni={D\bibinitperiod}}}%
-      }
-      \strng{namehash}{e28b4d83d642b0ad1307b9ec13b87dda}
-      \strng{fullhash}{6e283c747b3484103067002d9cb1824c}
-      \strng{fullhashraw}{6e283c747b3484103067002d9cb1824c}
-      \strng{bibnamehash}{6e283c747b3484103067002d9cb1824c}
-      \strng{authorbibnamehash}{6e283c747b3484103067002d9cb1824c}
-      \strng{authornamehash}{e28b4d83d642b0ad1307b9ec13b87dda}
-      \strng{authorfullhash}{6e283c747b3484103067002d9cb1824c}
-      \strng{authorfullhashraw}{6e283c747b3484103067002d9cb1824c}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{IEEE Transactions on Robotics}
-      \field{title}{Data-driven grasp synthesis—A survey}
-      \field{year}{2014}
-    \endentry
-    \entry{LiaoWangSheetMetalBending}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=ded96577cad307d44701b1200bc6c6e0}{%
-           family={Liao},
-           familyi={L\bibinitperiod},
-           given={X.},
-           giveni={X\bibinitperiod}}}%
-        {{hash=22ff41a93767ccd2444d6a22cd67e55f}{%
-           family={Wang},
-           familyi={W\bibinitperiod},
-           given={G.\bibnamedelimi G.},
-           giveni={G\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
-      }
-      \strng{namehash}{32caf65e23b0823cc164a48030214f3e}
-      \strng{fullhash}{32caf65e23b0823cc164a48030214f3e}
-      \strng{fullhashraw}{32caf65e23b0823cc164a48030214f3e}
-      \strng{bibnamehash}{32caf65e23b0823cc164a48030214f3e}
-      \strng{authorbibnamehash}{32caf65e23b0823cc164a48030214f3e}
-      \strng{authornamehash}{32caf65e23b0823cc164a48030214f3e}
-      \strng{authorfullhash}{32caf65e23b0823cc164a48030214f3e}
-      \strng{authorfullhashraw}{32caf65e23b0823cc164a48030214f3e}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Journal of Manufacturing Systems}
-      \field{number}{2}
-      \field{title}{Evolutionary path planning for robot-assisted sheet metal bending}
-      \field{volume}{22}
-      \field{year}{2003}
-      \field{pages}{112\bibrangedash 127}
-      \range{pages}{16}
-      \verb{doi}
-      \verb 10.1016/S0278-6125(03)80006-4
-      \endverb
     \endentry
     \entry{VacuumGripperModeling}{article}{}{}
       \name{author}{4}{}{%
@@ -513,116 +438,237 @@
       \verb 10.1016/S0007-8506(07)60375-0
       \endverb
     \endentry
-    \entry{ISO8373}{standard}{}{}
-      \list{organization}{1}{%
-        {International Organization for Standardization}%
-      }
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
-      \field{labeltitlesource}{title}
-      \field{number}{ISO 8373:2012}
-      \field{title}{Robots and robotic devices — Vocabulary}
-      \field{year}{2012}
-    \endentry
-    \entry{craig2005robotics}{book}{}{}
+    \entry{Bogue2018}{article}{}{}
       \name{author}{1}{}{%
-        {{hash=57c29b307f6e70b7216c8c696af16b58}{%
-           family={Craig},
-           familyi={C\bibinitperiod},
-           given={John\bibnamedelima J.},
-           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=dbeaf307b881f7d8bd0c4f5b25acbaa6}{%
+           family={Bogue},
+           familyi={B\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
       }
-      \list{location}{1}{%
-        {Upper Saddle River, NJ, USA}%
-      }
-      \list{publisher}{1}{%
-        {Pearson Prentice Hall}%
-      }
-      \strng{namehash}{57c29b307f6e70b7216c8c696af16b58}
-      \strng{fullhash}{57c29b307f6e70b7216c8c696af16b58}
-      \strng{fullhashraw}{57c29b307f6e70b7216c8c696af16b58}
-      \strng{bibnamehash}{57c29b307f6e70b7216c8c696af16b58}
-      \strng{authorbibnamehash}{57c29b307f6e70b7216c8c696af16b58}
-      \strng{authornamehash}{57c29b307f6e70b7216c8c696af16b58}
-      \strng{authorfullhash}{57c29b307f6e70b7216c8c696af16b58}
-      \strng{authorfullhashraw}{57c29b307f6e70b7216c8c696af16b58}
+      \strng{namehash}{dbeaf307b881f7d8bd0c4f5b25acbaa6}
+      \strng{fullhash}{dbeaf307b881f7d8bd0c4f5b25acbaa6}
+      \strng{fullhashraw}{dbeaf307b881f7d8bd0c4f5b25acbaa6}
+      \strng{bibnamehash}{dbeaf307b881f7d8bd0c4f5b25acbaa6}
+      \strng{authorbibnamehash}{dbeaf307b881f7d8bd0c4f5b25acbaa6}
+      \strng{authornamehash}{dbeaf307b881f7d8bd0c4f5b25acbaa6}
+      \strng{authorfullhash}{dbeaf307b881f7d8bd0c4f5b25acbaa6}
+      \strng{authorfullhashraw}{dbeaf307b881f7d8bd0c4f5b25acbaa6}
       \field{sortinit}{2}
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{edition}{3rd}
-      \field{isbn}{978-0-13-123629-5}
-      \field{title}{Introduction to Robotics: Mechanics and Control}
-      \field{year}{2005}
-    \endentry
-    \entry{LozanoPerez1983}{article}{}{}
-      \name{author}{1}{}{%
-        {{hash=fa3b21328d9a26110e031a7007b17a07}{%
-           family={Lozano-Pérez},
-           familyi={L\bibinithyphendelim P\bibinitperiod},
-           given={Tomas},
-           giveni={T\bibinitperiod}}}%
-      }
-      \strng{namehash}{fa3b21328d9a26110e031a7007b17a07}
-      \strng{fullhash}{fa3b21328d9a26110e031a7007b17a07}
-      \strng{fullhashraw}{fa3b21328d9a26110e031a7007b17a07}
-      \strng{bibnamehash}{fa3b21328d9a26110e031a7007b17a07}
-      \strng{authorbibnamehash}{fa3b21328d9a26110e031a7007b17a07}
-      \strng{authornamehash}{fa3b21328d9a26110e031a7007b17a07}
-      \strng{authorfullhash}{fa3b21328d9a26110e031a7007b17a07}
-      \strng{authorfullhashraw}{fa3b21328d9a26110e031a7007b17a07}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Proceedings of the IEEE}
-      \field{number}{7}
-      \field{title}{Robot Programming}
-      \field{volume}{71}
-      \field{year}{1983}
-      \field{pages}{821\bibrangedash 841}
-      \range{pages}{21}
+      \field{journaltitle}{Industrial Robot: An International Journal}
+      \field{number}{1}
+      \field{title}{Growth in Industrial Robot Applications}
+      \field{volume}{45}
+      \field{year}{2018}
+      \field{pages}{1\bibrangedash 6}
+      \range{pages}{6}
       \verb{doi}
-      \verb 10.1109/PROC.1983.12678
+      \verb 10.1108/IR-10-2017-0199
       \endverb
     \endentry
-    \entry{Kruger2019}{article}{}{}
+    \entry{RoboDK2024}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=51ee55ed3e9e5b88458e3ca3bcb7e1a4}{%
+           family={{RoboDK}},
+           familyi={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{51ee55ed3e9e5b88458e3ca3bcb7e1a4}
+      \strng{fullhash}{51ee55ed3e9e5b88458e3ca3bcb7e1a4}
+      \strng{fullhashraw}{51ee55ed3e9e5b88458e3ca3bcb7e1a4}
+      \strng{bibnamehash}{51ee55ed3e9e5b88458e3ca3bcb7e1a4}
+      \strng{authorbibnamehash}{51ee55ed3e9e5b88458e3ca3bcb7e1a4}
+      \strng{authornamehash}{51ee55ed3e9e5b88458e3ca3bcb7e1a4}
+      \strng{authorfullhash}{51ee55ed3e9e5b88458e3ca3bcb7e1a4}
+      \strng{authorfullhashraw}{51ee55ed3e9e5b88458e3ca3bcb7e1a4}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://robodk.com}}
+      \field{note}{Accessed: 27 March 2026}
+      \field{title}{RoboDK: Simulation and Offline Programming Software for Industrial Robots}
+      \field{year}{2024}
+    \endentry
+    \entry{Chryssolouris2013}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=9a1d9a734ecac75171a7fd4f8671a2c0}{%
+           family={Chryssolouris},
+           familyi={C\bibinitperiod},
+           given={George},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{9a1d9a734ecac75171a7fd4f8671a2c0}
+      \strng{fullhash}{9a1d9a734ecac75171a7fd4f8671a2c0}
+      \strng{fullhashraw}{9a1d9a734ecac75171a7fd4f8671a2c0}
+      \strng{bibnamehash}{9a1d9a734ecac75171a7fd4f8671a2c0}
+      \strng{authorbibnamehash}{9a1d9a734ecac75171a7fd4f8671a2c0}
+      \strng{authornamehash}{9a1d9a734ecac75171a7fd4f8671a2c0}
+      \strng{authorfullhash}{9a1d9a734ecac75171a7fd4f8671a2c0}
+      \strng{authorfullhashraw}{9a1d9a734ecac75171a7fd4f8671a2c0}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Manufacturing Systems: Theory and Practice}
+      \field{year}{2013}
+    \endentry
+    \entry{Tao2019}{article}{}{}
       \true{moreauthor}
       \true{morelabelname}
       \name{author}{2}{}{%
-        {{hash=6a7f88dd8cd857a74336c1a938573dc2}{%
-           family={Krüger},
-           familyi={K\bibinitperiod},
-           given={Jens},
-           giveni={J\bibinitperiod}}}%
-        {{hash=3f3b311a8f2ec30ffd53afb450a76164}{%
-           family={Krüger},
-           familyi={K\bibinitperiod},
-           given={Torsten},
-           giveni={T\bibinitperiod}}}%
+        {{hash=f4149340bc388abb627321731645513a}{%
+           family={Tao},
+           familyi={T\bibinitperiod},
+           given={Fei},
+           giveni={F\bibinitperiod}}}%
+        {{hash=42a5432916c6057414bbe3f1adae17eb}{%
+           family={Qi},
+           familyi={Q\bibinitperiod},
+           given={Qinglin},
+           giveni={Q\bibinitperiod}}}%
       }
-      \strng{namehash}{10b8799ca6080b80b42cbb0ffff52910}
-      \strng{fullhash}{10b8799ca6080b80b42cbb0ffff52910}
-      \strng{fullhashraw}{10b8799ca6080b80b42cbb0ffff52910}
-      \strng{bibnamehash}{10b8799ca6080b80b42cbb0ffff52910}
-      \strng{authorbibnamehash}{10b8799ca6080b80b42cbb0ffff52910}
-      \strng{authornamehash}{10b8799ca6080b80b42cbb0ffff52910}
-      \strng{authorfullhash}{10b8799ca6080b80b42cbb0ffff52910}
-      \strng{authorfullhashraw}{10b8799ca6080b80b42cbb0ffff52910}
+      \strng{namehash}{ec3dd8f5d3bb6a3930a11d4ddeffcee0}
+      \strng{fullhash}{ec3dd8f5d3bb6a3930a11d4ddeffcee0}
+      \strng{fullhashraw}{ec3dd8f5d3bb6a3930a11d4ddeffcee0}
+      \strng{bibnamehash}{ec3dd8f5d3bb6a3930a11d4ddeffcee0}
+      \strng{authorbibnamehash}{ec3dd8f5d3bb6a3930a11d4ddeffcee0}
+      \strng{authornamehash}{ec3dd8f5d3bb6a3930a11d4ddeffcee0}
+      \strng{authorfullhash}{ec3dd8f5d3bb6a3930a11d4ddeffcee0}
+      \strng{authorfullhashraw}{ec3dd8f5d3bb6a3930a11d4ddeffcee0}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Manufacturing Systems}
+      \field{title}{Digital Twin Driven Smart Manufacturing}
+      \field{volume}{48}
+      \field{year}{2019}
+      \field{pages}{157\bibrangedash 169}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1016/j.jmsy.2018.05.003
+      \endverb
+    \endentry
+    \entry{Villani2018}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=a6f348f6b9d56f6ddfe2f3f1631e843f}{%
+           family={Villani},
+           familyi={V\bibinitperiod},
+           given={Valerio},
+           giveni={V\bibinitperiod}}}%
+        {{hash=2185778459de3bb5d7c6fd185b9c9916}{%
+           family={Pini},
+           familyi={P\bibinitperiod},
+           given={Fabio},
+           giveni={F\bibinitperiod}}}%
+        {{hash=156aa0b91cb8ca8bf3312bda7475ba5a}{%
+           family={Leali},
+           familyi={L\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+        {{hash=78cd85141c6296b4a21285ee87a49352}{%
+           family={Secchi},
+           familyi={S\bibinitperiod},
+           given={Cristian},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{837194579117ab392b68d5a775878e04}
+      \strng{fullhash}{02838524b25ac92fd6330f395006d609}
+      \strng{fullhashraw}{02838524b25ac92fd6330f395006d609}
+      \strng{bibnamehash}{02838524b25ac92fd6330f395006d609}
+      \strng{authorbibnamehash}{02838524b25ac92fd6330f395006d609}
+      \strng{authornamehash}{837194579117ab392b68d5a775878e04}
+      \strng{authorfullhash}{02838524b25ac92fd6330f395006d609}
+      \strng{authorfullhashraw}{02838524b25ac92fd6330f395006d609}
       \field{sortinit}{3}
       \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{CIRP Annals}
-      \field{number}{2}
-      \field{title}{Skill-Based Programming of Industrial Robots}
-      \field{volume}{68}
-      \field{year}{2019}
-      \field{pages}{661\bibrangedash 684}
-      \range{pages}{24}
+      \field{journaltitle}{Mechatronics}
+      \field{title}{Survey on Human–Robot Collaboration in Industrial Settings}
+      \field{volume}{55}
+      \field{year}{2018}
+      \field{pages}{248\bibrangedash 266}
+      \range{pages}{19}
       \verb{doi}
-      \verb 10.1016/j.cirp.2019.05.002
+      \verb 10.1016/j.mechatronics.2018.02.009
       \endverb
+    \endentry
+    \entry{bohg2014data}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=49e0ca937af486456ef5f0603eafb7dc}{%
+           family={Bohg},
+           familyi={B\bibinitperiod},
+           given={Jeannette},
+           giveni={J\bibinitperiod}}}%
+        {{hash=f9683a27376773549a8668e7d270c768}{%
+           family={Morales},
+           familyi={M\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=18a04aafb9383b17f48fbb380c708c5e}{%
+           family={Asfour},
+           familyi={A\bibinitperiod},
+           given={Tamim},
+           giveni={T\bibinitperiod}}}%
+        {{hash=d8a72b3bd29e9244932e7c10628e6b03}{%
+           family={Kragic},
+           familyi={K\bibinitperiod},
+           given={Danica},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{e28b4d83d642b0ad1307b9ec13b87dda}
+      \strng{fullhash}{6e283c747b3484103067002d9cb1824c}
+      \strng{fullhashraw}{6e283c747b3484103067002d9cb1824c}
+      \strng{bibnamehash}{6e283c747b3484103067002d9cb1824c}
+      \strng{authorbibnamehash}{6e283c747b3484103067002d9cb1824c}
+      \strng{authornamehash}{e28b4d83d642b0ad1307b9ec13b87dda}
+      \strng{authorfullhash}{6e283c747b3484103067002d9cb1824c}
+      \strng{authorfullhashraw}{6e283c747b3484103067002d9cb1824c}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Robotics}
+      \field{title}{Data-driven grasp synthesis—A survey}
+      \field{year}{2014}
+    \endentry
+    \entry{Neto2013OLP}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=933b0b0df6825a9798175015163c8990}{%
+           family={Neto},
+           familyi={N\bibinitperiod},
+           given={Pedro},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of Coimbra}%
+      }
+      \list{location}{1}{%
+        {Coimbra, Portugal}%
+      }
+      \strng{namehash}{933b0b0df6825a9798175015163c8990}
+      \strng{fullhash}{933b0b0df6825a9798175015163c8990}
+      \strng{fullhashraw}{933b0b0df6825a9798175015163c8990}
+      \strng{bibnamehash}{933b0b0df6825a9798175015163c8990}
+      \strng{authorbibnamehash}{933b0b0df6825a9798175015163c8990}
+      \strng{authornamehash}{933b0b0df6825a9798175015163c8990}
+      \strng{authorfullhash}{933b0b0df6825a9798175015163c8990}
+      \strng{authorfullhashraw}{933b0b0df6825a9798175015163c8990}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings (conference not explicitly specified)}
+      \field{note}{Department of Mechanical Engineering, CEMUC}
+      \field{title}{Off-line Programming and Simulation from CAD Drawings: Robot-Assisted Sheet Metal Bending}
+      \field{year}{2013}
     \endentry
     \entry{dragandbot_anyrobot_2025}{online}{}{}
       \name{author}{1}{}{%
@@ -638,8 +684,8 @@
       \strng{authornamehash}{60ee7c15038cf114ed39912dee5d7b87}
       \strng{authorfullhash}{60ee7c15038cf114ed39912dee5d7b87}
       \strng{authorfullhashraw}{60ee7c15038cf114ed39912dee5d7b87}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Ulm, Germany}
@@ -654,6 +700,59 @@
       \endverb
       \verb{url}
       \verb https://docs.dragandbot.com/anyrobot-interface
+      \endverb
+    \endentry
+    \entry{Pan2012Survey}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=122a619d5d4a194a20b783cd1142a9ce}{%
+           family={Pan},
+           familyi={P\bibinitperiod},
+           given={Z.},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=be15cda92329e6a014f65fcd2dcd918c}{%
+           family={Polden},
+           familyi={P\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=09b51373b99a0c6dbb7c960299f3fe44}{%
+           family={Larkin},
+           familyi={L\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+        {{hash=a09a14f215172d1d3852245aebeb526b}{%
+           family={Duin},
+           familyi={D\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=156179d670c7e503c392e2c023d8e5db}{%
+           family={Norrish},
+           familyi={N\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{512a8d6e0be1e28a2e3802c56edad13a}
+      \strng{fullhash}{ed55ebc970ed0598966227f8dbf4ba0c}
+      \strng{fullhashraw}{ed55ebc970ed0598966227f8dbf4ba0c}
+      \strng{bibnamehash}{ed55ebc970ed0598966227f8dbf4ba0c}
+      \strng{authorbibnamehash}{ed55ebc970ed0598966227f8dbf4ba0c}
+      \strng{authornamehash}{512a8d6e0be1e28a2e3802c56edad13a}
+      \strng{authorfullhash}{ed55ebc970ed0598966227f8dbf4ba0c}
+      \strng{authorfullhashraw}{ed55ebc970ed0598966227f8dbf4ba0c}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Robotics and Computer-Integrated Manufacturing}
+      \field{number}{2}
+      \field{title}{Recent progress on programming methods for industrial robots}
+      \field{volume}{20}
+      \field{year}{2012}
+      \field{pages}{137\bibrangedash 150}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1016/j.rcim.2003.07.004
       \endverb
     \endentry
     \entry{Thramboulidis2013MDE}{article}{}{}
@@ -672,8 +771,8 @@
       \strng{authornamehash}{e1e3d22a1a878e80f98ab58fefb4e5a6}
       \strng{authorfullhash}{e1e3d22a1a878e80f98ab58fefb4e5a6}
       \strng{authorfullhashraw}{e1e3d22a1a878e80f98ab58fefb4e5a6}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Transactions on Industrial Informatics}
@@ -685,34 +784,6 @@
       \range{pages}{11}
       \verb{doi}
       \verb 10.1109/TII.2013.2251233
-      \endverb
-    \endentry
-    \entry{wiki:euler_angles}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=b6aea1a416c89509a7df1cbb69249cb6}{%
-           family={{Wikipedia contributors}},
-           familyi={W\bibinitperiod}}}%
-      }
-      \strng{namehash}{b6aea1a416c89509a7df1cbb69249cb6}
-      \strng{fullhash}{b6aea1a416c89509a7df1cbb69249cb6}
-      \strng{fullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
-      \strng{bibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
-      \strng{authorbibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
-      \strng{authornamehash}{b6aea1a416c89509a7df1cbb69249cb6}
-      \strng{authorfullhash}{b6aea1a416c89509a7df1cbb69249cb6}
-      \strng{authorfullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{note}{[Online; accessed 9-March-2026]}
-      \field{title}{Euler angles --- Wikipedia{,} The Free Encyclopedia}
-      \field{year}{2026}
-      \verb{urlraw}
-      \verb https://en.wikipedia.org/wiki/Euler_angles
-      \endverb
-      \verb{url}
-      \verb https://en.wikipedia.org/wiki/Euler_angles
       \endverb
     \endentry
     \entry{Bar2018VirtualCommissioning}{article}{}{}
@@ -741,8 +812,8 @@
       \strng{authornamehash}{2206e1948c0c591c115b0cc25608abab}
       \strng{authorfullhash}{468c38d855a5f5242903501b6a2eb129}
       \strng{authorfullhashraw}{468c38d855a5f5242903501b6a2eb129}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Procedia CIRP}
@@ -751,54 +822,6 @@
       \field{year}{2018}
       \field{pages}{129\bibrangedash 134}
       \range{pages}{6}
-    \endentry
-    \entry{Pahl2007EngineeringDesign}{book}{}{}
-      \name{author}{4}{}{%
-        {{hash=735e36404e9bc9b7de895e612055291e}{%
-           family={Pahl},
-           familyi={P\bibinitperiod},
-           given={G.},
-           giveni={G\bibinitperiod}}}%
-        {{hash=4322d513aec14d9c25507967c25281ee}{%
-           family={Beitz},
-           familyi={B\bibinitperiod},
-           given={W.},
-           giveni={W\bibinitperiod}}}%
-        {{hash=1b910cb6c6ee818aee5edece9cfea78b}{%
-           family={Feldhusen},
-           familyi={F\bibinitperiod},
-           given={J.},
-           giveni={J\bibinitperiod}}}%
-        {{hash=556d8ce8f95c0eee10de8a658d8687de}{%
-           family={Grote},
-           familyi={G\bibinitperiod},
-           given={K.\bibnamedelimi H.},
-           giveni={K\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {London}%
-      }
-      \list{publisher}{1}{%
-        {Springer}%
-      }
-      \strng{namehash}{55df7c2e26678a7038c6804c8b4bf2e2}
-      \strng{fullhash}{2355626270d9e2792a178161372521c1}
-      \strng{fullhashraw}{2355626270d9e2792a178161372521c1}
-      \strng{bibnamehash}{2355626270d9e2792a178161372521c1}
-      \strng{authorbibnamehash}{2355626270d9e2792a178161372521c1}
-      \strng{authornamehash}{55df7c2e26678a7038c6804c8b4bf2e2}
-      \strng{authorfullhash}{2355626270d9e2792a178161372521c1}
-      \strng{authorfullhashraw}{2355626270d9e2792a178161372521c1}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{edition}{3}
-      \field{title}{Engineering Design: A Systematic Approach}
-      \field{year}{2007}
-      \verb{doi}
-      \verb 10.1007/978-1-84628-319-2
-      \endverb
     \endentry
     \entry{quigley2009ros}{inproceedings}{}{}
       \name{author}{8}{}{%

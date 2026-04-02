@@ -2,11 +2,24 @@
 \label{ch_5:implementation}
 \section{Introduction and scope}
 \label{sec:introduction_and_scope}
-The development of product phase transforms the selected concept into a fully realized technical system. Concept B, chosen through the weighted sum model with a total weighted score of 5.00. Exceeding Concept A at 1.60 and concept C at 2.70 is implemented here as an executable software architecture that generate robot programs automatically for press brake sheet bending. Concept B was the only concept which satisfies most of the requirements as defined in chapter \cite{Pan2012Survey}.
-The implementation addresses four accountability domains. The first is the system architecture, covering the layered module structure and rationale for every structural decision. The second is the interface specification, describing all data exchanges between modules and between planning software and drag and bot runtime. The third is the design failure mode and effect analysis in section, which links each failure mode to a risk priority number and countermeasure, fulfilling the peruse risk assessment obligation. The fourth is the software implementation record, presenting algorithmic derivation and configuration structures so that every design is traceable to a requirement.
-The system operates within the drag and bot virtual simulation environmental communication with the robot runtime is conducted through the Any Robot Interface over a persistent authenticated WebSocket Channel, satisfying all the  software requirements’ process parameters are loaded from a single input configuration file at the staring , satisfying NFR-02 by enabling workpiece changeover through a file edit alone .Operator input is provided through a purpose built interactive 3D sheet bending viewer embedded in the drag and bot operator cockpit , which give a visual geometry feedback reduces the risk of incorrect bend side selection . Ubuntu Linux is required as the development platform because drag and bot is built on ROS, which has no production release for Windows or macOS \cite{quigley2009ros}
-Fig \ref{fig:system_architecture} shows the complete bending cycle execution from session start through workpiece gripping. Each stage maps directly to a section of this chapter. 
-The chapter is organized as follows, system architecture, module overview, communication stack configuration architecture and operator interface are presented first. The simulation Environment and spatial zone classification flow. Each functional subsystem is then developed in the execution of a bending session, covering pre-execution safety validation, workpiece orientation strategy, gripper control, grip position planning, regrip sequencing, sheet flipping and bending, trajectory generation and post bend unloading. A design Failure mode and effect analysis concludes the implementation record and the final section maps all the requirements from chapter \ref{CH_3_System Concept and Methodology} to their implemented subsystems.
+The product development phase translates the selected concept into a fully realised technical system. Based on the structured concept evaluation presented in Chapter~\ref{Concept Decision-Weighed Sum Model (WSM)}, Concept~B was selected for implementation, as it provides a feasible and systematic solution to the research problem while satisfying the defined functional, non-functional, and software platform requirements outlined in Chapter~\ref{CH_3_System Concept and Methodology}. In particular, Concept~B enables automatic robot program generation, integrated constraint validation, and seamless operation within the drag\&bot runtime environment.
+ 
+The objective of this chapter is to present the complete implementation of Concept~B as an executable software system for automated press brake sheet metal bending. The system generates robot programs automatically from geometric input parameters and configuration data, eliminating manual waypoint definition and reducing operator intervention. The implementation focuses on ensuring deterministic behaviour, repeatability, and safe execution through structured validation and modular system design.
+The implementation is structured around four key domains. First, the system architecture defines the layered module structure and underlying design rationale. Second, the interface specification describes data exchange between internal modules and communication with the drag\&bot runtime via the AnyRobot Interface. Third, a Failure Mode and Effects Analysis (FMEA) evaluates potential system risks and corresponding mitigation strategies. Finally, the software implementation record documents the core algorithms, configuration structures, and their traceability to the requirements defined in Chapter~\ref{CH_3_System Concept and Methodology}.
+
+The system operates entirely within the drag\&bot virtual simulation environment. Communication with the robot runtime is established through the AnyRobot Interface using an authenticated WebSocket connection, ensuring compliance with SR-01 and SR-02. 
+ 
+All process parameters are loaded from a central YAML configuration file at the beginning of each execution cycle. This enables adaptation to different workpiece geometries without modifying the source code, satisfying NFR-02. 
+ 
+Operator input is provided through an interactive 3D sheet bending viewer integrated into the drag\&bot operator cockpit. This interface improves usability and reduces the likelihood of incorrect input selection. 
+ 
+Ubuntu Linux is used as the development platform due to its compatibility with ROS-based systems and stable integration with the drag\&bot environment~\cite{quigley2009ros}.
+
+Figure~\ref{fig:system_architecture} illustrates the overall system architecture and the sequence of operations from session initialization to bending execution.
+ 
+The remainder of this chapter is organised as follows. Section~\ref{sec:system_architecture} presents the system architecture, including the layered design, module organisation, and data flow. This is followed by the communication stack, configuration architecture, and operator interface. The simulation environment and spatial zone classification are then described. Subsequently, each functional subsystem is presented in execution order, including pre-execution safety validation, workpiece orientation strategy, grip planning, regrip handling, opposite-side bending, and trajectory generation. The chapter concludes with a Failure Mode and Effects Analysis and a requirement-to-implementation mapping.
+
+
 \FloatBarrier
 
 \begin{figure}[H]
@@ -24,9 +37,16 @@ The chapter is organized as follows, system architecture, module overview, commu
 \label{sec:system_architecture}
 \subsection {Layered Architecture Design and data flow}
 \label{sec:layered_architecture}
-The system adopts a layered architecture in which each module depends exclusively on module in the layered directly beneath it. This pattern is selected because the press brake automation context imposes three constraints that unstructured flat module design cannot satisfy simultaneals, independently testable constraints evaluation, maintenance safe replicability and structural enforced safety ordering.
-\par Testability is achieved by enabling the module to be evaluated using synthetic pose data and YAML-based configuration inputs, without the need for an active WebSocket connection. This isolation is essential for verifying the orientational classification mathematics and grip feasibility calculations, because that computation cannot be inferred correctly from a live system alone. Replaceability is ensured by a modular architectural approach in which changes to the grip position algorithm are localized within the constraint evaluation layer. The planning and motion layers are structurally isolated and maintain no direct dependencies on constraint evaluation modules, thereby satisfying the requirements of NFR-02. Safety ordering is maintained through a structured design in which pre-execution safety validation is implemented in an independent layer executed prior to any motion commands. This approach ensures that future modifications cannot inadvertently reposition safety checks after motion initiation, thereby satisfying FR-07 and NFR-03.
-\par Five distinct layers are defined within the system architecture, each with a clearly assigned responsibility. Layer 1 (Input and Configuration) is responsible for acquiring all required parameters from the input file, along with the operator’s bend-side selection, prior to the establishment of any WebSocket connection. Layer 2 (Geometry and Constraint Evaluation) performs the computation of geometric and physical constraints based on live tracker data, while remaining strictly limited to evaluation tasks and producing no motion commands. Layer 3 (Planning and Decision Logic) determines the overall execution strategy and coordinates the interaction between Layers 2 and 4, without directly generating motion instructions. Layer 4 (Motion Generation and Communication) serves as the exclusive interface for robot communication, generating LIN and PTP waypoints, converting them into JSON format, and transmitting them via an authenticated WebSocket connection. Layer 5 (Safety and Validation) is invoked at the beginning of every session and enforces a mandatory validation step, preventing further execution until explicit operator confirmation is obtained. The complete architectural structure is illustrated in Figure 
+The system adopts a layered architecture in which each module depends exclusively on the module in the layer directly beneath it. This architectural pattern is selected because the press brake automation context imposes three key constraints that cannot be satisfied by an unstructured design: independent testability of constraint evaluation, maintainability and safe replaceability of components, and strict enforcement of safety ordering.
+Testability is achieved by enabling modules to be evaluated using synthetic pose data and YAML-based configuration inputs, without requiring an active WebSocket connection. This isolation is essential for verifying orientation classification and grip feasibility computations, which cannot be reliably validated from live system behaviour alone.
+ 
+Replaceability is ensured through modular separation, where modifications to the grip planning algorithm are confined to the constraint evaluation layer. The planning and motion layers remain independent of these modules, supporting maintainability and satisfying NFR-02.
+ 
+Safety ordering is enforced structurally by implementing pre-execution validation in a dedicated layer that is executed prior to any motion generation. This guarantees that safety checks cannot be bypassed or reordered, satisfying FR-07 and NFR-03.
+
+
+Five distinct layers are defined within the system architecture, each with a clearly assigned responsibility. Layer 1 (Input and Configuration) is responsible for acquiring all required parameters from the input file, along with the operator’s bend-side selection, prior to the establishment of any WebSocket connection. Layer 2 (Geometry and Constraint Evaluation) performs the computation of geometric and physical constraints based on input pose data, while remaining strictly limited to evaluation tasks and producing no motion commands. Layer 3 (Planning and Decision Logic) determines the overall execution strategy and coordinates the interaction between Layers 2 and 4, without directly generating motion instructions. Layer 4 (Motion Generation and Communication) serves as the exclusive interface for robot communication, generating LIN and PTP waypoints, converting them into JSON format, and transmitting them via an authenticated WebSocket connection. Layer 5 (Safety and Validation) is implemented as an independent top-level layer that is executed prior to any motion generation and enforces mandatory validation and operator confirmation, preventing further execution until all safety conditions are satisfied. The complete architectural structure is illustrated in Figure~\ref{fig:five_layer_architecture}.
+
 \FloatBarrier
 
 \begin{figure}[H]
@@ -38,11 +58,14 @@ The system adopts a layered architecture in which each module depends exclusivel
 
 \FloatBarrier
 
-The progression of data throughout a bending cycle follows a structured transformation across the system layers. At the initial stage, sheet geometry, bend-side selection, and TCP parameters are provided as input. These inputs are subsequently interpreted through geometric and constraint-based evaluation, where raw tracker pose data is converted into a validated pickup orientation and a feasible grip position. Based on this processed information, an appropriate execution strategy is established before being translated into motion commands, which are encoded in LIN-based JSON format and transmitted to the runtime environment.
-\par The reliability of the overall process depends on a small number of critical transformation stages. Any inaccuracy introduced at these points propagates forward and affects all subsequent computations and decisions. In particular, the correct determination of pickup orientation is essential for successful workpiece acquisition. Likewise, the evaluation of grip feasibility ensures stable handling under dynamic conditions and prevents slippage during motion. During trajectory generation, a balance must be maintained between path fidelity and the limited processing capacity of the robot controller. This requires a controlled reduction of trajectory points while preserving the essential characteristics of the intended motion.
+The progression of data throughout a bending cycle follows a structured transformation across the system layers. Initially, sheet geometry, bend-side selection, and tool parameters are provided as input. These inputs are processed within the constraint evaluation layer, where raw pose data is transformed into a validated pickup orientation and feasible grip configuration. Based on this information, an execution strategy is determined and translated into motion commands, which are encoded in JSON format and transmitted to the runtime environment.
+
+The reliability of the overall process depends on several critical transformation stages. Any error introduced at these stages propagates through subsequent computations and affects execution outcomes. In particular, accurate orientation determination is essential for successful workpiece acquisition, while grip feasibility evaluation ensures stable handling during transport. During trajectory generation, a balance must be maintained between path accuracy and controller limitations, requiring controlled reduction of trajectory points while preserving motion characteristics.
+
 
 \subsection {Module Overview and dependency Discipline}
-\label{Module Overview and dependency Discipline}
+\label{sec:module_overview}
+ 
 The implementation consists of software modules organized across the five system layers. Table \ref{tab:module_overview} summarizes each module in terms of its layer assignment, functional role, and primary responsibility. Each module is defined with a single primary responsibility to ensure clear fault attribution during failure analysis. Assigning multiple responsibilities to a single module would make it difficult to associate a specific failure mode with a well-defined functional unit.
 
 \FloatBarrier
@@ -51,24 +74,25 @@ The implementation consists of software modules organized across the five system
 
 \FloatBarrier
 
-\par Three structural properties ensure that the architectural constraints are consistently enforced across the system.First, the WebSocket client and the command type definitions together constitute the exclusive communication layer. No module outside Layer-4 constructs WebSocket messages or performs direct network operations. As a result, authentication handling and connection recovery are implemented centrally and remain consistent across all runtime interactions. Second, the safety checker is positioned within Layer~5, which is not imported by any lower layer. This separation prevents planning or execution modules from invoking safety validation during runtime. Instead, safety checks are enforced strictly at the beginning of a session, ensuring that they cannot be bypassed or reordered during execution. Third, the trajectory generator serves as the sole interface for dispatching motion commands to the runtime. All waypoint sequences are routed through this module, ensuring that workspace clamping and singularity checks are consistently applied before execution. This guarantees that all generated motions comply with the defined safety and feasibility constraints.
+Three structural properties ensure that the architectural constraints are consistently enforced across the system. First, the WebSocket client and the command type definitions together constitute the exclusive communication layer. No module outside Layer 4 constructs WebSocket messages or performs direct network operations. As a result, authentication handling and connection recovery are implemented centrally and remain consistent across all runtime interactions. Second, the safety checker is positioned within Layer 5, which is not imported by any lower layer. This separation prevents planning or execution modules from invoking safety validation during runtime. Instead, safety checks are enforced strictly at the beginning of a session, ensuring that they cannot be bypassed or reordered during execution. Third, the trajectory generator serves as the sole interface for dispatching motion commands to the runtime. All waypoint sequences are routed through this module, ensuring that workspace constraints and singularity checks are consistently applied before execution.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Virtaul Enviornment setup}
-\label{sec:virtual_environment_setup}
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.85\textwidth]{figures/simulation_env.png}
-    \caption{Virtual robotic environment used to evaluate the proposed concept within a simulated press brake cell (Drag \& Bot platform).}
-    \label{fig:simulation_environment}
-\end{figure}
+%\subsection{Virtaul Enviornment setup}
+%\label{sec:virtual_environment_setup}
+%\begin{figure}[htbp]
+ %   \centering
+  %  \includegraphics[width=0.85\textwidth]{figures/simulation_env.png}
+  %  \caption{Virtual robotic environment used to evaluate the proposed concept within a simulated press brake cell (Drag \& Bot platform).}
+   % \label{fig:simulation_environment}
+%\end{figure}
 
-ADD FIGURE BLOCK DIAGRAM AND EXPLAIN THE SIMULATION ENVIRONMENT, ROBOT MODEL AND TCP CONFIGURATION, SPATIAL ZONE CLASSIFICATION 
+%ADD FIGURE BLOCK DIAGRAM AND EXPLAIN THE SIMULATION ENVIRONMENT, ROBOT MODEL AND TCP CONFIGURATION, SPATIAL ZONE CLASSIFICATION 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Communication Stack, Authentication interface Specification}
 \label{sec:communication_stack}
 
-All runtime communication passes through the AnyRobot Interface, selected because it is the only supported external API for drag and bot. Direct ROS client libraries are excluded because they would couple the planning software to a specific ROS version, violating NFR-02 \cite{dragandbot_anyrobot_2025} \cite{quigley2009ros}. The AnyRobot Interface translates JSON over a persistent WebSocket channel into native ROS operations using the RosBridge v2 protocol, enabling the entire planning software to run in standard Python 3 without a ROS installation on the planning machine.
+All runtime communication passes through the AnyRobot Interface, as it is the only supported external API for drag\&bot. Direct ROS client libraries are excluded because they would couple the planning software to a specific ROS version, violating NFR-02 \cite{dragandbot_anyrobot_2025} \cite{quigley2009ros}. The AnyRobot Interface translates JSON over a persistent WebSocket channel into native ROS operations using the RosBridge v2 protocol, enabling the entire planning software to run in standard Python 3 without a ROS installation on the planning machine.
+
 \par WebSocket (RFC 6455) is chosen over HTTP because it supports a persistent connection that allows continuous data transfer. In contrast, HTTP requires a new TCP connection for each request, which introduces a delay of approximately 3–15 ms per batch. When sending a trajectory of 400 points in batches of 50 commands, these delays accumulate to 24–120 ms. This added delay can cause the robot controller’s command buffer to run empty, leading to interruptions during motion execution. By maintaining a continuous connection, WebSocket avoids this overhead and ensures smooth and uninterrupted command transmission.
 \par Figure \ref{fig:communication_architecture} presents an overview of the system communication architecture. The planning software establishes a persistent WebSocket connection to the robot controller via a defined network endpoint (e.g., \texttt{ws://192.168.x.x:9091}). Communication is organized through a set of dedicated interfaces, each responsible for a specific function within the system. The Ros Bridge v2 interface is used to transmit motion commands, while the \texttt{rosauth} service ensures secure authentication using the SHA-512 hashing algorithm. This method encodes authentication data into a non-reversible format, preventing the transmission of sensitive information in plain text. Motion trajectories are transmitted in batches via the \texttt{/command\_list} interface, and real-time object information is retrieved through \texttt{/dnb\_object\_manager/list\_objects}. Gripper control is performed using \texttt{/robot/set\_digital\_ios}, whereas object attachment and detachment are handled through the corresponding manager interfaces. User interactions, such as confirmations and prompts, are managed via the \texttt{human\_interaction/request\_hi} interface. The YAML configuration is not part of the runtime communication. It is loaded once during system initialization and shared across the relevant modules. This approach ensures that missing or incorrect parameters are detected early, before any communication with the robot is initiated \cite{python_ref_2024}.
 
@@ -188,7 +212,7 @@ Operator input for each execution cycle is provided through an interactive three
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.50\textwidth]{figures/simulation_environment.png}
-    \caption{Virtual simulation environment used for implementation and validation. The setup includes the robot, press brake, orientation table, and sheet workpiece. Source: own work.}
+    \caption{Operator workflow illustrating the sequential execution stages. Each stage must be completed before the next begins. All operator interactions occur within the drag\&bot environment. \textit{Source: own work.}}
     \label{fig:user interface}
 \end{figure}
 \FloatBarrier
@@ -219,49 +243,53 @@ Once the operator confirms the selection, the defined parameters are transmitted
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Development and simulation Environment}
+\section{Development and Simulation Environment}
 \label{sec:development_and_simulation_environment}
-
-With the architectural foundation established in Section \ref{fig:system_architecture}, the implementation requires a defined environment in which all modules can be executed, tested, and validated before involving any physical robot. This section outlines the environment, including the drag and bot virtual simulation platform, the UR5e robot model with its TCP configuration, and the spatial zone classification used to divide the workspace and determine the execution path for each bending session.
-
+ 
+With the architectural framework established in Section~\ref{sec:system_architecture}, a controlled environment is required to execute, test, and validate the developed system prior to deployment on physical hardware. This section presents the development and simulation environment used in this work, including the drag\&bot platform, the robot model and tool configuration, and the spatial zone classification strategy used to structure the workspace.
+ 
 \subsection{Simulation Platform, Robot Model, and TCP Configuration}
-\label{Simulation Platform, Robot Model, and TCP Configuration}
-The drag and bot platform is used as the primary environment for development, integration, and testing within this thesis, as it combines a virtual robot controller and the AnyRobot WebSocket Interface within a single system, eliminating the need for additional simulation tools or direct access to physical hardware \cite{dragandbot_anyrobot_2025}. All Python-based modules are implemented and validated within this environment. The platform operates on the same Ubuntu system as the planning software, enabling communication through the local loopback interface and avoiding timing variations caused by external network conditions. The planning software establishes a single authenticated WebSocket connection to ws://<local-ip>:9091, which is used to handle all command types, including motion execution, IO operations, object manager interactions, and operator HI dialog requests.
-All session-related parameters are loaded from operator input during initialization and are explicitly passed to each module through function arguments. This approach ensures that dependencies remain transparent at the interface level and prevents modules from accessing outdated values from shared contexts. The same principle is consistently applied across all twenty-seven modules, with the configuration structure described in Section \ref{Configuration Architecture }.
-\par Within the simulation environment, the Universal Robots UR5e is selected as the manipulator model, as it corresponds to the robot used in the physical KEBA press brake system and is supported by a validated kinematic representation in the drag and bot platform \cite{dragandbot_anyrobot_2025}. The UR5e provides six degrees of freedom, a maximum reach of approximately 850 mm, and a payload capacity of 5 kg, which are sufficient for handling the sheet metal workpieces considered in this implementation \cite{universalrobots_ur5e}. All motion targets generated by the planning software are evaluated against this kinematic model, allowing reachability limitations to be identified during simulation rather than during operation on the physical system.
-\par The Tool Centre Point applied to all motion targets is defined through the drag and bot tool management entry project\_3\_tcp, in accordance with SR-03 in Section \ref{Software Platform and Tool requirement} and based on a system requirement specified by the company. This ensures a consistent reference for tool geometry so that all generated poses correspond to the actual gripper configuration. The TCP is defined using the ZYX Euler convention with the following offsets relative to the robot flange frame: x = 0.000 m, y = 0.034 m, z = 0.194 m, RZ = −90.0°, RY = −75.0°, RX = 0.0°. The Z offset of 194 mm represents the distance from the flange to the suction contact surface, while the Y offset of 34 mm reflects the asymmetric arrangement of the suction cups along the gripper. All coordinates computed by the planning software are defined at this TCP, allowing the drag and bot runtime to derive the corresponding flange pose through inverse transformation without requiring the planning layer to explicitly consider flange geometry. The TCP identifier project\_3\_tcp is stored in operator input, enabling flexible adaptation of the system. If adjustments are required in the future, the TCP can be updated by the user through parameter changes in the operator interface, without requiring modifications to the source code.
+\label{sec:simulation_platform}
+ 
+The drag\&bot platform is used as the primary environment for system development, integration, and validation. It provides a virtual robot controller together with the AnyRobot WebSocket Interface, enabling the planning software to interact with the robot runtime without requiring direct access to physical equipment. This supports safe testing, repeatability, and efficient iteration during development. The use of virtualised environments is consistent with current industrial trends in digital manufacturing and digital twin-based validation~\cite{dragandbot_anyrobot_2025,Tao2021DigitalTwin}.
+ 
+All modules are implemented in Python and executed within an Ubuntu-based environment alongside the drag\&bot runtime. Communication is established through a single authenticated WebSocket connection (e.g., \texttt{ws://<local-ip>:9091}), which is used for motion execution, IO control, object management, and operator interaction. This unified communication structure ensures consistent behaviour across all subsystems.
+ 
+All session-specific parameters are initialised at the beginning of execution and explicitly passed between modules. This avoids hidden dependencies and ensures that all components operate on consistent data, supporting modularity and maintainability.
+ 
+Within this environment, the Universal Robots UR5e is used as the manipulator model. The robot provides six degrees of freedom, a reach of approximately 850~mm, and a payload capacity of 5~kg, which are sufficient for handling the sheet metal workpieces considered in this work. The availability of a validated kinematic model within the drag\&bot platform allows all generated motion targets to be evaluated for reachability and feasibility during simulation~\cite{dragandbot_anyrobot_2025,Macenski2022ROS2}.
+ 
+The Tool Centre Point (TCP) used for all motion targets is defined in the drag\&bot tool management system as \texttt{project\_3\_tcp}, in accordance with requirement SR-03. The TCP is specified using the ZYX Euler convention with offsets relative to the robot flange: $x = 0.000$~m, $y = 0.034$~m, $z = 0.194$~m, $RZ = -90.0^\circ$, $RY = -75.0^\circ$, and $RX = 0.0^\circ$. These parameters ensure that all generated poses remain consistent with the physical gripper configuration. The TCP identifier is provided through the operator input, allowing future adjustments without modification of the underlying source code.
+ 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.6\textwidth]{figures/TCP_UR5e.png}
-    \caption{
-        TCP of UR5e robot.
-        \textit{Source: own work.}
-    }
+    \caption{Tool Centre Point (TCP) configuration of the UR5e robot used for motion planning. \textit{Source: own work.}}
     \label{fig_tcp_ur5e}
 \end{figure}
-
-
-
+ 
 \subsection{Virtual Cell Layout and Spatial Zone Classification}
-\label{Virtual Cell Layout and Spatial Zone Classification}
-The drag and bot simulation cell includes the UR5e robot, the press brake model, the orientation table, and a sheet metal workpiece whose tracked pose (primary tracked sheet object) forms the basis for all geometric calculations in the planning software. In addition, a secondary sheet object is registered to support two-holder operation, allowing the system to track whichever workpiece is active during execution. All fixture positions, workspace limits, and zone thresholds defined in operator input module, which is aligned with the physical cell layout, ensuring that the simulation results correspond directly to the real system configuration.
-\par At the start of each bending session, the spatial zone classifier retrieves the six-degree-of-freedom pose of the sheet from the object tracking service in the robot world coordinate frame. The origin of this frame is located at the robot base, with the X axis defined laterally and the Y axis longitudinally across the cell. Based on this reference, the XY position of the sheet centroid is evaluated using a threshold-based rule to assign the workpiece to one of four spatial zones. This process is performed automatically using live tracking data without operator input. The classification is defined relative to the robot base position, which must be correctly specified in the operator input configuration.
-\par The XY plane is divided into four regions around the robot base. A centroid with negative X and positive Y is assigned to Zone 1 (rear-left), while negative X and negative Y correspond to Zone 2 (front-left). Positive X combined with positive Y defines Zone 3 (rear-right), and positive X with negative Y defines Zone 4 (front-right). The classification thresholds are set to ±10 mm in the X direction and ±50 mm in the Y direction. These asymmetric limits reflect the physical cell geometry and account for increased tracking uncertainty along the longitudinal axis \cite{Siciliano2016Robotics}. Zones 3 and 4 lie within the primary reachable workspace of the UR5e and therefore allow direct execution of the pickup and bending sequence from the nominal home configuration. In contrast, Zones 1 and 2 are in a region with limited reachability, requiring an automatic repositioning phase. In this phase, the robot moves to an automatically calculated predefined intermediate configuration within the reachable workspace, after which the standard bending sequence is executed. This repositioning is triggered by the classified zone and is performed without operator intervention. A subsequent tracking update verifies that the sheet lies within the reachable region before execution continues.
-\par If the sheet centroid lies within the dead-band region defined by |x| < 10 mm or |y| < 50 mm, the classifier returns to an unresolved state. This occurs near the coordinate axes, where small tracking variations may lead to inconsistent zone assignment. To prevent incorrect execution, the system terminates the session and issues blocking notification instructing the operator to reposition the workpiece before restarting.
-
-
-
+\label{sec:zone_classification}
+ 
+The simulated robotic cell within the drag\&bot environment includes the robot, press brake, orientation table, and a tracked sheet object, which serves as the reference for all geometric computations. The spatial configuration of these elements reflects the intended physical setup, ensuring that simulation results are representative of real-world operation.
+ 
+At the beginning of each execution cycle, the system retrieves the six-degree-of-freedom pose of the sheet from the object tracking service. The pose is expressed in the robot world coordinate frame, where the origin is located at the robot base. Accurate pose acquisition is a fundamental requirement in robotic manipulation systems and is widely addressed in modern robotics literature~\cite{Siciliano2016Robotics}. Based on this information, the position of the sheet centroid in the XY plane is used to classify the workpiece into one of four spatial zones.
+ 
+The workspace is partitioned into four regions relative to the robot base. A centroid with negative X and positive Y corresponds to Zone~1 (rear-left), while negative X and negative Y defines Zone~2 (front-left). Positive X and positive Y correspond to Zone~3 (rear-right), and positive X with negative Y defines Zone~4 (front-right). The classification is based on threshold values of $\pm 10$~mm in the X direction and $\pm 50$~mm in the Y direction. These thresholds account for measurement uncertainty and reflect the physical layout of the robotic workspace~\cite{Siciliano2016Robotics}.
+ 
+Zones~3 and~4 lie within the primary reachable workspace of the robot and therefore allow direct execution of pickup and bending operations. In contrast, Zones~1 and~2 correspond to regions with limited reachability. In these cases, the system automatically initiates a repositioning step, moving the workpiece to an intermediate configuration within the reachable workspace before continuing execution. This ensures that all subsequent operations remain within kinematic limits without requiring operator intervention.
+ 
+If the sheet centroid lies within the dead-band region defined by $|x| < 10$~mm or $|y| < 50$~mm, the classification is considered unresolved. This occurs near the coordinate axes, where small variations in tracking data may lead to inconsistent zone assignment. To prevent incorrect execution, the system terminates the current session and prompts the operator to reposition the workpiece before restarting.
+ 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/zone_classification.png}
-    \caption{
-        Zone classification for robot workspace segmentation.
-        \textit{Source: own work.}
-    }
+    \caption{Spatial zone classification of the robot workspace based on the sheet centroid position. \textit{Source: own work.}}
     \label{fig:zone_classification}
 \end{figure}
-\par Having defined the simulation environment, robot model, TCP configuration, and zone classification, the following sections describe the functional subsystems in the execution order of a bending session, starting with safety validation, followed by orientation determination, grip planning, and trajectory generation.
-
+ 
+Having defined the simulation environment, robot model, TCP configuration, and workspace segmentation strategy, the following sections describe the functional subsystems in the order of execution within a bending cycle, beginning with safety validation, followed by orientation determination, grip planning, and trajectory generation.
+ 
 \begin{algorithm}[htbp]
 \caption{Spatial zone classification based on sheet centroid position}
 \label{alg:zone_classification}
@@ -280,399 +308,439 @@ The drag and bot simulation cell includes the UR5e robot, the press brake model,
 \EndIf
 \end{algorithmic}
 \end{algorithm}
-Algorithm~\ref{alg:zone_classification} summarises the zone classification procedure in an abstract form. The classification is based on the sign of the centroid coordinates in the robot world frame, with a threshold-based dead-band region around the origin to prevent unstable assignments due to tracking noise. Implementation-specific details are omitted to comply with confidentiality constraints.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+Algorithm~\ref{alg:zone_classification} summarises the classification logic in an abstract form. The method relies on the sign of the centroid coordinates together with a threshold-based dead-band region to ensure stable classification under measurement uncertainty.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Pre-Execution Safety Validation}
 \label{Pre-Execution_Safety_Validation}
-
-Safety validation is carried out before any motion is generated to ensure that unsafe conditions and infeasible configurations are identified prior to robot execution, in accordance with NFR-03, NFR-04, and NFR-05. The system incorporates three complementary mechanisms to achieve this: a fixture poses deviation check, a blocking operator confirmation dialog, and a runtime command error watcher. In addition, all trajectory waypoints are generated automatically and verified using robot kinematics to confirm reachability and feasibility before execution, preventing invalid motion commands from being issued.
-
+ 
+Safety validation is performed prior to motion generation to ensure that unsafe conditions and infeasible configurations are identified before robot execution, in accordance with NFR-03, NFR-04, and NFR-05 \cite{Siciliano2016Robotics}. The system incorporates three complementary mechanisms: a fixture pose deviation check, a blocking operator confirmation dialog, and a runtime motion error monitoring module. In addition, all trajectory waypoints are generated and verified using robot kinematics to ensure reachability and feasibility before execution, thereby preventing invalid motion commands from being issued \cite{Siciliano2016Robotics}.
+ 
 \subsection{Fixture Pose Deviation Validation}
 \label{Fixture_Pose_Deviation_Check}
-The fixture pose deviation check retrieves the current poses of six critical fixtures from the drag\&bot object manager and compares them with reference poses obtained during the initial calibration of the cell. The monitored elements include the primary sheet object at the press brake, the finished-part position on the regrip table base and support, and the placement and attachment references at the flip station. These fixtures are treated as fixed references within the planning software, since all grip positions, trajectory waypoints, and placement operations are computed under the assumption that their positions remain unchanged. Any deviation from these reference poses can therefore result in motion targets that are geometrically valid but physically incorrect.
-
-The deviation check is applied uniformly across all spatial zones. Each fixture is evaluated using both positional and orientation criteria. The positional deviation is computed as the Euclidean distance
+ 
+The fixture pose deviation check retrieves the current poses of critical fixtures from the drag\&bot object manager and compares them with reference poses obtained during initial cell calibration. The monitored elements include the primary sheet object at the press brake, the finished-part placement positions on the regrip table, and the placement and attachment references at the flip station. These fixtures are treated as fixed references within the planning system, as all grip positions, trajectory waypoints, and placement operations are computed under the assumption that their positions remain unchanged. Any deviation from these reference poses can therefore result in motion targets that are geometrically valid but physically incorrect.
+ 
+The deviation check is applied uniformly across all spatial zones. Each fixture is evaluated using both positional and orientation criteria. The positional deviation is computed as:
+ 
 \begin{equation}
 \Delta_{pos} = \sqrt{(\Delta x)^2 + (\Delta y)^2 + (\Delta z)^2}
 \end{equation}
-and the orientation deviation is defined as
+ 
+and the orientation deviation is defined as:
+ 
 \begin{equation}
 \Delta_{ang} = \max\left(|\Delta RZ|, |\Delta RY|, |\Delta RX|\right).
 \end{equation}
-A fixture is considered out of tolerance when $\Delta_{pos}$ exceeds 5~mm or $\Delta_{ang}$ exceeds 0.10~rad (5.7$^\circ$). The positional threshold is selected to remain below the minimum clearance used in grip planning, ensuring that fixture misalignment does not produce misleadingly valid grip configurations. The angular threshold corresponds to the minimum deviation that would affect the accuracy of the vacuum cup contact on the sheet surface.
-The primary sheet object is evaluated using the same deviation criteria as all other fixtures. Since the planning software relies on the current sheet pose for all geometric computations, any displacement from the expected reference may lead to incorrect motion generation. Therefore, the sheet is included in the deviation evaluation in the same manner as other fixtures, and any detected deviation is treated as a potential configuration error.
-If one or more fixtures exceed the defined thresholds, the system generates a structured warning that lists all affected fixtures using their generic labels, together with the measured positional and angular deviations. This warning is presented through a blocking HI dialog titled \textit{Fixture position warning}, which allows the operator to either continue with explicit caution or cancel the operation for further inspection. The operator’s decision is recorded, as the responsibility for accepting out-of-tolerance conditions remains with the human operator.
-If a fixture is not detected in the object manager response, it is treated as missing and is automatically flagged regardless of zone classification.
-
+ 
+A fixture is considered out of tolerance when $\Delta_{pos}$ exceeds 5~mm or $\Delta_{ang}$ exceeds 0.10~rad (5.7$^\circ$). The positional threshold is selected to remain below the minimum clearance used in grip planning. This ensures that fixture misalignment does not produce misleadingly valid grip configurations. The angular threshold corresponds to the minimum deviation that would affect the accuracy of vacuum cup contact on the sheet surface.
+ 
+The primary sheet object is evaluated using the same criteria as other fixtures. Since the planning system relies on the current sheet pose for all geometric computations, any deviation may lead to incorrect motion generation and is therefore treated as a configuration error.
+ 
+If one or more fixtures exceed the defined thresholds, the system generates a structured warning listing all affected fixtures together with their measured positional and angular deviations. This warning is presented through a blocking human interaction (HI) dialog titled \textit{Fixture position warning}, allowing the operator to either proceed with explicit acknowledgement or cancel execution for further inspection. The operator’s decision is recorded, ensuring that responsibility for accepting out-of-tolerance conditions remains with the human operator.
+ 
+If a fixture is not detected in the object manager response, it is treated as missing and automatically flagged as a validation failure.
+ 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\linewidth]{figures/fixture_flowchart.png}
 \caption{Fixture pose deviation validation workflow. Each monitored fixture is evaluated by comparing positional and angular deviations against defined thresholds. Out-of-tolerance or missing fixtures trigger a blocking warning dialog requiring operator confirmation. Validation is applied uniformly across all spatial zones. Source: own work.}
 \label{fig:fixture_deviation}
 \end{figure}
-
+ 
 \subsection{Operator Authorization and Runtime Error Monitoring}
+ 
+The operator confirmation dialog is positioned as the first step in the planning orchestrator startup sequence, preceding all subsequent processes including fixture validation, visualization, and motion execution. The dialog enforces a mandatory decision: either initiate the automated workflow or cancel execution. The orchestrator does not proceed until a response is received from the HI service, ensuring that execution cannot begin without explicit operator authorisation. If the operator selects cancel, the process terminates without issuing any command to the robot runtime.
+ 
+In addition to pre-execution validation, runtime supervision is implemented through a motion error monitoring module operating as a background subprocess. This component subscribes to the \texttt{/command\_result} ROS topic via an independent WebSocket connection, enabling continuous monitoring of execution outcomes without interrupting the main command flow. When a non-zero result code is detected, indicating a motion execution failure, the system immediately triggers a modal HI notification to inform the operator.
+ 
+The monitoring module does not directly interrupt the execution pipeline. Instead, it provides immediate feedback through the HI interface and requires operator acknowledgement before further interaction is permitted. This ensures that execution anomalies are not overlooked while maintaining operator authority over subsequent decisions.
+ 
+Together, these mechanisms establish a layered safety structure. Pre-execution validation ensures safe initial conditions, while runtime monitoring provides immediate feedback on execution failures. Both mechanisms utilise the drag\&bot HI service, ensuring a consistent and controlled interface for safety-related interactions. With these safeguards in place, the subsequent section addresses the workpiece orientation strategy.
 
-The operator confirmation dialog is positioned as the first step in the planning orchestrator startup sequence, preceding all subsequent processes including fixture validation, visualization, and motion command transmission. The dialog enforces a mandatory decision: either initiate the automated workflow or cancel execution. This behavior is structurally enforced, as the orchestrator does not proceed until a response is received from the HI service. Consequently, execution cannot begin without explicit operator authorisation, ensuring compliance with safety requirements. If the operator selects cancel, the orchestrator terminates without issuing any command to the robot runtime.
 
-\par In parallel with this confirmation step and all subsequent execution phases, a motion error watcher operates as a background subprocess. This component subscribes to the \texttt{/command\_result} ROS topic through an independent WebSocket connection, enabling continuous monitoring of command execution outcomes. A separate connection is required to maintain an uninterrupted receive loop without blocking the orchestrator’s command flow. When a non-zero result code is detected, indicating a motion execution failure, the watcher immediately triggers a modal HI notification to inform the operator. This ensures that execution errors are identified and communicated in real time.
-
-\par The error watcher does not directly interrupt or terminate the orchestrator. Instead, it provides immediate feedback through the HI interface, requiring operator acknowledgement before further interaction is permitted. This design ensures that execution anomalies do not pass unnoticed, while maintaining operator authority over subsequent actions.
-
-\par Together with the fixture pose deviation check, these mechanisms establish a layered safety structure. The confirmation dialog enforces operator authorization prior to execution, while the error watcher ensures that failures during execution are promptly detected and communicated. Both mechanisms utilize the drag\&bot HI service, providing a consistent interface for all safety-related interactions. With these safeguards in place, the subsequent section addresses the workpiece orientation strategy for the bending process.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Workpiece Orientation Strategy}
 \label{sec:workpiece_orientation}
-Following pre-execution safety validation, the first geometric step in each bending cycle is the determination of a valid pickup orientation for the sheet. This is necessary because the sheet may be placed in arbitrary orientations within the workspace, while only a subset of these orientations is kinematically feasible for the target bending operation. The orientation strategy evaluates the tracked sheet pose, applies a structured selection process, and produces a validated pickup pose for subsequent grip planning.
-
+ 
+Following pre-execution safety validation, the first geometric step in each bending cycle is the determination of a valid pickup orientation for the sheet. This is required because the sheet may be placed in arbitrary orientations within the workspace, while only a subset of these orientations is kinematically feasible for the target bending operation. The orientation strategy evaluates the tracked sheet pose, applies a structured selection process, and produces a validated pickup pose for subsequent grip planning.
+ 
 \subsection{Zone-Based RZ Admissibility}
 \label{Zone-Based RZ Admissibilitye}
-
-The admissible range of the sheet rotation about the Z-axis is defined by a zone-dependent window $[RZ_{\min}, RZ_{\max}]$. This constraint reflects the limited rotational capability of the robot end-effector within different regions of the workspace. Since the reachable orientation range varies with the spatial position of the sheet, zone classification is performed prior to orientation evaluation. The corresponding admissibility window is retrieved from the configuration, ensuring that only feasible orientations are considered. This approach avoids selecting poses that appear valid geometrically but are unreachable during execution.
-
+ 
+The admissible range of sheet rotation about the Z-axis is defined by a zone-dependent window $[RZ_{\min}, RZ_{\max}]$. This constraint reflects the limited rotational capability of the robot end-effector within different regions of the workspace \cite{Siciliano2016Robotics}. Since the reachable orientation range varies with the spatial position of the sheet, zone classification is performed prior to orientation evaluation. The admissibility limits are retrieved from the configuration to ensure that only kinematically feasible orientations are considered. This prevents the selection of geometrically valid but unreachable poses.
+ 
 \subsection{Pickup Orientation Validation}
 \label{sec:pickup_orientation_validation}
-
-Before applying the orientation selection strategy, the tracked pose is validated to ensure that the gripper approaches the sheet from above. This is evaluated using the product $\cos(RX)\cdot\cos(RY)$. If the value is below $-0.10$, the tool Z-axis is oriented downward and no modification is required. Otherwise, a corrective transformation is applied:
-
+ 
+Before applying the selection strategy, the tracked pose is validated to ensure that the gripper approaches the sheet from above. This is evaluated using the condition $\cos(RX)\cdot\cos(RY)$. If the value is below $-0.10$, the tool Z-axis is oriented downward and no modification is required. Otherwise, a corrective transformation is applied:
+ 
 \begin{equation}
 RZ' = \mathrm{wrap}(RZ + 180^\circ), \quad
 RY' = -RY, \quad
 RX' = \mathrm{wrap}(RX + 180^\circ)
 \end{equation}
-
-This transformation ensures that the gripper is correctly aligned with the sheet surface without altering the pickup position.
-
+ 
+This transformation ensures proper tool alignment with the sheet surface without modifying the pickup position.
+ 
 \subsection{Three-Level Orientation Selection Strategy}
-
-To ensure that a valid pickup orientation can be determined for any initial placement, a three-level selection strategy is employed. The strategy is evaluated sequentially in a strict priority order, and execution terminates as soon as a valid orientation satisfying the admissibility constraints is identified. This approach guarantees robustness against arbitrary initial sheet orientations while maintaining preference for geometrically consistent and kinematically favorable configurations.
-
-The workpiece is defined with four reference faces established during system commissioning, each associated with a fixed angular offset about the sheet’s local vertical axis. These faces provide a structured reference for interpreting the tracked orientation. The offsets correspond to $0^\circ$, $180^\circ$, $+90^\circ$, and $-90^\circ$ relative to the reference face. By compensating for these offsets, the system can normalise any detected orientation into a common reference frame, enabling consistent evaluation across different initial conditions.
-
+ 
+To ensure that a valid pickup orientation is always obtained, a three-level selection strategy is applied. The levels are evaluated sequentially, and execution terminates as soon as a valid orientation satisfying admissibility constraints is identified. This guarantees robustness while prioritising geometrically consistent and kinematically feasible configurations.
+ 
+The workpiece is defined using four reference faces established during system commissioning, each associated with a fixed angular offset about the sheet’s local vertical axis ($0^\circ$, $180^\circ$, $+90^\circ$, $-90^\circ$). These offsets allow the system to normalise arbitrary orientations into a consistent reference frame.
+ 
 \paragraph{Level 1: Reference-Face Equivalent Orientation}
-
-At the highest priority level, the tracked orientation is converted into its reference-face equivalent by removing the face-specific angular offset. This is achieved by applying an inverse rotation about the sheet’s local Z-axis:
-
+ 
+At the highest priority level, the tracked orientation is converted into a reference-face equivalent by removing the face-specific offset:
+ 
 \begin{equation}
 R_{\text{new}} = R_{\text{raw}} \cdot R_z(-d)
 \end{equation}
+ 
 
-where $d$ represents the angular offset associated with the detected face. The resulting rotation matrix is then decomposed into ZYX Euler angles using:
-
+The resulting rotation matrix is decomposed into ZYX Euler angles \cite{Siciliano2016Robotics,lynch2017modern}:
+ 
 \begin{equation}
 R = R_z(\alpha)\cdot R_y(\beta)\cdot R_x(\gamma)
 \end{equation}
-
+ 
 \begin{equation}
 RZ = \operatorname{atan2}(R_{10}, R_{00}), \quad
 RY = \arcsin(-R_{20}), \quad
 RX = \operatorname{atan2}(R_{21}, R_{22})
 \end{equation}
-
-The computed $RZ$ value is then evaluated against the zone-specific admissibility window $[RZ_{\min}, RZ_{\max}]$. If the orientation lies within this range, it is selected as the pickup pose. This level is preferred because it aligns all configurations to a common reference frame, resulting in more predictable motion generation and reduced trajectory complexity.
-
+ 
+If the computed $RZ$ lies within the admissibility window, this orientation is selected. This level is preferred as it ensures consistent reference alignment and reduces trajectory complexity.
+ 
 \paragraph{Level 2: Detected-Pose Evaluation}
-
-If the reference-face equivalent orientation falls outside the admissible range, the strategy proceeds to evaluate the raw tracked orientation directly. This level accounts for cases where the sheet is already positioned within a valid orientation relative to the robot workspace, and the reference-face conversion would unnecessarily shift it outside the admissible window.
-
-The raw $RZ$ value is therefore checked against the same admissibility limits. If it satisfies the constraint, the raw pose is accepted as the pickup orientation. This level preserves valid initial configurations without enforcing additional transformations.
-
+ 
+If Level 1 fails, the raw tracked orientation is evaluated directly. This accounts for cases where the initial placement is already feasible and avoids unnecessary transformations. If the raw $RZ$ satisfies admissibility constraints, it is selected.
+ 
 \paragraph{Level 3: Inverted-Pose Fallback}
-
-If both the reference-face equivalent and the raw orientation fail to satisfy the admissibility condition, a fallback orientation is generated by applying a $180^\circ$ inversion:
-
+ 
+If neither Level 1 nor Level 2 satisfies the admissibility condition, a fallback orientation is generated:
+ 
 \begin{equation}
 RZ' = \mathrm{wrap}(RZ \pm 180^\circ), \quad
 RY' = -RY, \quad
 RX' = -RX
 \end{equation}
-
-This transformation effectively rotates the sheet about its vertical axis while reversing its orientation about the horizontal axes. The inverted pose expands the set of reachable configurations and ensures that a pickup orientation can always be produced, even when the initial pose lies outside the calibrated admissible region.
-
-However, since this orientation may not strictly satisfy the predefined admissibility constraints, it is marked with an \textit{admissibility unconfirmed} flag. This flag is propagated to downstream modules, including the grip planner and trajectory generator, allowing them to apply additional safety margins or conservative motion constraints when executing the operation.
-
+ 
+This transformation expands the reachable orientation set and guarantees that a pickup configuration is always obtained. Since this orientation may not strictly satisfy admissibility constraints, it is marked as \textit{admissibility not confirmed}. This status is propagated to downstream modules, allowing conservative execution strategies to be applied.
+ 
 \begin{algorithm}[htbp]
 \caption{High-level orientation selection strategy}
 \label{alg:orientation_selection}
 \begin{algorithmic}[2]
 \State Retrieve tracked sheet pose and active zone
 \State Load zone-specific admissibility window $\{R_Z^{\min}, R_Z^{\max}\}$
-\State Validate pickup orientation and apply downward-tool correction if required
+\State Validate pickup orientation and apply correction if required
 \State Compute reference-face equivalent orientation
-\If{reference-face equivalent satisfies admissibility window}
+\If{reference-face orientation is admissible}
     \State Select reference-face orientation
-    \State Set admissibility status to confirmed
-\ElsIf{detected orientation satisfies admissibility window}
+\ElsIf{detected orientation is admissible}
     \State Select detected orientation
-    \State Set admissibility status to confirmed
 \Else
     \State Compute inverted orientation
-    \State Select inverted orientation
-    \State Set admissibility status to unconfirmed
+    \State Select inverted orientation (admissibility not confirmed)
 \EndIf
-\State Forward selected orientation and admissibility status to downstream planning modules
+\State Forward orientation to downstream planning modules
 \end{algorithmic}
 \end{algorithm}
-Algorithm~\ref{alg:orientation_selection} summarises the implemented orientation strategy at an abstract level. It reflects the execution order of the internal software pipeline without exposing implementation-specific source code, which is omitted due to confidentiality constraints.
-
-
+ 
+Algorithm~\ref{alg:orientation_selection} summarises the implemented selection strategy at an abstract level without exposing implementation-specific details.
+ 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.9\textwidth]{figures/three_level_architecture.png}
-    \caption{
-        Three-level system architecture illustrating the hierarchical structure of the implementation.
-        \textit{Source: own work.}
-    }
+    \caption{Three-level orientation selection strategy for determining a valid pickup pose under kinematic constraints. \textit{Source: own work.}}
     \label{fig:three_level_architecture}
 \end{figure}
-
+ 
 \paragraph{Strategy Outcome}
+ 
+The proposed strategy guarantees that a valid pickup orientation is always determined while prioritising kinematic feasibility and geometric consistency. By integrating admissibility constraints with a structured fallback mechanism, the method directly supports pre-execution validation and reduces the likelihood of infeasible motion generation. The selected orientation is then passed to subsequent modules for grip planning and trajectory generation.
 
-The three-level strategy guarantees that a pickup orientation is always determined while prioritising configurations that are both kinematically feasible and geometrically consistent. By enforcing a strict evaluation order and incorporating a controlled fallback mechanism, the approach balances robustness and operational safety. The final selected orientation, together with its admissibility status, is forwarded to subsequent planning stages for execution.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Workpiece Handling and Gripper Control}
-
-Once a valid pickup orientation has been determined, the system must establish a reliable physical interaction between the gripper and the sheet while maintaining consistency between the physical robot state and the virtual simulation. Any mismatch between the vacuum state of the gripper and the attachment state in the simulation would lead to incorrect pose propagation and invalid trajectory computation in subsequent stages. This consistency is ensured through two coordinated mechanisms: digital IO control of the vacuum gripper and kinematic attachment within the simulation environment
-
+\label{sec:gripper_control}
+ 
+Once a valid pickup orientation has been determined, the system must establish a reliable physical interaction between the gripper and the sheet while maintaining consistency between the physical robot state and the virtual simulation. Any mismatch between the vacuum state of the gripper and the attachment state in the simulation leads to incorrect pose propagation and invalid trajectory computation in subsequent stages. This consistency is ensured through two coordinated mechanisms: digital IO control of the vacuum gripper and kinematic object attachment within the simulation environment.
+ 
 \subsection{Vacuum Gripper Digital IO Sequence}
-The vacuum gripper is actuated using two digital output signals on the UR5e controller, mapped to DO[0] and DO[1] in the drag\&bot IO management system. DO[0] activates the vacuum by closing the suction valve, while DO[1] releases the vacuum by opening the exhaust valve. These signals are strictly mutually exclusive; at no point are both outputs activated simultaneously, as this would result in conflicting pressure states and potential hardware damage.
-\par Control commands are issued via the \texttt{/robot/set\_digital\_ios} service of the AnyRobot Interface, which accepts structured IO commands specifying the target pin and its Boolean state. To ensure reliable gripping, a dwell period of 250~ms is applied after activating the vacuum. This delay allows sufficient time for the suction cups to establish a stable seal with the sheet surface\cite{mahler2017dexnet} . Initiating further operations before this stabilization would result in a virtual attachment being applied to a physically unstable grasp.
-A secondary delay of 150~ms is introduced after each IO operation to ensure that the state transition propagates through the ROS communication layer before subsequent commands are executed. This prevents race conditions between command execution and system state updates.
-
+ 
+The vacuum gripper is actuated using two digital output signals mapped within the drag\&bot IO management system. One signal activates the vacuum by closing the suction valve, while the other releases the vacuum by opening the exhaust valve. These signals are strictly mutually exclusive; simultaneous activation is avoided to prevent conflicting pressure states and potential hardware damage.
+ 
+Control commands are issued via the \texttt{/robot/set\_digital\_ios} interface, which transmits structured IO instructions specifying the target output and its Boolean state. To ensure reliable gripping, a dwell period of approximately 250~ms is applied after vacuum activation. This delay allows the suction cups to establish a stable seal with the sheet surface, which is necessary for maintaining grasp stability during subsequent motion \cite{bicchi2000robotic}.
+ 
+A secondary delay of approximately 150~ms is introduced after each IO operation to ensure that the state transition propagates through the communication layer before further commands are issued. This prevents timing inconsistencies between command execution and runtime state updates.
+ 
 \subsection{Kinematic Object Attachment and Detachment}
-
-In the simulation environment, the physical coupling between the gripper and the sheet is represented through kinematic attachment. When the gripper successfully grasps the sheet, the corresponding object is attached to the robot’s tool frame, ensuring that all subsequent robot motions are reflected in the sheet’s pose. Conversely, when the vacuum is released, the object is detached and remains fixed in its last known position.
-\par Attachment is performed using the \texttt{/dnb\_object\_manager/attach} service without enforcing a position override. This avoids introducing discontinuities between the tracked object pose and the simulated state, as the tracker may not exactly match the instantaneous tool frame position. Position override is reserved exclusively for controlled initialization procedures where explicit alignment is required.
-\par Detachment is executed through the \texttt{/dnb\_object\_manager/detach} service using the same reference frame. To maintain consistency, attachment and detachment operations are always executed in a fixed sequence together with the corresponding IO commands:
-
+ 
+Within the simulation environment, the physical coupling between the gripper and the sheet is represented through kinematic attachment. When the gripper successfully establishes contact, the corresponding object is attached to the robot tool frame, ensuring that subsequent robot motions are reflected in the object pose. When the vacuum is released, the object is detached and remains fixed in its last known position.
+ 
+Attachment is performed using the \texttt{/dnb\_object\_manager/attach} interface without enforcing a position override. This avoids introducing discontinuities between the tracked object pose and the simulated state, as the tracked pose may not exactly coincide with the instantaneous tool frame position. Position override is reserved only for controlled initialization procedures where explicit alignment is required.
+ 
+Detachment is executed using the \texttt{/dnb\_object\_manager/detach} interface within the same reference frame. To maintain consistency, attachment and detachment operations are always executed in a fixed sequence together with the corresponding IO commands:
+ 
 \begin{itemize}
 \item Grasp sequence: vacuum ON $\rightarrow$ dwell $\rightarrow$ attach
 \item Release sequence: vacuum OFF $\rightarrow$ dwell $\rightarrow$ detach
 \end{itemize}
-
-This sequence is encapsulated within centralized helper routines that are invoked by all modules performing grasp or release actions. Centralizing this logic ensures that the physical and virtual states remain synchronised at all times and prevents invalid states where the vacuum is active without a corresponding attachment, or vice versa.
-
-\section{Grip Position Planning and Feasibility Validation}
-\label{sec:grip_planning}
-
-With a valid pickup orientation and gripper control mechanism established, the system must determine feasible suction cup placement on the sheet surface. Arbitrary placement is not acceptable, as it may violate geometric constraints or fail to provide sufficient holding force during transport. The grip planner therefore evaluates both geometric and physical constraints to ensure a stable and executable grip configuration.
-
-\subsection{Sheet Geometry and Hole Detection}
-\label{subsec:sheet_geometry_holes}
-
-The sheet is modelled as a rectangular surface with uniform mass distribution, defined by its length, width, thickness, and mass from the configuration. When the mass is not explicitly provided, it is estimated from the sheet volume and the configured material properties.
-
-In addition to the outer boundary, circular hole regions are identified from the STL mesh using the geometry analysis stage described previously. Each hole is represented by its center position and radius in the sheet coordinate frame. These hole regions are incorporated into grip planning so that candidate cup positions overlapping any hole are excluded, since such placements would prevent the formation of a reliable vacuum seal and would therefore compromise workpiece retention during transport.
-
-\subsection{Vacuum Holding Force Validation}
-\label{subsec:vacuum_force_validation}
-
-For each candidate grip configuration, the planner evaluates whether the available vacuum force is sufficient to retain the sheet under gravitational and dynamic loading conditions. The contact area of a single suction cup is defined as
-
-\begin{equation}
-A_{\text{cup}} = \pi \left(\frac{d}{2}\right)^2
-\label{eq:cup_area}
-\end{equation}
-
-The available vacuum holding force across $n$ cups is then given by
-
-\begin{equation}
-F_{\text{vacuum}} = n \cdot \Delta P \cdot A_{\text{cup}} \cdot \eta
-\label{eq:vacuum_force}
-\end{equation}
-
-The required holding force is computed as
-
-\begin{equation}
-F_{\text{required}} = SF \cdot m \cdot \sqrt{a_{xy}^2 + (g + a_z)^2}
-\label{eq:required_force}
-\end{equation}
-
-A configuration is considered feasible only when $F_{\text{vacuum}} \geq F_{\text{required}}$. This validation ensures that only physically stable grip configurations are passed to the subsequent candidate evaluation stage.
-
-\subsection{Grip Candidate Search and Selection}
-\label{subsec:grip_candidate_search}
-
-Candidate suction cup positions are generated using a multi-resolution grid-based search over the sheet surface. The search begins with a coarse discretization and progressively refines candidate positions in feasible regions to improve placement accuracy. In addition to grid-based sampling, supplementary candidate positions are generated near hole boundaries to maximize usable gripping area while maintaining clearance constraints.
-
-Each candidate position is evaluated against geometric constraints. The cup center must maintain a minimum distance from sheet edges, avoid overlapping with hole regions including the configured clearance buffer, and satisfy spacing constraints in the case of multi-cup configurations. In the two-cup configuration, candidate positions are evaluated as pairs, and the spacing between cup centers is constrained to ensure an adequate grip span across the workpiece.
-
-All candidates are first filtered using geometric constraints and vacuum holding feasibility before being evaluated by a scoring function. The scoring considers edge clearance, hole clearance, and center bias, while in the two-cup configuration the span between cups is additionally maximized to improve stability during transport. The implemented search procedure is summarized in Algorithm~ \ref{alg:grip_planning}.
-
-\begin{algorithm}[htbp]
-\caption{Grip position planning procedure}
-\label{alg:grip_planning}
-\begin{algorithmic}[3]
-\State Load sheet geometry and gripping parameters
-\State Validate vacuum holding feasibility
-\State Generate candidate positions on the sheet surface
-\State Filter candidates using geometric constraints
-\If{two-cup configuration}
-    \State Evaluate candidate pairs
-\EndIf
-\State Score feasible candidates
-\State Select best configuration
-\State Compute A1, B1, R1 waypoints
-\State Forward result to trajectory generation
-\end{algorithmic}
-\end{algorithm}
-The highest-scoring candidate configuration is selected as the final grip position. Based on this position, three key waypoints are computed: the approach pose (A1), the attachment pose (B1), and the retreat pose (R1). These waypoints are derived from the selected grip position together with the sheet surface height and tool geometry offsets, ensuring a consistent and collision-free pickup sequence.
-
-Figure~\ref{fig:grip_planning_flowchart} illustrates the overall grip planning pipeline, including force validation, candidate generation, geometric filtering, pair evaluation for the two-cup case, scoring, and waypoint derivation.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{figures/Grip Position Planning.png}
-\caption{Grip position planning and feasibility validation workflow. The process begins with the loading of sheet geometry and gripping parameters, followed by vacuum holding feasibility validation. Candidate cup positions are then generated on the sheet surface, filtered using geometric constraints, and evaluated according to the configured scoring criteria. In the two-cup configuration, feasible candidates are additionally assessed as pairs before the highest-scoring grip configuration is selected. The final grip position is used to derive the approach, attachment, and retreat waypoints forwarded to trajectory generation. Source: own work.}
-\label{fig:grip_planning_flowchart}
-\end{figure}
+ 
+This sequence is encapsulated within centralized helper routines that are invoked by all modules performing grasp or release operations. Centralizing this logic ensures that the physical and virtual system states remain synchronised at all times and prevents inconsistent conditions in which the vacuum state and attachment state do not correspond.
+ 
+With physical grasping and state synchronisation established, the next step is to determine feasible suction cup positions on the workpiece surface.
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{ Regrip Planning and Execution}
-\label{sec:regrip}
+\section{Grip Position Planning and Feasibility Validation} 
+\label{sec:grip_planning} 
+ 
+Following the determination of a valid pickup orientation and the establishment of a consistent gripper control mechanism, the system must identify feasible suction cup placements on the sheet surface. Arbitrary placement is not sufficient, as it may violate geometric constraints or fail to provide adequate holding force during handling. The grip planner therefore evaluates both geometric feasibility and physical stability to ensure a reliable and executable grasp configuration. This structured approach directly addresses the limitations identified in Chapter \ref{CH_2_State of the Art}, where manual or heuristic-based gripping strategies lack consistency and adaptability. This approach enables deterministic and repeatable grip planning , which is essential for automated program generation in an industrial environment.
 
-Even when a valid pickup orientation and a feasible grip position are established, the current gripper configuration may not allow the robot to reach the target bending pose. This occurs when the required flange pose lies outside the robot workspace, or when kinematic constraints such as joint limits or singularity proximity prevent a feasible motion solution. To address this, the system implements an automatic regrip planning strategy that determines the required reorientation dynamically. This strategy directly addresses the limitations identified in the State of the Art by enabling automatic determination of regrip requirements within an industrially applicable framework.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Regrip Decision Strategy}
+\subsection{Sheet Geometry and Hole Detection} 
+\label{subsec:sheet_geometry_holes} 
+ 
+The sheet is modelled as a planar rectangular surface with uniform mass distribution, defined by its length, width, thickness, and mass obtained from the configuration. If the mass is not explicitly specified, it is estimated from the sheet volume and the material density defined in the configuration. 
+ 
+In addition to the outer boundary, internal features such as holes are extracted from the STL mesh during the geometry analysis stage. Each hole is represented by its centre position and radius in the sheet coordinate frame. These regions are explicitly excluded from the feasible gripping area, since suction cups cannot form a stable seal over discontinuities. This ensures that only physically valid contact regions are considered during grip planning. 
+ 
+\subsection{Vacuum Holding Force Validation} 
+\label{subsec:vacuum_force_validation} 
+ 
+For each candidate grip configuration, the system evaluates whether the available vacuum force is sufficient to retain the sheet under both gravitational and dynamic loading conditions. The contact area of a single suction cup is defined as 
+ 
+\begin{equation} 
+A_{\text{cup}} = \pi \left(\frac{d}{2}\right)^2 
+\label{eq:cup_area} 
+\end{equation} 
+ 
+The total available holding force generated by $n$ suction cups is expressed as 
+ 
+\begin{equation} 
+F_{\text{vacuum}} = n \cdot \Delta P \cdot A_{\text{cup}} \cdot \eta 
+\label{eq:vacuum_force} 
+\end{equation} 
+ 
+where $\Delta P$ represents the pressure differential and $\eta$ accounts for efficiency losses due to leakage and surface conditions. 
+ 
+The required holding force is determined as 
+ 
+\begin{equation} 
+F_{\text{required}} = SF \cdot m \cdot \sqrt{a_{xy}^2 + (g + a_z)^2} 
+\label{eq:required_force} 
+\end{equation} 
+ 
+where $SF$ is a safety factor and $a_{xy}, a_z$ represent dynamic accelerations. 
+ 
+A candidate configuration is considered feasible only if 
+ 
+\begin{equation} 
+F_{\text{vacuum}} \geq F_{\text{required}} 
+\end{equation} 
+ 
+This formulation follows standard principles of vacuum-based gripping and ensures that only configurations capable of maintaining stable contact under motion are considered for execution \cite{vacuum_handling_standard}. 
+ 
+\subsection{Grip Candidate Search and Selection} 
+\label{subsec:grip_candidate_search} 
+ 
+Candidate suction cup positions are generated using a multi-resolution grid-based search over the sheet surface. The process begins with a coarse discretisation to identify feasible regions, followed by progressive refinement to improve placement accuracy in promising areas. Additional candidates are generated near hole boundaries to maximise usable surface area while maintaining required clearances. 
+ 
+Each candidate position is evaluated against geometric constraints. The cup centre must satisfy minimum edge clearance requirements, avoid overlap with hole regions including a defined buffer zone, and comply with spacing constraints in multi-cup configurations. For the two-cup case, candidate positions are evaluated in pairs, with the inter-cup distance constrained to ensure sufficient grip span across the workpiece. 
+ 
+After geometric filtering, candidates are further evaluated using the vacuum holding force criterion described in Section~\ref{subsec:vacuum_force_validation}. Only configurations satisfying both geometric and physical constraints are retained. 
+ 
+The remaining candidates are ranked using a scoring function that balances multiple criteria, including edge clearance, distance from internal features, and spatial distribution across the sheet. In multi-cup configurations, the scoring additionally promotes wider spacing between cups to improve stability during transport. This structured evaluation replaces heuristic placement strategies commonly found in manual programming approaches and ensures consistent selection of robust grip configurations. 
+ 
+The implemented search and selection procedure is summarised in Algorithm~\ref{alg:grip_planning}. 
+ 
+\begin{algorithm}[htbp] 
+\caption{Grip position planning procedure} 
+\label{alg:grip_planning} 
+\begin{algorithmic}[3] 
+\State Load sheet geometry and gripping parameters 
+\State Validate vacuum holding feasibility 
+\State Generate candidate positions on the sheet surface 
+\State Filter candidates using geometric constraints 
+\If{two-cup configuration} 
+    \State Evaluate candidate pairs 
+\EndIf 
+\State Score feasible candidates 
+\State Select best configuration 
+\State Compute A1, B1, R1 waypoints 
+\State Forward result to trajectory generation 
+\end{algorithmic} 
+\end{algorithm} 
+ 
+The highest-scoring configuration is selected as the final grip position. Based on this selection, three key waypoints are derived: the approach pose (A1), the attachment pose (B1), and the retreat pose (R1). These poses are computed relative to the sheet surface and tool geometry, ensuring a consistent and collision-free pickup sequence. 
+ 
+Figure~\ref{fig:grip_planning_flowchart} illustrates the complete grip planning pipeline, including force validation, candidate generation, constraint filtering, scoring, and waypoint derivation. 
+ 
+\begin{figure}[htbp] 
+\centering 
+\includegraphics[width=\linewidth]{figures/Grip Position Planning.png} 
+\caption{Grip position planning and feasibility validation workflow. The process integrates geometric filtering and vacuum force validation to ensure physically stable and executable grasp configurations prior to trajectory generation. Source: own work.} 
+\label{fig:grip_planning_flowchart} 
+\end{figure} 
 
-In contrast to conventional approaches that rely on predefined regrip steps, the proposed system evaluates a discrete set of candidate workpiece orientations and selects a configuration that satisfies kinematic feasibility. This enables the system to determine both the required orientation and the number of regrip steps automatically.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The candidate set consists of discrete orientation increments that correspond to physically achievable rotations on the orientation table. For each candidate orientation, the system performs the following sequence:
+\section{Regrip Planning and Execution} 
+\label{sec:regrip} 
+ 
+Even when a valid pickup orientation and a feasible grip configuration are established, the current grasp may not permit the robot to reach the required bending pose. This limitation arises when the target configuration lies outside the reachable workspace or when kinematic constraints, such as joint limits or proximity to singularities, prevent a valid motion solution~\cite{lynch2017modernrobotics}. To address this, the system implements an automatic regrip planning strategy that determines the required reorientation dynamically. This approach directly addresses the limitations identified in the state of the art, where regrip operations are typically predefined or manually programmed. 
+ 
+\subsection{Regrip Decision Strategy} 
+ 
+In contrast to conventional approaches based on fixed regrip sequences, the proposed system evaluates a discrete set of candidate workpiece orientations and selects a configuration that satisfies kinematic feasibility. This enables the system to determine both the required orientation and the number of regrip steps automatically. 
+ 
+The candidate set consists of discrete orientation increments corresponding to physically achievable rotations on the orientation table. For each candidate orientation, the system performs the following sequence: 
+ 
+\begin{itemize} 
+\item Update the workpiece pose according to the candidate orientation 
+\item Determine a valid pickup orientation using the strategy described in Section~\ref{sec:workpiece_orientation} 
+\item Compute feasible grip positions using the planner described in Section~\ref{sec:grip_planning} 
+\item Evaluate kinematic feasibility using inverse kinematics and trajectory validation 
+\end{itemize} 
+ 
+A candidate orientation is accepted only when all feasibility conditions are satisfied. The evaluation follows a sequential selection strategy in which candidates are tested in a predefined order, and the first feasible solution is selected. This ensures computational efficiency while maintaining robustness for real-time execution. 
+ 
+The number of required regrip steps is implicitly determined from the difference between the current orientation and the selected feasible configuration. This approach avoids unnecessary intermediate operations while ensuring that the final pose remains reachable and executable within the robot workspace. 
+ 
+\begin{algorithm}[htbp] 
+\caption{Regrip orientation selection} 
+\label{alg:auto_regrip} 
+\begin{algorithmic}[1] 
+\State Define candidate orientation set 
+\For{each candidate orientation} 
+    \State Compute updated workpiece pose 
+    \State Evaluate pickup orientation 
+    \State Compute grip configuration 
+    \State Check kinematic feasibility 
+    \If{feasible} 
+        \State Select orientation 
+        \State \textbf{break} 
+    \EndIf 
+\EndFor 
+\State Determine required number of regrip steps 
+\end{algorithmic} 
+\end{algorithm} 
+ 
+Algorithm~\ref{alg:auto_regrip} summarises the decision process. The evaluation reuses the existing planning pipeline, ensuring consistency with orientation selection, grip planning, and trajectory generation. 
+ 
+\subsection{Regrip Execution Sequence} 
+ 
+Once a feasible orientation has been identified, the system executes a structured regrip sequence to realise the required reorientation. The sequence consists of the following steps: 
+ 
+\begin{enumerate} 
+\item Transport the workpiece from the bending station approach position to the orientation table deposit position while maintaining the current grasp 
+\item Release the workpiece through controlled vacuum deactivation and kinematic detachment 
+\item Move the robot to a retract standoff position to ensure collision-free clearance 
+\item Re-approach the workpiece at the updated orientation and perform the grasp sequence 
+\item Repeat the regrip cycle if additional orientation adjustments are required 
+\item Perform the final grasp and return the workpiece to the bending station 
+\end{enumerate} 
+ 
+Each motion segment is executed using smooth trajectories to minimise dynamic loads on the gripper and ensure stable handling. Intermediate standoff positions provide safe transitions between grasping and releasing operations. 
+ 
+\subsection{System Integration and Configuration} 
+ 
+The regrip execution sequence operates within the existing motion framework and uses configuration-defined target positions, including deposit, re-grasp, retract, and approach poses. These parameters define the physical layout of the cell but do not determine the number of regrip steps. 
+ 
+The decision to trigger a regrip is handled by the planning orchestrator, which evaluates feasibility based on orientation admissibility and kinematic constraints. This separation between decision-making and execution ensures modularity and allows the regrip strategy to be extended without modifying the motion execution layer. 
+ 
+Compared to configuration-driven approaches, the proposed method improves adaptability by determining the minimum required number of regrip steps dynamically. At the same time, it maintains computational efficiency by evaluating a structured set of candidate orientations rather than performing global optimisation. This balance makes the approach suitable for industrial deployment, where predictable and robust behaviour is required. 
 
-\begin{itemize}
-\item Update the workpiece pose according to the candidate orientation
-\item Determine a valid pickup orientation using the orientation strategy described in Section\ref{sec:workpiece_orientation}
-\item Compute feasible grip positions using the grip planner described in Section \ref{sec:grip_planning}
-\item Evaluate kinematic feasibility using inverse kinematics and trajectory validation
-\end{itemize}
 
-A candidate orientation is accepted when all feasibility checks are satisfied. The evaluation follows a heuristic selection strategy, where the first feasible orientation is selected to ensure computational efficiency suitable for real-time execution. The number of required regrip steps is implicitly determined based on the difference between the current orientation and the selected feasible orientation. This approach avoids unnecessary reorientation operations while ensuring that the final configuration is executable within the robot workspace.
-
-\begin{algorithm}[htbp]
-\caption{ Regrip Orientation Selection}
-\label{alg:auto_regrip}
-\begin{algorithmic}[1]
-\State Define candidate orientation set
-\For{each candidate orientation}
-    \State Compute updated workpiece pose
-    \State Evaluate pickup orientation
-    \State Compute grip configuration
-    \State Check kinematic feasibility
-    \If{feasible}
-        \State Select orientation
-        \State \textbf{break}
-    \EndIf
-\EndFor
-\State Determine required number of regrip steps
-\end{algorithmic}
-\end{algorithm}
-Algorithm~\ref{alg:auto_regrip} summarizes the automatic decision process. The evaluation is performed using the existing planning pipeline, ensuring consistency with orientation determination, grip planning, and trajectory generation.
-
-\subsection{Regrip Execution Sequence}
-
-Once a feasible orientation is selected, the system executes a structured regrip sequence to physically realize the required reorientation. The execution is based on a six-step cycle designed to ensure safe and consistent handling of the workpiece:
-
-\begin{enumerate}
-\item Transport the workpiece from the bending station approach position to the orientation table deposit position while maintaining the current grip.
-\item Release the workpiece by deactivating the vacuum and performing kinematic detachment.
-\item Move the robot to a retract standoff position to ensure collision-free clearance.
-\item Re-approach the workpiece at the updated orientation and perform the grasp sequence.
-\item Repeat the regrip cycle if multiple orientation adjustments are required.
-\item Perform the final grasp and return the workpiece to the bending station.
-\end{enumerate}
-
-Each motion segment is executed using smooth trajectory profiles to minimize dynamic loads on the vacuum gripper and ensure stable handling. Intermediate standoff positions are used to guarantee collision-free transitions between grasping and releasing operations.
-
-\subsection{System Integration and Configuration}
-
-The regrip execution sequence operates within the existing motion framework and uses configuration-defined target positions, including the deposit position, re-grasp position, retract standoff, and bending station approach position. These parameters define the physical layout of the cell but do not determine the number of regrip steps.
-
-The decision to trigger a regrip is handled by the planning orchestrator, which evaluates the feasibility of the current configuration based on orientation admissibility and kinematic constraints. The separation between decision-making and execution ensures modularity and allows the regrip planning strategy to be extended without modifying the motion execution layer.
-
-Compared to configuration-driven approaches, the proposed method improves adaptability by determining the minimum required number of regrip steps dynamically. At the same time, it maintains computational efficiency by evaluating a structured set of candidate orientations rather than performing full global optimization. This makes the approach suitable for industrial deployment, where predictable and robust behavior is required.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Opposite-face Bending Workflow}
-\label{sec:opposite_side}
 
-After completing all primary-side bending operations, the system evaluates whether additional bends are required on the opposite face of the sheet. These opposite-side bends cannot be executed directly from the initial pickup configuration, as the required face is not accessible to the press brake tool. Therefore, the sheet must be reoriented through a controlled flip operation before continuing the bending process.
-
-\subsection{Pre-Flip Verification and Transition Correction}
-
-Before initiating the flip sequence, the system verifies that the current sheet pose matches the expected starting configuration. This verification is performed using a wrap-safe six-degree-of-freedom pose comparison. A position tolerance of 2~mm and an angular tolerance of 1$^\circ$ define the acceptable deviation.
-
-This check is necessary because the sheet may have undergone regrip operations during the primary bending sequence. If the current pose deviates from the expected reference, subsequent motions would be computed from an incorrect starting configuration.
-
-If the verification fails, a transition correction step is executed. The system first restores the reference orientation using the orientation strategy described in Section~5.5. It then performs a controlled pickup and repositioning sequence to re-establish a consistent and verified coupling between the robot and the sheet.
-
-If the verification is successful, the correction step is skipped, and the system proceeds directly to the flip sequence.
-
-\subsection{Sheet Flip Sequence and Opposite-face bending Execution}
-
-The flip operation is performed using a dedicated flip station within the robotic cell. The sheet is transferred through two predefined reference positions to achieve physically feasible reorientation.
-
-First, the robot transports the sheet to the flip station placement position while maintaining the current grasp. The sheet is then released in a controlled manner. The robot subsequently moves to an intermediate position and re-approaches the sheet from the opposite side, establishing a new grasp that results in the flipped orientation.
-
-This two-stage transfer is used instead of a direct in-gripper rotation. A direct rotation would require a large continuous motion that is not kinematically feasible within the robot workspace and may violate collision constraints.
-
-After the flip operation, the sheet is oriented such that the previously inaccessible face is now aligned with the press brake tool. The system then applies the same validation pipeline used for primary-side bending. This includes zone classification, orientation determination, grip position planning, and trajectory generation.
-
-Using the same validation hierarchy ensures consistent behaviour across both primary and opposite-side operations. It also avoids introducing separate handling logic for different sheet faces.
-
-Figure- \ref{fig:opposite_face_flip} illustrates the complete opposite-side bending workflow, including pre-flip verification, optional transition correction, flip execution, and subsequent bending operations.
-
-After completing all opposite-side bends, any remaining staged operations are executed using the existing multi-stage handling framework. The system then proceeds to the final unloading sequence.
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/opposite_face_flip.png}
-    \caption{Opposite face flip operation for regrip orientation adjustment}
-    \label{fig:opposite_face_flip}
-\end{figure}
-
-
+\section{Opposite-face Bending Workflow} 
+\label{sec:opposite_side} 
+ 
+After completing all primary-side bending operations, the system evaluates whether additional bends are required on the opposite face of the sheet. These operations cannot be executed directly from the initial pickup configuration, as the required face is not accessible to the press brake tool. Consequently, the workpiece must be reoriented through a controlled flip operation before continuing the bending process. 
+ 
+\subsection{Pre-Flip Verification and Transition Correction} 
+ 
+Before initiating the flip sequence, the system verifies that the current sheet pose corresponds to the expected reference configuration. This verification is performed using a wrap-safe six-degree-of-freedom pose comparison, with a positional tolerance of 2~mm and an angular tolerance of 1$^\circ$. 
+ 
+This validation step is required because the sheet may have undergone regrip operations during the primary bending sequence. Any deviation from the expected pose would propagate errors into subsequent motion planning stages, leading to incorrect trajectory generation. 
+ 
+If the verification fails, a transition correction step is executed. The system first restores the reference orientation using the strategy described in Section~\ref{sec:workpiece_orientation}. A controlled pickup and repositioning sequence is then performed to re-establish a consistent and verified alignment between the robot and the workpiece. 
+ 
+If the verification is successful, the correction step is omitted and the system proceeds directly to the flip sequence. 
+ 
+\subsection{Sheet Flip Sequence and Opposite-face Bending Execution} 
+ 
+The flip operation is performed using a dedicated station within the robotic cell. The workpiece is transferred through two predefined reference positions to achieve a physically feasible reorientation. 
+ 
+First, the robot transports the sheet to the flip station placement position while maintaining the current grasp. The workpiece is then released in a controlled manner. The robot subsequently moves to an intermediate standoff pose and re-approaches the sheet from the opposite side, establishing a new grasp that results in the flipped orientation. 
+ 
+This two-stage transfer is preferred over a direct in-gripper rotation. A direct rotation would require a continuous motion that exceeds the kinematic capabilities of the robot and may violate workspace or collision constraints~\cite{lynch2017modern}. 
+ 
+Following the flip operation, the sheet is aligned such that the previously inaccessible face is oriented towards the press brake tool. The system then applies the same validation pipeline used for primary-side bending, including zone classification, orientation determination, grip position planning, and trajectory generation. 
+ 
+Reusing the same processing pipeline ensures consistent system behaviour across both primary and opposite-side operations. It also avoids the need for separate handling logic, thereby maintaining modularity and reducing system complexity. 
+ 
+Figure~\ref{fig:opposite_face_flip} illustrates the complete opposite-side bending workflow, including pre-flip verification, optional transition correction, flip execution, and subsequent bending operations. 
+ 
+After completing all opposite-side bends, any remaining staged operations are executed using the existing handling framework. The system then proceeds to the final unloading sequence. 
+ 
+\begin{figure}[htbp] 
+    \centering 
+    \includegraphics[width=0.8\textwidth]{figures/opposite_face_flip.png} 
+    \caption{Opposite-face flip workflow enabling access to previously unreachable bending surfaces. Source: own work.} 
+    \label{fig:opposite_face_flip} 
+\end{figure} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ints, and executed by the robot as a continuous motion from the start to the target pose.
+
 \section{Trajectory Generation}
 \label{sec:trajectory}
-
-Trajectory generation transforms a validated target pose into executable robot motion. The input to this stage is an ordered sequence of tool centre point (TCP) poses obtained from upstream planning modules such as grip planning, regrip execution, and opposite-face handling. Each pose defines the desired position and orientation of the end-effector in the robot world frame. The trajectory generator connects these poses through a smooth and feasible motion that can be executed by the robot controller.
-
-Rather than executing a direct transition between poses, the system constructs a continuous trajectory represented by intermediate waypoints. These waypoints define the path followed by the end-effector and ensure smooth motion from the start to the target configuration.
-
+ 
+Trajectory generation constitutes the final stage of the planning pipeline, where validated task-level poses are transformed into executable robot motion. The input to this stage is an ordered sequence of tool centre point (TCP) poses obtained from upstream modules, including grip planning, regrip handling, and opposite-face operations. Each pose defines the desired end-effector position and orientation within the robot world frame.
+ 
+Rather than executing direct point-to-point transitions, the system constructs a continuous and smooth trajectory composed of intermediate waypoints. This approach ensures kinematic feasibility, reduces dynamic loading, and improves execution stability during sheet handling.
+ 
 \subsection{Three-Phase LIN Trajectory Structure}
-
-Each trajectory is constructed using a three-phase structure: lift, lateral travel, and descent. In the lift phase, the TCP is raised vertically to a predefined safe height to ensure clearance from the workpiece and surrounding environment. In the lateral travel phase, the robot moves towards the target position at this safe height. During this phase, the orientation is constrained to limit the $RY$ angle, reducing proximity to wrist singularities. In the descent phase, the TCP moves from the safe height to the final target pose, applying the required orientation for task execution.
-
-To separate orientation changes from contact motion, an intermediate rotation pose is introduced above the target. This ensures that large orientation adjustments are completed before the final descent, improving kinematic feasibility near the target.
-
-
+ 
+Each motion segment is generated using a structured three-phase trajectory: lift, lateral transfer, and descent. 
+ 
+In the lift phase, the TCP is translated vertically to a predefined safe height to avoid collisions with the workpiece, fixtures, or surrounding environment. In the lateral transfer phase, the robot moves towards the target position while maintaining this clearance height. During this phase, the end-effector orientation is constrained to limit excessive joint rotations and reduce proximity to kinematic singularities. Finally, in the descent phase, the TCP is lowered to the target pose, where the required orientation for task execution is fully applied.
+ 
+To further improve motion feasibility, an intermediate rotation pose is introduced above the target location. This ensures that major orientation adjustments are completed before the final approach, reducing the risk of instability near contact regions.
+ 
 \subsection{Waypoint Generation and Interpolation}
-
-The trajectory between successive poses is generated through interpolation in Cartesian space. For a start pose $\mathbf{T}_s$ and a target pose $\mathbf{T}_t$, the translational component is interpolated using
-
+ 
+The trajectory between successive poses is generated through interpolation in Cartesian space. For a start pose $\mathbf{T}_s$ and a target pose $\mathbf{T}_t$, the translational component is computed as
+ 
 \begin{equation}
-\mathbf{p}(\lambda) = (1 - \lambda)\mathbf{p}_s + \lambda \mathbf{p}_t
+\mathbf{p}(\lambda) = (1 - \lambda)\mathbf{p}_s + \lambda \mathbf{p}_t,
 \end{equation}
-
-where $\lambda \in [0,1]$ is the interpolation parameter. The orientation is interpolated using spherical linear interpolation (SLERP) in quaternion space, ensuring smooth rotational motion along the trajectory \cite{Wang2022NURBSSlerp}.
-
-To achieve smooth velocity transitions, the interpolation parameter follows a minimum-jerk profile
-
+ 
+where $\lambda \in [0,1]$ is the interpolation parameter.
+ 
+Rotational interpolation is performed using spherical linear interpolation (SLERP) in quaternion space, which provides smooth and constant-speed rotation between orientations~\cite{Shoemake1985Slerp}. 
+ 
+To ensure smooth velocity and acceleration profiles, the interpolation parameter follows a minimum-jerk trajectory given by
+ 
 \begin{equation}
-s(u) = 10u^3 - 15u^4 + 6u^5
+s(u) = 10u^3 - 15u^4 + 6u^5,
 \end{equation}
-
-which produces zero velocity and acceleration at the start and end of each motion segment \cite{Sharkawy2021MinimumJerk}.
-
-By sampling this progression at discrete intervals, a sequence of intermediate TCP waypoints is generated that approximates the continuous trajectory \cite{Biagiotti2008Trajectory}.
-
+ 
+which guarantees zero velocity and acceleration at the start and end of each motion segment~\cite{Flash1985MinimumJerk}. Such profiles are widely adopted in robotic trajectory planning to achieve smooth and physically consistent motion behaviour~\cite{Gasparetto2012Trajectory}.
+ 
+By sampling this progression at discrete intervals, a sequence of intermediate TCP waypoints is generated that approximates the continuous trajectory.
+ 
 \begin{lstlisting}[language=Python, caption={Illustrative waypoint generation using minimum-jerk interpolation}, label={lst:minjerk_waypoints}]
 def min_jerk(u):
     return 10*u**3 - 15*u**4 + 6*u**5
-
+ 
 waypoints = []
 for k in range(N):
     u = k / (N - 1)
@@ -681,34 +749,37 @@ for k in range(N):
     r = slerp(r_start, r_target, s)
     waypoints.append((p, r))
 \end{lstlisting}
-
-The number of waypoints depends on the path length and a predefined step size, ensuring a balance between trajectory smoothness and computational efficiency.
-
+ 
+The number of waypoints is determined based on the path length and a predefined resolution parameter, ensuring a balance between trajectory smoothness and computational efficiency.
+ 
 \begin{lstlisting}[language=Python, caption={Illustrative determination of waypoint count based on path length}, label={lst:waypoint_count}]
 distance = euclidean_dist(p_start, p_target)
 N = max(2, math.ceil(distance / delta_s_max))
 samples = [k / (N - 1) for k in range(N)]
 \end{lstlisting}
-
+ 
 \subsection{Kinematic Mapping and Joint Execution}
-Each interpolated TCP waypoint is converted into a corresponding robot configuration using inverse kinematics. This mapping determines the set of joint angles required to achieve the desired end-effector pose. For each waypoint, a feasible joint solution is selected based on continuity with the previous configuration, ensuring smooth transitions and avoiding abrupt joint changes.
-
-As the robot executes the sequence of configurations, all six joints evolve continuously. This produces a smooth end-effector motion that follows the interpolated Cartesian path from the initial pose to the final target pose.
-
+ 
+Each interpolated TCP waypoint is mapped to a corresponding robot joint configuration using inverse kinematics. For each waypoint, a feasible solution is selected based on continuity with the previous configuration, avoiding abrupt joint changes and ensuring smooth motion across the trajectory.
+ 
+As the robot executes the sequence, all joints evolve continuously, resulting in a smooth end-effector motion that closely follows the planned Cartesian path.
+ 
 \subsection{Workspace Constraints and Singularity Handling}
-
-To ensure feasibility, each waypoint is evaluated within the robot’s workspace. The TCP pose is transformed into the corresponding flange pose, and the position is checked against the cylindrical workspace limits defined by maximum reach and vertical bounds. If a waypoint exceeds these limits, it is projected onto the nearest valid boundary before further processing.
-
-Singularity avoidance is addressed during the lateral travel phase by limiting the allowable orientation range. This prevents the robot from entering configurations that would result in unstable joint motion or excessive joint velocities. The full target orientation is applied only near the final approach, where the robot is in a more stable configuration.
-
-
+ 
+To ensure execution feasibility, each waypoint is validated against workspace constraints. The TCP pose is transformed into the corresponding flange pose, and its position is checked against the allowable workspace limits. If a waypoint exceeds these limits, it is projected onto the nearest feasible boundary.
+ 
+Singularity avoidance is addressed by restricting orientation changes during the lateral motion phase. Large orientation adjustments are deferred to the approach phase, where the robot operates in a more stable configuration. This reduces the risk of excessive joint velocities and improves overall motion robustness.
+ 
 \subsection{Motion Execution and Path Reduction}
+ 
+The interpolation process generates a dense set of waypoints, which may exceed the processing capacity of the robot controller. To address this, a path reduction strategy is applied, retaining only those waypoints that exceed predefined positional or rotational thresholds. This preserves the essential characteristics of the trajectory while reducing communication overhead.
+ 
+The resulting waypoint sequence is transmitted as a series of linear motion commands, which are executed by the robot controller using blending techniques. This allows smooth transitions between consecutive waypoints without stopping, producing continuous and stable motion.
+ 
+Overall, the trajectory generation module forms a deterministic transformation pipeline in which validated task-level poses are converted into executable robot motion through interpolation, kinematic mapping, constraint validation, and controlled execution.
 
-The interpolation process produces a dense set of waypoints. To ensure compatibility with the robot controller, the trajectory is reduced to a manageable number of points by retaining only those that exceed predefined positional or rotational thresholds. This preserves the shape of the trajectory while reducing communication overhead.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The resulting waypoint sequence is transmitted to the robot controller as a series of linear motion commands. The controller executes these commands using motion blending, allowing smooth transitions between consecutive waypoints without stopping at each intermediate position. As a result, the robot follows a continuous trajectory that approximates the planned TCP path.
-
-The overall trajectory generation process forms a deterministic pipeline: validated TCP poses are interpolated into intermediate waypoints, mapped into joint configurations through inverse kinematics, adjusted for workspace constraints, and executed by the robot as a continuous motion from the start to the target pose.
 
 \section{System Integration, Execution Pipeline, and Conclusion}
 \label{sec:system_pipeline}
