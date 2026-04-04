@@ -1,0 +1,53 @@
+\begin{table}[htbp]
+\centering
+\caption{Comparison between manual programming and automated system under varying conditions}
+\label{tab:full_comparison}
+\small
+\begin{tabularx}{\textwidth}{
+L{4.5cm}
+L{5cm}
+L{5cm}
+}
+\toprule
+\textbf{Aspect} & 
+\textbf{Manual Programming (drag\&bot blocks)} & 
+\textbf{Automated System} \\
+\midrule
+ 
+Programming effort & 
+High (manual definition of motion steps) & 
+Minimal (automatic program generation) \\
+ 
+Reprogramming after changes & 
+Required for each modification & 
+Not required (automatic recalculation) \\
+ 
+Adaptation to position/orientation changes & 
+Manual adjustment of waypoints required & 
+Automatically handled by planning pipeline \\
+ 
+Adaptation time per change & 
+5--10 minutes & 
+10--30 seconds \\
+ 
+Error likelihood & 
+Higher due to manual input & 
+Reduced through validation and constraints \\
+ 
+Repeatability & 
+Dependent on operator consistency & 
+High due to deterministic execution \\
+ 
+Handling of complex operations (regrip, flip) & 
+Requires manual planning and sequencing & 
+Automatically handled within system pipeline \\
+ 
+Flexibility for new workpieces & 
+Requires reprogramming & 
+Handled through input and configuration changes \\
+ 
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\FloatBarrier

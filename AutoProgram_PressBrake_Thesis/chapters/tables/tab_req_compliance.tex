@@ -1,0 +1,60 @@
+
+\begin{table}[htbp]
+\centering
+\caption{Requirement compliance matrix linking system requirements to implementation components}
+\label{tab:req_compliance}
+\small
+\begin{tabularx}{\textwidth}{
+L{2.5cm}
+L{5.5cm}
+L{6.5cm}
+}
+\toprule
+\textbf{Requirement ID} & 
+\textbf{Requirement Description} & 
+\textbf{Implementation Mapping} \\
+\midrule
+ 
+FR-00 & Overall system shall automate press brake bending process workflow & 
+Achieved through the integrated planning pipeline, including orientation strategy (Section~\ref{sec:workpiece_orientation}), grip planning (Section~\ref{sec:grip_planning}), regrip planning (Section~\ref{sec:regrip}), and trajectory generation (Section~\ref{sec:trajectory}) \\
+ 
+FR-01 & Automatic generation of robot programs from geometric input & 
+Implemented through the structured planning pipeline combining orientation determination, grip planning, and trajectory generation (Sections~\ref{sec:workpiece_orientation}, \ref{sec:grip_planning}, \ref{sec:trajectory}) \\
+ 
+FR-02 & Support for multiple workpiece orientations and configurations & 
+Handled through the three-level orientation strategy with admissibility validation and fallback mechanism (Section~\ref{sec:workpiece_orientation}) \\
+ 
+FR-03 & Automatic grip position determination & 
+Achieved through constraint-based grip planning with geometric filtering and force validation (Section~\ref{sec:grip_planning}) \\
+ 
+FR-04 & Handling of regrip scenarios for unreachable configurations & 
+Implemented via dynamic regrip planning and execution strategy based on kinematic feasibility evaluation (Section~\ref{sec:regrip}) \\
+ 
+FR-05 & Support for opposite-side bending operations & 
+Enabled through the flip workflow and reuse of the planning pipeline for secondary operations (Section~\ref{sec:opposite_side}) \\
+ 
+FR-06 & Seamless communication with robot runtime & 
+Achieved using the AnyRobot Interface with authenticated WebSocket communication (Section~\ref{sec:communication_stack}) \\
+ 
+FR-07 & Pre-execution safety validation before motion execution & 
+Implemented through fixture pose validation, operator confirmation, and runtime monitoring mechanisms (Section~\ref{Pre-Execution_Safety_Validation}) \\
+ 
+NFR-01 & Deterministic and repeatable system behaviour & 
+Ensured through a structured modular pipeline and fixed execution order across system layers (Sections~5.2–5.10) \\
+ 
+NFR-02 & Configurability without source code modification & 
+Achieved through centralized YAML configuration architecture and parameter-driven system design (Section~\ref{Configuration Architecture }) \\
+ 
+NFR-03 & Safe system operation with operator control & 
+Enforced through blocking operator confirmation and structured safety validation (Section~\ref{Pre-Execution_Safety_Validation}) \\
+ 
+NFR-04 & Early detection of invalid configurations & 
+Ensured through configuration validation and fixture deviation checks prior to execution (Section~\ref{Pre-Execution_Safety_Validation}) \\
+ 
+NFR-05 & Robust handling of runtime errors & 
+Implemented through continuous runtime monitoring using the command result watcher and HI notifications (Section~\ref{Pre-Execution_Safety_Validation}) \\
+ 
+\bottomrule
+\end{tabularx}
+\end{table}
+

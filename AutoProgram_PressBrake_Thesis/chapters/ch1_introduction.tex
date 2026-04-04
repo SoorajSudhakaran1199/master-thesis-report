@@ -1,5 +1,74 @@
 
 \chapter{Introduction}
+\label{ch_1_introduction}
+ 
+\section{Background and Motivation}
+\label{sec_background_motivation}
+ 
+Sheet metal bending using press brake machines is a fundamental process in modern manufacturing, widely applied in industries such as automotive, aerospace, and industrial equipment production. Traditionally, this process relies on skilled operators to manually position the workpiece and define the required bending sequence. While industrial robots have been introduced to automate handling and improve productivity, current implementations still require significant manual programming effort to define robot motions and process steps.
 
-YSBASHFKJSDHFKfdghghjg
-\section{head of robot}XGFGF sooraj sudhakaran
+In conventional robotic bending systems, operators must manually create motion programs by defining waypoints, configuring sequences, and ensuring feasibility for each new workpiece. This approach becomes increasingly inefficient when variations in sheet geometry, orientation, or placement occur. Even minor changes often require partial or complete reprogramming, leading to increased setup time and reduced flexibility.
+ 
+The growing demand for flexible manufacturing systems highlights the need for solutions that reduce manual intervention and enable rapid adaptation to changing production conditions. In this context, automation of robot program generation and decision-making becomes a critical requirement for improving efficiency and scalability in press brake operations.
+ 
+\section{Problem Statement}
+\label{sec_problem_statement}
+ 
+Despite the integration of robotic systems in press brake bending, current approaches exhibit several limitations. Existing solutions often depend heavily on manual programming, requiring operators to define detailed motion sequences for each task. This results in high programming effort and increased susceptibility to human error.
+ 
+Furthermore, many systems lack the ability to adapt automatically to variations in workpiece position, orientation, and geometry. As a result, changes in input conditions necessitate manual adjustments, reducing system efficiency and limiting practical applicability in dynamic production environments.
+ 
+Another challenge lies in handling complex operations such as regripping and multi-stage bending. These tasks typically require predefined sequences or manual intervention, which restricts automation and increases operational complexity.
+ 
+These limitations indicate the need for a systematic and automated approach that can generate robot programs dynamically while ensuring feasibility, safety, and consistency.
+ 
+\section{Research Objectives}
+\label{sec_research_objectives}
+ 
+The primary objective of this thesis is to develop an automated system for robotic press brake bending that reduces manual programming effort and improves adaptability to varying workpiece conditions.
+ 
+To achieve this objective, the following goals are defined:
+ 
+\begin{itemize}
+\item Develop a system capable of automatic robot program generation based on geometric input parameters
+\item Enable adaptive handling of workpiece variations, including position and orientation changes
+\item Integrate key planning components such as orientation determination, grip planning, regrip handling, and trajectory generation into a unified framework
+\item Ensure safe and feasible execution through structured validation mechanisms
+\item Reduce operator dependency while maintaining consistent and repeatable system behaviour
+\end{itemize}
+ 
+\section{Scope of Work}
+ 
+This thesis focuses on the development and evaluation of an automated planning system for robotic press brake bending within a virtual simulation environment. The work is limited to the generation of robot programs and the validation of execution feasibility using simulated data.
+ 
+A collaborative industrial robot platform is used as the basis for system development. A robot from the Universal Robots family is selected due to its widespread industrial adoption, ease of integration, and compatibility with modern robotic software frameworks. This choice supports the development of a solution that is transferable to real-world applications.
+ 
+The implementation targets sheet metal bending tasks with defined geometric properties and does not address all possible industrial variations or complex multi-process workflows. Additionally, the evaluation is conducted in simulation and does not include validation on a physical robotic system.
+ 
+\section{Methodology Overview}
+\label{sec_methodology_overview}
+ 
+The proposed solution follows a structured methodology that combines concept evaluation, modular system design, and experimental validation.
+ 
+Initially, multiple solution concepts are analysed and compared based on defined criteria, leading to the selection of a concept that supports automated program generation. The selected concept is then implemented as a modular planning pipeline, consisting of distinct components responsible for orientation determination, grip planning, regrip handling, and trajectory generation.
+ 
+The system is developed using a layered architecture to ensure clear separation of responsibilities and maintainability. Validation mechanisms are integrated at multiple stages to ensure safe and feasible operation.
+ 
+Finally, the system is evaluated through a series of test scenarios to assess its functional correctness, performance, and adaptability. A comparison with manual programming approaches is conducted to quantify the reduction in programming effort and execution time.
+
+\section{Thesis Structure}
+\label{sec_thesis_structure}
+ 
+The remainder of this thesis is structured as follows:
+ 
+Chapter~\ref{CH_2_State of the Art} reviews the state of the art in robotic press brake bending and identifies key limitations of existing approaches.
+ 
+Chapter~\ref{CH_3_System Concept and Methodology} defines the system requirements and outlines the methodology used for concept development.
+ 
+Chapter~\ref{ch:development-concepts} presents the evaluation of alternative solution concepts and justifies the selection of the proposed approach.
+ 
+Chapter~\ref{ch_5:implementation} describes the implementation of the system, including architecture, planning modules, and validation mechanisms.
+ 
+Chapter~\ref{ch_6:evaluation} evaluates the performance of the developed system through functional validation, system-level analysis, and comparison with manual programming approaches.
+ 
+Finally, Chapter~\ref{ch7_conclusion} summarises the contributions of the thesis and discusses limitations and directions for future work.

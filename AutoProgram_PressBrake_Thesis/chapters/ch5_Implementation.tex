@@ -781,72 +781,70 @@ Overall, the trajectory generation module forms a deterministic transformation p
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{System Integration, Execution Pipeline, and Conclusion}
-\label{sec:system_pipeline}
-
-The developed system operates as an integrated pipeline that transforms operator-defined bending inputs into fully executed robot motion. This pipeline coordinates multiple modules, including task planning, trajectory generation, and execution control, ensuring consistent and deterministic system behaviour.
-
-The execution begins with the operator defining the bending configuration, including the selection of bend sides and associated parameters. These inputs are processed by the planning module, which determines the sequence of operations required to complete the bending task. This stage establishes the order of primary-side bends, identifies necessary regrip operations, and determines whether opposite-face handling is required.
-
-Following planning, the system enters the primary bending phase. Each bend is executed sequentially using validated motion strategies. For every operation, a feasible grip position is determined, orientation constraints are applied, and a corresponding trajectory is generated. Regrip sequences are performed when required to maintain stable and feasible grasp configurations throughout the process.
-
-If bending operations on the opposite face are requested, the system transitions to the flip workflow. The sheet is transferred through the flip station, reoriented, and reattached so that the previously inaccessible face becomes available. The same planning and execution principles used in the primary phase are then applied, ensuring consistent handling across both sides of the workpiece.
-
-All robot motion within these stages is executed through the trajectory generation pipeline described in Section~\ref{sec:trajectory}. Each planned TCP pose is converted into intermediate waypoints, mapped to joint configurations through inverse kinematics, and executed as continuous motion using linear interpolation and blending. This ensures smooth and stable end-effector movement throughout the bending process.
-
-After completion of all bending operations, the system performs the post-process unload as part of the execution pipeline. The robot attaches to the finished workpiece, transports it to the designated buffer station, and releases it in a controlled manner. The robot then moves to a predefined safe start pose, restoring the system to a known configuration and ensuring safe operator access to the workspace.
-
-The overall system therefore follows a structured execution pipeline:
-
-\begin{itemize}
-    \item Operator input and bend configuration
-    \item Planning of bending sequence and regrip strategy
-    \item Execution of primary-side bending operations
-    \item Regrip handling between operations
-    \item Opposite-face handling via flip workflow (if required)
-    \item Trajectory generation and motion execution
-    \item Post-process unload and system reset
-\end{itemize}
-
-\subsection{Conclusion}
-
-The presented system demonstrates a fully integrated approach to automated sheet metal bending using robotic manipulation. By combining structured task planning, constraint-aware trajectory generation, and controlled execution, the system achieves consistent and reliable handling of complex bending sequences.
-
-The integration of regrip strategies and opposite-face handling enables the system to process multi-stage bending operations without manual intervention. The use of interpolation-based trajectory generation ensures smooth and stable motion, while workspace and orientation constraints maintain kinematic feasibility throughout execution.
-
-Overall, the system provides a robust and deterministic framework for automated bending operations, supporting flexible task configurations while maintaining safety, repeatability, and execution stability. This integration forms the foundation for further evaluation through system reliability and failure analysis in the following section.
-
 \section{System Reliability and Failure Mode Analysis}
 \label{sec:fmea}
-
-To evaluate the robustness of the developed robotic bending system, a Failure Mode and Effects Analysis (FMEA) is conducted. This analysis identifies potential failure modes within the system, evaluates their impact on operation, and considers mitigation strategies implemented in the system design.
-
-FMEA is a structured approach used to assess system reliability by analysing three key factors: severity (S), occurrence (O), and detectability (D). The combined effect of these factors is quantified using the Risk Priority Number (RPN), defined as
-
+ 
+To evaluate the robustness and operational reliability of the implemented system, a Failure Mode and Effects Analysis (FMEA) is conducted. This structured methodology identifies potential failure modes within the robotic bending workflow, evaluates their impact on system performance, and assesses the effectiveness of implemented mitigation strategies.
+ 
+FMEA is based on three evaluation criteria: severity (S), occurrence (O), and detectability (D). These factors are combined to compute the Risk Priority Number (RPN), defined as
+ 
 \begin{equation}
 \mathrm{RPN} = S \times O \times D
 \end{equation}
-
-where each parameter is rated on a qualitative scale, typically from 1 (low) to 10 (high). Higher RPN values indicate higher priority risks that require mitigation.
-
-\subsection{Identified Failure Modes}
-
-The analysis focuses on key operational stages of the system, including gripping, trajectory execution, regrip handling, flip operations, and final placement. The identified failure modes are summarised in Table~\ref{tab:fmea}.
-
-%%%%%%TABLE%%%%%%
+ 
+Each parameter is assessed using a qualitative scale from 1 (low) to 10 (high), where higher RPN values indicate higher-priority risks requiring mitigation.
+ 
+\subsection{Identification of Failure Modes}
+ 
+The analysis focuses on critical stages of the execution pipeline, including pickup orientation, grip planning, trajectory execution, regrip handling, and opposite-face operations. The identified failure modes are summarised in Table~\ref{tab:fmea}.
+ 
 \input{chapters/tables/tab_FMEA.tex}
-%%%%%%TABLE%%%%%%
-
+ 
+The selected failure modes reflect the most critical dependencies in the system, particularly those related to geometric accuracy, kinematic feasibility, and physical interaction between the robot and the workpiece.
+ 
 \subsection{Mitigation Strategies}
-
-Several design measures are incorporated to reduce the likelihood and impact of these failures. Grip stability is ensured through controlled attachment sequences and orientation constraints. Trajectory feasibility is maintained through workspace validation and structured motion planning. Singularity risks are reduced by limiting orientation changes during lateral motion and separating rotational adjustments from the final descent phase.
-
-The flip workflow introduces controlled attachment and detachment stages to ensure correct reorientation of the sheet. Additionally, the use of live object tracking for pose acquisition improves positioning accuracy during both bending and unloading operations. The deterministic execution pipeline further reduces uncertainty by enforcing a fixed sequence of validated operations.
-
+ 
+Several design measures have been incorporated to reduce both the likelihood and impact of identified failure modes.
+ 
+Geometric consistency is ensured through structured validation stages, including fixture pose deviation checks and orientation admissibility constraints. These mechanisms prevent incorrect pose assumptions from propagating into motion generation.
+ 
+Grip reliability is addressed through combined geometric filtering and physical feasibility validation. By enforcing edge clearance, hole avoidance, and vacuum force constraints, the system ensures that only stable grip configurations are selected.
+ 
+Trajectory-related risks are mitigated through interpolation-based motion generation and workspace validation. The use of minimum-jerk profiles and waypoint filtering ensures smooth motion while avoiding excessive controller load. In addition, singularity avoidance strategies and orientation constraints are applied to maintain kinematic stability throughout execution.
+ 
+Regrip and flip operations are implemented as structured sequences with defined intermediate poses, ensuring collision-free transitions and consistent object handling. The use of deterministic execution pipelines further reduces uncertainty by enforcing a fixed order of validated operations.
+ 
 \subsection{Discussion}
+ 
+The FMEA results indicate that the most critical risks are associated with pose accuracy and trajectory feasibility, as these directly influence all downstream planning and execution stages. These risks are effectively mitigated through layered validation, constraint-based planning, and structured motion generation.
+ 
+Overall, the system demonstrates a balanced reliability profile in which high-severity failure modes are either low in occurrence or mitigated through strong detection and validation mechanisms. This confirms that the proposed architecture not only enables automated bending operations but also ensures safe and predictable execution under varying operating conditions.
 
-The FMEA results indicate that the most critical risks are associated with pose accuracy and trajectory feasibility, as reflected by higher RPN values. These risks are mitigated through a combination of constraint-based planning, controlled motion generation, and staged execution.
 
-Overall, the system demonstrates a balanced design in which high-severity failure modes are either low in occurrence or effectively mitigated through detection and control mechanisms. This supports reliable operation of the robotic bending process while maintaining safety and repeatability.
+\subsection{Conclusion}
+ 
+This chapter presented the complete implementation of the proposed system for automated press brake sheet metal bending, based on the selected Concept~B. The implementation translates the conceptual design into a fully functional software architecture that integrates geometric reasoning, constraint-based planning, and robotic motion execution within a unified framework.
+ 
+A layered system architecture was developed to ensure modularity, testability, and strict enforcement of execution order. Each functional component, including orientation determination, grip planning, regrip handling, and trajectory generation, was designed as an independent module with clearly defined responsibilities. This structure enables traceability between system requirements and implementation, while also supporting future extensibility.
+ 
+The system demonstrates the capability to generate robot programs automatically from configuration data and geometric inputs, eliminating the need for manual waypoint definition. By incorporating structured validation mechanisms at multiple stages, including pre-execution safety checks, grip feasibility validation, and workspace-constrained trajectory generation, the system ensures reliable and safe operation.
+ 
+A key contribution of this work lies in the integration of adaptive regrip planning and opposite-face handling within a deterministic execution pipeline. Unlike conventional approaches that rely on predefined sequences, the system dynamically evaluates feasible configurations and determines the required manipulation strategy at runtime. This improves flexibility while maintaining computational efficiency suitable for industrial applications.
+ 
+The trajectory generation framework further enhances system robustness by combining smooth interpolation techniques with kinematic validation and path reduction strategies. This ensures that generated motions are both executable by the robot controller and stable under real-world operating conditions.
+ 
+The conducted Failure Mode and Effects Analysis confirms that the system effectively mitigates critical risks through layered validation and structured execution. High-risk scenarios related to pose accuracy, gripping stability, and trajectory feasibility are addressed through a combination of detection mechanisms and constraint-based design.
+ 
+Overall, the implemented system provides a robust and scalable solution for automated sheet metal bending. It achieves a balance between flexibility, safety, and computational efficiency, demonstrating the feasibility of fully automated robot program generation in an industrially relevant context. This implementation forms a strong foundation for further evaluation and validation, as presented in the subsequent chapter.
 
-The presented analysis highlights that the integration of planning, trajectory generation, and execution control not only enables automated bending but also contributes significantly to system robustness. This confirms the effectiveness of the proposed system architecture in handling complex multi-stage manipulation tasks.
+\section{Requirement Compliance Matrix}
+\label{sec:requirement_compliance}
+ 
+To ensure full traceability between the system requirements defined in Chapter~\ref{CH_3_System Concept and Methodology} and the implemented solution, a requirement compliance matrix is presented in Table~\ref{tab:req_compliance}. The matrix establishes a direct mapping between each requirement and its corresponding implementation component within the system.
+ 
+Both functional requirements (FR) and non-functional requirements (NFR) are included. Each requirement is linked to the relevant module, algorithm, or validation mechanism described in this chapter, ensuring that all specified requirements are systematically addressed within the implemented system.
+
+\input{chapters/tables/tab_req_compliance.tex}
+
+The compliance matrix demonstrates that all functional and non-functional requirements defined in Chapter~\ref{CH_3_System Concept and Methodology} are fully addressed within the implemented system. Each requirement is mapped to a specific architectural component or validation mechanism, ensuring complete traceability between system design and implementation. This structured mapping confirms that the developed solution consistently satisfies the objectives established in earlier chapters while maintaining coherence across the entire system pipeline.
+

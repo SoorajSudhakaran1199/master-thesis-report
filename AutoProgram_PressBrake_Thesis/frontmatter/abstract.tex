@@ -1,6 +1,16 @@
-\chapter*{Abstract}
-\addcontentsline{toc}{chapter}{Abstract}
 
-% --- abstract text here ---
-
-\cleardoublepage
+\begin{abstract}
+ 
+Press brake sheet metal bending is a critical process in modern manufacturing, widely used for producing components in industries such as automotive, aerospace, and industrial machinery. While robotic systems have been introduced to improve productivity and consistency, current implementations still rely heavily on manual programming. Operators are typically required to define motion sequences, teach waypoints, and adapt programs for each new workpiece configuration. This results in significant programming effort, limited adaptability, and increased dependency on operator expertise.
+ 
+This thesis addresses these limitations by proposing an automated planning system for robotic press brake bending. The objective is to reduce manual intervention while enabling the system to adapt dynamically to variations in workpiece geometry, orientation, and placement. The proposed approach is based on a structured planning pipeline that integrates key functional components, including workpiece orientation determination, constraint-based grip position planning, automatic regrip handling, and trajectory generation.
+ 
+The system is implemented as a modular software architecture with clearly defined layers, ensuring separation of concerns and maintainability. All planning operations are driven by geometric input parameters and configuration data, allowing the system to generate complete robot programs without manual waypoint definition. Validation mechanisms are incorporated at multiple stages to ensure safe and feasible execution.
+ 
+The developed system is evaluated within a virtual simulation environment using a set of representative test scenarios. These scenarios include variations in workpiece dimensions, arbitrary initial orientations, and configurations requiring complex operations such as regripping and opposite-face bending. The evaluation demonstrates that the system consistently produces valid and executable robot programs under varying conditions.
+ 
+In addition to functional validation, a comparison with conventional manual programming approaches is conducted. The results show a substantial reduction in programming effort and adaptation time. Tasks that traditionally require manual reprogramming are handled automatically by the system, improving efficiency and ensuring consistent execution across repeated operations.
+ 
+Overall, the proposed system provides a systematic and adaptable solution for robotic press brake bending. By reducing operator dependency and enabling automatic decision-making, the approach addresses key limitations of existing methods and contributes to the advancement of flexible robotic manufacturing systems.
+ 
+\end{abstract}

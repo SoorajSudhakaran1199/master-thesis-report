@@ -3,7 +3,7 @@
 % main.tex (THD thesis-ready, robust file-includes)
 % =========================
 
-\documentclass[12pt,a4paper,twoside]{report}
+\documentclass[11pt,a4paper,twoside]{report}
 
 \input{preamble}
 
@@ -74,6 +74,14 @@
 \IfFileExists{chapters/ch5_Implementation.tex}{%
   \input{chapters/ch5_Implementation}
 }{}
+
+\IfFileExists{chapters/ch6_Evaluation_and_Validation.tex}{%
+  \input{chapters/ch6_Evaluation_and_Validation}
+}{}
+
+\IfFileExists{chapters/ch7_Conclusion_and_Future_Work.tex}{%
+  \input{chapters/ch7_Conclusion_and_Future_Work}
+}{} 
 
 % -------- APPENDIX --------
 \appendix
