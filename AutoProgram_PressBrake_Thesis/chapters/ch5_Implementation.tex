@@ -51,9 +51,13 @@ Five distinct layers are defined within the system architecture, each with a cle
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.70\textheight,keepaspectratio]{figures/five_layer_system_architecture.png}
-    \caption{Five layer architecture}
-    \label{fig:five_layer_architecture}
+    \includegraphics[
+        width=\textwidth,
+        height=0.75\textheight,
+        keepaspectratio
+    ]{Flow_Diagrams/system_architecture_global_validation.pdf}
+    \caption{Global system architecture for validation workflow.}
+    \label{fig:system_architecture_global_validation}
 \end{figure}
 
 \FloatBarrier
@@ -229,17 +233,20 @@ Once the operator confirms the selection, the defined parameters are transmitted
 \par The complete sequence of operator interaction and system processing is summarised in Figure~\ref{fig_3dbend_workflow}, which illustrates the progression from initial configuration through planning, strategy selection, and final execution.
 
 
-\begin{figure}[!htbp]
+\begin{landscape}
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{figures/operator_workflow.png}
-    \caption{
-        Operator Workflow .Every gate must be passed before the next begins.All operator interactions occu within the drag and bot enviornment.
-        \textit{Source: own work.}
-    }
-    \label{fig_3dbend_workflow}
+    \includegraphics[
+        width=\linewidth,
+        height=1.0\textheight,
+        keepaspectratio
+    ]{Flow_Diagrams/operator_workflow.pdf}
+    \caption[Operator workflow]{Operator workflow. Every gate must be passed before the next begins. All operator interactions occur within the Drag-and-Bot environment. \textit{Source: own work.}}
+    \label{fig:operator_workflow}
 \end{figure}
-
+\end{landscape}
 \FloatBarrier
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -341,13 +348,6 @@ The primary sheet object is evaluated using the same criteria as other fixtures.
 If one or more fixtures exceed the defined thresholds, the system generates a structured warning listing all affected fixtures together with their measured positional and angular deviations. This warning is presented through a blocking human interaction (HI) dialog titled \textit{Fixture position warning}, allowing the operator to either proceed with explicit acknowledgement or cancel execution for further inspection. The operator’s decision is recorded, ensuring that responsibility for accepting out-of-tolerance conditions remains with the human operator.
  
 If a fixture is not detected in the object manager response, it is treated as missing and automatically flagged as a validation failure.
- 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.9\linewidth]{figures/fixture_flowchart.png}
-\caption{Fixture pose deviation validation workflow. Each monitored fixture is evaluated by comparing positional and angular deviations against defined thresholds. Out-of-tolerance or missing fixtures trigger a blocking warning dialog requiring operator confirmation. Validation is applied uniformly across all spatial zones. Source: own work.}
-\label{fig:fixture_deviation}
-\end{figure}
  
 \subsection{Operator Authorization and Runtime Error Monitoring}
  
@@ -454,8 +454,12 @@ Algorithm~\ref{alg:orientation_selection} summarises the implemented selection s
  
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{figures/three_level_architecture.png}
-    \caption{Three-level orientation selection strategy for determining a valid pickup pose under kinematic constraints. \textit{Source: own work.}}
+    \includegraphics[
+        width=\textwidth,
+        height=0.9\textheight,
+        keepaspectratio
+    ]{Flow_Diagrams/three_level_orientation.pdf}
+    \caption[Three-level orientation strategy]{Three-level orientation selection strategy for determining a valid pickup pose under kinematic constraints. \textit{Source: own work.}}
     \label{fig:three_level_architecture}
 \end{figure}
  
@@ -581,12 +585,16 @@ The highest-scoring configuration is selected as the final grip position. Based 
  
 Figure~\ref{fig:grip_planning_flowchart} illustrates the complete grip planning pipeline, including force validation, candidate generation, constraint filtering, scoring, and waypoint derivation. 
  
-\begin{figure}[htbp] 
-\centering 
-\includegraphics[width=\linewidth]{figures/Grip Position Planning.png} 
-\caption{Grip position planning and feasibility validation workflow. The process integrates geometric filtering and vacuum force validation to ensure physically stable and executable grasp configurations prior to trajectory generation. Source: own work.} 
-\label{fig:grip_planning_flowchart} 
-\end{figure} 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[
+        width=\textwidth,
+        height=0.9\textheight,
+        keepaspectratio
+    ]{Flow_Diagrams/grip_planning_flow.pdf}
+    \caption[Grip planning workflow]{Grip position planning and feasibility validation workflow. The process integrates geometric filtering and vacuum force validation to ensure physically stable and executable grasp configurations prior to trajectory generation. \textit{Source: own work.}}
+    \label{fig:grip_planning_flowchart}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -690,12 +698,16 @@ Figure~\ref{fig:opposite_face_flip} illustrates the complete opposite-side bendi
  
 After completing all opposite-side bends, any remaining staged operations are executed using the existing handling framework. The system then proceeds to the final unloading sequence. 
  
-\begin{figure}[htbp] 
-    \centering 
-    \includegraphics[width=0.8\textwidth]{figures/opposite_face_flip.png} 
-    \caption{Opposite-face flip workflow enabling access to previously unreachable bending surfaces. Source: own work.} 
-    \label{fig:opposite_face_flip} 
-\end{figure} 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[
+        width=\textwidth,
+        height=0.9\textheight,
+        keepaspectratio
+    ]{Flow_Diagrams/opposite_face_bending.pdf}
+    \caption[Opposite-face flip workflow]{Opposite-face flip workflow enabling access to previously unreachable bending surfaces. \textit{Source: own work.}}
+    \label{fig:opposite_face_flip}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ints, and executed by the robot as a continuous motion from the start to the target pose.

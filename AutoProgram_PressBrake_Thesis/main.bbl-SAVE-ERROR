@@ -19,7 +19,7 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global/global}
-    \entry{ISO8373}{standard}{}{}
+    \entry{ISO8373}{misc}{}{}
       \list{organization}{1}{%
         {International Organization for Standardization}%
       }
@@ -812,8 +812,8 @@
       \strng{authornamehash}{2206e1948c0c591c115b0cc25608abab}
       \strng{authorfullhash}{468c38d855a5f5242903501b6a2eb129}
       \strng{authorfullhashraw}{468c38d855a5f5242903501b6a2eb129}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Procedia CIRP}
@@ -877,8 +877,8 @@
       \strng{authornamehash}{b774a9d43f5be3e4c87661f157618116}
       \strng{authorfullhash}{a91a45c430d95c385cb29e58b6b9fd6e}
       \strng{authorfullhashraw}{a91a45c430d95c385cb29e58b6b9fd6e}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings of the ICRA Workshop on Open Source Software}
@@ -899,8 +899,8 @@
       \strng{authornamehash}{c7b5508dc5e59a2846d22617276cc27c}
       \strng{authorfullhash}{c7b5508dc5e59a2846d22617276cc27c}
       \strng{authorfullhashraw}{c7b5508dc5e59a2846d22617276cc27c}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Accessed: 2026-03-02}
@@ -913,150 +913,275 @@
       \verb https://docs.python.org/3/
       \endverb
     \endentry
-    \entry{universalrobots_ur5e}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=cebc23c04027201c8b35f8fdada0e866}{%
-           family={{Universal Robots A/S}},
-           familyi={U\bibinitperiod}}}%
+    \entry{Tao2021DigitalTwin}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=f4149340bc388abb627321731645513a}{%
+           family={Tao},
+           familyi={T\bibinitperiod},
+           given={Fei},
+           giveni={F\bibinitperiod}}}%
+        {{hash=1276b0c695bd412950c2be5e737aeed5}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Meng},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4ad65baa593962b61006f967951e667f}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Yushan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=ea60886b3e56ab80762010b43dd61d72}{%
+           family={Nee},
+           familyi={N\bibinitperiod},
+           given={A.Y.C.},
+           giveni={A\bibinitperiod}}}%
       }
-      \list{location}{1}{%
-        {Odense, Denmark}%
-      }
-      \strng{namehash}{cebc23c04027201c8b35f8fdada0e866}
-      \strng{fullhash}{cebc23c04027201c8b35f8fdada0e866}
-      \strng{fullhashraw}{cebc23c04027201c8b35f8fdada0e866}
-      \strng{bibnamehash}{cebc23c04027201c8b35f8fdada0e866}
-      \strng{authorbibnamehash}{cebc23c04027201c8b35f8fdada0e866}
-      \strng{authornamehash}{cebc23c04027201c8b35f8fdada0e866}
-      \strng{authorfullhash}{cebc23c04027201c8b35f8fdada0e866}
-      \strng{authorfullhashraw}{cebc23c04027201c8b35f8fdada0e866}
+      \strng{namehash}{aee6731a830f7f2d502f4262bfb7e431}
+      \strng{fullhash}{22e251b9b60b07f4f48785e16fa3f4d0}
+      \strng{fullhashraw}{22e251b9b60b07f4f48785e16fa3f4d0}
+      \strng{bibnamehash}{22e251b9b60b07f4f48785e16fa3f4d0}
+      \strng{authorbibnamehash}{22e251b9b60b07f4f48785e16fa3f4d0}
+      \strng{authornamehash}{aee6731a830f7f2d502f4262bfb7e431}
+      \strng{authorfullhash}{22e251b9b60b07f4f48785e16fa3f4d0}
+      \strng{authorfullhashraw}{22e251b9b60b07f4f48785e16fa3f4d0}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://www.universal-robots.com/products/ur5-robot/technical-specifications/}}
-      \field{note}{Accessed: Mar. 2026}
-      \field{title}{{UR5e Technical Specifications}}
-      \field{year}{2026}
+      \field{journaltitle}{IEEE Transactions on Industrial Informatics}
+      \field{number}{4}
+      \field{title}{Digital Twin in Industry: State-of-the-Art}
+      \field{volume}{17}
+      \field{year}{2021}
+      \field{pages}{2400\bibrangedash 2415}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1109/TII.2020.3009610
+      \endverb
     \endentry
-    \entry{mahler2017dexnet}{inproceedings}{}{}
-      \name{author}{6}{}{%
-        {{hash=fce00e65868400f7394307ba961d4631}{%
-           family={Mahler},
+    \entry{Macenski2022ROS2}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=7b84d10a03303cd00f198fefb38a5da3}{%
+           family={Macenski},
            familyi={M\bibinitperiod},
-           given={Jeff},
-           giveni={J\bibinitperiod}}}%
-        {{hash=eef3c2cb46c15bef7fe3040f05e9d14a}{%
-           family={Pokorny},
-           familyi={P\bibinitperiod},
-           given={Florin},
-           giveni={F\bibinitperiod}}}%
-        {{hash=c9519dadf19b72e6edc29f9000b080f1}{%
-           family={Hou},
-           familyi={H\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=0d11ace6e44e4742ea1692d7ddf4819e}{%
+           family={Foote},
+           familyi={F\bibinitperiod},
+           given={Tully},
+           giveni={T\bibinitperiod}}}%
+        {{hash=a8ad4a5f43253f69552460c946e34e49}{%
+           family={Gerkey},
+           familyi={G\bibinitperiod},
            given={Brian},
            giveni={B\bibinitperiod}}}%
-        {{hash=9012cea67d18f211fde43dcf34baf36b}{%
-           family={Roderick},
-           familyi={R\bibinitperiod},
-           given={Melrose},
-           giveni={M\bibinitperiod}}}%
-        {{hash=881b3f6e0336ed276f56b8dc9d1d5d39}{%
-           family={Laskey},
+        {{hash=4e2c9f9d04cf548117105f50a9c8a7a1}{%
+           family={Lalancette},
            familyi={L\bibinitperiod},
-           given={Michael},
-           giveni={M\bibinitperiod}}}%
-        {{hash=1776deb0a86da5a75d0800ae967f4bd6}{%
-           family={Goldberg},
-           familyi={G\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+        {{hash=fe838d86b89f8983167a3747e11998bb}{%
+           family={Woodall},
+           familyi={W\bibinitperiod},
+           given={William},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{4a195e02383364d4009f77ca22451e11}
+      \strng{fullhash}{c321d95ccac4f92536f0f1ed99f34d05}
+      \strng{fullhashraw}{c321d95ccac4f92536f0f1ed99f34d05}
+      \strng{bibnamehash}{c321d95ccac4f92536f0f1ed99f34d05}
+      \strng{authorbibnamehash}{c321d95ccac4f92536f0f1ed99f34d05}
+      \strng{authornamehash}{4a195e02383364d4009f77ca22451e11}
+      \strng{authorfullhash}{c321d95ccac4f92536f0f1ed99f34d05}
+      \strng{authorfullhashraw}{c321d95ccac4f92536f0f1ed99f34d05}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Science Robotics}
+      \field{number}{66}
+      \field{title}{Robot Operating System 2: Design, Architecture, and Uses in the Wild}
+      \field{volume}{7}
+      \field{year}{2022}
+      \verb{doi}
+      \verb 10.1126/scirobotics.abm6074
+      \endverb
+    \endentry
+    \entry{lynch2017modern}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=ab9086b1452a1a9813fc6765151b4f61}{%
+           family={Lynch},
+           familyi={L\bibinitperiod},
+           given={Kevin\bibnamedelima M.},
+           giveni={K\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=66f19f2d439b6eb60c024ab622b0389f}{%
+           family={Park},
+           familyi={P\bibinitperiod},
+           given={Frank\bibnamedelima C.},
+           giveni={F\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{8d01efb70f6cec86f711e78e22f97a48}
+      \strng{fullhash}{8d01efb70f6cec86f711e78e22f97a48}
+      \strng{fullhashraw}{8d01efb70f6cec86f711e78e22f97a48}
+      \strng{bibnamehash}{8d01efb70f6cec86f711e78e22f97a48}
+      \strng{authorbibnamehash}{8d01efb70f6cec86f711e78e22f97a48}
+      \strng{authornamehash}{8d01efb70f6cec86f711e78e22f97a48}
+      \strng{authorfullhash}{8d01efb70f6cec86f711e78e22f97a48}
+      \strng{authorfullhashraw}{8d01efb70f6cec86f711e78e22f97a48}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9781107156302}
+      \field{title}{Modern Robotics: Mechanics, Planning, and Control}
+      \field{year}{2017}
+    \endentry
+    \entry{bicchi2000robotic}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=cc43c52cecb0f037579498ca80c711a1}{%
+           family={Bicchi},
+           familyi={B\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=3c2a6a0658f1ad90e7d4a83eef9c3841}{%
+           family={Kumar},
+           familyi={K\bibinitperiod},
+           given={Vijay},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{112ace10c899174416daad439f576616}
+      \strng{fullhash}{112ace10c899174416daad439f576616}
+      \strng{fullhashraw}{112ace10c899174416daad439f576616}
+      \strng{bibnamehash}{112ace10c899174416daad439f576616}
+      \strng{authorbibnamehash}{112ace10c899174416daad439f576616}
+      \strng{authornamehash}{112ace10c899174416daad439f576616}
+      \strng{authorfullhash}{112ace10c899174416daad439f576616}
+      \strng{authorfullhashraw}{112ace10c899174416daad439f576616}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ICRA}
+      \field{title}{Robotic grasping and contact: A review}
+      \field{year}{2000}
+    \endentry
+    \entry{vacuum_handling_standard}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=90e06af9d1ac34a322a27ff478168a8a}{%
+           family={{Schmalz GmbH}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{90e06af9d1ac34a322a27ff478168a8a}
+      \strng{fullhash}{90e06af9d1ac34a322a27ff478168a8a}
+      \strng{fullhashraw}{90e06af9d1ac34a322a27ff478168a8a}
+      \strng{bibnamehash}{90e06af9d1ac34a322a27ff478168a8a}
+      \strng{authorbibnamehash}{90e06af9d1ac34a322a27ff478168a8a}
+      \strng{authornamehash}{90e06af9d1ac34a322a27ff478168a8a}
+      \strng{authorfullhash}{90e06af9d1ac34a322a27ff478168a8a}
+      \strng{authorfullhashraw}{90e06af9d1ac34a322a27ff478168a8a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Technical reference for vacuum gripping force models}
+      \field{title}{Vacuum Handling Systems: Design Principles and Force Calculation}
+      \field{year}{2020}
+    \endentry
+    \entry{Shoemake1985Slerp}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=9fd9e5679f436b146a68cd07db44781b}{%
+           family={Shoemake},
+           familyi={S\bibinitperiod},
            given={Ken},
            giveni={K\bibinitperiod}}}%
       }
-      \strng{namehash}{3bda902e1a45e7ba8ce9c3a483fa2b05}
-      \strng{fullhash}{73a76dec0521792488a511a9da3f93b2}
-      \strng{fullhashraw}{73a76dec0521792488a511a9da3f93b2}
-      \strng{bibnamehash}{73a76dec0521792488a511a9da3f93b2}
-      \strng{authorbibnamehash}{73a76dec0521792488a511a9da3f93b2}
-      \strng{authornamehash}{3bda902e1a45e7ba8ce9c3a483fa2b05}
-      \strng{authorfullhash}{73a76dec0521792488a511a9da3f93b2}
-      \strng{authorfullhashraw}{73a76dec0521792488a511a9da3f93b2}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{IEEE International Conference on Robotics and Automation (ICRA)}
-      \field{title}{Dex-Net 3.0: Computing Robust Vacuum Suction Grasp Targets in Point Clouds}
-      \field{year}{2017}
-    \endentry
-    \entry{Wang2022NURBSSlerp}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=44350fa379bafad14d52bf14d57b96f9}{%
-           family={Wang},
-           familyi={W\bibinitperiod},
-           given={Guirong},
-           giveni={G\bibinitperiod}}}%
-        {{hash=d5ffa18724632f01eea9ec8c2824ff66}{%
-           family={Xu},
-           familyi={X\bibinitperiod},
-           given={Fei},
-           giveni={F\bibinitperiod}}}%
-        {{hash=09d5d500b34786c94a128e6f131300c6}{%
-           family={Zhou},
-           familyi={Z\bibinitperiod},
-           given={Kun},
-           giveni={K\bibinitperiod}}}%
-        {{hash=9d6475b311be5bdf720b8dc55f8694da}{%
-           family={Pang},
-           familyi={P\bibinitperiod},
-           given={Zhihui},
-           giveni={Z\bibinitperiod}}}%
+      \list{publisher}{1}{%
+        {ACM}%
       }
-      \strng{namehash}{0a4d4d90d9d4ad903014fd22de30148d}
-      \strng{fullhash}{01116d932b5d6a18d0d51c9ef6c9bc7e}
-      \strng{fullhashraw}{01116d932b5d6a18d0d51c9ef6c9bc7e}
-      \strng{bibnamehash}{01116d932b5d6a18d0d51c9ef6c9bc7e}
-      \strng{authorbibnamehash}{01116d932b5d6a18d0d51c9ef6c9bc7e}
-      \strng{authornamehash}{0a4d4d90d9d4ad903014fd22de30148d}
-      \strng{authorfullhash}{01116d932b5d6a18d0d51c9ef6c9bc7e}
-      \strng{authorfullhashraw}{01116d932b5d6a18d0d51c9ef6c9bc7e}
+      \strng{namehash}{9fd9e5679f436b146a68cd07db44781b}
+      \strng{fullhash}{9fd9e5679f436b146a68cd07db44781b}
+      \strng{fullhashraw}{9fd9e5679f436b146a68cd07db44781b}
+      \strng{bibnamehash}{9fd9e5679f436b146a68cd07db44781b}
+      \strng{authorbibnamehash}{9fd9e5679f436b146a68cd07db44781b}
+      \strng{authornamehash}{9fd9e5679f436b146a68cd07db44781b}
+      \strng{authorfullhash}{9fd9e5679f436b146a68cd07db44781b}
+      \strng{authorfullhashraw}{9fd9e5679f436b146a68cd07db44781b}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Processes}
-      \field{number}{11}
-      \field{title}{S-Velocity Profile of Industrial Robot Based on NURBS Curve and Slerp Interpolation}
-      \field{volume}{10}
-      \field{year}{2022}
-      \field{pages}{2195}
-      \range{pages}{1}
+      \field{booktitle}{Proceedings of the 12th Annual Conference on Computer Graphics and Interactive Techniques (SIGGRAPH '85)}
+      \field{title}{Animating Rotation with Quaternion Curves}
+      \field{year}{1985}
+      \field{pages}{245\bibrangedash 254}
+      \range{pages}{10}
       \verb{doi}
-      \verb 10.3390/pr10112195
+      \verb 10.1145/325334.325242
       \endverb
     \endentry
-    \entry{Sharkawy2021MinimumJerk}{article}{}{}
-      \name{author}{1}{}{%
-        {{hash=e235518b467c873b5a5ef65123c50f71}{%
-           family={Sharkawy},
-           familyi={S\bibinitperiod},
-           given={Abdel-Nasser},
-           giveni={A\bibinithyphendelim N\bibinitperiod}}}%
+    \entry{Flash1985MinimumJerk}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=beaa7331a07a258c9f80e1ce4bea2eb2}{%
+           family={Flash},
+           familyi={F\bibinitperiod},
+           given={Tamar},
+           giveni={T\bibinitperiod}}}%
+        {{hash=d2173dc424e7469a57bfde293e2cfe38}{%
+           family={Hogan},
+           familyi={H\bibinitperiod},
+           given={Neville},
+           giveni={N\bibinitperiod}}}%
       }
-      \strng{namehash}{e235518b467c873b5a5ef65123c50f71}
-      \strng{fullhash}{e235518b467c873b5a5ef65123c50f71}
-      \strng{fullhashraw}{e235518b467c873b5a5ef65123c50f71}
-      \strng{bibnamehash}{e235518b467c873b5a5ef65123c50f71}
-      \strng{authorbibnamehash}{e235518b467c873b5a5ef65123c50f71}
-      \strng{authornamehash}{e235518b467c873b5a5ef65123c50f71}
-      \strng{authorfullhash}{e235518b467c873b5a5ef65123c50f71}
-      \strng{authorfullhashraw}{e235518b467c873b5a5ef65123c50f71}
+      \strng{namehash}{c053e3a94ab2b143e5967932afec9163}
+      \strng{fullhash}{c053e3a94ab2b143e5967932afec9163}
+      \strng{fullhashraw}{c053e3a94ab2b143e5967932afec9163}
+      \strng{bibnamehash}{c053e3a94ab2b143e5967932afec9163}
+      \strng{authorbibnamehash}{c053e3a94ab2b143e5967932afec9163}
+      \strng{authornamehash}{c053e3a94ab2b143e5967932afec9163}
+      \strng{authorfullhash}{c053e3a94ab2b143e5967932afec9163}
+      \strng{authorfullhashraw}{c053e3a94ab2b143e5967932afec9163}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Advances in Robotics: Reviews}
-      \field{title}{Minimum Jerk Trajectory Generation for Straight and Curved Movements: Mathematical Analysis}
-      \field{year}{2021}
+      \field{journaltitle}{The Journal of Neuroscience}
+      \field{number}{7}
+      \field{title}{The Coordination of Arm Movements: An Experimentally Confirmed Mathematical Model}
+      \field{volume}{5}
+      \field{year}{1985}
+      \field{pages}{1688\bibrangedash 1703}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1523/JNEUROSCI.05-07-01688.1985
+      \endverb
+    \endentry
+    \entry{Gasparetto2012Trajectory}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=b5c1cd953a5911eea90cd45f6913c39d}{%
+           family={Gasparetto},
+           familyi={G\bibinitperiod},
+           given={A.\bibnamedelimi et\bibnamedelima al.},
+           giveni={A\bibinitperiod\bibinitdelim e\bibinitperiod\bibinitdelim a\bibinitperiod}}}%
+      }
+      \strng{namehash}{b5c1cd953a5911eea90cd45f6913c39d}
+      \strng{fullhash}{b5c1cd953a5911eea90cd45f6913c39d}
+      \strng{fullhashraw}{b5c1cd953a5911eea90cd45f6913c39d}
+      \strng{bibnamehash}{b5c1cd953a5911eea90cd45f6913c39d}
+      \strng{authorbibnamehash}{b5c1cd953a5911eea90cd45f6913c39d}
+      \strng{authornamehash}{b5c1cd953a5911eea90cd45f6913c39d}
+      \strng{authorfullhash}{b5c1cd953a5911eea90cd45f6913c39d}
+      \strng{authorfullhashraw}{b5c1cd953a5911eea90cd45f6913c39d}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mechanism and Machine Theory}
+      \field{title}{Path planning and trajectory planning algorithms: A general overview}
+      \field{year}{2012}
     \endentry
   \enddatalist
 \endrefsection

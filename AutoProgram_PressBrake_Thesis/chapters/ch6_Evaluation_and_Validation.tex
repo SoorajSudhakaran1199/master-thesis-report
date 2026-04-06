@@ -4,54 +4,6 @@
 \section{Experimental Setup}
 \label{ch6_sec:experimental_setup}
  
-To evaluate the performance and robustness of the implemented system, a structured experimental setup is defined. The evaluation is conducted under controlled conditions to ensure repeatability and consistency across all test scenarios. This section describes the test environment, the selected evaluation scenarios, and the metrics used to assess system performance.
- 
-\subsection{Test Environment}
-\label{ch6_sec:test_environment}
- 
-All experiments are performed within the drag\&bot virtual simulation environment, which provides a consistent platform for executing and monitoring the developed planning pipeline. The same environment used during system implementation is retained for evaluation to ensure that no discrepancies arise between development and testing conditions.
- 
-The planning software operates as an external Python-based system that communicates with the runtime environment through the AnyRobot Interface. All commands, including motion execution, IO control, and object management, are transmitted via a persistent WebSocket connection. This setup ensures that the evaluation reflects the actual runtime behaviour of the system without requiring modifications to the implementation.
- 
-The virtual cell configuration includes the robot model, press brake setup, and auxiliary components such as the orientation table and flip station. The pose of the workpiece is provided through the object tracking mechanism, allowing the system to operate on dynamically updated geometric input. Since all components are simulated, the environment enables controlled testing of different scenarios without the risk associated with physical operation.
- 
-\subsection{Test Scenarios}
-\label{ch6_sec:test_scenarios}
- 
-To assess the adaptability of the system, a set of representative test scenarios is defined based on variations in workpiece geometry and initial placement conditions. These scenarios are designed to cover the key operational challenges addressed by the system.
- 
-The evaluated scenarios include:
-\begin{itemize}
-\item Different sheet dimensions and mass properties, representing variations in workpiece geometry
-\item Arbitrary initial orientations of the sheet within the workspace
-\item Placement of the workpiece across different spatial zones
-\item Configurations requiring regrip operations due to kinematic constraints
-\item Bending tasks involving both primary and opposite-face operations
-\end{itemize}
- 
-Each scenario is executed multiple times to ensure consistent behaviour and to verify that the system produces repeatable results under identical conditions.
- 
-\subsection{Evaluation Metrics}
-\label{ch6_sec:evaluation_metrics}
- 
-The performance of the system is assessed using a combination of qualitative and quantitative metrics. These metrics are selected to reflect both functional correctness and operational efficiency.
- 
-The primary evaluation metrics include:
-\begin{itemize}
-\item \textbf{Execution success rate:} Percentage of scenarios completed without failure
-\item \textbf{Planning time:} Time required to generate a complete motion plan
-\item \textbf{Execution time:} Total duration of the bending operation
-\item \textbf{Number of regrip operations:} Indicator of handling efficiency
-\item \textbf{Failure occurrence:} Identification and classification of unsuccessful executions
-\end{itemize}
- 
-In addition to these quantitative measures, qualitative observations are used to assess trajectory smoothness, stability of gripping, and overall system behaviour during execution.
- 
-Together, the defined environment, scenarios, and metrics provide a comprehensive basis for evaluating the effectiveness of the implemented system under realistic operating conditions.
-
-\section{Experimental Setup}
-\label{ch6_sec:experimental_setup}
- 
 To evaluate the performance and robustness of the implemented system, a structured experimental setup is defined. The evaluation is conducted under controlled conditions to ensure repeatability and consistency across all test scenarios. This section outlines the test environment, the selected scenarios, and the metrics used to assess system performance.
  
 \subsection{Test Environment}
