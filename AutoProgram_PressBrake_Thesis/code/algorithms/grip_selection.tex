@@ -1,0 +1,27 @@
+\begin{algorithm}[H]
+\caption{Grip candidate search and selection procedure}
+\label{alg:grip_selection}
+\begin{algorithmic}[1]
+
+\State Load sheet geometry and grip-planning parameters
+\State Generate candidate grip positions on the sheet surface using grid-based search
+\State Exclude candidates violating edge-clearance constraints
+\State Exclude candidates overlapping with hole regions and buffer zones
+
+\If{no feasible candidates remain}
+    \State Terminate grip planning
+\EndIf
+
+\If{two-cup configuration is required}
+    \State Form candidate pairs
+    \State Exclude pairs violating minimum spacing constraints
+\EndIf
+
+\State Validate feasible configuration(s) using the vacuum holding force criterion
+\State Score remaining configuration(s) based on geometric suitability
+\State Select the highest-scoring grip configuration
+\State Compute approach, attachment, and retreat waypoints (A1, B1, R1)
+\State Forward selected grip result to trajectory generation
+
+\end{algorithmic}
+\end{algorithm}

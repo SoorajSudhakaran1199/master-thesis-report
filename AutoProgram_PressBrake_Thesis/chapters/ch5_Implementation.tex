@@ -121,34 +121,14 @@ The authentication token is computed based on the procedure defined in the drag\
 \FloatBarrier
 Listing~\ref{lst:sha512_auth} presents an illustrative Python implementation of the authentication token computation described in Equation~\ref{eq:sha512_mac}, following the drag\&bot AnyRobot Interface specification~\cite{dragandbot_anyrobot_2025}.
 
-\begin{lstlisting}[caption={Illustrative Python implementation of SHA-512-based authentication token computation following the drag\&bot AnyRobot Interface specification.}, label={lst:sha512_auth}]
-import hashlib
-import os
-
-secret = os.getenv('RUNTIME_SECRET')
-
-id_string = 'library'
-dest = 'interface'
-nonce = 'example_nonce'
-timestamp = 0
-role = 'user'
-
-raw = secret + id_string + dest + nonce + str(timestamp) + role
-
-mac = hashlib.sha512(raw.encode()).hexdigest()
-
-auth_msg = {
-    'operation': 'auth',
-    'mac': mac,
-    'nonce': nonce,
-    'timestamp': timestamp,
-    'role': role
-}
-\end{lstlisting}
+\lstinputlisting[
+  language=Python,
+  caption={Illustrative Python implementation of SHA-512-based authentication token computation following the drag\&bot AnyRobot Interface specification.},
+  label={lst:sha512_auth}
+]{code/sha512_auth.py}
 \FloatBarrier
 
 Figure~\ref{fig:robot_panel} shows the robot control panel used for system interaction and monitoring.
-
 
 \FloatBarrier
 
@@ -167,43 +147,17 @@ The YAML configuration file serves as the central entry point for all process-re
 YAML is selected over JSON primarily due to its support for inline comments. This allows engineers to document the meaning and physical relevance of individual parameters directly within the configuration file, eliminating the need to consult external documentation. To ensure robustness and security, the configuration is loaded using a safe parsing method, which prevents the execution of unintended code in the event that the file is modified or corrupted.
 A key design decision concerns the handling of spatial consistency during the regrip process. Rather than defining approach and placement poses independently, all such poses are derived relative to a single reference pose defined for the orientation table. For example, the approach position is calculated by applying a fixed vertical offset to the placement pose. This design ensures that any change in the position of the orientation table requires only a single modification within the configuration file. In contrast, storing these poses independently could introduce inconsistencies: if the table position is updated but the corresponding approach position is not, the system may execute motions based on outdated spatial data. Such inconsistencies are particularly problematic because they may not be detected during configuration validation, as each parameter remains individually valid despite being collectively incorrect.
 
-\FloatBarrier 
-
+\FloatBarrier
 
 Listing~\ref{lst:yaml_config_safe} presents a generalised YAML configuration illustrating the key process, motion, and safety parameters without exposing system-specific or confidential information.
 
-\begin{lstlisting}[language={}, caption={Generalised YAML configuration illustrating robot parameters, process definition, and motion and safety constraints.}, label={lst:yaml_config_safe}]
-# =========================
-# Robot configuration (generalised)
-# =========================
+\lstinputlisting[
+  language=yaml,
+  caption={Generalised YAML configuration illustrating robot parameters, process definition, and motion and safety constraints.},
+  label={lst:yaml_config_safe}
+]{code/yaml_config_safe.yaml}
 
-robot:
-  host: <robot_ip_address>
-  port: <port_number>
-  speed_mps: 0.5
-  accel_percent: 20
-  blend_percent: 15
-  io_group: DO
-  io_pin: 1
-
-# =========================
-# Process and sheet definition
-# =========================
-
-process:
-  sheet:
-    length_m: 0.4
-    width_m: 0.3
-    thickness_m: 0.005
-    mass_kg: 2.5
-
-  grip:
-    cup_count: 2
-    min_edge_clear_m: 0.05
-    min_spacing_m: 0.2
-
-\end{lstlisting}
-\FloatBarrier 
+\FloatBarrier
 
 
 
@@ -562,27 +516,16 @@ After geometric filtering, candidates are further evaluated using the vacuum hol
 The remaining candidates are ranked using a scoring function that balances multiple criteria, including edge clearance, distance from internal features, and spatial distribution across the sheet. In multi-cup configurations, the scoring additionally promotes wider spacing between cups to improve stability during transport. This structured evaluation replaces heuristic placement strategies commonly found in manual programming approaches and ensures consistent selection of robust grip configurations. 
  
 The implemented search and selection procedure is summarised in Algorithm~\ref{alg:grip_planning}. 
- 
-\begin{algorithm}[htbp] 
-\caption{Grip position planning procedure} 
-\label{alg:grip_planning} 
-\begin{algorithmic}[3] 
-\State Load sheet geometry and gripping parameters 
-\State Validate vacuum holding feasibility 
-\State Generate candidate positions on the sheet surface 
-\State Filter candidates using geometric constraints 
-\If{two-cup configuration} 
-    \State Evaluate candidate pairs 
-\EndIf 
-\State Score feasible candidates 
-\State Select best configuration 
-\State Compute A1, B1, R1 waypoints 
-\State Forward result to trajectory generation 
-\end{algorithmic} 
-\end{algorithm} 
- 
+
+%%%%%  ALG   %%%%%
+\FloatBarrier
+Algorithm~\ref{alg:grip_selection} describes the grip candidate search and selection procedure.
+\input{code/algorithms/grip_selection.tex}
+\FloatBarrier
+
 The highest-scoring configuration is selected as the final grip position. Based on this selection, three key waypoints are derived: the approach pose (A1), the attachment pose (B1), and the retreat pose (R1). These poses are computed relative to the sheet surface and tool geometry, ensuring a consistent and collision-free pickup sequence. 
- 
+
+%%%%%%% FLOW DIAGRAM %%%%%%%
 Figure~\ref{fig:grip_planning_flowchart} illustrates the complete grip planning pipeline, including force validation, candidate generation, constraint filtering, scoring, and waypoint derivation. 
  
 \begin{figure}[htbp]
@@ -596,6 +539,20 @@ Figure~\ref{fig:grip_planning_flowchart} illustrates the complete grip planning 
     \label{fig:grip_planning_flowchart}
 \end{figure}
 
+%%%%% CODE SNIPPET %%%%%
+
+The grip candidate search and selection process described above can be illustrated through a simplified implementation that captures the essential steps of the planner. The approach involves systematic candidate generation over the sheet surface using a grid-based discretisation, followed by geometric filtering to remove invalid positions, and finally a scoring-based selection of the most suitable grip point. The simplified implementation shown below highlights the core logic of this process without exposing implementation-specific details.
+\FloatBarrier
+
+Listing~\ref{lst:grip_candidates} presents a simplified Python implementation of grid-based grip candidate generation, geometric constraint filtering, and final grip position selection.
+
+\lstinputlisting[
+  language=Python,
+  caption={Simplified Python implementation of grid-based grip candidate generation, geometric constraint filtering, and final grip position selection.},
+  label={lst:grip_candidates}
+]{code/grip_candidate_generation.py}
+
+\FloatBarrier
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Regrip Planning and Execution} 

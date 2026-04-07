@@ -1,6 +1,7 @@
 % !TeX program = xelatex
 % =========================
-% main.tex (THD thesis-ready, robust file-includes)
+% main.tex
+% THD / Campus Cham thesis layout
 % =========================
 
 \documentclass[11pt,a4paper,twoside]{report}
@@ -9,10 +10,20 @@
 
 \begin{document}
 
-% -------- FRONT MATTER --------
+% ---------------------------------
+% TITLE PAGE
+% included in the thesis, but without printed page number
+% ---------------------------------
+\pagenumbering{gobble}
 \input{frontmatter/titlepage}
+\cleardoublepage
 
+% ---------------------------------
+% FRONT MATTER
+% Roman page numbering
+% ---------------------------------
 \pagenumbering{Roman}
+\setcounter{page}{1}
 
 % Declaration
 \IfFileExists{frontmatter/declaration.tex}{%
@@ -32,6 +43,10 @@
   \cleardoublepage
 }{}
 
+% Table of Contents
+\tableofcontents
+\cleardoublepage
+
 % List of Tables
 \listoftables
 \addcontentsline{toc}{chapter}{List of Tables}
@@ -48,12 +63,13 @@
   \cleardoublepage
 }{}
 
-% Table of Contents
-\tableofcontents
-\cleardoublepage
-
-% -------- MAIN CONTENT --------
+% ---------------------------------
+% MAIN CONTENT
+% Arabic page numbering starts here
+% ---------------------------------
+\clearpage
 \pagenumbering{arabic}
+\setcounter{page}{1}
 
 \IfFileExists{chapters/ch1_introduction.tex}{%
   \input{chapters/ch1_introduction}
@@ -81,16 +97,20 @@
 
 \IfFileExists{chapters/ch7_Conclusion_and_Future_Work.tex}{%
   \input{chapters/ch7_Conclusion_and_Future_Work}
-}{} 
+}{}
 
-% -------- APPENDIX --------
+% ---------------------------------
+% APPENDIX
+% ---------------------------------
 \appendix
 
 \IfFileExists{appendix/appendixA.tex}{%
   \input{appendix/appendixA}
 }{}
 
-% -------- REFERENCES --------
+% ---------------------------------
+% REFERENCES
+% ---------------------------------
 \cleardoublepage
 \addcontentsline{toc}{chapter}{References}
 \printbibliography

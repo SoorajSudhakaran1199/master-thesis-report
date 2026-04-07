@@ -179,9 +179,6 @@
 \renewcommand{\textfraction}{0.07}
 \renewcommand{\floatpagefraction}{0.8}
 
-% -------------------------
-% RECOMMENDED USAGE IN CHAPTERS
-% -------------------------
 % Before a new section if you want previous figures to stay above:
 % \FloatBarrier
 %
@@ -193,10 +190,24 @@
 %   \label{...}
 % \end{figure}
 
+% -------------------------
+% CODE LISTINGS
+% -------------------------
 \usepackage{listings}
 \usepackage{xcolor}
+
+\lstdefinelanguage{yaml}{
+  keywords={true,false,null,y,n,yes,no},
+  keywordstyle=\color{blue}\bfseries,
+  sensitive=false,
+  comment=[l]{\#},
+  commentstyle=\color{gray}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
 \lstset{
-  language=Python,
   basicstyle=\ttfamily\small,
   keywordstyle=\color{blue},
   commentstyle=\color{gray},
@@ -204,10 +215,15 @@
   numbers=left,
   numberstyle=\tiny,
   breaklines=true,
+  breakatwhitespace=true,
   frame=single,
-  captionpos=b
+  captionpos=b,
+  showstringspaces=false,
+  tabsize=2
 }
 
-
+% -------------------------
+% ALGORITHMS
+% -------------------------
 \usepackage{algorithm}
 \usepackage{algpseudocode}

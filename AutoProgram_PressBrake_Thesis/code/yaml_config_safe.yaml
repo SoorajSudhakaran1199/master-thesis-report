@@ -1,0 +1,21 @@
+# Robot configuration (generalised)
+robot:
+  host: <robot_ip_address>
+  port: <port_number>
+  speed_mps: 0.5
+  accel_percent: 20
+  blend_percent: 15
+  io_group: DO
+  io_pin: 1
+# Process and sheet definition
+process:
+  sheet:
+    length_m: 0.4
+    width_m: 0.3
+    thickness_m: 0.005
+    mass_kg: 2.5
+
+  grip:
+    cup_count: 2
+    min_edge_clear_m: 0.05
+    min_spacing_m: 0.2
