@@ -51,21 +51,23 @@ Furthermore, the current implementation focuses on a specific class of sheet met
  
 Based on the identified limitations, several directions for future work can be proposed.
  
-\begin{itemize}
-\item Validation of the system on a physical robotic platform to assess real-world performance and robustness
- 
-\item Integration of advanced collision detection and avoidance mechanisms to improve safety in constrained environments
- 
-\item Extension of the system to handle more complex geometries and multi-stage bending processes
- 
-\item Incorporation of sensor feedback to enable adaptive control and real-time error correction
- 
-\item Optimization of trajectory generation for improved efficiency and reduced execution time
- 
-\item Development of a more advanced user interface to further simplify operator interaction
-\end{itemize}
- 
-These extensions would enhance the applicability of the system and support its deployment in industrial environments.
+Although the developed system achieves a functional and structured approach to robotic sheet handling and bending, it is inherently constrained by a series of simplifying assumptions introduced during the design phase. These constraints, while beneficial for ensuring stability and predictability, limit the system’s applicability to more complex and realistic industrial scenarios. Consequently, several avenues for future work emerge, aimed at improving flexibility, intelligence, and robustness.
+
+A key limitation of the current system lies in its strict assumption of rectangular sheet geometries aligned with the global coordinate frame. In practical manufacturing environments, components often exhibit irregular shapes and arbitrary orientations. Future work should therefore focus on generalizing the geometric representation to support non-rectangular profiles, including polygonal and free-form geometries. Additionally, enabling the system to operate independently of fixed axis alignment would significantly enhance its adaptability. This would require a more advanced geometric abstraction layer capable of handling arbitrary edge definitions and diverse feature types, including non-circular cutouts.
+
+The bending capabilities of the system also present a significant opportunity for advancement. The restriction to single, 90-degree bends per edge simplifies the planning process but does not reflect the complexity of real-world fabrication tasks. Future developments should introduce support for variable bend angles and multiple bends along a single edge. More importantly, this necessitates the formulation of an intelligent bend sequence planning framework capable of optimizing operation order, minimizing regrip requirements, and ensuring process feasibility. Such a framework could leverage constraint-based optimization or heuristic search methods to generate efficient and manufacturable bending strategies.
+
+From a robotics perspective, motion planning remains an area with considerable scope for improvement. The current system demonstrates reduced efficiency when handling certain orientations, particularly those involving significant rotational transformations. Future work should integrate advanced motion planning techniques that ensure collision-free, time-optimal trajectories. Furthermore, introducing adaptive calibration mechanisms would allow the system to remain functional even when the robot base or surrounding fixtures are repositioned, thereby reducing dependency on manual reconfiguration. The incorporation of learning-based methods could further enhance performance by enabling the system to refine its motion strategies through repeated execution.
+
+The gripping subsystem, currently limited to vacuum-based handling, represents another constraint on system versatility. While effective for flat and uniform surfaces, vacuum gripping is not universally applicable. Expanding the system to support multiple gripping modalities, including mechanical and magnetic solutions, would broaden its operational scope. In addition, the integration of sensor feedback, such as force or slip detection, would enable real-time validation of grasp stability and improve overall reliability.
+
+Regrip operations in the present implementation are restricted to discrete rotational increments, which limits the flexibility of part orientation. Future work should explore continuous orientation control and develop more sophisticated regrip planning strategies aimed at minimizing intermediate handling steps. Streamlining opposite-side operations into a unified workflow, rather than relying on separate scripts, would further improve system efficiency and maintainability.
+
+Safety considerations represent a critical gap in the current system. The absence of collision detection and trajectory validation poses a significant limitation for deployment in real-world environments. Future enhancements should prioritize the integration of real-time collision avoidance mechanisms and safe motion planning algorithms. Expanding the scope of the safety monitoring system to account for dynamic interactions between the robot, workpieces, and surrounding infrastructure would also be essential.
+
+Finally, the system’s reliance on fixed object identifiers and predefined configurations reduces its robustness in dynamic environments. Future work should investigate the integration of perception-driven approaches, such as vision-based object recognition and tracking, to enable more flexible and autonomous operation. Additionally, incorporating error detection and recovery strategies would allow the system to handle unexpected deviations more effectively, thereby improving overall resilience.
+
+In conclusion, future developments should aim to transition the system from a rigid, rule-based framework toward a more adaptive and intelligent architecture. By addressing limitations in geometry handling, bending flexibility, motion planning, gripping strategies, regrip operations, safety, and system adaptability, the proposed solution can evolve into a more comprehensive and industrially viable robotic automation platform.
  
 \section{Final Remarks}
  
