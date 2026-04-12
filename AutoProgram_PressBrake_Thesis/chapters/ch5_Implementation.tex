@@ -191,7 +191,7 @@ Operator input for each execution cycle is provided through an interactive three
 \end{figure}
 \FloatBarrier
 Once the operator confirms the selection, the defined parameters are transmitted to the planning module in a structured format. The viewer then terminates after a short delay. This behaviour is intentional, as it prevents further interaction while the robot is executing a trajectory, thereby avoiding inconsistencies that could arise if configuration changes were introduced during active motion.
-\par The complete sequence of operator interaction and system processing is summarised in Figure~\ref{fig_3dbend_workflow}, which illustrates the progression from initial configuration through planning, strategy selection, and final execution.
+\par The complete sequence of operator interaction and system processing is summarised in Figure~\ref{fig:operator_workflow}, which illustrates the progression from initial configuration through planning, strategy selection, and final execution.
 
 
 \begin{landscape}
@@ -522,7 +522,7 @@ After geometric filtering, candidates are further evaluated using the vacuum hol
  
 The remaining candidates are ranked using a scoring function that balances multiple criteria, including edge clearance, distance from internal features, and spatial distribution across the sheet. In multi-cup configurations, the scoring additionally promotes wider spacing between cups to improve stability during transport. This structured evaluation replaces heuristic placement strategies commonly found in manual programming approaches and ensures consistent selection of robust grip configurations. 
  
-The implemented search and selection procedure is summarised in Algorithm~\ref{alg:grip_planning}. 
+The implemented search and selection procedure is summarised in Algorithm~\ref{alg:grip_selection}. 
 
 %%%%%  ALG   %%%%%
 \FloatBarrier
