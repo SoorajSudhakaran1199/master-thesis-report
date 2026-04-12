@@ -1,24 +1,24 @@
 \chapter{Implementation}
 \label{ch_5:implementation}
-\section{Introduction and scope}
+\section{Introduction and Scope}
 \label{sec:introduction_and_scope}
-The product development phase translates the selected concept into a fully realised technical system. Based on the structured concept evaluation presented in Chapter~\ref{Concept Decision-Weighed Sum Model (WSM)}, Concept~B was selected for implementation, as it provides a feasible and systematic solution to the research problem while satisfying the defined functional, non-functional, and software platform requirements outlined in Chapter~\ref{CH_3_System Concept and Methodology}. In particular, Concept~B enables automatic robot program generation, integrated constraint validation, and seamless operation within the drag\&bot runtime environment.
+The product development phase translates the selected concept into a fully realised technical system. Based on the structured concept evaluation presented in Chapter~\ref{sec:concept-decision-wsm}, Concept~B was selected for implementation, as it provides a feasible and systematic solution to the research problem while satisfying the defined functional, non-functional, and software platform requirements outlined in Chapter~\ref{ch:system-concept-methodology}. In particular, Concept~B enables automatic robot program generation, integrated constraint validation, and seamless operation within the drag\&bot runtime environment.
  
 The objective of this chapter is to present the complete implementation of Concept~B as an executable software system for automated press brake sheet metal bending. The system generates robot programs automatically from geometric input parameters and configuration data, eliminating manual waypoint definition and reducing operator intervention. The implementation focuses on ensuring deterministic behaviour, repeatability, and safe execution through structured validation and modular system design.
 The implementation is structured around four key domains. The chapter first presents the system architecture together with the communication, configuration, and operator interface structures. It then describes the development and simulation environment and the functional subsystems in execution order, including safety validation, orientation determination, grip planning, regrip handling, opposite-side bending, and trajectory generation. The chapter concludes with a Failure Mode and Effects Analysis and a requirement-to-implementation traceability mapping.
 
-The system operates entirely within the drag\&bot virtual simulation environment. Communication with the robot runtime is established through the AnyRobot Interface using an authenticated WebSocket connection, ensuring compliance with SR-01 and SR-02. 
+The system operates entirely within the drag\&bot virtual simulation environment. Communication with the robot runtime is established through the AnyRobot Interface using an authenticated \ac{websocket} connection, ensuring compliance with SR-01 and SR-02. 
  
-All process parameters are loaded from a central YAML configuration file at the beginning of each execution cycle. This enables adaptation to different workpiece geometries without modifying the source code, satisfying NFR-02. 
+All process parameters are loaded from a central \ac{yaml} configuration file at the beginning of each execution cycle. This enables adaptation to different workpiece geometries without modifying the source code, satisfying NFR-02. 
  
 Operator input is provided through an interactive 3D sheet bending viewer integrated into the drag\&bot operator cockpit. This interface improves usability and reduces the likelihood of incorrect input selection. 
  
-Ubuntu Linux is used as the development platform due to its compatibility with ROS-based systems and stable integration with the drag\&bot environment~\cite{quigley2009ros}.
+Ubuntu Linux is used as the development platform due to its compatibility with \acs{ros}-based systems and stable integration with the drag\&bot environment~\cite{quigley2009ros}.
 
-Figure~\ref{fig:Overall_system_wrokflow} illustrates the overall system architecture and the sequence of operations from session initialization to bending execution.
+Figure~\ref{fig:overall_system_workflow} illustrates the overall system architecture and the sequence of operations from session initialization to bending execution.
  
 The remainder of this chapter is organised as follows. Section~\ref{sec:system_architecture} presents the system architecture, including the layered design, module organisation, and data flow. This is followed by the communication stack, configuration architecture, and operator interface. The simulation environment and spatial zone classification are then described. Subsequently, each functional subsystem is presented in execution order, including pre-execution safety validation, workpiece orientation strategy, grip planning, regrip handling, opposite-side bending, and trajectory generation. The chapter concludes with a Failure Mode and Effects Analysis and a requirement-to-implementation mapping.
-The overall execution pipeline of the system is illustrated in Figure \ref{fig:Overall_system_wrokflow}. The workflow begins with configuration selection and parameter initialisation, followed by pre-execution safety validation to ensure that all operating conditions are within acceptable limits. Based on the detected sheet pose, a valid pickup orientation is determined, after which feasible grip positions are computed using constraint-based evaluation. If a direct execution is not possible, the system automatically applies regrip strategies to achieve a reachable configuration. The validated task sequence is then converted into motion commands and executed by the robot. The process iterates over all required bends and includes additional handling for opposite-side operations before concluding with the final unloading stage. This structured workflow ensures deterministic execution and consistent integration of all functional subsystems within the automated bending process.
+The overall execution pipeline of the system is illustrated in Figure~\ref{fig:overall_system_workflow}. The workflow begins with configuration selection and parameter initialisation, followed by pre-execution safety validation to ensure that all operating conditions are within acceptable limits. Based on the detected sheet pose, a valid pickup orientation is determined, after which feasible grip positions are computed using constraint-based evaluation. If a direct execution is not possible, the system automatically applies regrip strategies to achieve a reachable configuration. The validated task sequence is then converted into motion commands and executed by the robot. The process iterates over all required bends and includes additional handling for opposite-side operations before concluding with the final unloading stage. This structured workflow ensures deterministic execution and consistent integration of all functional subsystems within the automated bending process.
 
 
 \FloatBarrier
@@ -26,27 +26,27 @@ The overall execution pipeline of the system is illustrated in Figure \ref{fig:O
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.75\textheight,keepaspectratio]{figures/Overall_System_workflow.pdf}
-    \caption{Overall system workflow and execution pipeline}
-    \label{fig:Overall_system_wrokflow}
+    \caption{Overall system workflow and execution pipeline.}
+    \label{fig:overall_system_workflow}
 \end{figure}
 
 \FloatBarrier
 
 %%%%%%%%%%%%%%%%%%%%%%
 
-\section {System architecture}
+\section{System Architecture}
 \label{sec:system_architecture}
-\subsection {Layered Architecture Design and data flow}
+\subsection{Layered Architecture Design and Data Flow}
 \label{sec:layered_architecture}
 The system adopts a layered architecture in which each module depends exclusively on the module in the layer directly beneath it. This architectural pattern is selected because the press brake automation context imposes three key constraints that cannot be satisfied by an unstructured design: independent testability of constraint evaluation, maintainability and safe replaceability of components, and strict enforcement of safety ordering.
-Testability is achieved by enabling modules to be evaluated using synthetic pose data and YAML-based configuration inputs, without requiring an active WebSocket connection. This isolation is essential for verifying orientation classification and grip feasibility computations, which cannot be reliably validated from live system behaviour alone.
+Testability is achieved by enabling modules to be evaluated using synthetic pose data and \acs{yaml}-based configuration inputs, without requiring an active \ac{websocket} connection. This isolation is essential for verifying orientation classification and grip feasibility computations, which cannot be reliably validated from live system behaviour alone.
  
 Replaceability is ensured through modular separation, where modifications to the grip planning algorithm are confined to the constraint evaluation layer. The planning and motion layers remain independent of these modules, supporting maintainability and satisfying NFR-02.
  
 Safety ordering is enforced structurally by implementing pre-execution validation in a dedicated layer that is executed prior to any motion generation. This guarantees that safety checks cannot be bypassed or reordered, satisfying FR-07 and NFR-03.
 
 
-Five distinct layers are defined within the system architecture, each with a clearly assigned responsibility. Layer 1 (Input and Configuration) is responsible for acquiring all required parameters from the input file, along with the operator’s bend-side selection, prior to the establishment of any WebSocket connection. Layer 2 (Geometry and Constraint Evaluation) performs the computation of geometric and physical constraints based on input pose data, while remaining strictly limited to evaluation tasks and producing no motion commands. Layer 3 (Planning and Decision Logic) determines the overall execution strategy and coordinates the interaction between Layers 2 and 4, without directly generating motion instructions. Layer 4 (Motion Generation and Communication) serves as the exclusive interface for robot communication, generating LIN and PTP waypoints, converting them into JSON format, and transmitting them via an authenticated WebSocket connection. Layer 5 (Safety and Validation) is implemented as an independent top-level layer that is executed prior to any motion generation and enforces mandatory validation and operator confirmation, preventing further execution until all safety conditions are satisfied. The complete architectural structure is illustrated in Figure~\ref{fig:system_architecture_global_validation}.
+Five distinct layers are defined within the system architecture, each with a clearly assigned responsibility. Layer 1 (Input and Configuration) is responsible for acquiring all required parameters from the input file, along with the operator’s bend-side selection, prior to the establishment of any \ac{websocket} connection. Layer 2 (Geometry and Constraint Evaluation) performs the computation of geometric and physical constraints based on input pose data, while remaining strictly limited to evaluation tasks and producing no motion commands. Layer 3 (Planning and Decision Logic) determines the overall execution strategy and coordinates the interaction between Layers 2 and 4, without directly generating motion instructions. Layer 4 (Motion Generation and Communication) serves as the exclusive interface for robot communication, generating \ac{lin} and \ac{ptp} waypoints, converting them into \ac{json} format, and transmitting them via an authenticated \ac{websocket} connection. Layer 5 (Safety and Validation) is implemented as an independent top-level layer that is executed prior to any motion generation and enforces mandatory validation and operator confirmation, preventing further execution until all safety conditions are satisfied. The complete architectural structure is illustrated in Figure~\ref{fig:system_architecture_global_validation}.
 
 \FloatBarrier
 
@@ -63,15 +63,15 @@ Five distinct layers are defined within the system architecture, each with a cle
 
 \FloatBarrier
 
-The progression of data throughout a bending cycle follows a structured transformation across the system layers. Initially, sheet geometry, bend-side selection, and tool parameters are provided as input. These inputs are processed within the constraint evaluation layer, where raw pose data is transformed into a validated pickup orientation and feasible grip configuration. Based on this information, an execution strategy is determined and translated into motion commands, which are encoded in JSON format and transmitted to the runtime environment.
+The progression of data throughout a bending cycle follows a structured transformation across the system layers. Initially, sheet geometry, bend-side selection, and tool parameters are provided as input. These inputs are processed within the constraint evaluation layer, where raw pose data is transformed into a validated pickup orientation and feasible grip configuration. Based on this information, an execution strategy is determined and translated into motion commands, which are encoded in \ac{json} format and transmitted to the runtime environment.
 
 The reliability of the overall process depends on several critical transformation stages. Any error introduced at these stages propagates through subsequent computations and affects execution outcomes. In particular, accurate orientation determination is essential for successful workpiece acquisition, while grip feasibility evaluation ensures stable handling during transport. During trajectory generation, a balance must be maintained between path accuracy and controller limitations, requiring controlled reduction of trajectory points while preserving motion characteristics.
 
 
-\subsection {Module Overview and dependency Discipline}
+\subsection{Module Overview and Dependency Discipline}
 \label{sec:module_overview}
  
-The implementation consists of software modules organized across the five system layers. Table \ref{tab:module_overview} summarizes each module in terms of its layer assignment, functional role, and primary responsibility. Each module is defined with a single primary responsibility to ensure clear fault attribution during failure analysis. Assigning multiple responsibilities to a single module would make it difficult to associate a specific failure mode with a well-defined functional unit.
+The implementation consists of software modules organized across the five system layers. Table~\ref{tab:module_overview} summarizes each module in terms of its layer assignment, functional role, and primary responsibility. Each module is defined with a single primary responsibility to ensure clear fault attribution during failure analysis. Assigning multiple responsibilities to a single module would make it difficult to associate a specific failure mode with a well-defined functional unit.
 
 \FloatBarrier
 
@@ -79,33 +79,33 @@ The implementation consists of software modules organized across the five system
 
 \FloatBarrier
 
-Three structural properties ensure that the architectural constraints are consistently enforced across the system. First, the WebSocket client and the command type definitions together constitute the exclusive communication layer. No module outside Layer 4 constructs WebSocket messages or performs direct network operations. As a result, authentication handling and connection recovery are implemented centrally and remain consistent across all runtime interactions. Second, the safety checker is positioned within Layer 5, which is not imported by any lower layer. This separation prevents planning or execution modules from invoking safety validation during runtime. Instead, safety checks are enforced strictly at the beginning of a session, ensuring that they cannot be bypassed or reordered during execution. Third, the trajectory generator serves as the sole interface for dispatching motion commands to the runtime. All waypoint sequences are routed through this module, ensuring that workspace constraints and singularity checks are consistently applied before execution.
+Three structural properties ensure that the architectural constraints are consistently enforced across the system. First, the \ac{websocket} client and the command type definitions together constitute the exclusive communication layer. No module outside Layer 4 constructs \ac{websocket} messages or performs direct network operations. As a result, authentication handling and connection recovery are implemented centrally and remain consistent across all runtime interactions. Second, the safety checker is positioned within Layer 5, which is not imported by any lower layer. This separation prevents planning or execution modules from invoking safety validation during runtime. Instead, safety checks are enforced strictly at the beginning of a session, ensuring that they cannot be bypassed or reordered during execution. Third, the trajectory generator serves as the sole interface for dispatching motion commands to the runtime. All waypoint sequences are routed through this module, ensuring that workspace constraints and singularity checks are consistently applied before execution.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Virtaul Enviornment setup}
+%\subsection{Virtual Environment setup}
 %\label{sec:virtual_environment_setup}
 %\begin{figure}[htbp]
  %   \centering
   %  \includegraphics[width=0.85\textwidth]{figures/simulation_env.png}
-  %  \caption{Virtual robotic environment used to evaluate the proposed concept within a simulated press brake cell (Drag \& Bot platform).}
+  %  \caption{Virtual robotic environment used to evaluate the proposed concept within a simulated press brake cell (drag\&bot platform).}
    % \label{fig:simulation_environment}
 %\end{figure}
 
 %ADD FIGURE BLOCK DIAGRAM AND EXPLAIN THE SIMULATION ENVIRONMENT, ROBOT MODEL AND TCP CONFIGURATION, SPATIAL ZONE CLASSIFICATION 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Communication Stack, Authentication interface Specification}
+\subsection{Communication Stack and Authentication Interface Specification}
 \label{sec:communication_stack}
 
-All runtime communication passes through the AnyRobot Interface, as it is the only supported external API for drag\&bot. Direct ROS client libraries are excluded because they would couple the planning software to a specific ROS version, violating NFR-02 \cite{dragandbot_anyrobot_2025} \cite{quigley2009ros}. The AnyRobot Interface translates JSON over a persistent WebSocket channel into native ROS operations using the RosBridge v2 protocol, enabling the entire planning software to run in standard Python 3 without a ROS installation on the planning machine.
+All runtime communication passes through the AnyRobot Interface, as it is the only supported external \ac{api} for drag\&bot. Direct \ac{ros} client libraries are excluded because they would couple the planning software to a specific \ac{ros} version, violating NFR-02 \cite{dragandbot_anyrobot_2025} \cite{quigley2009ros}. The AnyRobot Interface translates \ac{json} over a persistent \ac{websocket} channel into native \ac{ros} operations using the RosBridge v2 protocol, enabling the entire planning software to run in standard Python 3 without a \ac{ros} installation on the planning machine.
 
-\par WebSocket is selected over HTTP due to its ability to maintain a persistent connection that supports continuous data exchange. Unlike HTTP, which follows a request–response model and requires a new connection for each interaction, WebSocket enables uninterrupted communication over a single channel. In applications involving robotic motion execution, where a large number of trajectory points must be transmitted sequentially, repeated connection overhead can introduce noticeable delays. These delays may accumulate and lead to interruptions in command streaming, potentially affecting smooth robot operation. By using a persistent communication mechanism, WebSocket reduces transmission overhead and ensures more stable and efficient delivery of motion commands, making it well suited for real-time robotic control scenarios \cite{Pimentel2012}
-\par Figure \ref{fig:communication_architecture} presents an overview of the system communication architecture. The planning software establishes a persistent WebSocket connection to the robot controller via a defined network endpoint (e.g., \texttt{ws://192.168.x.x:9091}). Communication is organized through a set of dedicated interfaces, each responsible for a specific function within the system. 
+\par \ac{websocket} is selected over \ac{http} due to its ability to maintain a persistent connection that supports continuous data exchange. Unlike \ac{http}, which follows a request–response model and requires a new connection for each interaction, \ac{websocket} enables uninterrupted communication over a single channel. In applications involving robotic motion execution, where a large number of trajectory points must be transmitted sequentially, repeated connection overhead can introduce noticeable delays. These delays may accumulate and lead to interruptions in command streaming, potentially affecting smooth robot operation. By using a persistent communication mechanism, \ac{websocket} reduces transmission overhead and ensures more stable and efficient delivery of motion commands, making it well suited for real-time robotic control scenarios \cite{Pimentel2012}.
+\par Figure~\ref{fig:communication_architecture} presents an overview of the system communication architecture. The planning software establishes a persistent \ac{websocket} connection to the robot controller via a defined network endpoint (e.g., \texttt{ws://192.168.x.x:9091}). Communication is organized through a set of dedicated interfaces, each responsible for a specific function within the system. 
 
-WebSocket-based middleware is widely used in robotics to enable platform-independent communication between external applications and ROS-based systems \cite{Crick2017}. Such approaches rely on a persistent socket connection and lightweight message serialization to support continuous data exchange required for real-time operation.
+\acs{websocket}-based middleware is widely used in robotics to enable platform-independent communication between external applications and \acs{ros}-based systems \cite{Crick2017}. Such approaches rely on a persistent socket connection and lightweight message serialization to support continuous data exchange required for real-time operation.
 
-In the implemented system, the Ros Bridge v2 interface is used to transmit motion commands, while the \texttt{rosauth} service ensures secure authentication using the SHA-512 hashing algorithm. Motion trajectories are transmitted in batches via the \texttt{/command\_list} interface, and real-time object information is retrieved through \texttt{/dnb\_object\_manager/list\_objects}. Gripper control is performed using \texttt{/robot/set\_digital\_ios}, whereas object attachment and detachment are handled through the corresponding manager interfaces. User interactions are managed via the \texttt{human\_interaction/request\_hi} interface.
+In the implemented system, the Ros Bridge v2 interface is used to transmit motion commands, while the \texttt{rosauth} service ensures secure authentication using the \ac{sha512} hashing algorithm. Motion trajectories are transmitted in batches via the \texttt{/command\_list} interface, and real-time object information is retrieved through \texttt{/dnb\_object\_manager/list\_objects}. Gripper control is performed using \texttt{/robot/set\_digital\_ios}, whereas object attachment and detachment are handled through the corresponding manager interfaces. User interactions are managed via the \texttt{human\_interaction/request\_hi} interface.
 
-The YAML configuration is not part of the runtime communication. It is loaded once during system initialization and shared across the relevant modules, ensuring that missing or incorrect parameters are detected early before execution begins.
+The \ac{yaml} configuration is not part of the runtime communication. It is loaded once during system initialization and shared across the relevant modules, ensuring that missing or incorrect parameters are detected early before execution begins.
 
 \begin{figure}[htbp]
     \centering
@@ -114,7 +114,7 @@ The YAML configuration is not part of the runtime communication. It is loaded on
     \label{fig:communication_architecture}
 \end{figure}
 
-\par On connection establishment, the WebSocket client performs the rosauth SHA-512 authentication handshake, because the drag and bot WebSocket port is accessible to any process on the local network and an unauthenticated endpoint would allow arbitrary motion command injection. The MAC  is computed by hashing with SHA-512 concatenation of the shared runtime secret, the interface identifier, destination, a fixed nonce, session timestamps, and the access level string.
+\par On connection establishment, the \ac{websocket} client performs the rosauth \ac{sha512} authentication handshake, because the drag\&bot \ac{websocket} port is accessible to any process on the local network and an unauthenticated endpoint would allow arbitrary motion command injection. The \ac{mac} is computed by hashing with \ac{sha512} concatenation of the shared runtime secret, the interface identifier, destination, a fixed nonce, session timestamps, and the access level string.
 
 The authentication token is computed based on the procedure defined in the drag\&bot AnyRobot Interface specification~\cite{dragandbot_anyrobot_2025}:
 
@@ -123,14 +123,14 @@ The authentication token is computed based on the procedure defined in the drag\
 \label{eq:sha512_mac}
 \end{equation}
 
-\par SHA-512 is selected due to its strong cryptographic properties, as its 512-bit output makes pre-image and collision attacks computationally infeasible within the operational context of this application. The shared secret is stored as an environment variable to prevent exposure to version control systems. The concatenation order is strictly defined by the AnyRobot interface specification and must be followed precisely. Any deviation from this order results in a mismatch of the generated hash, causing the runtime system to reject the connection.
+\par \ac{sha512} is selected due to its strong cryptographic properties, as its 512-bit output makes pre-image and collision attacks computationally infeasible within the operational context of this application. The shared secret is stored as an environment variable to prevent exposure to version control systems. The concatenation order is strictly defined by the AnyRobot interface specification and must be followed precisely. Any deviation from this order results in a mismatch of the generated hash, causing the runtime system to reject the connection.
 
 \FloatBarrier
 Listing~\ref{lst:sha512_auth} presents an illustrative Python implementation of the authentication token computation described in Equation~\ref{eq:sha512_mac}, following the drag\&bot AnyRobot Interface specification~\cite{dragandbot_anyrobot_2025}.
 
 \lstinputlisting[
   language=Python,
-  caption={Illustrative Python implementation of SHA-512-based authentication token computation following the drag\&bot AnyRobot Interface specification.\cite{dragandbot_anyrobot_2025}},
+  caption={Illustrative Python implementation of SHA-512-based authentication token computation following the drag\&bot AnyRobot Interface specification~\cite{dragandbot_anyrobot_2025}.},
   label={lst:sha512_auth}
 ]{code/sha512_auth.py}
 \FloatBarrier
@@ -149,14 +149,14 @@ Figure~\ref{fig:robot_panel} shows the robot control panel used for system inter
 \FloatBarrier 
 
 \subsection{Configuration Architecture and YAML File Structure}
-\label{Configuration Architecture }
-The YAML configuration file serves as the central entry point for all process-related parameters and provides a flexible mechanism for adapting the system to different workpieces without requiring modifications to the underlying source code, thereby fulfilling NFR-02. At the beginning of each session, the file is parsed once, and the resulting configuration data is stored as a dictionary that is shared across all modules in Layers 2 to 4. The structure of the file is organized into six clearly defined top-level sections, each corresponding to a specific functional aspect of the system architecture, which supports clarity and maintainability.
-YAML is selected over JSON primarily due to its support for inline comments. This allows engineers to document the meaning and physical relevance of individual parameters directly within the configuration file, eliminating the need to consult external documentation. To ensure robustness and security, the configuration is loaded using a safe parsing method, which prevents the execution of unintended code in the event that the file is modified or corrupted.
+\label{sec:configuration-architecture}
+The \ac{yaml} configuration file serves as the central entry point for all process-related parameters and provides a flexible mechanism for adapting the system to different workpieces without requiring modifications to the underlying source code, thereby fulfilling NFR-02. At the beginning of each session, the file is parsed once, and the resulting configuration data is stored as a dictionary that is shared across all modules in Layers 2 to 4. The structure of the file is organized into six clearly defined top-level sections, each corresponding to a specific functional aspect of the system architecture, which supports clarity and maintainability.
+\ac{yaml} is selected over \ac{json} primarily due to its support for inline comments. This allows engineers to document the meaning and physical relevance of individual parameters directly within the configuration file, eliminating the need to consult external documentation. To ensure robustness and security, the configuration is loaded using a safe parsing method, which prevents the execution of unintended code in the event that the file is modified or corrupted.
 A key design decision concerns the handling of spatial consistency during the regrip process. Rather than defining approach and placement poses independently, all such poses are derived relative to a single reference pose defined for the orientation table. For example, the approach position is calculated by applying a fixed vertical offset to the placement pose. This design ensures that any change in the position of the orientation table requires only a single modification within the configuration file. In contrast, storing these poses independently could introduce inconsistencies: if the table position is updated but the corresponding approach position is not, the system may execute motions based on outdated spatial data. Such inconsistencies are particularly problematic because they may not be detected during configuration validation, as each parameter remains individually valid despite being collectively incorrect.
 
 \FloatBarrier
 
-Listing~\ref{lst:yaml_config_safe} presents a generalised YAML configuration illustrating the key process, motion, and safety parameters without exposing system-specific or confidential information.
+Listing~\ref{lst:yaml_config_safe} presents a generalised \ac{yaml} configuration illustrating the key process, motion, and safety parameters without exposing system-specific or confidential information.
 
 \lstinputlisting[
   language=yaml,
@@ -168,17 +168,17 @@ Listing~\ref{lst:yaml_config_safe} presents a generalised YAML configuration ill
 
 
 
-\subsection{Operator interface – interactive 3d sheet bending viewer}
-\label{Operator interface – interactive 3d sheet bending viewer}
+\subsection{Operator Interface -- Interactive 3D Sheet Bending Viewer}
+\label{sec:operator-interface}
 
 Operator input for each execution cycle is provided through an interactive three-dimensional sheet bending viewer developed in this work (hereafter referred to as the \textit{3D viewer}), rather than a conventional text-based interface. This design decision is primarily motivated by the spatial nature of bend side selection. By presenting the workpiece directly as a 3D model, the operator can identify relevant surfaces and orientations more intuitively than by relying on abstract side labels. In practice, this reduces the likelihood of incorrect selections while keeping the interaction simple, as the operator performs only visually guided inputs and the system handles the underlying computations.
-\par The 3D viewer is implemented as a web-based application using Plotly Dash and renders the workpiece as an interactive mesh derived from the corresponding STL file. It operates as a local service and is integrated into the drag\&bot Operator Cockpit through the Custom URL panel mechanism. A new panel of type \textit{Custom URL} is added to the dashboard via the dashboard configuration interface, where the local viewer address is specified as the target. Once configured, the viewer is rendered as an embedded panel within the cockpit, allowing the operator to interact with the 3D mesh and associated controls without leaving the drag\&bot environment. The configuration is stored as part of the dashboard definition and remains available across sessions, ensuring a consistent setup for repeated operation.
-\par This integration ensures that configuration, monitoring, and execution are performed within a single interface, eliminating unnecessary context switching and providing a more coherent workflow from the operator’s perspective. The overall system setup used during development and validation, including the robot, press brake, and orientation table, is shown in Figure \ref{fig:user interface}.
+\par The 3D viewer is implemented as a web-based application using Plotly Dash and renders the workpiece as an interactive mesh derived from the corresponding \ac{stl} file. It operates as a local service and is integrated into the drag\&bot Operator Cockpit through the Custom URL panel mechanism. A new panel of type \textit{Custom URL} is added to the dashboard via the dashboard configuration interface, where the local viewer address is specified as the target. Once configured, the viewer is rendered as an embedded panel within the cockpit, allowing the operator to interact with the 3D mesh and associated controls without leaving the drag\&bot environment. The configuration is stored as part of the dashboard definition and remains available across sessions, ensuring a consistent setup for repeated operation.
+\par This integration ensures that configuration, monitoring, and execution are performed within a single interface, eliminating unnecessary context switching and providing a more coherent workflow from the operator’s perspective. The overall system setup used during development and validation, including the robot, press brake, and orientation table, is shown in Figure~\ref{fig:user-interface}.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.50\textwidth]{figures/simulation_environment.png}
     \caption{Operator workflow illustrating the sequential execution stages. Each stage must be completed before the next begins. All operator interactions occur within the drag\&bot environment. \textit{Source: own work.}}
-    \label{fig:user interface}
+    \label{fig:user-interface}
 \end{figure}
 \FloatBarrier
 \par To accommodate different levels of operator expertise, the interface is divided into two modes. In basic mode, the operator selects from a predefined set of bending sides and specifies the required wall height. The system automatically prevents invalid combinations, particularly those that would require additional operations such as regripping, which are intentionally excluded at this level to simplify interaction. In contrast, expert mode exposes additional parameters, including geometric constraints, tool configuration, and pose definitions. However, changes made in this mode are not stored automatically and must be explicitly transferred to the configuration file, ensuring that persistent modifications are introduced in a controlled manner.
@@ -199,10 +199,10 @@ Once the operator confirms the selection, the defined parameters are transmitted
     \centering
     \includegraphics[
         width=\linewidth,
-        height=1.0\textheight,
+        height=0.78\textheight,
         keepaspectratio
     ]{Flow_Diagrams/operator_workflow.pdf}
-    \caption[Operator workflow]{Operator workflow. Every gate must be passed before the next begins. All operator interactions occur within the Drag-and-Bot environment. \textit{Source: own work.}}
+    \caption[Operator workflow]{Operator workflow. Every gate must be passed before the next begins. All operator interactions occur within the drag\&bot environment. \textit{Source: own work.}}
     \label{fig:operator_workflow}
 \end{figure}
 \end{landscape}
@@ -219,15 +219,15 @@ With the architectural framework established in Section~\ref{sec:system_architec
 \subsection{Simulation Platform, Robot Model, and TCP Configuration}
 \label{sec:simulation_platform}
  
-The drag\&bot platform is used as the primary environment for system development, integration, and validation. It provides a virtual robot controller together with the AnyRobot WebSocket Interface, enabling the planning software to interact with the robot runtime without requiring direct access to physical equipment. This supports safe testing, repeatability, and efficient iteration during development. The use of virtualised environments is consistent with current industrial trends in digital manufacturing and digital twin-based validation~\cite{dragandbot_anyrobot_2025,Tao2021DigitalTwin}.
+The drag\&bot platform is used as the primary environment for system development, integration, and validation. It provides a virtual robot controller together with the AnyRobot \ac{websocket} Interface, enabling the planning software to interact with the robot runtime without requiring direct access to physical equipment. This supports safe testing, repeatability, and efficient iteration during development. The use of virtualised environments is consistent with current industrial trends in digital manufacturing and digital twin-based validation~\cite{dragandbot_anyrobot_2025,Tao2021DigitalTwin}.
  
-All modules are implemented in Python and executed within an Ubuntu-based environment alongside the drag\&bot runtime. Communication is established through a single authenticated WebSocket connection (e.g., \texttt{ws://<local-ip>:9091}), which is used for motion execution, IO control, object management, and operator interaction. This unified communication structure ensures consistent behaviour across all subsystems.
+All modules are implemented in Python and executed within an Ubuntu-based environment alongside the drag\&bot runtime. Communication is established through a single authenticated \ac{websocket} connection (e.g., \texttt{ws://<local-ip>:9091}), which is used for motion execution, IO control, object management, and operator interaction. This unified communication structure ensures consistent behaviour across all subsystems.
  
 All session-specific parameters are initialised at the beginning of execution and explicitly passed between modules. This avoids hidden dependencies and ensures that all components operate on consistent data, supporting modularity and maintainability.
  
-Within this environment, the Universal Robots UR5e is used as the manipulator model. The robot provides six degrees of freedom, a reach of approximately 850~mm, and a payload capacity of 5~kg, which are sufficient for handling the sheet metal workpieces considered in this work. The availability of a validated kinematic model within the drag\&bot platform allows all generated motion targets to be evaluated for reachability and feasibility during simulation~\cite{dragandbot_anyrobot_2025,Macenski2022ROS2}.
+Within this environment, the Universal Robots \ac{ur5e} is used as the manipulator model. The robot provides six degrees of freedom, a reach of approximately 850~mm, and a payload capacity of 5~kg, which are sufficient for handling the sheet metal workpieces considered in this work. The availability of a validated kinematic model within the drag\&bot platform allows all generated motion targets to be evaluated for reachability and feasibility during simulation~\cite{dragandbot_anyrobot_2025,Macenski2022ROS2}.
  
-The Tool Centre Point (TCP) used for all motion targets is defined in the drag\&bot tool management system as \texttt{project\_3\_tcp}, in accordance with requirement SR-03. The TCP is specified using the ZYX Euler convention with offsets relative to the robot flange: $x = 0.000$~m, $y = 0.034$~m, $z = 0.194$~m, $RZ = -90.0^\circ$, $RY = -75.0^\circ$, and $RX = 0.0^\circ$. These parameters ensure that all generated poses remain consistent with the physical gripper configuration. The TCP identifier is provided through the operator input, allowing future adjustments without modification of the underlying source code.
+The \ac{tcp} used for all motion targets is defined in the drag\&bot tool management system as \texttt{project\_3\_tcp}, in accordance with requirement SR-03. The \ac{tcp} is specified using the ZYX Euler convention with offsets relative to the robot flange: $x = 0.000$~m, $y = 0.034$~m, $z = 0.194$~m, $RZ = -90.0^\circ$, $RY = -75.0^\circ$, and $RX = 0.0^\circ$. These parameters ensure that all generated poses remain consistent with the physical gripper configuration. The \ac{tcp} identifier is provided through the operator input, allowing future adjustments without modification of the underlying source code.
  
 \begin{figure}[!htbp]
     \centering
@@ -256,10 +256,10 @@ If the sheet centroid lies within the dead-band region defined by $|x| < 10$~mm 
     \label{fig:zone_classification}
 \end{figure}
  
-Having defined the simulation environment, robot model, TCP configuration, and workspace segmentation strategy, the following sections describe the functional subsystems in the order of execution within a bending cycle, beginning with safety validation, followed by orientation determination, grip planning, and trajectory generation.
+Having defined the simulation environment, robot model, \ac{tcp} configuration, and workspace segmentation strategy, the following sections describe the functional subsystems in the order of execution within a bending cycle, beginning with safety validation, followed by orientation determination, grip planning, and trajectory generation.
  
 \begin{algorithm}[htbp]
-\caption{Spatial zone classification based on sheet centroid position}
+\caption{Spatial zone classification based on sheet centroid position.}
 \label{alg:zone_classification}
 \begin{algorithmic}[1]
 \State Retrieve sheet centroid coordinates $(x, y)$ in the robot world frame
@@ -314,7 +314,7 @@ If a fixture is not detected in the object manager response, it is treated as mi
  
 The operator confirmation dialog is positioned as the first step in the planning orchestrator startup sequence, preceding all subsequent processes including fixture validation, visualization, and motion execution. The dialog enforces a mandatory decision: either initiate the automated workflow or cancel execution. The orchestrator does not proceed until a response is received from the HI service, ensuring that execution cannot begin without explicit operator authorisation. If the operator selects cancel, the process terminates without issuing any command to the robot runtime.
  
-In addition to pre-execution validation, runtime supervision is implemented through a motion error monitoring module operating as a background subprocess. This component subscribes to the \texttt{/command\_result} ROS topic via an independent WebSocket connection, enabling continuous monitoring of execution outcomes without interrupting the main command flow. When a non-zero result code is detected, indicating a motion execution failure, the system immediately triggers a modal HI notification to inform the operator.
+In addition to pre-execution validation, runtime supervision is implemented through a motion error monitoring module operating as a background subprocess. This component subscribes to the \texttt{/command\_result} \ac{ros} topic via an independent \ac{websocket} connection, enabling continuous monitoring of execution outcomes without interrupting the main command flow. When a non-zero result code is detected, indicating a motion execution failure, the system immediately triggers a modal HI notification to inform the operator.
  
 The monitoring module does not directly interrupt the execution pipeline. Instead, it provides immediate feedback through the HI interface and requires operator acknowledgement before further interaction is permitted. This ensures that execution anomalies are not overlooked while maintaining operator authority over subsequent decisions.
  
@@ -329,7 +329,7 @@ Together, these mechanisms establish a layered safety structure. Pre-execution v
 Following pre-execution safety validation, the first geometric step in each bending cycle is the determination of a valid pickup orientation for the sheet. This is required because the sheet may be placed in arbitrary orientations within the workspace, while only a subset of these orientations is kinematically feasible for the target bending operation. The orientation strategy evaluates the tracked sheet pose, applies a structured selection process, and produces a validated pickup pose for subsequent grip planning.
  
 \subsection{Zone-Based RZ Admissibility}
-\label{Zone-Based RZ Admissibilitye}
+\label{sec:zone-based-rz-admissibility}
  
 The admissible range of sheet rotation about the Z-axis is defined by a zone-dependent window $[RZ_{\min}, RZ_{\max}]$. This constraint reflects the limited rotational capability of the robot end-effector within different regions of the workspace \cite{Siciliano2016Robotics}. Since the reachable orientation range varies with the spatial position of the sheet, zone classification is performed prior to orientation evaluation. The admissibility limits are retrieved from the configuration to ensure that only kinematically feasible orientations are considered. This prevents the selection of geometrically valid but unreachable poses.
  
@@ -392,7 +392,7 @@ RX' = -RX
 This transformation expands the reachable orientation set and guarantees that a pickup configuration is always obtained. Since this orientation may not strictly satisfy admissibility constraints, it is marked as \textit{admissibility not confirmed}. This status is propagated to downstream modules, allowing conservative execution strategies to be applied.
  
 \begin{algorithm}[htbp]
-\caption{High-level orientation selection strategy}
+\caption{High-level orientation selection strategy.}
 \label{alg:orientation_selection}
 \begin{algorithmic}[2]
 \State Retrieve tracked sheet pose and active zone
@@ -417,7 +417,7 @@ Algorithm~\ref{alg:orientation_selection} summarises the implemented selection s
     \centering
     \includegraphics[
         width=\textwidth,
-        height=0.9\textheight,
+        height=0.78\textheight,
         keepaspectratio
     ]{Flow_Diagrams/three_level_orientation.pdf}
     \caption[Three-level orientation strategy]{Three-level orientation selection strategy for determining a valid pickup pose under kinematic constraints. \textit{Source: own work.}}
@@ -466,14 +466,14 @@ With physical grasping and state synchronisation established, the next step is t
 \section{Grip Position Planning and Feasibility Validation} 
 \label{sec:grip_planning} 
  
-Following the determination of a valid pickup orientation and the establishment of a consistent gripper control mechanism, the system must identify feasible suction cup placements on the sheet surface. Arbitrary placement is not sufficient, as it may violate geometric constraints or fail to provide adequate holding force during handling. The grip planner therefore evaluates both geometric feasibility and physical stability to ensure a reliable and executable grasp configuration. This structured approach directly addresses the limitations identified in Chapter \ref{CH_2_State of the Art}, where manual or heuristic-based gripping strategies lack consistency and adaptability. This approach enables deterministic and repeatable grip planning , which is essential for automated program generation in an industrial environment.
+Following the determination of a valid pickup orientation and the establishment of a consistent gripper control mechanism, the system must identify feasible suction cup placements on the sheet surface. Arbitrary placement is not sufficient, as it may violate geometric constraints or fail to provide adequate holding force during handling. The grip planner therefore evaluates both geometric feasibility and physical stability to ensure a reliable and executable grasp configuration. This structured approach directly addresses the limitations identified in Chapter~\ref{ch:state-of-art}, where manual or heuristic-based gripping strategies lack consistency and adaptability. This approach enables deterministic and repeatable grip planning, which is essential for automated program generation in an industrial environment.
 
 \subsection{Sheet Geometry and Hole Detection} 
 \label{subsec:sheet_geometry_holes} 
  
 The sheet is modelled as a planar rectangular surface with uniform mass distribution, defined by its length, width, thickness, and mass obtained from the configuration. If the mass is not explicitly specified, it is estimated from the sheet volume and the material density defined in the configuration. 
  
-In addition to the outer boundary, internal features such as holes are extracted from the STL mesh during the geometry analysis stage. Each hole is represented by its centre position and radius in the sheet coordinate frame. These regions are explicitly excluded from the feasible gripping area, since suction cups cannot form a stable seal over discontinuities. This ensures that only physically valid contact regions are considered during grip planning. 
+In addition to the outer boundary, internal features such as holes are extracted from the \ac{stl} mesh during the geometry analysis stage. Each hole is represented by its centre position and radius in the sheet coordinate frame. These regions are explicitly excluded from the feasible gripping area, since suction cups cannot form a stable seal over discontinuities. This ensures that only physically valid contact regions are considered during grip planning. 
  
 \subsection{Vacuum Holding Force Validation} 
 \label{subsec:vacuum_force_validation} 
@@ -539,7 +539,7 @@ Figure~\ref{fig:grip_planning_flowchart} illustrates the complete grip planning 
     \centering
     \includegraphics[
         width=\textwidth,
-        height=0.9\textheight,
+        height=0.78\textheight,
         keepaspectratio
     ]{Flow_Diagrams/grip_planning_flow.pdf}
     \caption[Grip planning workflow]{Grip position planning and feasibility validation workflow. The process integrates geometric filtering and vacuum force validation to ensure physically stable and executable grasp configurations prior to trajectory generation. \textit{Source: own work.}}
@@ -585,7 +585,7 @@ A candidate orientation is accepted only when all feasibility conditions are sat
 The number of required regrip steps is implicitly determined from the difference between the current orientation and the selected feasible configuration. This approach avoids unnecessary intermediate operations while ensuring that the final pose remains reachable and executable within the robot workspace. 
  
 \begin{algorithm}[htbp] 
-\caption{Regrip orientation selection} 
+\caption{Regrip orientation selection.} 
 \label{alg:auto_regrip} 
 \begin{algorithmic}[1] 
 \State Define candidate orientation set 
@@ -666,7 +666,7 @@ After completing all opposite-side bends, any remaining staged operations are ex
     \centering
     \includegraphics[
         width=\textwidth,
-        height=0.9\textheight,
+        height=0.78\textheight,
         keepaspectratio
     ]{Flow_Diagrams/opposite_face_bending.pdf}
     \caption[Opposite-face flip workflow]{Opposite-face flip workflow enabling access to previously unreachable bending surfaces. \textit{Source: own work.}}
@@ -679,7 +679,7 @@ ints, and executed by the robot as a continuous motion from the start to the tar
 \section{Trajectory Generation}
 \label{sec:trajectory}
  
-Trajectory generation constitutes the final stage of the planning pipeline, where validated task-level poses are transformed into executable robot motion. The input to this stage is an ordered sequence of tool centre point (TCP) poses obtained from upstream modules, including grip planning, regrip handling, and opposite-face operations. Each pose defines the desired end-effector position and orientation within the robot world frame.
+Trajectory generation constitutes the final stage of the planning pipeline, where validated task-level poses are transformed into executable robot motion. The input to this stage is an ordered sequence of \ac{tcp} poses obtained from upstream modules, including grip planning, regrip handling, and opposite-face operations. Each pose defines the desired end-effector position and orientation within the robot world frame.
  
 Rather than executing direct point-to-point transitions, the system constructs a continuous and smooth trajectory composed of intermediate waypoints. This approach ensures kinematic feasibility, reduces dynamic loading, and improves execution stability during sheet handling.
  
@@ -687,7 +687,7 @@ Rather than executing direct point-to-point transitions, the system constructs a
  
 Each motion segment is generated using a structured three-phase trajectory: lift, lateral transfer, and descent. 
  
-In the lift phase, the TCP is translated vertically to a predefined safe height to avoid collisions with the workpiece, fixtures, or surrounding environment. In the lateral transfer phase, the robot moves towards the target position while maintaining this clearance height. During this phase, the end-effector orientation is constrained to limit excessive joint rotations and reduce proximity to kinematic singularities. Finally, in the descent phase, the TCP is lowered to the target pose, where the required orientation for task execution is fully applied.
+In the lift phase, the \ac{tcp} is translated vertically to a predefined safe height to avoid collisions with the workpiece, fixtures, or surrounding environment. In the lateral transfer phase, the robot moves towards the target position while maintaining this clearance height. During this phase, the end-effector orientation is constrained to limit excessive joint rotations and reduce proximity to kinematic singularities. Finally, in the descent phase, the \ac{tcp} is lowered to the target pose, where the required orientation for task execution is fully applied.
  
 To further improve motion feasibility, an intermediate rotation pose is introduced above the target location. This ensures that major orientation adjustments are completed before the final approach, reducing the risk of instability near contact regions.
  
@@ -711,7 +711,7 @@ s(u) = 10u^3 - 15u^4 + 6u^5,
  
 which guarantees zero velocity and acceleration at the start and end of each motion segment~\cite{Flash1985MinimumJerk}. Such profiles are widely adopted in robotic trajectory planning to achieve smooth and physically consistent motion behaviour~\cite{Gasparetto2012Trajectory}.
  
-By sampling this progression at discrete intervals, a sequence of intermediate TCP waypoints is generated that approximates the continuous trajectory.
+By sampling this progression at discrete intervals, a sequence of intermediate \ac{tcp} waypoints is generated that approximates the continuous trajectory.
  
 \begin{lstlisting}[language=Python, caption={Illustrative waypoint generation using minimum-jerk interpolation}, label={lst:minjerk_waypoints}]
 def min_jerk(u):
@@ -736,13 +736,13 @@ samples = [k / (N - 1) for k in range(N)]
  
 \subsection{Kinematic Mapping and Joint Execution}
  
-Each interpolated TCP waypoint is mapped to a corresponding robot joint configuration using inverse kinematics. For each waypoint, a feasible solution is selected based on continuity with the previous configuration, avoiding abrupt joint changes and ensuring smooth motion across the trajectory.
+Each interpolated \ac{tcp} waypoint is mapped to a corresponding robot joint configuration using inverse kinematics. For each waypoint, a feasible solution is selected based on continuity with the previous configuration, avoiding abrupt joint changes and ensuring smooth motion across the trajectory.
  
 As the robot executes the sequence, all joints evolve continuously, resulting in a smooth end-effector motion that closely follows the planned Cartesian path.
  
 \subsection{Workspace Constraints and Singularity Handling}
  
-To ensure execution feasibility, each waypoint is validated against workspace constraints. The TCP pose is transformed into the corresponding flange pose, and its position is checked against the allowable workspace limits. If a waypoint exceeds these limits, it is projected onto the nearest feasible boundary.
+To ensure execution feasibility, each waypoint is validated against workspace constraints. The \ac{tcp} pose is transformed into the corresponding flange pose, and its position is checked against the allowable workspace limits. If a waypoint exceeds these limits, it is projected onto the nearest feasible boundary.
  
 Singularity avoidance is addressed by restricting orientation changes during the lateral motion phase. Large orientation adjustments are deferred to the approach phase, where the robot operates in a more stable configuration. This reduces the risk of excessive joint velocities and improves overall motion robustness.
  
@@ -816,11 +816,11 @@ Overall, the implemented system provides a robust and scalable solution for auto
 \section{Requirement Compliance Matrix}
 \label{sec:requirement_compliance}
  
-To ensure full traceability between the system requirements defined in Chapter~\ref{CH_3_System Concept and Methodology} and the implemented solution, a requirement compliance matrix is presented in Table~\ref{tab:req_compliance}. The matrix establishes a direct mapping between each requirement and its corresponding implementation component within the system.
+To ensure full traceability between the system requirements defined in Chapter~\ref{ch:system-concept-methodology} and the implemented solution, a requirement compliance matrix is presented in Table~\ref{tab:req_compliance}. The matrix establishes a direct mapping between each requirement and its corresponding implementation component within the system.
  
-Both functional requirements (FR) and non-functional requirements (NFR) are included. Each requirement is linked to the relevant module, algorithm, or validation mechanism described in this chapter, ensuring that all specified requirements are systematically addressed within the implemented system.
+Both functional requirements (\acs{fr}) and non-functional requirements (\acs{nfr}) are included. Each requirement is linked to the relevant module, algorithm, or validation mechanism described in this chapter, ensuring that all specified requirements are systematically addressed within the implemented system.
 
 \input{chapters/tables/tab_req_compliance.tex}
 
-The compliance matrix demonstrates that all functional and non-functional requirements defined in Chapter~\ref{CH_3_System Concept and Methodology} are fully addressed within the implemented system. Each requirement is mapped to a specific architectural component or validation mechanism, ensuring complete traceability between system design and implementation. This structured mapping confirms that the developed solution consistently satisfies the objectives established in earlier chapters while maintaining coherence across the entire system pipeline.
+The compliance matrix demonstrates that all functional and non-functional requirements defined in Chapter~\ref{ch:system-concept-methodology} are fully addressed within the implemented system. Each requirement is mapped to a specific architectural component or validation mechanism, ensuring complete traceability between system design and implementation. This structured mapping confirms that the developed solution consistently satisfies the objectives established in earlier chapters while maintaining coherence across the entire system pipeline.
 

@@ -1,11 +1,11 @@
 
 \chapter{System Concept and Methodology}
-\label{CH_3_System Concept and Methodology}
+\label{ch:system-concept-methodology}
 
 \section{Problem Definition and Objectives}
 \label{Problem-Definition-and-Objectives}
 
-Industrial robots are widely used in press brake sheet metal bending processes, primarily through manual programming or predefined programming approaches. These methods are effective in structured production scenarios where part geometry, position, and bending sequences remain constant. However, in modern manufacturing environments where product variation is high, these approaches require frequent manual reprogramming, resulting in increased setup time and reduced efficiency  .
+Industrial robots are widely used in press brake sheet metal bending processes, primarily through manual programming or predefined programming approaches. These methods are effective in structured production scenarios where part geometry, position, and bending sequences remain constant. However, in modern manufacturing environments where product variation is high, these approaches require frequent manual reprogramming, resulting in increased setup time and reduced efficiency.
 
 A key challenge in robotic sheet metal bending arises from the fact that the geometry of the workpiece changes after each bending operation. These geometric transformations directly affect robot reachability, grip feasibility, and the selection of valid grip points, as well as the generation of feasible motion trajectories. Consequently, handling and regripping operations must be carefully planned at each stage of the process. Previous research indicates that managing these aspects is one of the most complex and time-consuming tasks in robotic bending, particularly when performed manually.
 
@@ -55,7 +55,7 @@ In addition, the system shall validate all generated motions prior to execution.
 
 Furthermore, the system shall enable simulation-based validation of the generated robot programs within a virtual environment. This allows verification of the planned sequence before execution and ensures consistency between the generated program and the system constraints.
 
-The detailed functional requirements corresponding to these capabilities are summarised in Table \ref{tab:functional_requirements}.
+The detailed functional requirements corresponding to these capabilities are summarised in Table~\ref{tab:functional_requirements}.
 
 \input{chapters/tables/tab_functional_requirements}
 
@@ -74,7 +74,7 @@ The system also incorporates robustness and tolerance to minor deviations in inp
 
 Furthermore, the system supports scalability by enabling adaptation to different process configurations and workpiece variations within the predefined scope. This ensures that the approach remains applicable across a range of similar industrial scenarios.
 
-The detailed non-functional requirements corresponding to these quality attributes are summarised in Table \ref{tab:nfr_table}.
+The detailed non-functional requirements corresponding to these quality attributes are summarised in Table~\ref{tab:nfr_table}.
  
 \input{chapters/tables/tab_non_functional_requirements}
 
@@ -93,17 +93,17 @@ With respect to process capabilities, the system supports only vacuum-based grip
 
 Finally, the scope of the proposed system is limited to rule-based program generation, geometric reasoning, and simulation-based validation. Advanced functionalities such as dynamic collision-free trajectory generation, real-time motion adaptation, and environment-aware path optimisation are explicitly excluded. These constraints ensure that the system remains deterministic, reproducible, and aligned with the intended focus on automatic program generation within a controlled industrial setting.
 
-\subsection {Software Platform and Tool requirement}
-\label{Software Platform and Tool requirement}
+\subsection{Software Platform and Tool Requirements}
+\label{sec:software-platform-tool-requirements}
 The software platform and tool requirements define the technological environment, communication framework, and execution context necessary for implementing the proposed system. These requirements ensure that the system supports automated generation, validation, and execution of robot programs within a structured and industrially relevant setup.
 
 The software-related requirements are defined as SR-01 to SR-03 and are further detailed in the following subsections.
 
 The system shall operate within a virtual robot programming environment that provides capabilities for simulation, execution, and validation of robot programs. In this work, the drag\&bot platform is used as the designated virtual environment, enabling structured testing and verification of generated robot trajectories under controlled conditions. This environment ensures consistency between the planning module and the execution context while supporting simulation-based validation of the generated programs.
 
-The system shall communicate with the execution environment through a unified communication interface that enables the exchange of data between system components. This communication is realised using the AnyRobot interface, which provides an abstraction layer for interacting with the robot programming environment. The communication mechanism is based on a WebSocket protocol, allowing bidirectional data exchange for transmitting robot target poses, execution commands, and system feedback. This requirement ensures synchronisation between the planning module and the execution environment during program generation and validation.
+The system shall communicate with the execution environment through a unified communication interface that enables the exchange of data between system components. This communication is realised using the AnyRobot interface, which provides an abstraction layer for interacting with the robot programming environment. The communication mechanism is based on a \ac{websocket} protocol, allowing bidirectional data exchange for transmitting robot target poses, execution commands, and system feedback. This requirement ensures synchronisation between the planning module and the execution environment during program generation and validation.
 
-Furthermore, the system shall ensure that all generated robot motion targets are defined with respect to a predefined tool centre point (TCP) configuration. The TCP serves as the reference frame for all trajectory computations and motion commands, ensuring consistency between the generated robot program and the configuration of the robot within the execution environment. This requirement guarantees that the generated motions are physically meaningful and compatible with the defined tool setup.
+Furthermore, the system shall ensure that all generated robot motion targets are defined with respect to a predefined \ac{tcp} configuration. The \ac{tcp} serves as the reference frame for all trajectory computations and motion commands, ensuring consistency between the generated robot program and the configuration of the robot within the execution environment. This requirement guarantees that the generated motions are physically meaningful and compatible with the defined tool setup.
 
 In addition, the system shall support structured data exchange between internal components, including input parameters, geometric representations, generated trajectories, and validation results. The software architecture shall follow a modular design, enabling clear separation between planning, validation, and execution modules. This modularity enhances maintainability, scalability, and future extensibility of the system.
 
@@ -121,10 +121,10 @@ By operating within this environment, the system enables reliable simulation-bas
 \paragraph{Acceptance Criteria — SR-01:}
 The system shall establish a stable connection to the virtual runtime environment, and all generated robot motions, service calls, and input-output operations shall be executed and validated successfully within the simulation environment.
 
-\subsubsection {SR-02 Communication Interface Requirement}
+\subsubsection{SR-02 Communication Interface Requirement}
 The system shall communicate with the robot execution environment through a unified communication interface that enables structured interaction between the planning module and the runtime system. In this work, the AnyRobot interface is used as the exclusive communication layer between the planning system and the execution environment.
 
-The communication shall be implemented using a WebSocket-based protocol, enabling bidirectional data exchange for transmitting robot motion commands, input-output signals, object handling operations, and system feedback. This approach provides a consistent abstraction layer for interacting with the robot programming environment without requiring direct access to robot-specific control interfaces.
+The communication shall be implemented using a \acs{websocket}-based protocol, enabling bidirectional data exchange for transmitting robot motion commands, input-output signals, object handling operations, and system feedback. This approach provides a consistent abstraction layer for interacting with the robot programming environment without requiring direct access to robot-specific control interfaces.
 
 By using a unified communication interface, the system ensures that all commands and execution requests are transmitted in a structured and controlled manner, supporting maintainability and compatibility across different system configurations. This abstraction also enables the planning system to remain independent of specific robot controller implementations.
 
@@ -132,28 +132,28 @@ By using a unified communication interface, the system ensures that all commands
 All communication between the planning module and the execution environment shall occur through the defined communication interface. A valid connection shall be established before command transmission, and all motion, input-output, and service operations shall be successfully executed and acknowledged within the simulation environment.
 
 \subsubsection{Tool Centre Point (TCP) Definition Requirement - SR-03}
-The system shall define all robot motion targets with respect to a predefined tool centre point (TCP) configuration. The TCP represents the reference frame of the end-effector and is used as the basis for all trajectory generation and motion planning operations.
+The system shall define all robot motion targets with respect to a predefined \ac{tcp} configuration. The \ac{tcp} represents the reference frame of the end-effector and is used as the basis for all trajectory generation and motion planning operations.
 
-All generated robot poses, including approach positions, handling configurations, and placement targets, shall be expressed in relation to the TCP. This ensures consistency between the planning module and the execution environment, and guarantees that the generated trajectories correspond to the physical geometry of the tool.
+All generated robot poses, including approach positions, handling configurations, and placement targets, shall be expressed in relation to the \ac{tcp}. This ensures consistency between the planning module and the execution environment, and guarantees that the generated trajectories correspond to the physical geometry of the tool.
 
-The TCP configuration is defined externally and remains fixed during system operation. Any changes to the tool configuration or TCP definition require corresponding updates to ensure alignment between the generated trajectories and the execution environment. This requirement ensures that motion accuracy and handling feasibility are maintained throughout the process.
+The \ac{tcp} configuration is defined externally and remains fixed during system operation. Any changes to the tool configuration or \ac{tcp} definition require corresponding updates to ensure alignment between the generated trajectories and the execution environment. This requirement ensures that motion accuracy and handling feasibility are maintained throughout the process.
 
 \paragraph{Acceptance Criteria — SR-03:}
-All generated robot motion targets shall be consistent with the predefined TCP configuration, and any modification to the TCP definition shall be reflected correctly in the generated trajectories without requiring structural changes to the system logic.
+All generated robot motion targets shall be consistent with the predefined \ac{tcp} configuration, and any modification to the \ac{tcp} definition shall be reflected correctly in the generated trajectories without requiring structural changes to the system logic.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{figures/tcp.png}
-    \caption{Tool Center Point parameters in Drag\&Bot.}
+    \caption{Tool Center Point parameters in drag\&bot.}
     \label{fig:tcp}
 \end{figure}
 
 \subsection{System Traceability}
-\label{System Traceability}
+\label{sec:system-traceability}
 
 Requirements traceability is a fundamental principle in systematic engineering development, ensuring that all defined requirements are consistently reflected in the system design, implementation, and validation stages. In the context of the proposed automatic robot program generation system, traceability ensures that the transition from conceptual objectives to executable functionality remains transparent, structured, and verifiable.
 
-Each requirement defined in Section \ref{functional-Requirement} (Functional Requirements) and Section \ref{non-functional-requirements} (Non-Functional Requirements), as well as the software requirements (SR-01 to SR-03), is assigned a unique identifier (e.g., FR-01, NFR-01, SR-01). These identifiers serve as persistent references throughout the entire development lifecycle and enable systematic tracking of requirements across different stages of the system.
+Each requirement defined in Section~\ref{functional-Requirement} (Functional Requirements) and Section~\ref{non-functional-requirements} (Non-Functional Requirements), as well as the software requirements (SR-01 to SR-03), is assigned a unique identifier (e.g., FR-01, NFR-01, SR-01). These identifiers serve as persistent references throughout the entire development lifecycle and enable systematic tracking of requirements across different stages of the system.
 
 The requirement identifiers are used consistently to establish clear relationships between requirements, system components, and validation procedures. In particular:
 
@@ -173,6 +173,6 @@ By mapping each requirement to corresponding implementation modules and validati
 
 In addition, traceability improves system maintainability and supports future extensions. Changes to system requirements can be systematically analysed by identifying the affected components and validation procedures. This enables efficient impact analysis and reduces development risk.
 
-The complete mapping between requirements, system modules, and validation scenarios is presented in Table \ref{tab:req_traceability_matrix}.
+The complete mapping between requirements, system modules, and validation scenarios is presented in Table~\ref{tab:req_traceability_matrix}.
 \input{chapters/tables/req_traceability_matrix.tex}
 

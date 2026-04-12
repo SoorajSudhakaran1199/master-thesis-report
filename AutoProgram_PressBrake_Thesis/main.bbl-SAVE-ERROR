@@ -19,12 +19,134 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global/global}
+    \entry{Gupta1998SheetMetalBending}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=ce6485123ecc3103cef2a56d947b4e08}{%
+           family={Gupta},
+           familyi={G\bibinitperiod},
+           given={S.\bibnamedelimi K.},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=f2161709d8a19aa024a61867d5b5ede2}{%
+           family={Bourne},
+           familyi={B\bibinitperiod},
+           given={D.\bibnamedelimi A.},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=e7560f6396b8c2d5dffd0bf67fa3e1da}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=8e9895e3bde5c02e66e272a0e99b2002}{%
+           family={Krishnan},
+           familyi={K\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{7b87c2f5e39eca746ce26406c55b5164}
+      \strng{fullhash}{3e472aec675d95f9a7e093f156b78d1a}
+      \strng{fullhashraw}{3e472aec675d95f9a7e093f156b78d1a}
+      \strng{bibnamehash}{3e472aec675d95f9a7e093f156b78d1a}
+      \strng{authorbibnamehash}{3e472aec675d95f9a7e093f156b78d1a}
+      \strng{authornamehash}{7b87c2f5e39eca746ce26406c55b5164}
+      \strng{authorfullhash}{3e472aec675d95f9a7e093f156b78d1a}
+      \strng{authorfullhashraw}{3e472aec675d95f9a7e093f156b78d1a}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Manufacturing Systems}
+      \field{number}{5}
+      \field{title}{Automated process planning for sheet metal bending operations}
+      \field{volume}{17}
+      \field{year}{1998}
+      \field{pages}{338\bibrangedash 360}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1016/S0278-6125(98)80035-2
+      \endverb
+    \endentry
+    \entry{Neto2013OLP}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=933b0b0df6825a9798175015163c8990}{%
+           family={Neto},
+           familyi={N\bibinitperiod},
+           given={Pedro},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of Coimbra}%
+      }
+      \list{location}{1}{%
+        {Coimbra, Portugal}%
+      }
+      \strng{namehash}{933b0b0df6825a9798175015163c8990}
+      \strng{fullhash}{933b0b0df6825a9798175015163c8990}
+      \strng{fullhashraw}{933b0b0df6825a9798175015163c8990}
+      \strng{bibnamehash}{933b0b0df6825a9798175015163c8990}
+      \strng{authorbibnamehash}{933b0b0df6825a9798175015163c8990}
+      \strng{authornamehash}{933b0b0df6825a9798175015163c8990}
+      \strng{authorfullhash}{933b0b0df6825a9798175015163c8990}
+      \strng{authorfullhashraw}{933b0b0df6825a9798175015163c8990}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings (conference not explicitly specified)}
+      \field{note}{Department of Mechanical Engineering, CEMUC}
+      \field{title}{Off-line Programming and Simulation from CAD Drawings: Robot-Assisted Sheet Metal Bending}
+      \field{year}{2013}
+    \endentry
+    \entry{Villani2018}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=a6f348f6b9d56f6ddfe2f3f1631e843f}{%
+           family={Villani},
+           familyi={V\bibinitperiod},
+           given={Valerio},
+           giveni={V\bibinitperiod}}}%
+        {{hash=2185778459de3bb5d7c6fd185b9c9916}{%
+           family={Pini},
+           familyi={P\bibinitperiod},
+           given={Fabio},
+           giveni={F\bibinitperiod}}}%
+        {{hash=156aa0b91cb8ca8bf3312bda7475ba5a}{%
+           family={Leali},
+           familyi={L\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+        {{hash=78cd85141c6296b4a21285ee87a49352}{%
+           family={Secchi},
+           familyi={S\bibinitperiod},
+           given={Cristian},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{837194579117ab392b68d5a775878e04}
+      \strng{fullhash}{02838524b25ac92fd6330f395006d609}
+      \strng{fullhashraw}{02838524b25ac92fd6330f395006d609}
+      \strng{bibnamehash}{02838524b25ac92fd6330f395006d609}
+      \strng{authorbibnamehash}{02838524b25ac92fd6330f395006d609}
+      \strng{authornamehash}{837194579117ab392b68d5a775878e04}
+      \strng{authorfullhash}{02838524b25ac92fd6330f395006d609}
+      \strng{authorfullhashraw}{02838524b25ac92fd6330f395006d609}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mechatronics}
+      \field{title}{Survey on Human–Robot Collaboration in Industrial Settings}
+      \field{volume}{55}
+      \field{year}{2018}
+      \field{pages}{248\bibrangedash 266}
+      \range{pages}{19}
+      \verb{doi}
+      \verb 10.1016/j.mechatronics.2018.02.009
+      \endverb
+    \endentry
     \entry{ISO8373}{misc}{}{}
       \list{organization}{1}{%
         {International Organization for Standardization}%
       }
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labeltitlesource}{title}
       \field{number}{ISO 8373:2012}
       \field{title}{Robots and robotic devices — Vocabulary}
@@ -52,8 +174,8 @@
       \strng{authornamehash}{57c29b307f6e70b7216c8c696af16b58}
       \strng{authorfullhash}{57c29b307f6e70b7216c8c696af16b58}
       \strng{authorfullhashraw}{57c29b307f6e70b7216c8c696af16b58}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{3rd}
@@ -98,8 +220,8 @@
       \strng{authornamehash}{87b7a62a01263043a997b937dfe79845}
       \strng{authorfullhash}{ee90168e098b65fb796c51b65c7348da}
       \strng{authorfullhashraw}{ee90168e098b65fb796c51b65c7348da}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{2}
@@ -123,8 +245,8 @@
       \strng{authornamehash}{fa3b21328d9a26110e031a7007b17a07}
       \strng{authorfullhash}{fa3b21328d9a26110e031a7007b17a07}
       \strng{authorfullhashraw}{fa3b21328d9a26110e031a7007b17a07}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Proceedings of the IEEE}
@@ -161,8 +283,8 @@
       \strng{authornamehash}{10b8799ca6080b80b42cbb0ffff52910}
       \strng{authorfullhash}{10b8799ca6080b80b42cbb0ffff52910}
       \strng{authorfullhashraw}{10b8799ca6080b80b42cbb0ffff52910}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{CIRP Annals}
@@ -286,52 +408,6 @@
       \verb 10.1016/S0924-0136(02)00744-1
       \endverb
     \endentry
-    \entry{Gupta1998SheetMetalBending}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=ce6485123ecc3103cef2a56d947b4e08}{%
-           family={Gupta},
-           familyi={G\bibinitperiod},
-           given={S.\bibnamedelimi K.},
-           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
-        {{hash=f2161709d8a19aa024a61867d5b5ede2}{%
-           family={Bourne},
-           familyi={B\bibinitperiod},
-           given={D.\bibnamedelimi A.},
-           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{hash=e7560f6396b8c2d5dffd0bf67fa3e1da}{%
-           family={Kim},
-           familyi={K\bibinitperiod},
-           given={K.},
-           giveni={K\bibinitperiod}}}%
-        {{hash=8e9895e3bde5c02e66e272a0e99b2002}{%
-           family={Krishnan},
-           familyi={K\bibinitperiod},
-           given={S.},
-           giveni={S\bibinitperiod}}}%
-      }
-      \strng{namehash}{7b87c2f5e39eca746ce26406c55b5164}
-      \strng{fullhash}{3e472aec675d95f9a7e093f156b78d1a}
-      \strng{fullhashraw}{3e472aec675d95f9a7e093f156b78d1a}
-      \strng{bibnamehash}{3e472aec675d95f9a7e093f156b78d1a}
-      \strng{authorbibnamehash}{3e472aec675d95f9a7e093f156b78d1a}
-      \strng{authornamehash}{7b87c2f5e39eca746ce26406c55b5164}
-      \strng{authorfullhash}{3e472aec675d95f9a7e093f156b78d1a}
-      \strng{authorfullhashraw}{3e472aec675d95f9a7e093f156b78d1a}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Journal of Manufacturing Systems}
-      \field{number}{5}
-      \field{title}{Automated process planning for sheet metal bending operations}
-      \field{volume}{17}
-      \field{year}{1998}
-      \field{pages}{338\bibrangedash 360}
-      \range{pages}{23}
-      \verb{doi}
-      \verb 10.1016/S0278-6125(98)80035-2
-      \endverb
-    \endentry
     \entry{Biagiotti2008Trajectory}{book}{}{}
       \name{author}{2}{}{%
         {{hash=19f06cd7f0aa050f4be4280dcc9b8c8c}{%
@@ -384,8 +460,8 @@
       \strng{authornamehash}{e28ba344a41c866256cc5ca9d637919a}
       \strng{authorfullhash}{e28ba344a41c866256cc5ca9d637919a}
       \strng{authorfullhashraw}{e28ba344a41c866256cc5ca9d637919a}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE/RSJ International Conference on Intelligent Robots and Systems}
@@ -483,8 +559,8 @@
       \strng{authornamehash}{51ee55ed3e9e5b88458e3ca3bcb7e1a4}
       \strng{authorfullhash}{51ee55ed3e9e5b88458e3ca3bcb7e1a4}
       \strng{authorfullhashraw}{51ee55ed3e9e5b88458e3ca3bcb7e1a4}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://robodk.com}}
@@ -511,8 +587,8 @@
       \strng{authornamehash}{9a1d9a734ecac75171a7fd4f8671a2c0}
       \strng{authorfullhash}{9a1d9a734ecac75171a7fd4f8671a2c0}
       \strng{authorfullhashraw}{9a1d9a734ecac75171a7fd4f8671a2c0}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Manufacturing Systems: Theory and Practice}
@@ -541,8 +617,8 @@
       \strng{authornamehash}{ec3dd8f5d3bb6a3930a11d4ddeffcee0}
       \strng{authorfullhash}{ec3dd8f5d3bb6a3930a11d4ddeffcee0}
       \strng{authorfullhashraw}{ec3dd8f5d3bb6a3930a11d4ddeffcee0}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Journal of Manufacturing Systems}
@@ -553,51 +629,6 @@
       \range{pages}{13}
       \verb{doi}
       \verb 10.1016/j.jmsy.2018.05.003
-      \endverb
-    \endentry
-    \entry{Villani2018}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=a6f348f6b9d56f6ddfe2f3f1631e843f}{%
-           family={Villani},
-           familyi={V\bibinitperiod},
-           given={Valerio},
-           giveni={V\bibinitperiod}}}%
-        {{hash=2185778459de3bb5d7c6fd185b9c9916}{%
-           family={Pini},
-           familyi={P\bibinitperiod},
-           given={Fabio},
-           giveni={F\bibinitperiod}}}%
-        {{hash=156aa0b91cb8ca8bf3312bda7475ba5a}{%
-           family={Leali},
-           familyi={L\bibinitperiod},
-           given={Francesco},
-           giveni={F\bibinitperiod}}}%
-        {{hash=78cd85141c6296b4a21285ee87a49352}{%
-           family={Secchi},
-           familyi={S\bibinitperiod},
-           given={Cristian},
-           giveni={C\bibinitperiod}}}%
-      }
-      \strng{namehash}{837194579117ab392b68d5a775878e04}
-      \strng{fullhash}{02838524b25ac92fd6330f395006d609}
-      \strng{fullhashraw}{02838524b25ac92fd6330f395006d609}
-      \strng{bibnamehash}{02838524b25ac92fd6330f395006d609}
-      \strng{authorbibnamehash}{02838524b25ac92fd6330f395006d609}
-      \strng{authornamehash}{837194579117ab392b68d5a775878e04}
-      \strng{authorfullhash}{02838524b25ac92fd6330f395006d609}
-      \strng{authorfullhashraw}{02838524b25ac92fd6330f395006d609}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Mechatronics}
-      \field{title}{Survey on Human–Robot Collaboration in Industrial Settings}
-      \field{volume}{55}
-      \field{year}{2018}
-      \field{pages}{248\bibrangedash 266}
-      \range{pages}{19}
-      \verb{doi}
-      \verb 10.1016/j.mechatronics.2018.02.009
       \endverb
     \endentry
     \entry{bohg2014data}{article}{}{}
@@ -638,37 +669,6 @@
       \field{journaltitle}{IEEE Transactions on Robotics}
       \field{title}{Data-driven grasp synthesis—A survey}
       \field{year}{2014}
-    \endentry
-    \entry{Neto2013OLP}{inproceedings}{}{}
-      \name{author}{1}{}{%
-        {{hash=933b0b0df6825a9798175015163c8990}{%
-           family={Neto},
-           familyi={N\bibinitperiod},
-           given={Pedro},
-           giveni={P\bibinitperiod}}}%
-      }
-      \list{institution}{1}{%
-        {University of Coimbra}%
-      }
-      \list{location}{1}{%
-        {Coimbra, Portugal}%
-      }
-      \strng{namehash}{933b0b0df6825a9798175015163c8990}
-      \strng{fullhash}{933b0b0df6825a9798175015163c8990}
-      \strng{fullhashraw}{933b0b0df6825a9798175015163c8990}
-      \strng{bibnamehash}{933b0b0df6825a9798175015163c8990}
-      \strng{authorbibnamehash}{933b0b0df6825a9798175015163c8990}
-      \strng{authornamehash}{933b0b0df6825a9798175015163c8990}
-      \strng{authorfullhash}{933b0b0df6825a9798175015163c8990}
-      \strng{authorfullhashraw}{933b0b0df6825a9798175015163c8990}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Proceedings (conference not explicitly specified)}
-      \field{note}{Department of Mechanical Engineering, CEMUC}
-      \field{title}{Off-line Programming and Simulation from CAD Drawings: Robot-Assisted Sheet Metal Bending}
-      \field{year}{2013}
     \endentry
     \entry{dragandbot_anyrobot_2025}{online}{}{}
       \name{author}{1}{}{%
@@ -812,8 +812,8 @@
       \strng{authornamehash}{2206e1948c0c591c115b0cc25608abab}
       \strng{authorfullhash}{468c38d855a5f5242903501b6a2eb129}
       \strng{authorfullhashraw}{468c38d855a5f5242903501b6a2eb129}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Procedia CIRP}
@@ -885,33 +885,93 @@
       \field{title}{{ROS: an Open-Source Robot Operating System}}
       \field{year}{2009}
     \endentry
-    \entry{python_ref_2024}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=c7b5508dc5e59a2846d22617276cc27c}{%
-           family={{Python Software Foundation}},
-           familyi={P\bibinitperiod}}}%
+    \entry{Pimentel2012}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=9386a1a289d1f75848fff4b352d78823}{%
+           family={Pimentel},
+           familyi={P\bibinitperiod},
+           given={Victor},
+           giveni={V\bibinitperiod}}}%
+        {{hash=28c396f36570d07c8731badaffe47d93}{%
+           family={Nickerson},
+           familyi={N\bibinitperiod},
+           given={Bradford\bibnamedelima G.},
+           giveni={B\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
       }
-      \strng{namehash}{c7b5508dc5e59a2846d22617276cc27c}
-      \strng{fullhash}{c7b5508dc5e59a2846d22617276cc27c}
-      \strng{fullhashraw}{c7b5508dc5e59a2846d22617276cc27c}
-      \strng{bibnamehash}{c7b5508dc5e59a2846d22617276cc27c}
-      \strng{authorbibnamehash}{c7b5508dc5e59a2846d22617276cc27c}
-      \strng{authornamehash}{c7b5508dc5e59a2846d22617276cc27c}
-      \strng{authorfullhash}{c7b5508dc5e59a2846d22617276cc27c}
-      \strng{authorfullhashraw}{c7b5508dc5e59a2846d22617276cc27c}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{fcf4d8002e81c957fc183e5f906aa300}
+      \strng{fullhash}{fcf4d8002e81c957fc183e5f906aa300}
+      \strng{fullhashraw}{fcf4d8002e81c957fc183e5f906aa300}
+      \strng{bibnamehash}{fcf4d8002e81c957fc183e5f906aa300}
+      \strng{authorbibnamehash}{fcf4d8002e81c957fc183e5f906aa300}
+      \strng{authornamehash}{fcf4d8002e81c957fc183e5f906aa300}
+      \strng{authorfullhash}{fcf4d8002e81c957fc183e5f906aa300}
+      \strng{authorfullhashraw}{fcf4d8002e81c957fc183e5f906aa300}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{Accessed: 2026-03-02}
-      \field{title}{Python 3 Language Reference}
-      \field{year}{2024}
-      \verb{urlraw}
-      \verb https://docs.python.org/3/
+      \field{journaltitle}{IEEE Internet Computing}
+      \field{number}{4}
+      \field{title}{Communicating and Displaying Real-Time Data with WebSocket}
+      \field{volume}{16}
+      \field{year}{2012}
+      \field{pages}{45\bibrangedash 53}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1109/MIC.2012.64
       \endverb
-      \verb{url}
-      \verb https://docs.python.org/3/
-      \endverb
+    \endentry
+    \entry{Crick2017}{incollection}{}{}
+      \name{author}{5}{}{%
+        {{hash=4db6a837ae8c5db32ba35e429c599f04}{%
+           family={Crick},
+           familyi={C\bibinitperiod},
+           given={Christopher},
+           giveni={C\bibinitperiod}}}%
+        {{hash=d8294a70c38c25a39df1e848e3f2faf6}{%
+           family={Jay},
+           familyi={J\bibinitperiod},
+           given={Graylin},
+           giveni={G\bibinitperiod}}}%
+        {{hash=6addc88e0007229d991aea38058c163d}{%
+           family={Osentoski},
+           familyi={O\bibinitperiod},
+           given={Sarah},
+           giveni={S\bibinitperiod}}}%
+        {{hash=4c22f9ef08e547f00ce6718f8295c338}{%
+           family={Pitzer},
+           familyi={P\bibinitperiod},
+           given={Benjamin},
+           giveni={B\bibinitperiod}}}%
+        {{hash=bb7cfa624f4b027f0098a26482586065}{%
+           family={Jenkins},
+           familyi={J\bibinitperiod},
+           given={Odest\bibnamedelima Chadwicke},
+           giveni={O\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{314256b5bbc987ebc3614b9790876345}
+      \strng{fullhash}{57a1dbf506ffdb67fde1588c554842c9}
+      \strng{fullhashraw}{57a1dbf506ffdb67fde1588c554842c9}
+      \strng{bibnamehash}{57a1dbf506ffdb67fde1588c554842c9}
+      \strng{authorbibnamehash}{57a1dbf506ffdb67fde1588c554842c9}
+      \strng{authornamehash}{314256b5bbc987ebc3614b9790876345}
+      \strng{authorfullhash}{57a1dbf506ffdb67fde1588c554842c9}
+      \strng{authorfullhashraw}{57a1dbf506ffdb67fde1588c554842c9}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Robotics Research}
+      \field{title}{rosbridge: ROS for Non-ROS Users}
+      \field{year}{2017}
+      \field{pages}{493\bibrangedash 504}
+      \range{pages}{12}
     \endentry
     \entry{Tao2021DigitalTwin}{article}{}{}
       \name{author}{4}{}{%

@@ -1,47 +1,56 @@
 % =========================
 % TITLE PAGE
 % =========================
-\begin{titlepage}
+\newcommand{\campus}{Deggendorf Institute of Technology, Campus Cham}
+\newcommand{\faculty}{Faculty of Applied Natural Sciences and Industrial Engineering}
+\newcommand{\studies}{Master Mechatronics \& Cyber-Physical Systems}
+\newcommand{\thesistitleDE}{Automatische Programmerzeugung f\"ur einen\\
+Blechhandhabungsroboter vor einer Abkantpresse}
+\newcommand{\thesistitleEN}{Automatic Program Generation for a\\
+Sheet-Metal Handling Robot in Front of a Press Brake}
+\newcommand{\thesisdegree}{Master of Engineering (M.Eng.)}
+\newcommand{\student}{Sooraj Sudhakaran}
+\newcommand{\place}{Cham}
+\newcommand{\matrnr}{XXXXXXXX}
+\newcommand{\supervisor}{Prof.\ Dr.\ Matthias G\'orka}
+\newcommand{\secsupervisor}{Martin Naumann}
+\newcommand{\submissionplace}{Cham}
+\newcommand{\submissiondate}{\today}
+
 \thispagestyle{empty}
+\begin{titlepage}
 
-% --- THD LOGO (LEFT, GRAY) ---
-\begin{flushright}
-\includegraphics[width=4.5cm]{figures/thd_logo.png}
-\end{flushright}
+  \begin{flushright}
+    \begin{minipage}{0.35\textwidth}
+      \includegraphics[width=\textwidth]{figures/thd_logo.png}
+    \end{minipage}
+  \end{flushright}
 
-\vspace{0.8cm}
+  \begin{center}
+    {
+      \large Master's Thesis\\[1.0cm]
+      \small\campus\\[0.5cm]
+      \small\faculty\\[1.0cm]
+      \small\studies\\[2cm]
 
-\begin{center}
+      \textbf{\large\thesistitleDE}\\[0.5cm]
+      \textbf{\large\thesistitleEN}\\[2.5cm]
 
-{\bfseries Master's Thesis}\\[0.8cm]
+      master's thesis to obtain the academic degree:
+      \vfill
+      {\small\thesisdegree}
+      \vfill
 
-Deggendorf Institute of Technology, Campus Cham\\
-Faculty of Applied Natural Sciences and Industrial Engineering\\
-Master Mechatronics \& Cyber-Physical Systems\\[1.6cm]
+      \begin{tabular}{rl}
+        submitted by:   & \student, \place, \\[0.2cm]
+                        & \matrnr{}        \\[0.5cm]
+        first examiner: & \supervisor{}    \\[0.5cm]
+        supervisor:     & \secsupervisor{} \\
+      \end{tabular}
 
-% -------- GERMAN TITLE --------
-{\bfseries\Large
-Automatische Programmerzeugung für einen\\
-Blechhandhabungsroboter vor einer Abkantpresse
-}\\[0.6cm]
+      \vfill
+      \submissionplace, \textit{\submissiondate}
+    }
+  \end{center}
 
-% -------- ENGLISH TITLE --------
-{\bfseries\large
-Automatic Program Generation for a\\
-Sheet-Metal Handling Robot in Front of a Press Brake
-}\\[1.4cm]
-
-Master’s thesis to obtain the academic degree:\\
-Master of Engineering (M.Eng.)\\[1.3cm]
-
-\begin{tabular}{rl}
-Submitted by: & Sooraj Sudhakaran.\\
-Matriculation Number: & XXXXXXXX\\
-First Examiner: & Prof.\ Dr.\ Matthias Górka\\
-\end{tabular}
-
-\vfill
-Cham, \today
-
-\end{center}
 \end{titlepage}

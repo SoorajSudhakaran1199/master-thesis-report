@@ -146,6 +146,37 @@
 }
 
 % -------------------------
+% ABBREVIATIONS
+% -------------------------
+\usepackage{acro}
+
+\NewAcroTemplate[list]{thesis-tabular}{%
+  \AcroNeedPackage{tabularx}%
+  \acronymsmapF{%
+    \AcroAddRow{%
+      \acrowrite{short} & : & \acrowrite{list}\tabularnewline
+    }%
+  }{%
+    \AcroRerun
+  }%
+  \acroheading
+  \acropreamble
+  \par\noindent
+  \begin{tabularx}{\textwidth}{l l X}
+    \AcronymTable
+  \end{tabularx}
+}
+
+\acsetup{
+  make-links = true,
+  list/display = all,
+  list/template = thesis-tabular,
+  pages/display = none
+}
+
+\input{frontmatter/abbreviation_definitions}
+
+% -------------------------
 % REFERENCES (BibLaTeX + Biber, IEEE style)
 % -------------------------
 \usepackage[
@@ -157,15 +188,9 @@
 % -------------------------
 % OPTIONAL PARAGRAPH FORMATTING
 % -------------------------
-% Uncomment one of these styles if needed
-
-% No paragraph indent, small space between paragraphs
-% \setlength{\parindent}{0pt}
-% \setlength{\parskip}{0.5em}
-
-% Default paragraph indent, no extra paragraph space
-% \setlength{\parindent}{15pt}
-% \setlength{\parskip}{0pt}
+% No paragraph indent, no extra paragraph space
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
 
 % -------------------------
 % FIGURE / TABLE FLOAT CONTROL
