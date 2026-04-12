@@ -31,6 +31,12 @@
   \cleardoublepage
 }{}
 
+% Declaration on the use of AI tools
+\IfFileExists{frontmatter/declaration_gpt.tex}{%
+  \input{frontmatter/declaration_gpt}
+  \cleardoublepage
+}{}
+
 % Abstract
 \IfFileExists{frontmatter/abstract.tex}{%
   \input{frontmatter/abstract}
@@ -55,6 +61,11 @@
 % List of Figures
 \listoffigures
 \addcontentsline{toc}{chapter}{List of Figures}
+\cleardoublepage
+
+% List of Code Snippets
+\lstlistoflistings
+\addcontentsline{toc}{chapter}{List of Code Snippets}
 \cleardoublepage
 
 % Abbreviations (optional)

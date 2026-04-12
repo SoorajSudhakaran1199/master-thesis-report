@@ -13,6 +13,7 @@
 % -------------------------
 % TYPOGRAPHY / LINE BREAKS
 % -------------------------
+\usepackage[english]{babel}
 \usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath}
 \emergencystretch=2em
@@ -25,7 +26,8 @@
   inner=3cm,
   outer=2cm,
   top=2.5cm,
-  bottom=2.5cm
+  bottom=2.5cm,
+  footskip=1.5cm
 ]{geometry}
 
 % -------------------------
@@ -220,6 +222,7 @@
 % -------------------------
 \usepackage{listings}
 \usepackage{xcolor}
+\renewcommand{\lstlistlistingname}{List of Code Snippets}
 
 \lstdefinelanguage{yaml}{
   keywords={true,false,null,y,n,yes,no},
