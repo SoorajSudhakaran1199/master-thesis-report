@@ -35,6 +35,7 @@
 % -------------------------
 \usepackage{setspace}
 \onehalfspacing
+\raggedbottom
 
 \usepackage{ragged2e}
 \justifying
@@ -177,6 +178,9 @@
 }
 
 \input{frontmatter/abbreviations}
+\IfFileExists{frontmatter/symbols.tex}{%
+  \input{frontmatter/symbols}%
+}{}
 
 % -------------------------
 % REFERENCES (BibLaTeX + Biber, IEEE style)

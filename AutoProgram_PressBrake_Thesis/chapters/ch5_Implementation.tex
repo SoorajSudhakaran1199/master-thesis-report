@@ -357,7 +357,7 @@ The workpiece is defined using four reference faces established during system co
 At the highest priority level, the tracked orientation is converted into a reference-face equivalent by removing the face-specific offset:
  
 \begin{equation}
-R_{\text{new}} = R_{\text{raw}} \cdot R_z(-d)
+R_{\text{new}} = R_{\text{raw}} \cdot R_z(-d_{\text{face}})
 \end{equation}
  
 
@@ -481,7 +481,7 @@ In addition to the outer boundary, internal features such as holes are extracted
 For each candidate grip configuration, the system evaluates whether the available vacuum force is sufficient to retain the sheet under both gravitational and dynamic loading conditions. The contact area of a single suction cup is defined as 
  
 \begin{equation} 
-A_{\text{cup}} = \pi \left(\frac{d}{2}\right)^2 
+A_{\text{cup}} = \pi \left(\frac{d_{\text{cup}}}{2}\right)^2 
 \label{eq:cup_area} 
 \end{equation} 
  
