@@ -2,7 +2,7 @@
 \chapter{Development of Concepts}
 \label{ch:development-concepts}
 
-\section{Purpose and scope of concept development}
+\section{Purpose and Scope of Concept Development}
 Concept development is a fundamental stage in systematic engineering design, in which alternative solution principles are generated and evaluated prior to implementation. By comparing different approaches against defined criteria, the risk of selecting an unsuitable design solution is reduced \cite{Pahl2007EngineeringDesign}.
 
 The research gap identified in Section~\ref{sec:research-gap-motivation} highlights the absence of a systematic approach for automatic robot program generation in press brake sheet metal bending. In particular, existing methods do not adequately address changes in workpiece geometry, gripping, regripping, and pre-execution validation while minimizing manual programming effort. These challenges are translated into measurable engineering objectives and requirements in Chapter~\ref{ch:system-concept-methodology}, including functional requirements (FR-00 to FR-07), non-functional requirements (NFR-01 to NFR-05), and software platform requirements (SR-01 to SR-03), as summarised in Table~\ref{tab:req_traceability_matrix}.
@@ -12,7 +12,7 @@ To address this gap, three conceptually distinct solution approaches are develop
 The selection of the final concept is performed using the \ac{wsm}, a quantitative decision-making method in which evaluation criteria are assigned relative weights and each concept is scored accordingly. This ensures that the concept selection process is systematic, transparent, and aligned with the defined requirements.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Concept A – Structured operator Workflow with Guided Teach in programming}
+\section{Concept A – Structured Operator Workflow with Guided Teach-In Programming}
 \label{sec:concept-a-guided-teach-programming}
 \subsection{Methodological Framework}
 Concept A follows a structured manual programming approach in which the operator defines robot motions and process steps explicitly, supported by a guided workflow. In this approach, robot trajectories, gripper actions, and execution sequences are created manually by the user, while the system provides a structured interface to organise the programming process.
@@ -63,7 +63,7 @@ For these reasons, Concept A is not suitable as the final solution for addressin
 
 
 %%%%%%%%%%%%%%%%%%%%
-\section{Concept B – Automatic Program Generation based on rules with Integrated Constraint Validation.}
+\section{Concept B – Automatic Program Generation Based on Rules with Integrated Constraint Validation}
 \label{sec:concept-b-rule-based-validation}
 \subsection{Methodological Framework}
 Unlike Concept A, which relies on manual waypoint definition, Concept B eliminates manual programming entirely by introducing a rule-based automatic program generation approach. Concept B differs fundamentally from \acs{cad}-based offline programming approaches by generating robot programs dynamically from configuration parameters and runtime validation, rather than relying on pre-defined digital models of the robot cell.
@@ -94,7 +94,7 @@ Overall, Concept B represents a configuration-driven, rule-based methodology tha
 \label{sec:concept-b-system-structure}
 The structure of Concept B consists of five layers, as defined in Section~\ref{sec:system_architecture}. The input and configuration layer collects all required inputs for programming. The geometry and constraints evaluation layer applies grip feasibility rules, edge-clearance checks, and zone-based orientation constraints. The planning and decision logic layer determines whether the program can be executed directly or whether regripping or workpiece flipping is required, based on reachability and orientation validity. The trajectory planning layer produces linear Cartesian waypoints with minimum-jerk velocity profiles. The safety and validation layer applies a pre-execution pose check before the command is published to the robot runtime.
 \par The \ac{websocket} channel of the AnyRobot interface connects all five layers to the drag\&bot virtual simulation runtime \cite{dragandbot_anyrobot_2025}. The configuration-driven approach separates all process parameters from the program logic, allowing the solution to handle new workpiece geometries by modifying configuration files. This directly satisfies non-functional requirement NFR-02, as described in Section~\ref{non-functional-requirements}.
-\subsection{Critical evaluation} 
+\subsection{Critical Evaluation} 
 \label{sec:concept-b-critical-evaluation}
 Concept B is aligned with the research gap stated in Section~\ref{sec:research-gap-motivation} for every dimension identified in the literature. It defines waypoints, plans regrips, and sequences opposite-side operations automatically from geometric parameters. A pre-execution pose validator guards against unsafe execution states before motion starts. This enables a configuration-driven architecture that can adapt to new part geometries without source code changes, satisfying FR-01, NFR-03, NFR-04, and NFR-05. Configuration-driven parameterization satisfies NFR-02. The system operates exclusively within the drag\&bot runtime via the AnyRobot Interface, satisfying SR-01 and SR-02. All motion targets reference the pre-defined tool center point, satisfying SR-03. All requirements in Chapter~\ref{ch:system-concept-methodology} are therefore addressed by the concept design.
 \par The primary constraints under which Concept B operates are identified in Section~\ref{System-Constraints-and-Assumptions}. The system assumes rectangular sheet geometry with fixed 90-degree bend-angle constraints. Integration with the KEBA robot controller hardware, which is part of the KEBA robot driver layer within the drag\&bot software stack \cite{dragandbot_anyrobot_2025}, is identified in the future work section and is outside the scope of this thesis. All validation has been conducted within the drag\&bot virtual simulation environment, which is discussed in this section. The virtual simulation environment used for this evaluation is illustrated in Figure~\ref{fig:Dragandbot_Simulation}. The environment represents a simulated press brake cell configured with the drag\&bot platform, including the robot, workpiece, and interactions required for program execution. These constraints are explicit and not indicative of design flaws but, rather, define the scope within which the design concept operates.
@@ -147,7 +147,7 @@ Overall, the structural comparison indicates that Concept B provides the most co
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Concept Decision Using the Weighted Sum Model (WSM)}
+\section{Concept Decision Using the Weighted Sum Model}
 \label{sec:concept-decision-wsm}
 \subsection{Methodology}
 \label{sec:wsm-methodology}
@@ -180,11 +180,11 @@ This criterion evaluates whether the concept can operate within the required sof
 This criterion evaluates the level of user interaction required during operation. Systems that minimise operator involvement and reduce the need for specialised programming knowledge are considered more user-friendly and suitable for industrial deployment, in accordance with NFR-01.
 
 
-\section{Result of the weighted Sum Model}
+\section{Result of the Weighted Sum Model}
 Table~\ref{tab:weighted_sum_model} presents the complete WSM evaluation with score justifications and weighted totals for all three concepts.
 \input{chapters/tables/tab_weighted_sum_model.tex}
 
-\section{Analysis of results and Concept Decision}
+\section{Analysis of Results and Concept Decision}
 \label{sec:analysis-concept-decision}
 The results of the \ac{wsm} indicate a clear ranking among the proposed concepts. Concept B achieves the highest score (4.00), followed by Concept C (2.95), while Concept A obtains the lowest score (1.25). This reflects their relative effectiveness in satisfying the functional, non-functional, and platform requirements defined in Chapter~\ref{ch:system-concept-methodology}.
 

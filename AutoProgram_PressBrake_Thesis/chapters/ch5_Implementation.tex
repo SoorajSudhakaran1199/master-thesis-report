@@ -148,7 +148,7 @@ Figure~\ref{fig:robot_panel} shows the robot control panel used for system inter
 
 \FloatBarrier 
 
-\subsection{Configuration Architecture and YAML File Structure}
+\subsection{Configuration Architecture and Data File Structure}
 \label{sec:configuration-architecture}
 The \ac{yaml} configuration file serves as the central entry point for all process-related parameters and provides a flexible mechanism for adapting the system to different workpieces without requiring modifications to the underlying source code, thereby fulfilling NFR-02. At the beginning of each session, the file is parsed once, and the resulting configuration data is stored as a dictionary that is shared across all modules in Layers 2 to 4. The structure of the file is organized into six clearly defined top-level sections, each corresponding to a specific functional aspect of the system architecture, which supports clarity and maintainability.
 \ac{yaml} is selected over \ac{json} primarily due to its support for inline comments. This allows engineers to document the meaning and physical relevance of individual parameters directly within the configuration file, eliminating the need to consult external documentation. To ensure robustness and security, the configuration is loaded using a safe parsing method, which prevents the execution of unintended code in the event that the file is modified or corrupted.
@@ -168,7 +168,7 @@ Listing~\ref{lst:yaml_config_safe} presents a generalised \ac{yaml} configuratio
 
 
 
-\subsection{Operator Interface -- Interactive 3D Sheet Bending Viewer}
+\subsection{Operator Interface and Interactive Three-Dimensional Sheet Bending Viewer}
 \label{sec:operator-interface}
 
 Operator input for each execution cycle is provided through an interactive three-dimensional sheet bending viewer developed in this work (hereafter referred to as the \textit{3D viewer}), rather than a conventional text-based interface. This design decision is primarily motivated by the spatial nature of bend side selection. By presenting the workpiece directly as a 3D model, the operator can identify relevant surfaces and orientations more intuitively than by relying on abstract side labels. In practice, this reduces the likelihood of incorrect selections while keeping the interaction simple, as the operator performs only visually guided inputs and the system handles the underlying computations.
@@ -216,7 +216,7 @@ Once the operator confirms the selection, the defined parameters are transmitted
  
 With the architectural framework established in Section~\ref{sec:system_architecture}, a controlled environment is required to execute, test, and validate the developed system prior to deployment on physical hardware. This section presents the development and simulation environment used in this work, including the drag\&bot platform, the robot model and tool configuration, and the spatial zone classification strategy used to structure the workspace.
  
-\subsection{Simulation Platform, Robot Model, and TCP Configuration}
+\subsection{Simulation Platform, Robot Model, and Tool Centre Point Configuration}
 \label{sec:simulation_platform}
  
 The drag\&bot platform is used as the primary environment for system development, integration, and validation. It provides a virtual robot controller together with the AnyRobot \ac{websocket} Interface, enabling the planning software to interact with the robot runtime without requiring direct access to physical equipment. This supports safe testing, repeatability, and efficient iteration during development. The use of virtualised environments is consistent with current industrial trends in digital manufacturing and digital twin-based validation~\cite{dragandbot_anyrobot_2025,Tao2021DigitalTwin}.
@@ -328,7 +328,7 @@ Together, these mechanisms establish a layered safety structure. Pre-execution v
  
 Following pre-execution safety validation, the first geometric step in each bending cycle is the determination of a valid pickup orientation for the sheet. This is required because the sheet may be placed in arbitrary orientations within the workspace, while only a subset of these orientations is kinematically feasible for the target bending operation. The orientation strategy evaluates the tracked sheet pose, applies a structured selection process, and produces a validated pickup pose for subsequent grip planning.
  
-\subsection{Zone-Based RZ Admissibility}
+\subsection{Zone-Based Rotation Admissibility}
 \label{sec:zone-based-rz-admissibility}
  
 The admissible range of sheet rotation about the Z-axis is defined by a zone-dependent window $[RZ_{\min}, RZ_{\max}]$. This constraint reflects the limited rotational capability of the robot end-effector within different regions of the workspace \cite{Siciliano2016Robotics}. Since the reachable orientation range varies with the spatial position of the sheet, zone classification is performed prior to orientation evaluation. The admissibility limits are retrieved from the configuration to ensure that only kinematically feasible orientations are considered. This prevents the selection of geometrically valid but unreachable poses.
@@ -435,7 +435,7 @@ The proposed strategy guarantees that a valid pickup orientation is always deter
  
 Once a valid pickup orientation has been determined, the system must establish a reliable physical interaction between the gripper and the sheet while maintaining consistency between the physical robot state and the virtual simulation. Any mismatch between the vacuum state of the gripper and the attachment state in the simulation leads to incorrect pose propagation and invalid trajectory computation in subsequent stages. This consistency is ensured through two coordinated mechanisms: digital IO control of the vacuum gripper and kinematic object attachment within the simulation environment.
  
-\subsection{Vacuum Gripper Digital IO Sequence}
+\subsection{Vacuum Gripper Digital Input and Output Sequence}
  
 The vacuum gripper is actuated using two digital output signals mapped within the drag\&bot IO management system. One signal activates the vacuum by closing the suction valve, while the other releases the vacuum by opening the exhaust valve. These signals are strictly mutually exclusive; simultaneous activation is avoided to prevent conflicting pressure states and potential hardware damage.
  
@@ -546,8 +546,6 @@ Figure~\ref{fig:grip_planning_flowchart} illustrates the complete grip planning 
     \label{fig:grip_planning_flowchart}
 \end{figure}
 
-%%%%% CODE SNIPPET %%%%%
-
 The grip candidate search and selection process described above can be illustrated through a simplified implementation that captures the essential steps of the planner. The approach involves systematic candidate generation over the sheet surface using a grid-based discretisation, followed by geometric filtering to remove invalid positions, and finally a scoring-based selection of the most suitable grip point. The simplified implementation shown below highlights the core logic of this process without exposing implementation-specific details.
 \FloatBarrier
 
@@ -560,7 +558,6 @@ Listing~\ref{lst:grip_candidates} presents a simplified Python implementation of
 ]{code/grip_candidate_generation.py}
 
 \FloatBarrier
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Regrip Planning and Execution} 
 \label{sec:regrip} 
@@ -631,7 +628,7 @@ Compared to configuration-driven approaches, the proposed method improves adapta
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Opposite-face Bending Workflow} 
+\section{Opposite-Face Bending Workflow} 
 \label{sec:opposite_side} 
  
 After completing all primary-side bending operations, the system evaluates whether additional bends are required on the opposite face of the sheet. These operations cannot be executed directly from the initial pickup configuration, as the required face is not accessible to the press brake tool. Consequently, the workpiece must be reoriented through a controlled flip operation before continuing the bending process. 
@@ -646,7 +643,7 @@ If the verification fails, a transition correction step is executed. The system 
  
 If the verification is successful, the correction step is omitted and the system proceeds directly to the flip sequence. 
  
-\subsection{Sheet Flip Sequence and Opposite-face Bending Execution} 
+\subsection{Sheet Flip Sequence and Opposite-Face Bending Execution} 
  
 The flip operation is performed using a dedicated station within the robotic cell. The workpiece is transferred through two predefined reference positions to achieve a physically feasible reorientation. 
  
@@ -683,7 +680,7 @@ Trajectory generation constitutes the final stage of the planning pipeline, wher
  
 Rather than executing direct point-to-point transitions, the system constructs a continuous and smooth trajectory composed of intermediate waypoints. This approach ensures kinematic feasibility, reduces dynamic loading, and improves execution stability during sheet handling.
  
-\subsection{Three-Phase LIN Trajectory Structure}
+\subsection{Three-Phase Linear Trajectory Structure}
  
 Each motion segment is generated using a structured three-phase trajectory: lift, lateral transfer, and descent. 
  

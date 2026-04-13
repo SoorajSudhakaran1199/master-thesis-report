@@ -59,7 +59,7 @@ The detailed functional requirements corresponding to these capabilities are sum
 
 \input{chapters/tables/tab_functional_requirements}
 
-\subsection{Non-functional Requirements}
+\subsection{Non-Functional Requirements}
 \label{non-functional-requirements}
 
 The non-functional requirements define the quality attributes of the proposed system and ensure that it operates reliably, efficiently, and in a manner suitable for industrial applications. These requirements describe how the system performs under various conditions and how it supports usability, maintainability, and robustness.
@@ -118,7 +118,7 @@ The drag\&bot environment provides a unified interface for robot motion executio
 
 By operating within this environment, the system enables reliable simulation-based validation of robot programs, ensuring that functional requirements related to trajectory generation, handling, and process sequencing are verified prior to execution. The use of a virtual runtime environment also supports reproducibility of results and reduces dependency on physical system availability.
 
-\paragraph{Acceptance Criteria — SR-01:}
+\paragraph{Acceptance Criteria — SR-01}
 The system shall establish a stable connection to the virtual runtime environment, and all generated robot motions, service calls, and input-output operations shall be executed and validated successfully within the simulation environment.
 
 \subsubsection{SR-02 Communication Interface Requirement}
@@ -128,17 +128,17 @@ The communication shall be implemented using a \acs{websocket}-based protocol, e
 
 By using a unified communication interface, the system ensures that all commands and execution requests are transmitted in a structured and controlled manner, supporting maintainability and compatibility across different system configurations. This abstraction also enables the planning system to remain independent of specific robot controller implementations.
 
-\paragraph{Acceptance Criteria — SR-02:}
+\paragraph{Acceptance Criteria — SR-02}
 All communication between the planning module and the execution environment shall occur through the defined communication interface. A valid connection shall be established before command transmission, and all motion, input-output, and service operations shall be successfully executed and acknowledged within the simulation environment.
 
-\subsubsection{Tool Centre Point (TCP) Definition Requirement - SR-03}
+\subsubsection{Tool Centre Point Definition Requirement SR-03}
 The system shall define all robot motion targets with respect to a predefined \ac{tcp} configuration. The \ac{tcp} represents the reference frame of the end-effector and is used as the basis for all trajectory generation and motion planning operations.
 
 All generated robot poses, including approach positions, handling configurations, and placement targets, shall be expressed in relation to the \ac{tcp}. This ensures consistency between the planning module and the execution environment, and guarantees that the generated trajectories correspond to the physical geometry of the tool.
 
 The \ac{tcp} configuration is defined externally and remains fixed during system operation. Any changes to the tool configuration or \ac{tcp} definition require corresponding updates to ensure alignment between the generated trajectories and the execution environment. This requirement ensures that motion accuracy and handling feasibility are maintained throughout the process.
 
-\paragraph{Acceptance Criteria — SR-03:}
+\paragraph{Acceptance Criteria — SR-03}
 All generated robot motion targets shall be consistent with the predefined \ac{tcp} configuration, and any modification to the \ac{tcp} definition shall be reflected correctly in the generated trajectories without requiring structural changes to the system logic.
 
 \begin{figure}[htbp]
@@ -163,10 +163,10 @@ The requirement identifiers are used consistently to establish clear relationshi
     \item No requirement remains unaddressed in the implementation.
     \item All implemented functionalities can be traced back to a corresponding requirement.
 \end{itemize}
-\paragraph{Forward Traceability:}
+\paragraph{Forward Traceability}
 Forward traceability ensures that every defined requirement is realised in a corresponding system component or functional module. This confirms that all requirements are properly implemented within the system architecture.
 
-\paragraph{Backward Traceability:}
+\paragraph{Backward Traceability}
 Backward traceability ensures that every implemented functionality can be traced back to an explicitly defined requirement. This guarantees that no unnecessary or unjustified functionality is introduced into the system.
 
 By mapping each requirement to corresponding implementation modules and validation scenarios, the development process becomes structured, auditable, and reproducible. This is particularly important in systems involving automated decision-making processes, such as reachability evaluation, grip point determination, regripping logic, and opposite-side handling.
