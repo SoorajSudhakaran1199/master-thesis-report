@@ -56,7 +56,7 @@ Five distinct layers are defined within the system architecture, each with a cle
         width=\textwidth,
         height=0.75\textheight,
         keepaspectratio
-    ]{Flow_Diagrams/system_architecture_global_validation.pdf}
+    ]{flow_diagrams/system_architecture_global_validation.pdf}
     \caption{Global system architecture for validation workflow.}
     \label{fig:system_architecture_global_validation}
 \end{figure}
@@ -201,7 +201,7 @@ Once the operator confirms the selection, the defined parameters are transmitted
         width=\linewidth,
         height=0.78\textheight,
         keepaspectratio
-    ]{Flow_Diagrams/operator_workflow.pdf}
+    ]{flow_diagrams/operator_workflow.pdf}
     \caption[Operator workflow]{Operator workflow. Every gate must be passed before the next begins. All operator interactions occur within the drag\&bot environment. \textit{Source: own work.}}
     \label{fig:operator_workflow}
 \end{figure}
@@ -419,7 +419,7 @@ Algorithm~\ref{alg:orientation_selection} summarises the implemented selection s
         width=\textwidth,
         height=0.78\textheight,
         keepaspectratio
-    ]{Flow_Diagrams/three_level_orientation.pdf}
+    ]{flow_diagrams/three_level_orientation.pdf}
     \caption[Three-level orientation strategy]{Three-level orientation selection strategy for determining a valid pickup pose under kinematic constraints. \textit{Source: own work.}}
     \label{fig:three_level_architecture}
 \end{figure}
@@ -541,7 +541,7 @@ Figure~\ref{fig:grip_planning_flowchart} illustrates the complete grip planning 
         width=\textwidth,
         height=0.78\textheight,
         keepaspectratio
-    ]{Flow_Diagrams/grip_planning_flow.pdf}
+    ]{flow_diagrams/grip_planning_flow.pdf}
     \caption[Grip planning workflow]{Grip position planning and feasibility validation workflow. The process integrates geometric filtering and vacuum force validation to ensure physically stable and executable grasp configurations prior to trajectory generation. \textit{Source: own work.}}
     \label{fig:grip_planning_flowchart}
 \end{figure}
@@ -668,7 +668,7 @@ After completing all opposite-side bends, any remaining staged operations are ex
         width=\textwidth,
         height=0.78\textheight,
         keepaspectratio
-    ]{Flow_Diagrams/opposite_face_bending.pdf}
+    ]{flow_diagrams/opposite_face_bending.pdf}
     \caption[Opposite-face flip workflow]{Opposite-face flip workflow enabling access to previously unreachable bending surfaces. \textit{Source: own work.}}
     \label{fig:opposite_face_flip}
 \end{figure}
@@ -774,7 +774,7 @@ Each parameter is assessed using a qualitative scale from 1 (low) to 10 (high), 
  
 The analysis focuses on critical stages of the execution pipeline, including pickup orientation, grip planning, trajectory execution, regrip handling, and opposite-face operations. The identified failure modes are summarised in Table~\ref{tab:fmea}.
  
-\input{chapters/tables/tab_FMEA.tex}
+\input{chapters/tables/tab_fmea.tex}
  
 The selected failure modes reflect the most critical dependencies in the system, particularly those related to geometric accuracy, kinematic feasibility, and physical interaction between the robot and the workpiece.
  

@@ -7,6 +7,7 @@
 \documentclass[11pt,a4paper,twoside]{report}
 
 \input{preamble}
+\input{frontmatter/thesis_metadata}
 
 \begin{document}
 
@@ -15,6 +16,8 @@
 % included in the thesis, but without printed page number
 % ---------------------------------
 \pagenumbering{gobble}
+\input{frontmatter/coverpage}
+\cleardoublepage
 \input{frontmatter/titlepage}
 \cleardoublepage
 
@@ -22,7 +25,7 @@
 % FRONT MATTER
 % Roman page numbering
 % ---------------------------------
-\pagenumbering{Roman}
+\pagenumbering{roman}
 \setcounter{page}{1}
 
 % Declaration
@@ -37,15 +40,15 @@
   \cleardoublepage
 }{}
 
-% Abstract
-\IfFileExists{frontmatter/abstract.tex}{%
-  \input{frontmatter/abstract}
-  \cleardoublepage
-}{}
-
 % Acknowledgements (optional)
 \IfFileExists{frontmatter/acknowledgements.tex}{%
   \input{frontmatter/acknowledgements}
+  \cleardoublepage
+}{}
+
+% Abstract
+\IfFileExists{frontmatter/abstract.tex}{%
+  \input{frontmatter/abstract}
   \cleardoublepage
 }{}
 
@@ -53,14 +56,14 @@
 \tableofcontents
 \cleardoublepage
 
-% List of Tables
-\listoftables
-\addcontentsline{toc}{chapter}{List of Tables}
-\cleardoublepage
-
 % List of Figures
 \listoffigures
 \addcontentsline{toc}{chapter}{List of Figures}
+\cleardoublepage
+
+% List of Tables
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
 \cleardoublepage
 
 % List of Code Snippets
@@ -70,7 +73,7 @@
 
 % Abbreviations (optional)
 \IfFileExists{frontmatter/abbreviations.tex}{%
-  \input{frontmatter/abbreviations}
+  \printthesisabbreviations
   \cleardoublepage
 }{}
 
@@ -86,44 +89,46 @@
   \input{chapters/ch1_introduction}
 }{}
 
-\IfFileExists{chapters/ch2_state_of_art.tex}{%
-  \input{chapters/ch2_state_of_art}
+\IfFileExists{chapters/ch2_state_of_the_art.tex}{%
+  \input{chapters/ch2_state_of_the_art}
 }{}
 
-\IfFileExists{chapters/ch3_System_Concept_and_Methodology.tex}{%
-  \input{chapters/ch3_System_Concept_and_Methodology}
+\IfFileExists{chapters/ch3_system_concept_and_methodology.tex}{%
+  \input{chapters/ch3_system_concept_and_methodology}
 }{}
 
-\IfFileExists{chapters/ch4_Development_of_Concepts.tex}{%
-  \input{chapters/ch4_Development_of_Concepts}
+\IfFileExists{chapters/ch4_development_of_concepts.tex}{%
+  \input{chapters/ch4_development_of_concepts}
 }{}
 
-\IfFileExists{chapters/ch5_Implementation.tex}{%
-  \input{chapters/ch5_Implementation}
+\IfFileExists{chapters/ch5_implementation.tex}{%
+  \input{chapters/ch5_implementation}
 }{}
 
-\IfFileExists{chapters/ch6_Evaluation_and_Validation.tex}{%
-  \input{chapters/ch6_Evaluation_and_Validation}
+\IfFileExists{chapters/ch6_evaluation_and_validation.tex}{%
+  \input{chapters/ch6_evaluation_and_validation}
 }{}
 
-\IfFileExists{chapters/ch7_Conclusion_and_Future_Work.tex}{%
-  \input{chapters/ch7_Conclusion_and_Future_Work}
-}{}
-
-% ---------------------------------
-% APPENDIX
-% ---------------------------------
-\appendix
-
-\IfFileExists{appendix/appendixA.tex}{%
-  \input{appendix/appendixA}
+\IfFileExists{chapters/ch7_conclusion_and_future_work.tex}{%
+  \input{chapters/ch7_conclusion_and_future_work}
 }{}
 
 % ---------------------------------
 % REFERENCES
 % ---------------------------------
 \cleardoublepage
+\phantomsection
 \addcontentsline{toc}{chapter}{References}
 \printbibliography
+
+% ---------------------------------
+% APPENDIX
+% ---------------------------------
+\cleardoublepage
+\appendix
+
+\IfFileExists{appendix/appendix_a.tex}{%
+  \input{appendix/appendix_a}
+}{}
 
 \end{document}
