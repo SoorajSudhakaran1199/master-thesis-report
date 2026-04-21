@@ -3,6 +3,7 @@
 \label{ch:development-concepts}
 
 \section{Purpose and Scope of Concept Development}
+\label{sec:purpose-scope-concept-development}
 Concept development is a fundamental stage in systematic engineering design, in which alternative solution principles are generated and evaluated prior to implementation. By comparing different approaches against defined criteria, the risk of selecting an unsuitable design solution is reduced \cite{Pahl2007EngineeringDesign}.
 
 The research gap identified in Section~\ref{sec:research-gap-motivation} highlights the absence of a systematic approach for automatic robot program generation in press brake sheet metal bending. In particular, existing methods do not adequately address changes in workpiece geometry, gripping, regripping, and pre-execution validation while minimizing manual programming effort. These challenges are translated into measurable engineering objectives and requirements in Chapter~\ref{ch:system-concept-methodology}, including functional requirements (FR-00 to FR-07), non-functional requirements (NFR-01 to NFR-05), and software platform requirements (SR-01 to SR-03), as summarised in Table~\ref{tab:req_traceability_matrix}.
@@ -15,6 +16,7 @@ The selection of the final concept is performed using the \ac{wsm}, a quantitati
 \section{Concept A – Structured Operator Workflow with Guided Teach-In Programming}
 \label{sec:concept-a-guided-teach-programming}
 \subsection{Methodological Framework}
+\label{sec:concept-a-methodological-framework}
 Concept A follows a structured manual programming approach in which the operator defines robot motions and process steps explicitly, supported by a guided workflow. In this approach, robot trajectories, gripper actions, and execution sequences are created manually by the user, while the system provides a structured interface to organise the programming process.
 
 This concept is based on conventional manual robot programming practices, as discussed in Section~\ref{sec:manual-teach-pendant-programming}, where the operator directly defines waypoints and process logic \cite{Siciliano2016Robotics}. The introduction of a guided workflow improves usability by structuring the sequence of operations and reducing unstructured interaction, but it does not change the underlying requirement for manual definition of all robot motions.
@@ -66,6 +68,7 @@ For these reasons, Concept A is not suitable as the final solution for addressin
 \section{Concept B – Automatic Program Generation Based on Rules with Integrated Constraint Validation}
 \label{sec:concept-b-rule-based-validation}
 \subsection{Methodological Framework}
+\label{sec:concept-b-methodological-framework}
 Unlike Concept A, which relies on manual waypoint definition, Concept B eliminates manual programming entirely by introducing a rule-based automatic program generation approach. Concept B differs fundamentally from \acs{cad}-based offline programming approaches by generating robot programs dynamically from configuration parameters and runtime validation, rather than relying on pre-defined digital models of the robot cell.
 
 In this approach, all robot waypoints, grip positions, regripping sequences, and opposite-side handling strategies are derived automatically from geometric input parameters and a structured configuration file. Operator interaction is limited to selecting process options and confirming execution, while all motion generation and decision-making processes are handled by the system. This significantly reduces manual effort and directly addresses the primary objective of automatic program generation defined in Chapter~\ref{ch:system-concept-methodology}. This approach directly satisfies FR-00 by enabling automatic generation of robot programs without manual intervention.
@@ -110,6 +113,7 @@ Concept B is aligned with the research gap stated in Section~\ref{sec:research-g
 \section{Concept C – CAD Integrated Offline Programming with Digital Twin Simulation}
 \label{sec:concept-c-cad-olp-digital-twin}
 \subsection{Methodological Framework}
+\label{sec:concept-c-methodological-framework}
 Unlike Concept B, which performs rule-based program generation dynamically during execution, Concept C relies on a complete CAD-based digital model of the robot cell to generate and validate robot programs offline prior to execution.
 
 Concept C follows a \ac{cad} integrated \ac{olp} approach, in which a digital representation of the robot, tooling, and workpiece is used to plan and simulate robot operations. In this methodology, robot programs are generated within a simulation environment based on the geometric model of the workpiece and the digital representation of the production cell. All motion planning, collision checking, and feasibility evaluation are performed prior to execution, without requiring direct interaction with the physical robot.
@@ -159,6 +163,7 @@ This method ensures that the concept selection process remains transparent, syst
 
 
 \subsection{Evaluation Criteria and Weights}
+\label{sec:evaluation-criteria-weights}
 The evaluation criteria are derived directly from the functional requirements (FR-00 to FR-07), non-functional requirements (NFR-01 to NFR-05), and software platform requirements (SR-01 to SR-03) defined in Chapter~\ref{ch:system-concept-methodology}. The assigned weights reflect the relative importance of each criterion in addressing the identified research gap.
 
 \paragraph{Programming Effort Reduction (25\%)}
@@ -181,6 +186,7 @@ This criterion evaluates the level of user interaction required during operation
 
 
 \section{Result of the Weighted Sum Model}
+\label{sec:weighted-sum-model-result}
 Table~\ref{tab:weighted_sum_model} presents the complete WSM evaluation with score justifications and weighted totals for all three concepts.
 \input{chapters/tables/tab_weighted_sum_model.tex}
 

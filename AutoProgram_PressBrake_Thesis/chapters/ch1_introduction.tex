@@ -5,48 +5,49 @@
 \section{Background and Motivation}
 \label{sec_background_motivation}
 
-Sheet metal bending using press brake machines is a fundamental process in modern manufacturing, widely applied in industries such as automotive, aerospace, and industrial equipment production. Traditionally, this process relies on skilled operators to manually position the workpiece and define the required bending sequence. Process planning for such operations involves complex sequencing and motion planning tasks \cite{Gupta1998SheetMetalBending}. While industrial robots have been introduced to automate handling and improve productivity, current implementations still require significant manual programming effort to define robot motions and process steps, as robot programming remains complex and requires skilled operators \cite{Neto2013OLP,Villani2018}.
+Sheet metal bending on press brake machines is a common manufacturing process for producing functional sheet metal parts \cite{Gupta1998SheetMetalBending,Aomura2002RoboticBending}. In such processes, the bend sequence, tooling conditions, workpiece handling, and collision constraints are closely connected. When a robot is added to the press brake cell, the planning task becomes more demanding because grasp positions, repositions, and robot motion plans must also be considered \cite{Gupta1998SheetMetalBending,Aomura2002RoboticBending}. Although robotic systems can reduce direct manual handling, programming these systems still requires considerable engineering effort, especially when robot motions and process steps have to be adapted for new parts \cite{Pan2012Survey,Neto2013OLP}.
 
-In conventional robotic bending systems, operators must define motion programs by specifying waypoints, configuring sequences, and ensuring feasibility for each new workpiece \cite{Neto2013OLP}. This approach becomes increasingly inefficient when variations in sheet geometry, orientation, or placement occur, often requiring partial or complete reprogramming, which increases setup time and reduces flexibility.
+In conventional robotic bending workflows, engineers often still define key poses, motion sequences, and process logic for each workpiece. This becomes inefficient when the sheet geometry, initial placement, or required bending sequence changes, because the robot program may need to be adjusted, checked, or recreated before execution \cite{Pan2012Survey,Gupta1998SheetMetalBending,Aomura2002RoboticBending}.
  
-The growing demand for flexible manufacturing systems highlights the need for solutions that reduce manual intervention and enable rapid adaptation to changing production conditions. In this context, automation of robot program generation and decision-making becomes a critical requirement for improving efficiency and scalability in press brake operations.
+The increasing need for flexible manufacturing highlights the importance of reducing manual intervention in robot programming. For robotic press brake bending, this means that program generation, grip selection, regripping decisions, and motion validation should be handled in a more systematic way. The motivation of this thesis is therefore to investigate how an automated planning pipeline can support faster and more repeatable preparation of robotic bending tasks \cite{Pan2012Survey,Gupta1998SheetMetalBending}.
  
 \section{Problem Statement}
 \label{sec_problem_statement}
  
-Despite the integration of robotic systems in press brake bending, current approaches exhibit several limitations. Existing solutions often depend heavily on manual programming, requiring operators to define detailed motion sequences for each task. This results in high programming effort and increased susceptibility to human error.
+Despite the use of robots in press brake bending, many workflows still depend on manually defined motion sequences and process logic. This creates high programming effort and makes the result strongly dependent on the experience of the programmer \cite{Pan2012Survey,Neto2013OLP}.
  
-Furthermore, many systems lack the ability to adapt automatically to variations in workpiece position, orientation, and geometry. As a result, changes in input conditions necessitate manual adjustments, reduces flexibility and adaptability in dynamic production environments \cite{Villani2018}.
+A further limitation is the lack of automatic adaptation to changes in workpiece position, orientation, or geometry. In robotic bending, such changes influence grasp feasibility, reachability, collision conditions, and the required bending sequence. Without automated planning support, these changes often lead to manual adjustments and reduced flexibility \cite{Gupta1998SheetMetalBending,Aomura2002RoboticBending}.
  
-Another challenge lies in handling complex operations such as regripping to reduce the kinematic complexity and multi-stage bending. These tasks typically require predefined sequences or manual intervention, which restricts automation and increases operational complexity.
+Regripping and multi-stage bending are especially difficult because they require coordinated decisions about where the workpiece is held, when it must be repositioned, and whether the next bend remains reachable. If these decisions are predefined manually, the system becomes harder to adapt to new workpieces or process sequences \cite{Aomura2002RoboticBending,Gupta1998SheetMetalBending}.
  
-These limitations indicate the need for a systematic and automated approach that can generate robot programs dynamically while ensuring feasibility, safety, and consistency.
+These limitations indicate the need for a systematic and automated approach that can generate robot programs dynamically while checking feasibility, safety, and consistency before execution.
  
 \section{Research Objectives}
 \label{sec_research_objectives}
  
-The primary objective of this thesis is to develop an automated system for robotic press brake bending that significantly reduces manual programming effort while improving adaptability to varying workpiece conditions. The proposed approach aims to enhance the efficiency, flexibility, and reliability of robotic bending processes by minimizing operator intervention and enabling systematic decision-making within the planning pipeline.
+The primary objective of this thesis is to develop an automated system for robotic press brake bending that reduces manual programming effort while improving adaptability to varying workpiece conditions. The proposed approach aims to make the preparation of robotic bending tasks more structured by reducing operator intervention and by introducing systematic decision-making within the planning pipeline.
 
-To achieve this objective, several specific goals are defined. First, the system is designed to automatically generate robot programs based on geometric input parameters, thereby eliminating the need for manual motion definition. In addition, the system enables adaptive handling of workpiece variations, including changes in position, orientation, and geometry, which are common in real-world production environments.
+To achieve this objective, several specific goals are defined. First, the system is designed to automatically generate robot programs based on geometric input parameters, reducing the need for manual motion definition. In addition, the system enables adaptive handling of workpiece variations, including changes in position, orientation, and geometry.
 
 A key aspect of the work is the integration of multiple planning components into a unified framework. These components include orientation determination, grip planning, regrip handling, and trajectory generation, all of which are essential for ensuring feasible and continuous execution of the bending process. Furthermore, the system incorporates structured validation mechanisms to ensure safe and collision-free operation during program execution.
 
-Finally, the overall objective is to reduce operator dependency while maintaining consistent and repeatable system behaviour. By automating critical planning tasks, the proposed solution aims to improve scalability and support more flexible manufacturing workflows.
+Finally, the overall objective is to reduce operator dependency while maintaining consistent and repeatable system behaviour. By automating critical planning tasks, the proposed solution aims to support more flexible robotic bending workflows.
  
 \section{Scope of Work}
+\label{sec_scope_of_work}
  
 This thesis focuses on the development and evaluation of an automated planning system for robotic press brake bending within a virtual simulation environment. The primary scope of the work is limited to the generation of robot programs and the validation of their execution feasibility using simulated data, without direct implementation on a physical robotic system.
 
-The system is developed using a collaborative industrial robot platform, specifically a robot from the Universal Robots family. This platform is selected due to its widespread industrial adoption, ease of integration, and compatibility with modern robotic software frameworks. These characteristics support the development of a solution that is not only effective in simulation but also transferable to real-world industrial applications.
+The system is developed using a collaborative industrial robot from the Universal Robots family. This platform is selected because its payload, reach, repeatability, and available communication interfaces are suitable for developing and testing a structured robotic handling workflow in simulation \cite{universalrobots_ur5e}.
 
-The implementation is tailored to sheet metal bending tasks with defined geometric properties, allowing for controlled evaluation of the proposed planning approach. However, the work does not aim to address all possible industrial variations or complex multi-process workflows, such as highly customized production scenarios or integration with additional manufacturing processes.
+The implementation is tailored to sheet metal bending tasks with defined geometric properties, allowing for controlled evaluation of the proposed planning approach. However, the work does not aim to address all possible industrial variations or complex multi-process workflows, such as highly customised production scenarios or integration with additional manufacturing processes.
 
 Furthermore, the evaluation is conducted entirely in a simulation environment, focusing on functional validation, feasibility assessment, and performance analysis. While this approach enables systematic testing and development, it does not include experimental validation on a physical robotic system, which is considered outside the scope of this thesis and a potential direction for future work.
  
 \section{Methodology Overview}
 \label{sec_methodology_overview}
  
-The proposed solution follows a structured methodology that combines concept evaluation, modular system design, and systematic validation. The overall approach is designed to ensure that the developed system meets both functional and non-functional requirements while supporting reliable and efficient automated robot program generation.
+The proposed solution follows a structured methodology that combines concept evaluation, modular system design, and systematic validation. The overall approach is designed to ensure that the developed system meets both functional and non-functional requirements while supporting reliable automated robot program generation.
 
 Initially, multiple solution concepts are analysed and compared based on a set of defined evaluation criteria. These criteria include the ability to support automated program generation, as well as the extent to which each concept satisfies the identified functional requirements, non-functional requirements, and software design constraints. Based on this evaluation, the most suitable concept is selected for further development.
 

@@ -90,7 +90,7 @@ While the previous section validated individual functional components, this sect
 \subsection{End-to-End Execution Results}
 \label{ch6_sec:end_to_end_execution_results}
  
-The system is evaluated using the test scenarios defined in Section~6.2, covering variations in workpiece geometry, orientation, and spatial placement. Across all evaluated scenarios, the system successfully generated and executed complete robot programs without requiring manual intervention.
+The system is evaluated using the test scenarios defined in Section~\ref{ch6_sec:test_scenarios}, covering variations in workpiece geometry, orientation, and spatial placement. Across all evaluated scenarios, the system successfully generated and executed complete robot programs without requiring manual intervention.
  
 The results demonstrate that the planning pipeline operates cohesively, with each module providing valid input to subsequent stages. Orientation determination, grip planning, regrip handling, and trajectory generation function together to produce a complete and executable workflow. The system consistently adapts to varying initial conditions, confirming its ability to handle non-deterministic workpiece placement.
  
@@ -125,7 +125,7 @@ The comparison demonstrates that the proposed system significantly reduces progr
 \label{ch6_sec:robustness_and_failure_analysis}
 
  
-In addition to functional correctness and performance, the robustness of the system is evaluated by analysing its behaviour under challenging and failure-prone conditions. This assessment is closely related to the Failure Mode and Effects Analysis (FMEA) presented in Chapter~5.
+In addition to functional correctness and performance, the robustness of the system is evaluated by analysing its behaviour under challenging and failure-prone conditions. This assessment is closely related to the Failure Mode and Effects Analysis (FMEA) presented in Section~\ref{sec:fmea}.
  
 \subsection{Failure Case Evaluation}
 \label{ch6_sec:failure_case_evaluation}
@@ -149,12 +149,13 @@ Despite its robustness, the system exhibits certain limitations. The evaluation 
 Additionally, the absence of full self-collision detection limits the ability to guarantee collision-free operation in highly constrained scenarios. These limitations highlight areas for future improvement and potential extension of the system.
 
 \section{Discussion}
+\label{ch6_sec:discussion}
  
-The evaluation results demonstrate that the developed system provides a structured and automated solution for press brake bending. Compared to the approaches discussed in Chapter~2, the system eliminates the need for manual programming and predefined sequences, enabling adaptive behaviour based on real-time geometric input.
+The evaluation results demonstrate that the developed system provides a structured and automated solution for press brake bending. Compared to the approaches discussed in Chapter~\ref{ch:state-of-art}, the system eliminates the need for manual programming and predefined sequences, enabling adaptive behaviour based on real-time geometric input.
  
 The integration of orientation determination, grip planning, and regrip handling allows the system to operate under a wide range of conditions. This represents a significant improvement over conventional methods, which typically rely on fixed configurations and require manual intervention for complex tasks.
  
-The system also achieves a high degree of modularity, as demonstrated by the layered architecture presented in Chapter~5. Each module performs a well-defined function and contributes to the overall pipeline, supporting maintainability and extensibility.
+The system also achieves a high degree of modularity, as demonstrated by the layered architecture presented in Chapter~\ref{ch_5:implementation}. Each module performs a well-defined function and contributes to the overall pipeline, supporting maintainability and extensibility.
  
 However, the evaluation also reveals limitations. The reliance on a virtual simulation environment means that the results do not fully reflect real-world operating conditions. Furthermore, certain aspects, such as advanced collision detection and dynamic force feedback, are not included in the current implementation.
  

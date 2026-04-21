@@ -2,22 +2,24 @@
 \label{ch7_conclusion}
 
 \section{Conclusion}
+\label{ch7_sec:conclusion}
  
 This thesis presented the development and evaluation of an automated robotic system for press brake sheet metal bending. The objective was to reduce manual programming effort while improving adaptability and execution reliability in industrial bending operations.
  
 The analysis of the state of the art in Chapter~\ref{ch:state-of-art} identified key limitations in existing approaches, including a strong dependence on manual programming, limited adaptability to changing workpiece conditions, and a lack of integrated planning frameworks. Based on these observations, a set of functional and non-functional requirements was defined in Chapter~\ref{ch:system-concept-methodology}, focusing on automation, flexibility, and system robustness.
  
-In Chapter~4, multiple solution concepts were evaluated, leading to the selection of Concept~B as the most suitable approach. This concept introduced a structured planning pipeline that integrates orientation determination, grip planning, regrip handling, and trajectory generation into a unified system.
+In Chapter~\ref{ch:development-concepts}, multiple solution concepts were evaluated, leading to the selection of Concept~B as the most suitable approach. This concept introduced a structured planning pipeline that integrates orientation determination, grip planning, regrip handling, and trajectory generation into a unified system.
  
-Chapter~5 described the complete implementation of the selected concept. The system was realised as a modular software architecture with clearly defined layers, enabling separation of concerns and maintainability. Key functionalities such as constraint-based grip planning, automatic regrip determination, and structured trajectory generation were implemented to support fully automated operation.
+Chapter~\ref{ch_5:implementation} described the complete implementation of the selected concept. The system was realised as a modular software architecture with clearly defined layers, enabling separation of concerns and maintainability. Key functionalities such as constraint-based grip planning, automatic regrip determination, and structured trajectory generation were implemented to support fully automated operation.
  
-The evaluation presented in Chapter~6 demonstrated that the system successfully fulfils the defined requirements. Functional validation confirmed that each component of the planning pipeline operates correctly under varying conditions. System-level evaluation showed that the integrated solution produces consistent and feasible robot programs without manual intervention.
+The evaluation presented in Chapter~\ref{ch_6:evaluation} demonstrated that the system successfully fulfils the defined requirements. Functional validation confirmed that each component of the planning pipeline operates correctly under varying conditions. System-level evaluation showed that the integrated solution produces consistent and feasible robot programs without manual intervention.
  
 A comparison with manual programming approaches highlighted a significant reduction in programming effort and adaptation time. Tasks that traditionally require manual adjustment and reprogramming can be handled automatically by the system, enabling faster and more consistent operation. This demonstrates that the primary objective of reducing operator dependency and improving efficiency has been achieved.
  
 Overall, the developed system provides a systematic and adaptable solution for robotic press brake bending. By combining automated decision-making with structured validation, the approach addresses key limitations of existing methods and contributes to the advancement of flexible robotic manufacturing systems.
  
 \section{Contributions}
+\label{ch7_sec:contributions}
  
 The main contributions of this thesis can be summarised as follows:
  
@@ -38,6 +40,7 @@ The main contributions of this thesis can be summarised as follows:
 These contributions collectively address the challenges identified in the state of the art and provide a foundation for further development of automated robotic bending systems.
  
 \section{Limitations}
+\label{ch7_sec:limitations}
  
 Despite the successful implementation and evaluation of the system, several limitations remain.
  
@@ -48,6 +51,7 @@ In addition, the system does not include comprehensive collision detection or ad
 Furthermore, the current implementation focuses on a specific class of sheet metal geometries and bending operations. More complex geometries or multi-step industrial processes may require additional extensions to the planning pipeline.
  
 \section{Future Work}
+\label{ch7_sec:future_work}
  
 Based on the identified limitations, several directions for future work can be proposed.
  
@@ -70,6 +74,7 @@ Finally, the system’s reliance on fixed object identifiers and predefined conf
 In conclusion, future developments should aim to transition the system from a rigid, rule-based framework toward a more adaptive and intelligent architecture. By addressing limitations in geometry handling, bending flexibility, motion planning, gripping strategies, regrip operations, safety, and system adaptability, the proposed solution can evolve into a more comprehensive and industrially viable robotic automation platform.
  
 \section{Final Remarks}
+\label{ch7_sec:final_remarks}
  
 This thesis demonstrates that automated planning and execution of robotic press brake bending is both feasible and beneficial. By reducing manual programming effort and improving adaptability, the developed system contributes to more efficient and flexible manufacturing processes.
  
