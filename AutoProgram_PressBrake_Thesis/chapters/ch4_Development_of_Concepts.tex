@@ -1,4 +1,4 @@
-
+﻿
 \chapter{Development of Concepts}
 \label{ch:development-concepts}
 
@@ -13,7 +13,7 @@ To address this gap, three conceptually distinct solution approaches are develop
 The selection of the final concept is performed using the \ac{wsm}, a quantitative decision-making method in which evaluation criteria are assigned relative weights and each concept is scored accordingly. This ensures that the concept selection process is systematic, transparent, and aligned with the defined requirements.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Concept A – Structured Operator Workflow with Guided Teach-In Programming}
+\section{Concept A -- Structured Operator Workflow with Guided Teach-In Programming}
 \label{sec:concept-a-guided-teach-programming}
 \subsection{Methodological Framework}
 \label{sec:concept-a-methodological-framework}
@@ -27,14 +27,14 @@ As shown in Figure~\ref{fig:manual_dragandbot}, the operator manually constructs
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\textwidth]{figures/manual_dragandbot.png}
-    \caption{Manual robot program construction in the drag\&bot environment using function blocks for motion and gripper control.}
+    \caption{Overview of manual robot program construction in the drag\&bot environment for Concept A.}
     \label{fig:manual_dragandbot}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\textwidth]{figures/function_block_programming.png}
-    \caption{Manual robot program construction in the drag\&bot environment using function blocks for motion and gripper control.}
+    \caption{Detailed function-block configuration for manual motion and gripper sequencing in Concept A.}
     \label{fig:function_block_programming}
 \end{figure}
 
@@ -65,7 +65,7 @@ For these reasons, Concept A is not suitable as the final solution for addressin
 
 
 %%%%%%%%%%%%%%%%%%%%
-\section{Concept B – Automatic Program Generation Based on Rules with Integrated Constraint Validation}
+\section{Concept B -- Automatic Program Generation Based on Rules with Integrated Constraint Validation}
 \label{sec:concept-b-rule-based-validation}
 \subsection{Methodological Framework}
 \label{sec:concept-b-methodological-framework}
@@ -99,7 +99,7 @@ The structure of Concept B consists of five layers, as defined in Section~\ref{s
 \par The \ac{websocket} channel of the AnyRobot interface connects all five layers to the drag\&bot virtual simulation runtime \cite{dragandbot_anyrobot_2025}. The configuration-driven approach separates all process parameters from the program logic, allowing the solution to handle new workpiece geometries by modifying configuration files. This directly satisfies non-functional requirement NFR-02, as described in Section~\ref{non-functional-requirements}.
 \subsection{Critical Evaluation} 
 \label{sec:concept-b-critical-evaluation}
-Concept B is aligned with the research gap stated in Section~\ref{sec:research-gap-motivation} for every dimension identified in the literature. It defines waypoints, plans regrips, and sequences opposite-side operations automatically from geometric parameters. A pre-execution pose validator guards against unsafe execution states before motion starts. This enables a configuration-driven architecture that can adapt to new part geometries without source code changes, satisfying FR-01, NFR-03, NFR-04, and NFR-05. Configuration-driven parameterization satisfies NFR-02. The system operates exclusively within the drag\&bot runtime via the AnyRobot Interface, satisfying SR-01 and SR-02. All motion targets reference the pre-defined tool center point, satisfying SR-03. All requirements in Chapter~\ref{ch:system-concept-methodology} are therefore addressed by the concept design.
+Concept B is aligned with the research gap stated in Section~\ref{sec:research-gap-motivation} for every dimension identified in the literature. It generates robot programs automatically from geometric parameters, plans regrips, sequences opposite-side operations, and applies pre-execution validation before motion starts. This supports FR-00, FR-03, FR-05, and FR-07, while the configuration-driven architecture also satisfies NFR-02 by allowing adaptation to new part geometries without source code changes. The concept further addresses NFR-03, NFR-04, and NFR-05 through structured validation and deterministic execution behaviour. The system operates exclusively within the drag\&bot runtime via the AnyRobot Interface, satisfying SR-01 and SR-02. All motion targets reference the predefined tool centre point, satisfying SR-03. Within the defined thesis scope, the concept design therefore addresses the stated requirements coherently.
 \par The primary constraints under which Concept B operates are identified in Section~\ref{System-Constraints-and-Assumptions}. The system assumes rectangular sheet geometry with fixed 90-degree bend-angle constraints. Integration with the KEBA robot controller hardware, which is part of the KEBA robot driver layer within the drag\&bot software stack \cite{dragandbot_anyrobot_2025}, is identified in the future work section and is outside the scope of this thesis. All validation has been conducted within the drag\&bot virtual simulation environment, which is discussed in this section. The virtual simulation environment used for this evaluation is illustrated in Figure~\ref{fig:Dragandbot_Simulation}. The environment represents a simulated press brake cell configured with the drag\&bot platform, including the robot, workpiece, and interactions required for program execution. These constraints are explicit and not indicative of design flaws but, rather, define the scope within which the design concept operates.
 
 \begin{figure}[htbp]
@@ -110,7 +110,7 @@ Concept B is aligned with the research gap stated in Section~\ref{sec:research-g
 \end{figure}
 \FloatBarrier
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Concept C – CAD Integrated Offline Programming with Digital Twin Simulation}
+\section{Concept C -- CAD Integrated Offline Programming with Digital Twin Simulation}
 \label{sec:concept-c-cad-olp-digital-twin}
 \subsection{Methodological Framework}
 \label{sec:concept-c-methodological-framework}
@@ -131,7 +131,7 @@ This concept consists of four layers. A \acs{cad} modelling layer provides digit
 \subsection{Critical Evaluation}
 \label{sec:concept-c-critical-evaluation}
 Concept C offers meaningful automation advantages for structured, high-volume production environments where accurate cell models are available and \ac{olp} tool investment is justified. Simulation-based validation provides strong pre-execution assurance, and the approach is supported by mature commercial software \cite{Siciliano2016Robotics,Bar2018VirtualCommissioning}. These characteristics make it the dominant paradigm in industrial robotic bending automation at the time of writing.
-\par For the scope of this thesis, Concept C presents three fundamental disadvantages that result in its rejection. First, the implementation requires accurate CAD models of the complete robot cells, including the robot, press brake, tooling, fixtures, and workpieces — which represents a substantial engineering preparation effort that is not available within the thesis timeframe. 
+\par For the scope of this thesis, Concept C presents three fundamental disadvantages that result in its rejection. First, the implementation requires accurate CAD models of the complete robot cells, including the robot, press brake, tooling, fixtures, and workpieces --- which represents a substantial engineering preparation effort that is not available within the thesis timeframe. 
 \par Second, commercial \ac{olp} systems involve high license fees while demanding expert-level instruction, both of which are unavailable within this project's constraints \cite{Pahl2007EngineeringDesign}. Besides cost, mainstream \ac{olp} platforms lack native compatibility with both the drag\&bot simulation framework and the AnyRobot \ac{websocket} system, which define the core setup targeted here \cite{dragandbot_anyrobot_2025}. Connecting such a tool would require a custom bridge to the drag\&bot engine, adding implementation effort that is not justified by the scope of this thesis. Even if the first two limitations were resolved, this third limitation would disqualify Concept C, because SR-01 and SR-02 are non-negotiable constraints from the industrial partner environment.
 
 
@@ -139,15 +139,7 @@ Concept C offers meaningful automation advantages for structured, high-volume pr
 \section{Structural Comparison of Concepts}
 \label{sec:structural-comparison-concepts}
 \input{chapters/tables/tab_structural_comparison_of_concepts}
-Before applying the quantitative WSM, the three concepts are compared at a structural level to highlight their qualitative differences and to ensure that all requirement categories are considered. Table~\ref{tab:concept_comparison} presents this comparison across key design features, including automation capability, validation, adaptability, and platform compatibility.
- 
-The comparison shows that Concept B consistently addresses the core requirements of automatic program generation, including waypoint generation, regripping, opposite-side handling, and pre-execution validation. In addition, it aligns with the required software platform by integrating with the drag\&bot environment through the AnyRobot Interface.
- 
-Concept A, although feasible and simple to implement, relies entirely on manual programming. While it can be executed within the drag\&bot environment as a manually constructed workflow, it does not provide automated planning, validation, or configuration-driven adaptability. As a result, it does not address the primary objective of reducing programming effort.
- 
-Concept C demonstrates advantages in simulation-based validation and CAD-driven planning. However, its dependency on accurate digital models and lack of runtime adaptability limit its flexibility. Furthermore, it is not compatible with the required drag\&bot and AnyRobot-based execution environment.
- 
-Overall, the structural comparison indicates that Concept B provides the most comprehensive alignment with the defined requirements, supporting the quantitative evaluation presented in Section~\ref{sec:concept-decision-wsm}.
+Table~\ref{tab:concept_comparison} provides the structural comparison of the three concepts across the criteria most relevant to this thesis. The table already shows the main pattern clearly: Concept A remains too dependent on manual programming, Concept C offers strong offline-planning capabilities but fits the target platform poorly, and Concept B gives the best overall balance of automation, validation, adaptability, and platform compatibility. This qualitative comparison therefore supports the quantitative selection carried out in Section~\ref{sec:concept-decision-wsm}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -192,12 +184,9 @@ Table~\ref{tab:weighted_sum_model} presents the complete WSM evaluation with sco
 
 \section{Analysis of Results and Concept Decision}
 \label{sec:analysis-concept-decision}
-The results of the \ac{wsm} indicate a clear ranking among the proposed concepts. Concept B achieves the highest score (4.00), followed by Concept C (2.95), while Concept A obtains the lowest score (1.25). This reflects their relative effectiveness in satisfying the functional, non-functional, and platform requirements defined in Chapter~\ref{ch:system-concept-methodology}.
+The \ac{wsm} results confirm the qualitative comparison. Concept B achieves the highest overall score (4,00), followed by Concept C (2,95) and Concept A (1,25). Rather than excelling in only one aspect, Concept B performs consistently well across the criteria that matter most for this thesis, especially programming effort reduction, automated handling support, validation capability, and compatibility with the selected software environment.
 
-Concept B performs strongly across all criteria. It reduces manual programming effort by generating robot programs from configuration parameters and supports automated regripping and opposite-side handling through dedicated modules. Pre-execution validation enables detection of infeasible conditions with support for replanning or safe termination. In addition, its configuration-driven structure allows adaptation to different workpiece geometries without code modification. The concept is fully compatible with the required platform, operating within the drag\&bot environment via the AnyRobot Interface.
+Concept C remains a technically capable alternative, particularly for simulation-driven offline planning, but its dependence on detailed digital models and its weak fit to the required drag\&bot and AnyRobot setup reduce its suitability for the present work. Concept A is the least suitable because it keeps the workflow largely manual and therefore does not address the main objective of reducing programming effort.
 
-Concept C demonstrates moderate performance through \acs{cad}-based offline programming. It enables simulation-based validation and reduces manual teaching effort; however, it depends on accurate digital models and requires reconfiguration for each geometry variation. Furthermore, it lacks runtime adaptability and is not compatible with the required drag\&bot and AnyRobot environment.
+Based on both the structural comparison and the weighted evaluation, Concept B is selected for implementation. Its combination of automation, adaptability, and integration within the defined project scope makes it the most appropriate solution for the thesis. The implementation of Concept B is presented in Chapter~\ref{ch_5:implementation}.
 
-Concept A shows the lowest performance. Although it can be implemented within drag\&bot as a manually constructed workflow, all motions and process steps must be defined by the operator. This results in high programming effort and limited scalability. The absence of automatic planning, validation, and decision-making prevents it from addressing the defined research objectives.
-
-Based on this evaluation, Concept B is selected as the most suitable approach. It provides the best balance between automation, adaptability, and system integration within the defined scope. The detailed implementation of Concept B is presented in Chapter~\ref{ch_5:implementation}.

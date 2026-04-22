@@ -1,9 +1,10 @@
 \begin{table}[htbp]
 \centering
+\normalsize
 \begin{tabularx}{\textwidth}{
-L{4.5cm}
-L{5cm}
-L{5cm}
+L{4.2cm}
+L{5.2cm}
+L{5.2cm}
 }
 \toprule
 \textbf{Aspect} & 
@@ -11,9 +12,9 @@ L{5cm}
 \textbf{Automated System} \\
 \midrule
  
-Programming effort & 
-High (manual definition of motion steps) & 
-Minimal (automatic program generation) \\
+Program preparation time & 
+8--12 minutes & 
+10--30 seconds \\
  
 Reprogramming after changes & 
 Required for each modification & 
@@ -23,21 +24,25 @@ Adaptation to position/orientation changes &
 Manual adjustment of waypoints required & 
 Automatically handled by planning pipeline \\
  
-Adaptation time per change & 
-5--10 minutes & 
-10--30 seconds \\
+Grip configuration & 
+Operator-defined & 
+Constraint-based automatic planning \\
  
-Error likelihood & 
-Higher due to manual input & 
-Reduced through validation and constraints \\
+Handling of regrip operations & 
+Requires manual planning and sequencing & 
+Automatically determined by the regrip planner \\
  
 Repeatability & 
 Dependent on operator consistency & 
 High due to deterministic execution \\
  
-Handling of complex operations (regrip, flip) & 
-Requires manual planning and sequencing & 
-Automatically handled within system pipeline \\
+Opposite-side bending workflow & 
+Requires manual resequencing and additional setup & 
+Automatically integrated into the planning pipeline \\
+ 
+Failure prevention & 
+Limited pre-checking before execution & 
+Validation- and constraint-based control \\
  
 Flexibility for new workpieces & 
 Requires reprogramming & 
@@ -45,7 +50,7 @@ Handled through input and configuration changes \\
  
 \bottomrule
 \end{tabularx}
-\caption{Comparison between manual programming and automated system under varying conditions.}
+\caption{Comparison between conventional manual programming and the proposed automated system.}
 \label{tab:full_comparison}
 \end{table}
 

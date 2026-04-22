@@ -1,0 +1,32 @@
+# AI Prompt Log
+# Replace the example entries below with the complete set of prompts used
+# during thesis preparation before the final submission.
+#
+# Recommended fields:
+# - date
+# - tool
+# - model
+# - purpose
+# - prompt
+# - files uploaded or referenced
+
+- date: YYYY-MM-DD
+  tool: ChatGPT
+  model: GPT-5
+  purpose: language refinement
+  prompt: "Review the wording of the abstract for grammar and clarity."
+  files_uploaded_or_referenced: "frontmatter/abstract.tex"
+
+- date: YYYY-MM-DD
+  tool: ChatGPT
+  model: GPT-5
+  purpose: formatting support
+  prompt: "Check whether the thesis LaTeX layout follows the Campus Cham and Prof. Gorka guidelines."
+  files_uploaded_or_referenced: "main.tex, preamble.tex"
+
+- date: YYYY-MM-DD
+  tool: ChatGPT
+  model: GPT-5
+  purpose: LaTeX assistance
+  prompt: "Suggest a LaTeX-safe way to format the list of abbreviations and symbols."
+  files_uploaded_or_referenced: "frontmatter/abbreviations.tex, frontmatter/symbols.tex"

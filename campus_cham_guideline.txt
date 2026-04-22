@@ -1,0 +1,497 @@
+                   Campus Cham
+
+
+
+
+THESIS GUIDELINE
+CAMPUS CHAM
+
+
+
+
+                    www.th-deg.de/en
+    TABLE OF CONTENTS                                      1 PREFACE TO THESIS GUIDELINE
+
+    1 Preface to Thesis Guideline                     3    The following thesis guideline on structuring papers against a tech-
+                                                           nical and/or scientific backdrop is in accordance with the standards
+    2 From Topic Selection to Thesis Submission       4    generally applied by German universities. Principally, this guideline
+                                                           neither is to be deemed an official instruction by Campus Cham, the
+    2.1 Topic Selection                               4    Faculty of Applied Natural Sciences and Industrial Engineering nor the
+                                                           Deggendorf Institute of Technology. Moreover, this guideline does not
+    2.2 Looking for a Supervisor                      4    raise any claim to completeness but instead summarises the most es-
+                                                           sential information on structuring scientific papers from the editorial
+    2.3 Registration Process                          5    point of view. Any deviating or supplementary requirements of indi-
+                                                           vidual supervisors cannot be ruled out entirely. As a consequence, in
+    2.4 Drafting Stage                                6    any event, content and formalities are to be discussed primarily with
+                                                           the individual supervisor in charge.
+    2.5 Submission Process                            6
+
+    3 Outer & Inner Form                              7
+
+    3.1 Page Count                                    7
+
+    3.2 Text & Page Layout                            7
+
+    3.3 Linguistic Style                              7
+
+    3.4 Orthography                                   8
+
+    3.5 Illustrations and Tables                      8
+
+    3.6 Formulas, Figures and Physical Quantities     8
+
+    4 Content Aspects                                 10
+
+    4.1 Formalities                                   10
+
+    4.1.1 Title Page                                  10
+
+    4.1.2 Restriction Note/Non-Disclosure Agreement   10
+
+    4.1.3 Inexpedient Components: Acknowledgement     10
+
+    4.1.4 Statement of Authorship                     10
+
+    4.1.5 Index of Abbreviations                      10
+
+    4.1.6 Abstract                                    10
+
+    4.2 Core Content                                  10
+
+    4.2.1 Introduction                                10
+
+    4.2.2 Groundwork/Fundamental Principles           11
+
+    4.2.3 Methodology                                 11
+
+    4.2.4 Results                                     11
+
+    4.2.5 Summary & Prospects                         12
+
+    4.2.6 Bibliography                                12
+
+    4.2.7 Appendix                                    13
+
+    5 Check List                                      17
+
+
+
+
+2                                                                                                                                    www.th-deg.de/en   3
+    2 FROM TOPIC SELECTION TO THESIS SUBMISSION
+    2.1 TOPIC SELECTION - GUIDING QUESTIONS
+
+                                                                                                                                                        Potential supervisors are also located on the current thirteen technology campuses, DIT research institutes specialised on specific core themes.
+                                                                                                                                                        Link to the Technology Campuses: www.th-deg.de/en/research/technology-campuses
+    Which topics have already struck a chord with you during your lectures?
+
+    Do you have any particular knowledge, skills or interests you could cover?
+
+    How relevant is your topic in the industry or your aspired working area?
+
+    Which current position does your topic occupy within the research environment?
+
+    To what extent is your topic similar to other topics?
+
+    What makes your topic different from those related topics?
+
+    What do you plan to find out with your thesis? Which further sub-questions might arise in the process?
+
+    Is sufficient literature and statistical data available on this topic? How reliable, credible and objective are your sources?
+
+
+
+
+    Entitling your Topic
+    Pay attention to a concrete, meaningful and linguistically correct wording of your thesis title. A title length between one and two lines is re-
+    commended. The title selected will emerge on your graduation documents and renders employers the very first impression of your scientific
+    competencies.
+
+    Internal vs. External Thesis
+    Apart from a DIT supervisor, you are also allocated a company supervisor in external theses. Frequently, a particular topic has already been pre-
+    defined by the company you are about to conduct your thesis with.
+                                                                                                                                                        Show initiative: independently contact supervisors preferred based on your previous research and ask them for their supervisory capacity. A
+                                                                                                                                                        targeted and well-justified supervisor research in combination with a well-elaborated topic proposal already allows for a positive first impression!
+     Internal Thesis                                                            External Thesis
+
+     No balancing act between company supervisor and DIT supervisor             Insights into the working environment; head start for the application
+                                                                                process: you already have one foot in the door; salary                  2.3 REGISTRATION PROCESS
+     Freer, scientific composition with your own topic proposal or a topic      Practice-oriented form
+                                                                                                                                                        Please register and submit your thesis directly via the Primuss portal. Further details and the upload fields can be found in the Primuss portal at:
+     proposal given by your supervisor
+                                                                                                                                                        Registration/Submission of Thesis.
+
+                                                                                                                                                        For any content-related questions, please contact the person responsible at the Centre for Studies.
+                                                                                                                                                        https://www.th-deg.de/en/study-with-us/advice-support/admin-centre
+
+    2.2 LOOKING FOR A SUPERVISOR                                                                                                                        For any technical questions, problems regarding the upload or similar, please contact the Primuss support.
+                                                                                                                                                        (primuss-support@th-deg.de).
+    Draw up a specific topic proposal in answer to the questions stated un-
+    der Topic Selection 2.1
+                                                                                                                                                        2.4 DRAFTING STAGE
+    Conduct your own independent research on the DIT website: Who fits
+    your topic best, technically speaking? Apart from supervisors on Cam-                                                                               •   Independently arrange individual supervisory meetings.
+    pus Cham, you can also request other professionally qualified super-                                                                                •   At best, autonomously prepare yourself for each supervisory session, for instance, reflect on specific queries on problem-solving
+    visors from the eight DIT faculties:                                                                                                                    difficulties or software requirements that appeared during the drafting stage of your thesis.
+                                                                                                                                                        •   Regularly work on parts and sections of your thesis so that your supervisor can give you valuable feedback at different drafting
+    Link to the Faculties: www.th-deg.de/en/students/faculties                                                                                              stages of your final thesis.
+                                                                                                                                                        •   At the end of each supervisory session, take notes of specific sub-goals you intend to achieve until the next supervisory session.
+
+                                                                                                                                                        Master Seminar
+                                                                                                                                                        • Together with your supervisor, by the end of your thesis processing time, arrange an appointment for the oral presentation your final thesis.
+                                                                                                                                                        • This presentation is part of the overall grade for your final thesis.
+                                                                                                                                                        • Bachelor Module: Bachelor Thesis (12 ECTS) – Bachelor Seminar (2 ECTS)
+
+
+
+
+4                                                                                                                                                                                                                                                                                     www.th-deg.de/en         5
+                                                                                                                                                        Type of Font                                                                font types sans serif, e.g. Arial, Verdana.
+
+                                                                                                                                                        Use a coherent font type for capitals, equations, text passages, image/table captions and page numbers.
+    •   Master Module: Master Thesis (22 ECTS) – Master Seminar (2 ECTS)
+    •   Length of Presentation: approx. 15min /                                                                                                         Font Size                                                                   11pt – 12pt; chapter headings: 14 pt.
+    •   Subsequent examiner questions: approx. 15min                                                                                                    Font Colour                                                                 black
+
+                                                                                                                                                        Margins                                                                     top and bottom: 2.5 cm; left: 3 cm; right: 2 cm
+    2.5 SUBMISSION PROCESS                                                                                                                              Line Spacing                                                                1.5 single-spaced
+
+    Please register and submit your thesis directly via the Primuss portal. Further details and the upload fields can be found in the Primuss portal    Header and Footer                                                           consecutive page numbers
+    at: Registration/Submission of Thesis.
+                                                                                                                                                        Formatting                                                                  justification with automatic hyphenation (continuous text)
+
+    Upon your supervisor‘s request, a hard-bound written copy of your thesis additionally is to be submitted. Please get in contact with your super-    Structure                                                                   1, 1.1, 1.2, 1.3, 2, 2.1, 2.1.1, 2.2…
+    visor in advance.
+                                                                                                                                                        The different structure levels are numbered with the Arabic number system. The final structure level is not concluded with a dot.
+    For any content-related questions, please contact the person responsible at the Centre for Studies.                                                 Page Numbers                                                                right-aligned on the right-hand side
+    https://www.th-deg.de/en/study-with-us/advice-support/admin-centre
+
+    For any technical questions, problems regarding the upload or similar, please contact the Primuss support.                                         3.3 LINGUISTIC STYLE
+    (primuss-support@th-deg.de).
+                                                                                                                                                       Scientific papers pursue an objective and concise language style, i.e., all steps and results are to be transparent and understandable for third
+                                                                                                                                                       parties to meet the requirement of verifiability. You are thus to select precise descriptions defining all steps, results and terminology used in a
+                                                                                                                                                       definite, graspable, and clear manner.
+
+
+    3 | OUTER & INNER FORM                                                                                                                              Recommendations
+
+                                                                                                                                                        Do not write in the first person under any circumstances.
+                                                                                                                                                                                                                                    Examples
+
+                                                                                                                                                                                                                                    „Initially, I measured the voltage at the output terminals“.
+    3.1 PAGE COUNT
+                                                                                                                                                        Use passive voice.                                                          „The voltage was initially measured at the output terminals“.
+    For bachelor theses, an approximate number of 50 text pages is recommended. For master theses, an approximate number of 80 text pages               Avoid using trivial subordinate clauses or multi-clause sentences too       „Taking a closer look at the curve, one notices that…“
+    is recommended. This page count excludes the table of contents, the bibliography, formula directories or the appendix. A margin of tolerance        convoluted.
+    of plus/minus 10% of text volume is accepted. Any individual deviations from this page count are to be clarified with the supervisor initially.
+    Further recommendation: The content-related quality of final theses generally does not rise proportionally with the page count. Frequently,         Use active clauses of statement.                                            „The curve illustrates that…“
+    the focus on the most significant topical aspects is more meaningful than long-winded, wordy explanations of irrelevant details.                    Avoid starting sentences with conjunctions.                                 „And…“, „That…“, „So…“
+
+                                                                                                                                                        Avoid using abbreviations commonly used in oral language.                   „trfr = transformer“, „ACC = accumulator“, „alu = aluminium“
+    3.2 TEXT AND PAGE LAYOUT                                                                                                                            Avoid using redundant filler words. Try it out: omit the filling word. If   „also“, „now“, „still“
+                                                                                                                                                        the predicate stays the same, the expletive is redundant.
+    All pages are to be printed one-sided in DIN A4 format.
+                                                                                                                                                        Phrase complete sentences.                                                  subject, predicate, object
+
+                                                                                                                                                        Avoid vague or too general statements implying that something has           „The following chapter is meant to demonstrate…“
+                                                                                                                                                        not been successful or that the author is not confident in their state-
+                                                                                                                                                        ment.
+
+                                                                                                                                                        Use precise statements to express that your research goal in fact has       „The following chapter demonstrates…“
+                                                                                                                                                        been reached.
+
+
+                                                                                                                                                        Avoid accumulating unspecific terms.                                        „synergy“, „process“, „system“, „procedure“
+
+
+
+
+                                                                                                                                                        Avoid set phrases that might give your readership the impression            „As already shown by illustration 3“, „As already described
+                                                                                                                                                        that you are looking for gap fillers to meet the page count required or     in chapter 7…“
+                                                                                                                                                        that you question their short-term memory.
+
+
+
+
+6                                                                                                                                                                                                                                                                                       www.th-deg.de/en     7
+        Headers in technical texts/contexts                                        •   do not indicate any sources, abbreviations, or punctuation                A space is put between the numerical value and the unit, e.g., 2,3 A. In   When specifying physical quantities with decimal separators, there is
+                                                                                   •   Are not underlined or indented                                            German-speaking areas, the decimal separator is a comma. In compa-         no space to be put after the comma.
+                                                                                                                                                                 rison, a dot is used in English-speaking areas instead.
+        Headers in technical texts/contexts                                        •   are best to fit on one single line
+                                                                                   •   start with capital letters and are put in bold within the text            Physical quantities and equations are to be written in the same font       The unit of physical quantities is not to be written in italics. In terms
+                                                                                                                                                                 type and font size as the text passages.                                   of equations, not only units but also constants, such as „e“, „i“ or „j“
+                                                                                   •   have the same font type as the text
+                                                                                                                                                                                                                                            are written as an imaginary unit. Furthermore, the „d“ standing for
+        Avoid personal opinions or conclusions.                                    unfortunately, fortunately etc.                                                                                                                          differentials or integrals is not to be written in italics.
+
+        Avoid exaggeration.                                                        enormously, vastly, drastically etc.                                          Formulas are either left-justified or set centrally.                       Upon a heading with text, you are not to continue the text with an
+                                                                                                                                                                                                                                            illustration, table or an equation.
+
+
+    3.4 ORTHOGRAPHY
+                                                                                                                                                                 Should formulas be numbered in the text, the corresponding figure          The multiplication symbol „·“ is to be preferred and is not to be writ-
+                                                                                                                                                                 is either placed to the right of the equation or right justified at the    ten using the „x“ symbol standing for an equation or cross product.
+        Orthographical Rules                                                       Examples
+                                                                                                                                                                 right margin. Equations are to be written outside of sentences or to       Equally, multiplications neither are to be written as „*“ nor using a
+        Figures bigger than twelve are written as numbers                          13, 14, 15, 16…                                                               be included within sentences, including punctuation. Equations in          normal dot „.“
+        in the continuous text.                                                                                                                                  paragraphs are to be placed on one line.
+
+        Figures smaller than twelve are written out fully in the continuous        The circuit consists of four diodes with a current load capacity             Table 3: Recommendations and objections on writing physical quantities
+        text, except for physical quantities.                                      of 8 A each.
+
+        Technical compound words are joined with a hyphen in German. In            230 V power supply,
+        English-speaking areas, no hyphen but a space is to be put between         5 Ω resistor
+        figure and unit.
+
+        The following abbreviations consist of two words and are                   e.g.
+        to be separated from one another with a space.                             etc.
+                                                                                   i.e.
+
+        Refrain from putting a space after the opening bracket and before the      … (according to DIN 1421).
+        closing bracket if you want to include additional information.
+
+    •     Use the spellchecker of your text programme
+    •     Revise your final thesis in several stages, not all at once.
+    •     Read your written work out loud.
+    •     Typos are often identified if the work is not read directly after writing but a few days later to get some distance.
+    •     Two heads are better than one: It’s best to have your written work proofread by a non-specialist.
+
+
+
+    3.5 ILLUSTRATIONS AND TABLES
+    Each table is to be entitled. The table content is to be taken up within the continuous text passages.
+
+        Recommendations                                                            Addition
+
+        Illustrations are to be included in their original form or quality.        Generating an illustration in a vector graphic programme or a table in
+                                                                                   a text system, for instance, allows for a higher quality of illustrations.
+
+        Clearly associated image captions in the same font as the continuous       Background colour, line weight, caption, size and grid of time and
+        text.                                                                      frequency responses.
+
+        Illustrations and tables are to divide the text between paragraphs.        Illustrations are not to be framed.
+
+        Illustrations and tables are to remain within the page margins.            Avoid placing illustrations or tables on one single page, except for
+                                                                                   result presentations in long text passages.
+
+        The emblem of the DIT is exclusively to be used on the thesis title        A company emblem may neither be used outside or inside the thesis.
+        page in the required form.
+    Table 1: Criteria for using illustrations
+
+
+
+    3.6 FORMULAS, FIGURES AND PHYSICAL QUANTITIES
+
+        Dos                                                                        Don‘ts
+
+        An alphabetically sorted formula or abbreviation directory is recom-       Do not write out units within technical contexts.
+        mended at the very beginning of your thesis.
+
+        As far as possible, internationally recognized formula symbols are         Sentences are concluded using a dot, an exclamation mark, or a ques-
+        to be used, e.g. „I“ for the current. Once the formula symbol is used      tion mark. Should an equation be at the very end of the sentence, the
+        for the very first time in the text without being included in a separate   dot is to be placed upon the equation. In this case, the equation is not
+        formula directory, an explanation is necessary for the corresponding       to be introduced by a colon either.
+        formula.
+
+        Physical quantities are to be placed in one line. Automatic hyphena-       Do not start a sentence with formula symbols or figures.
+        tion might call for a fixed space to be put.
+
+
+8                                                                                                                                                                                                                                                                                                www.th-deg.de/en       9
+     4 | CONTENT ASPECTS
+     4.1 FORMALITIES
+     4.1.1 TITLE PAGE                                                                                                                                         4.2.2 GROUNDWORK/FUNDAMENTAL PRINCIPLES
+     4.1.2 RESTRICTION NOTE / NON-DISCLOSURE AGREEMENT                                                                                                        Within the section of groundwork and fundamental principles, you are to describe the background of your final thesis in detail. Particular topics
+                                                                                                                                                              that require specific technical knowledge call for a repetition and explanation of the groundwork and fundamental principles your thesis idea
+     For the disclosure of sensitive data, some companies may ask for a non-disclosure agreement within the framework of the final thesis, which              is based upon. This section further explains all elements necessary for understanding the consecutive methodological chapters. For instance,
+     serves to exclude third parties viewing the thesis content explicitly within a separate restriction note. This process is not supported by the DIT       theories and models that contributed towards answering research question, are described precisely. Moreover, key terms and concepts of the
+     and is to be avoided in consultation with the corresponding company.                                                                                     final thesis are to be described and delineated.
+
+                                                                                                                                                              Which scientific/technical principles have you required to solve the task? Which empirical results already exist on your topic? Have there been
+     4.1.3 INEXPEDIENT COMPONENTS: ACKNOWLEDGE                                                                                                                any approaches taken by other authors who have dealt with your task or a similar research question before?
+
+     Optionally, an acknowledgment dedicated to people involved may be incorporated into the final thesis:                                                    Recommended page count: approx. 8 - 16 pages
+     • Company supervisor and key staff involved
+     • DIT supervisor
+     • Inner circle (e.g., parents, friends)                                                                                                                  4.2.3 METHODOLOGY
+
+                                                                                                                                                              This part makes for the core component of your final this and explains the approach taken methodologically. You can either draft a separate chap-
+     4.1.4 STATEMENT OF AUTHORSHIP                                                                                                                            ter for individual problems or separate them logically from one another, e.g., problem analysis, process selection, execution, and implementation.
+                                                                                                                                                              Clearly highlight your own work from previous work conducted by someone else. What has been developed and implemented within the frame-
+     This document is to be filled in, signed and incorporated into the final thesis.                                                                         work of your final thesis? Pin down your topic into a scientific context: Which previous groundwork and theoretical backgrounds have already
+                                                                                                                                                              been available in advance? What is the latest state of research?
+
+     4.1.5 INDEX OF ABBREVIATIONS                                                                                                                             Within this section, you are to describe the solution to the task or problem completely, i.e., any material or research related to your topic investi-
+                                                                                                                                                              gated is to be expounded as gapless as possible.
+     For first-time use in the text, technical abbreviations are to be written out fully once and put in brackets. Commonly used abbreviations (e.g., etc.)
+     are not to be noted within this index of abbreviations, which is to be sorted alphabetically.                                                            Is your thesis practically oriented?
+                                                                                                                                                              Conduct measurements and describe the devices used, their measuring accuracy as well as experimental test setups.
+
+     4.1.6 ABSTRACT                                                                                                                                           Is your thesis theoretically oriented?
+                                                                                                                                                              For instance, describe models, circuit plans, simulations, requirements, structural elements, or data sets.
+     The abstract is optional for potential publication and describes complex problems and work results under the specification of key words.
+                                                                                                                                                              Demonstrate your thoughts clearly.
+     Eecommended word count: 120 - 150 words                                                                                                                  Why have you decided for method A instead of method B, for example?
+
+                                                                                                                                                              Recommended page count: 2-4 chapters with 10 - 20 pages each
+     4.2 CORE CONTENT
+     The research question or the detailed task definition are to be formulated clearly at the start of the thesis. Also, this is to be marked within the     4.2.4 RESULTS
+     structure. Keep oriented on the complex problem or research question you are dealing with in your final thesis. This common thread is to run
+     through your thesis in order to clarify the coherence between the individual chapters.                                                                   In this part, you are to initially present and explain the results, which are later interpreted based on the task or research question posed.
+
+                                                                                                                                                              In this section, results are neither evaluated nor discussed yet. The clear, precise representation of results, from simple to complex, is to be writ-
+     4.2.1 INTRODUCTION                                                                                                                                       ten in past tense. Instead, this section is to show why the methodology used in the previous chapters have (or have not) solved the initial task or
+                                                                                                                                                              research question stated in the introduction part. Comparisons between your own solution and the processes described within the section on the
+     Captivate your readerships’ interest in your topic right from the beginning and, for instance, put your topic on a larger scale!                         latest state of technology, are best to be depicted by means of tables or graphics.
+     • Historical reference, development over time, e.g., quotations
+     • Relevance (reference of facts, key figures, recent developments)                                                                                       Has your testing been comprehensive?
+     • Definition of a central concept within your area of research                                                                                           • First of all, describe the individual results obtained.
+                                                                                                                                                              • Then, summarise the most essential results, for instance, using a clearly structured table.
+     Showcase the relevance of your topic by covering the following questions in the introduction part:                                                       • If you used illustrations, make sure to explain them within the continuous text passages.
+     • Which fundamental goal you plan to pursue with your final thesis?
+     • What is the state-of-the-art or latest state of research in your topic?                                                                                Have you determined inaccuracies with measured data?
+     • Have parts of your research question already been treated elsewhere?                                                                                   • Deal with their effect on the results.
+     • Which open research questions still justify your final thesis?
+     • Which methodological approach have you taken for problem-solving?                                                                                      Applicability of your results: Which specific findings were you able to obtain from your final thesis?
+     • Were there any pros or cons associated with your solution approaches?                                                                                  • Are your results applicable to any other company divisions?
+     • Draw a relation to the table of contents: How is your final thesis structured?                                                                         • Are your results applicable to any other companies of the same sector or type (e.g., corporation, medium-sized business?)
+                                                                                                                                                              • Are your results applicable to any other scenarios?
+     Recommended page count: 1-3 pages
+                                                                                                                                                              Recommended page count: 4 - 12 pages
+
+
+
+
+10                                                                                                                                                                                                                                                                                            www.th-deg.de/en         11
+     4.2.5 SUMMARY & PROSPECTS                                                                                                                               How to cite a publication
+
+
+     •   Summarise your scientific work succinctly. Again, refer to the research question/task, the solution approach taken, the most crucial results        Generally, it’s necessary to cite all references taken over. This applies to almost every sentence or paragraph in literature work. The more
+         and their evaluation. Precisely answer the questions posed in the introduction part (4.2.1) without discussing new trains of thought in the         references you cite, the higher the value of your scientific work.
+         conclusion.
+                                                                                                                                                             Your reference list needs to be sorted alphabetically according to the surname of the first author. Each entry needs to contain all relevant
+     •   Reflect upon your final thesis again from a distance and reflect critically: What worked well, what could have worked better?                       information like: Names of author(s), year of publication, title of publication, name of journal, book or article, publisher, digital object identifier
+                                                                                                                                                             (weblink including access date).
+     •   Which answer could you find to your research question?
+                                                                                                                                                             References from scientific journals need to be cited as follows:
+     •   Provide your readers with an outlook on the future given the fact that scientific problems can rarely ever be shed light on all their facets. Was   name of author(s), year of publication in brackets, publication title, name of the scientific journal in italics, page range.
+         it not possible to answer all aspects of the research question or have even new questions arisen in the process that yield further ideas for
+         possible solution approaches?                                                                                                                       (2020) Adams, P., & Doe, J. Title of the publication. Name of the scientific journal, 1(2), 5-9.
+
+     Recommended page count: 1-3 pages                                                                                                                       Book references need to be cited as follows:
+                                                                                                                                                             author(s) name, year of publication in brackets, publication title in italics, publisher
+
+
+     4.2.6 BIBLIOGRAPHY                                                                                                                                      Glasman-Deal, H. (2010). Scientific Research Writing. London: Imperial College Press.
+                                                                                                                                                             Skern, T. (2011). Writing Scientific English: A Workbook (2 ed.). Wien: UTB facultas wuv.
+     Scientific papers, such as final theses, are to be composed in a righteous and honest way. All sources used are to be verified by correct citation
+     including the respective literature reference. Following the main text, all sources cited within your thesis are to be referenced in accordance with    Web references need to be cited as follows:
+     the DIN norms. Sources are either numbered upon the respective citation order or alphabetically sorted.                                                 author(s) name, year of publication in brackets, publication title in italics, access date
+                                                                                                                                                             and the web link.
+
+
+                    [1] Leschik, M.: Word für Windows 6.0, Wissenschaftlich Arbeiten, optimal. 2. Aufl. Koschenbroich, bhv-Verlag, 1994.                     Maxwell, A. (2020). Write like a scientist. Retrieved September 19, 2020,
+                    [2] Jäger, H.: Persönliche Mitteilung. Göppingen, FHTE, 1999.                                                                            from http://sites.middlebury.edu/middsciwriting/
+
+
+
+     Within the continuous text itself, the corresponding citation is to be quoted by means of squared brackets, for instance:                               4.2.7 APPENDIX
+
+     …according to [1, page 233], this process can be facilitated using joints.                                                                              As soon as your thesis is comprised of comprehensive materials, for instance, measurement and computation results or data sheets of devices,
+     Avoid plagiarism and clearly highlight your sources. Reliable sources encompass specialist/technical literature, articles in technical journals or      including an appendix is highly recommended. Programming codes, for example, are to be saved onto the electronic data carrier and not to be
+     specialist articles from reputable authors published on the Internet.                                                                                   included in the print version.
+
+     Always specify the actual date you accessed respective web sources on.                                                                                  •   Separate the appendix by a separate title page from the rest of your written work
+                                                                                                                                                             •   Depending on the type and extent of your thesis, the appendix could be divided up into several sections,
+                                                                                                                                                                 all of which are to be indicated on the table of contents.
+                    Rodemann, Julian (2020): Chemie-Nobelpreis geht an zwei Genforscherinnen, in Süddeutsche.de, 08.10.2020,                                 •   A separate numbering of each individual attachment is recommended, e.g. A1, A1.1, A1.2, A2, A3…
+                    [online] https://www.sueddeutsche.de/wissen/nobelpreis-2020-chemie-1.5057356 [accessed on 11.12.2020]
+                                                                                                                                                             A1: Registration Form
+                                                                                                                                                             A2: Title Page
+     General Recommendations for Literature Research :                                                                                                       A3: Restriction Note / Non-Disclosure Agreement
+     • read the abstract at the beginning of the article                                                                                                     A4: Statement of Authorship
+     • consider the structure of the article
+     • highlight important content or key words and take notes
+     • skim-read the text and only use selected content of the article
+     • critically examine content and compare or combine the chis content with further literature
+
+     Recommended Reading
+
+     [1] Ebel, H. F.: Bachelor-, Master- und Doktorarbeit: Anleitungen für den naturwissenschaftlich-technischen Nachwuchs.
+     4. Aufl. Wiley-VCH Verlag GmbH & Co. KGaA, 2009.
+
+     [2] Hohmann, S.: Wissenschaftliches Arbeiten für Naturwissenschaftler, Ingenieure und Mathematiker. Springer Vieweg, 2014.
+
+     [3] Leschik, M.: Word für Windows 6.0, Wissenschaftlich Arbeiten, optimal. 2. Aufl. Koschenbroich, bhv-Verlag, 1994.
+
+     [4] Standop, E.: Die Form der wissenschaftlichen Arbeit. 14. Aufl., Heidelberg, Wiesbaden: Quelle & Meyer, 1994.
+
+     [5] Theisen, M.: Wissenschaftliches Arbeiten: Erfolgreich bei Bachelor- und Masterarbeit. 18. Aufl. München: Vahlen, 2013.
+
+     [6] Weissgerber, M.: Schreiben in technischen Berufen: Der Ratgeber für Ingenieure und Techniker: Berichte, Dokumentationen, Präsentationen,
+     Fachartikel, Schulungsunterlagen. Publicis Publishing, 2010.
+
+     [7] Werder, L.: Lehrbuch des wissenschaftlichen Schreibens. Berlin, Milow: Schibri, 1993.
+
+
+
+
+12                                                                                                                                                                                                                                                                                            www.th-deg.de/en         13
+     5 | CHECK LIST
+
+
+                  Please enter your thesis registration in Primuss and
+                      generate the registration form as a pdf file.
+
+
+
+
+                         The pdf file, signed by the student,
+                       must then be uploaded back to the portal.
+
+
+
+
+                         The supervisor does not need to sign,
+                      he/she will receive an email and can confirm
+                               the registration digitally.
+
+
+
+               Upon your supervisor‘s request, a hard-bound written copy
+                     of your thesis additionally is to be submitted.
+                 Please get in contact with your supervisor in advance.
+
+
+
+                Please submit the agreed form of thesis to the lecturer
+                    and upload the required documents to Primuss
+                   (zip file of the thesis and approved thesis topic).
+
+
+
+
+                The Centre for Studies ensures that all documents have
+                 been uploaded correctly and sets the thesis status to
+                       ‘submitted’ (please be patient here as well.
+                 If everything is in order, the online submission date is
+                             recorded as submission date.)
+
+
+
+
+                                                                                                                             Editors:
+                                                                                                               Stefanie Liegl, M.Sc.,
+                                                                                                Prof. Dipl.-Phys. Jürgen Wittmann,
+                                                                                                      Prof. Dr.-Ing. Peter Firsching,
+                                                                                                                Prof. Dr. Frank Denk
+
+
+
+                                                                                                           Version 2.0, 13.01.2023
+                                                                            Stand: 11.01.2022
+
+
+
+14                                                                                                            www.th-deg.de/en
+

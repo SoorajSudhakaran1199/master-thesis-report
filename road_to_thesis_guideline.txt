@@ -1,0 +1,2436 @@
+ROAD TO THESIS
+A GUIDELINE ABOUT SUCCESSFULLY FINISH A
+THESIS
+
+
+
+                           Prof. Dr. Matthias Górka
+  TABLE OF CONTENTS
+                                      checklist                                                                realization of prototype
+
+                                       general                                                                 verification of prototype
+
+                                 kickoff meeting
+                                                                                                                    writing the thesis
+
+                                      timeline
+                                                                                                                          paper
+                          exchange with Professor
+                                                                                                                     master seminar
+                          state of the art research
+                                                                                                                   master colloquium
+                         requirement management
+                                                                                                                     rating of thesis
+                          development of concepts
+
+                                                                                                                     lessons learned
+                           development of product
+
+                                     simulation                                                                          software
+
+
+                               parts procurement                                                                     supporting files
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                     page 2
+  CHECKLIST
+
+ Before thesis is registered:
+ oGeneral guideline for thesis by Campus Cham fully read?
+ oSpecific guideline (this file) for thesis by Campus Cham fully read?
+ oCareer Start into German Technology Companies passed?
+ oStudents' office contacted about the regulations?
+ oKick off meeting done?
+ oTitle of thesis aligned with Prof?
+ oThesis registered?
+ oThesis application approved by Professor?
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 3
+  CHECKLIST
+
+ Thesis is registered – administrative tasks:
+ o Only for university thesis:
+        o
+        Safety instruction for lab done and still valid?
+        o
+        Access for lab granted?
+ o Project management approach (waterfall/agile) decided?
+ o Gantt Chart created and aligned?
+ o MS Outlook entries for exchange with Prof created?
+ o File labeling used?
+ o Master colloquium prepared?
+ o Submission
+        o
+        Thesis hand over via system?
+        o
+        IEEE paper written and handover to Professor?
+        o
+        Lessons learned finished and discussed with Professor?
+        o
+        All files in the given folder structure of the guideline (including thesis and raw data as
+       PDF) and naming are submitted as one compressed zip-file to Professor?
+        o
+        Bound version (“book”) handover to Professor?
+        o
+        Presentation (PDF/PPTX) of colloquium is submitted to Professor?
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 4
+  CHECKLIST
+
+ Thesis general content / structure:
+ o State of the art research done?
+ o Requirements are set SMART?
+ o Concepts developed and decided for one?
+ o Product is designed and files stored?
+ o FMEA created?
+ o System is simulated and files stored?
+ o Parts and equipment ordered?
+ o Prototype build?
+ o Prototype measured and verified?
+ o For onsite students only: Live presentation for the Professor of the
+  developed product in the laboratory done?
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 5
+  CHECKLIST
+
+ Written Thesis itself (“book”):
+ oThesis checked for citations and citations are marked
+ oNext steps described at the end
+ oFormulars in scientific standard and stepwise explained
+ oAttachment complete and in a proper format
+ oSpelling and grammar checked and ok
+ oSyntax and word order (easy to read, no long sentence).
+ oExpressive and high-quality pictures
+ oNo Screenshots
+ oNo missing axis description
+ oEach picture is explained short below the picture!
+ oEach picture is referenced and explained in the text
+ oContinues format (no change within the document)
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 6
+  CHECKLIST
+
+ Written Thesis itself (“book”):
+ o List of references existing, complete and sorted by appearance
+ o List of tables existing, complete and sorted by appearance
+ o List of pictures existing, complete and sorted by appearance
+ o List of abbreviations existing, complete and sorted alphabetic
+ o Appropriate literature is searched, and state of the art is fully
+  described.
+ o Hypothesis are logical consistent.
+ o Results are evaluated critical
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 7
+  GENERAL
+
+  If there are contradicting requirements between the guidelines, this is
+   the ranking of the obligatory order:
+     1. THD regulations (study course specific)
+     2. Prof. Górka Guideline (this document)
+     3. General guideline for thesis by Campus Cham
+
+        e.g. the general guideline for thesis requests a 1-page printing and
+        Prof. Górka guideline is requesting a 2-page printing, the 2-page
+        printing is mandatory. Assuming the THD regulation would say half
+        page page printing, then half page would be mandatory as the THD
+        regulation is the highest in the ranking.
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 8
+  GENERAL
+
+  You're in charge of delivering the thesis and its content in time - not
+   the company and not the Professor!
+  In case significant delays are taking place (e.g., supplier delivery time
+   massively delayed, and you cannot do a measurement), PRE-inform
+   the Professor in an early stage.
+  Short timed notification (e.g., “I will not deliver tomorrow the
+   content”) or already after impact happen, will result in a lower
+   grade!
+  Fully read the general guideline for thesis by Campus Cham:
+   https://www.th-deg.de/Studierende/Antraege-und-
+   Organisatorisches/NuW/campus_cham_leitfaden_abschlussarbeiten_e
+   n.pdf
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 9
+  GENERAL
+
+  Don’t copy (even partly) – copy without proper
+   cite and plagiarism will result in a failure!
+  Don’t communicate, publish, post,… your ideas or
+   concepts to someone else then your supervisor. Maybe they
+   are worth to patent!
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 10
+ GENERAL
+ AI – ARTIFICIAL INTELLIGENCE
+ General logic:
+  AI as tool like a calculator  OK
+  AI like an external work force outsourcing my job  not OK
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 11
+ GENERAL
+ AI – ARTIFICIAL INTELLIGENCE
+ Allowed usage of AI:
+  Development of an AI: If it is given by the task of the thesis e.g.,
+   “develop a neural network to…”, the usage of AI is allowed.  The usage
+   need to be explained in detailed technical steps in several pages, as this is
+   the core of the thesis
+  AI is used to improve the text writing like an improved spellchecker OR AI
+   is used as a challenger for your technical questions e.g. “Any drift near
+   threshold?”  Following things need to be added to the thesis:
+      Which AI is used e.g., ChatGPT
+      Which model e.g., GPT-4.5
+      Copy each used prompt as machine readable text (no screenshot!) to the
+       attachment.
+      If you have uploaded a file to the prompt, you need to add the file to
+       your deliverables of the thesis or refer the public source of the file.
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 12
+ GENERAL
+ AI – ARTIFICIAL INTELLIGENCE
+ Not allowed usage of AI (leading to a failed thesis!):
+    Using the AI for text improvements without mentioning it
+     and/or without adding the details (see page before)
+    A completely written content by AI e.g. “Dear AI write
+     me the chapter of…” is not allowed. A thesis need to be
+     created by yourself, and you need to be the originator.
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 13
+ GENERAL
+ AI – ARTIFICIAL INTELLIGENCE
+ Be aware:
+  Don’t upload personal or confidential data to the AI!
+  You are accountable for the usage of the AI output – wrong / bad output is
+   your fault, not fault of the AI.
+  If you spending low effort for the prompt writing, you will get a low-quality
+   output.
+  Don’t trust any of the AI output! The AI is also hallucination outputs that
+   look correct but are 100% fake. This includes even fake sources of papers.
+  You need the knowledge of the output to verify if the output can be used.
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 14
+ GENERAL
+ SAFETY INSTRUCTION LAB
+  In case you are doing an onsite (university) thesis in the
+   laboratory, a safety instruction is needed  this is not relevant
+   for company thesis
+      Do the safety instruction for the laboratory by lab
+       engineer and sign it or by the online course in iLearn
+       (access can be given by the lab engineer)
+      After successful safety instruction, get access to the lab
+       via the lab engineer.
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 15
+ GENERAL
+ LAB ENGINEER
+ Lab 2 – Electrical engineering Lab
+                              Andreas Hierstetter, B. Eng
+                              Tel: 09971/99673-61
+                              Email: andreas.hierstetter@th-deg.de
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 16
+    GENERAL
+    APPLICATION & REGISTRATION
+ Contact the student's office, about the process for your thesis and your special requirements (not the professor)
+ How to register see: https://www.th-deg.de/en/students/documents#bachelor-master-thesis
+ TODO:
+    1.  Apply via IT-System (not paper!), see software chapter. Input for Registration Form:
+           1.       Thesis Topic: Align title with professor upfront (German and English)!
+           2.       Abstract (optional): Add the core content / abstract to the application [see next page]
+           3.       Registration date: Needs to be a weekday & working day (no weekend, no public holiday, not between
+                    Christmas and new Years eve)
+           4.       Delivery version for the supervisor:
+                  1.     !!!Just Copy whole content 1 to 1 to PRIMUS!!!: bound version (printed book), PDF+ZIP with
+                         appendix & work files (USB-stick or cloud exchange), scientific paper
+                  2.     !!!NO CD for data delivery!!!!
+                  3.     see LINK for the location for handover of the paper version / post mail
+                  4.     scientific paper can be delivered until the presentation date / colloquium
+                  5.     For company students only: Before uploading something in a cloud, check with the company if this is
+                         allowed (data policy). Otherwise, the date needs to be delivered via USB-Stick.
+                  6.     For onsite students only: Don’t forget the live presentation of the developed product in the laboratory
+    2.          Professor needs to approve the workflow – check it! If not done within 2 weeks, remind the Professor.
+   27/10/2025      THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 17
+ GENERAL
+ CORE
+ TODO:
+       CONTENT / ABSTRACT
+             Target date: within 1 week
+
+                   Scope: 2 full pages (not just 5 rows!) including a picture of the topic
+
+                 Format: PDF
+
+    Content checklist: page 1 - abstract
+                        Title of the thesis (proposal)
+                        Author name and contact
+                        Name supervisor of university including university name
+                        Name supervisor of company including company name
+                        Study course
+                        Background and state of the art
+                        Research Hypothesis – your core! See next pages for example.
+                        SMART targets: The abstract should include S.M.A.R.T. targets, see SMART GOALS in this guideline or
+                         SMART criteria – Wikipedia
+                        Picture of the topic
+                        References / bibliography - minimum 2, e.g., how to get to the assumption of the hypothesis/background
+                        Tags / keywords e.g., #sensor #AI #AGV
+                        DON'T deliver just a table of content / index - it's a scientific abstract that is expected!
+
+                                page 2 - timeline
+                                 Timeline / project plan of your thesis. Example see chapter TIMELINE
+27/10/2025    THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 18
+ GENERAL
+ CORE CONTENT / ABSTRACT
+ TODO:
+             Template: •          A template for LaTeX or Word is provided in the SUPPORTING FILES
+                       •          The core content needs to be written like an abstract for IEEE about the expected content of your
+                                  thesis (of course without the results / conclusion…)! More information's see Structure Your Article - IEEE
+                                  Author Center Journals
+             Language: One language. Don’t mix between title, text, graphic,…
+
+   Naming of the file: See chapter "general" --> file labeling
+
+              Example: An example of a good abstract is shown in the SUPPORTING FILES
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                    page 19
+ GENERAL
+ CORE CONTENT / ABSTRACT
+                                                       Figure: Example of a good
+                                                       abstract. File can be found in
+                                                       the SUPPORTING FILES
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 20
+ GENERAL
+ HYPOTHESIS – DEFINITION
+  Is the core of your whole thesis!
+  A hypothesis is an assumption that is not yet proven  If I can
+   easy Google / look into a book and find the answer to the
+   assumption, your hypothesis is not valid!
+  A hypothesis is a connection between different aspects and
+   variables
+  A hypothesis goes beyond the current existing state of the art
+   knowledge
+  The thesis must contribute to academical research, not only
+   implementation or development and therefore promote the state-
+   of-the-art research knowledge to a next level. So, the hypothesis
+   goes beyond the current existing state of the art knowledge.
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 21
+ GENERAL
+ HYPOTHESIS – NEEDS TO BE…
+  Logical connection: IF A rise, fall,… THEN B…
+  Directed:
+     Not direct: the number of wires has an impact to the reliability of the transformer
+     directed: an increase of the number of wires has a negative impact to the reliability
+      of the transformer
+  Universal: not limited to one specific case
+  Objective: no personal opinion
+  Measurable: A hypothesis is needs to be verified within the thesis (not in the
+   abstract) by real measurement or minimum a simulation to proof the hypothesis [not just
+   literature research!]. So, measurements / simulation must be part of the thesis!
+  Precise
+  Short: maximum of ~20 words
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 22
+ GENERAL
+ HYPOTHESIS – PITFALLS
+  Using the word „all“  You really can investigate the whole
+   world in your thesis with all possible cases? Assume always
+   black swan events!
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 23
+ GENERAL
+ HYPOTHESIS – EXAMPLES
+              IF…                                                                                     THEN…
+ 1. The more players getting                                                               1. … the more they get
+    free rewards while playing                                                                addicted to the game.
+    online games…
+ 2. An avatar with a real photo                                                            2. … has a positive effect on
+    of the contact person                                                                     the trustworthiness of the
+    instead of a fake avatar…                                                                 company.
+ 3. Increasing the amount of                                                               3. … has a negative impact on
+    banner adds at a                                                                          customer satisfaction.
+    webpage…
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 24
+ GENERAL
+ FILE LABELING
+  All files send to the Professor need to have the format:
+             [YYMMDD]_[type]_[content]_v[version]
+  No space “ “ is allowed  use “_”
+  For example:
+          221209_schematic_high_voltage_transformer_v001
+  NOT:
+     221209_schematic high voltage transformer_1
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 25
+ GENERAL
+ FILE LABELING
+  Handover after the colloquium and the upload of your thesis to
+   the system, one zip-file to the Professor including the filled
+   folder structure (time plan, LeLe, paper, simulation files,…)
+  Don’t include the 010_guideline and 030_registration content
+  Labeling: [YYMMDD]_[type_of_thesis]_[FirstName_FamilyName]_v[version]
+  Example: 221210_master_thesis_John_Smith_v001
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 26
+ GENERAL
+ FILE EXCHANGE
+  For exchange of files (e.g., drawings, code,…) always use the
+   THD software mentioned in SOFTWARE
+  DON‘T use public exchanges like google drive or drop box,…
+   because of confidentiality.
+  University files: It is not allowed to share any files provided
+   by the THD/professor with 3rd person like other people,
+   companies, students except a dedicated approval by the
+   professor.
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 27
+ GENERAL
+ PROJECT MANAGEMENT SOFTWARE
+  I recommend you, to use a kind of project management
+   software. Advantage:
+      Monitor of open topics
+      Priories
+      What to do next
+      Don't forget important milestones
+  For possible (free) software see the desired chapter software.
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 28
+ KICKOFF MEETING
+ PROCESS
+  Align an online kickoff meeting:
+     Target date: within 2 weeks
+     Location:
+              Company Thesis: online meeting
+              University Thesis: onsite at electronics lab 2, Campus Cham,
+               Badstraße
+         Participants:
+              Company Thesis: company supervisor, student and Professor.
+              University Thesis: student, Professor, Lab Engineer Andreas
+               Hierstetter (andreas.hierstetter@th-deg.de)
+         Duration: 30min (maximum)
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 29
+ KICKOFF MEETING
+ AGENDA
+  Get to know each other (5min) [R: all]
+  Presentation of company background (5min) [R: company supervisor]
+  Explaining the process and content of master thesis (5min) [R: professor]
+     Specify S.M.A.R.T targets with content of research
+     Registration (after that day the 6 months' time start)
+     Feedback by company
+     Master Seminar
+  Timeline of Thesis (5min) [R: student]
+  S.M.A.R.T targets of the master thesis (10min) [R: student]
+  Open questions (5min) [R: all]
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 30
+  TIMELINE
+
+  TODO:
+    1. Decide for one project management approach e.g.
+       1. Waterfall
+       2. Agile (SCRUM)
+    2. Create a specific and tailored timeline for your thesis and
+       align with Professor
+    3. Send the aligned exchange dates with professor as an
+       MS Outlook entry (not List, text,…) to the Professor
+  Why?
+     Ensure a proper structure for the thesis.
+     Ensure the right in time delivery.
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 31
+  TIMELINE
+
+  Format:
+     GANTT chart
+     with duration of each single phases
+     with milestones
+     with exchange dates with Professor
+     With relevant bank holidays
+  How to create:
+     For Gantt Chart creation I recommend to use a software
+      (no paper!), see chapter Software
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 32
+  TIMELINE
+
+  Attention:
+         Revision of the final thesis after the handover can takes roughly
+          2 months by the professor!
+         This 2 months are not counting into the 6 months' time of the
+          writing period for your thesis.
+         This information is only relevant, in case you need the final grade
+          at a desired date e.g., because the company requires this for
+          hiring, visa,….
+         The master colloquium needs to be done after the handover of the
+          written part but should be close to it (~2 weeks). The colloquium
+          can be done after the 6 months period of the thesis.
+         6 months deadline include the bound version (printed book)
+          & upload in PRIMUS of PDF+ZIP with appendix & work files
+          no hardcopy delivered within the 6 months is causing a fail!
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 33
+ TIMELINE
+ EXMATRICULATION
+  Current regulation can be requested by the study
+   centre, this is just a personal information to you:
+     Be aware, that if the thesis is your final mark (all
+      other exams are passed), that you will get
+      exmatriculated after the final rating of your
+      thesis! This can be relevant for the validity of
+      your study visa.
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 34
+  TIMELINE
+
+  Content:
+     Phase 1: state of the art research
+     Phase 2: requirement management
+     Phase 3: development of concepts
+     Phase 4: development of product
+     Phase 5: simulation
+     Phase 6: parts procurement
+     Phase 7: realization of prototype
+     Phase 8: verification of prototype
+     Phase 9: writing the thesis
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 35
+ TIMELINE
+ EXAMPLE
+                                                                                                                          This example
+                                                                                                                           was created with
+                                                                                                                           ProjectLibre (link
+                                                                                                                           see software).
+                                                                                                                          Source file can be
+                                                                                                                           found in the
+                                                                                                                           supporting file
+                                                                                                                           attachment.
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                     page 36
+ TIMELINE
+ TIP FOR THE TIMELINE
+  Be aware of the ordering time (~2 weeks).
+  Take care about the delivery time in your planning!
+   Depending on the shop and part, it could be even month(s)!
+  Don’t spend months in the literature research and start with
+   the doing, otherwise you are running out of time!
+  If tests or simulations fail, you need to redesign your part –
+   consider several loops!
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 37
+ TIMELINE
+ TIP FOR THE TIMELINE
+  You need some time to get familiar with the lab equipment
+   and tools (manuals, testing,…)!
+  Be aware of public holidays! E.g., you can not enter the lab
+   or order parts while Christmas period!
+  While lecture free time (Mid of February to mid of March and
+   whole of August, September and December) the laboratory
+   could be closed, and Professor is not available! Be aware
+   in your planning! In case onsite work is needed, align early
+   enough with the Lab-Engineer.
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 38
+  TIMELINE
+  TIP FOR THE TIMELINE
+!!!Example!!! Real plan depends on the topic!
+ Phase 1: state of the art research ~1 week
+ Phase 2: requirement management ~1 week
+ Phase 3: development of concepts ~2 weeks
+ Phase 4: development of product ~4 weeks
+ Phase 5: simulation ~3 weeks
+ Phase 6: parts procurement ~6 weeks
+ Phase 7: realization of prototype ~2 weeks
+ Phase 8: verification of prototype ~3 weeks
+ Phase 9: writing the thesis (parallel +2 weeks)
+ After: Prepare presentation colloquium ~2 weeks
+ After: Writing scientific paper and create lessons learned ~1 week
+ 27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 39
+ EXCHANGE WITH PROFESSOR
+ EXCHANGE MEETINGS WITH PROF.
+  TODO:
+    1. Prepare yourself about the content – you are the host!
+  Amount:
+     (mandatory) university/company thesis: kickoff meeting
+     (optional!) Only for university thesis: concept freeze meeting
+     (optional!) university/company thesis: Midterm meeting
+     Additional status meetings e.g. monthly can be added by the professor
+      with all current running thesis students [only 5min].
+  Format:
+     Maximum 30min
+     Prepare the PowerPoint shown in the next page
+  Content
+     Achievements since the last meeting
+     Open topics / problems
+     Next Steps
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 40
+ EXCHANGE WITH PROFESSOR
+ EXCHANGE MEETINGS WITH PROF.
+  How To:
+     onsite, with pre-aligned exception also Microsoft Teams or Zoom
+     Meeting needs to be set upfront by you based on your individual
+      demand (Professor will not request!) for MS Outlook
+     A master thesis is a self driven task!
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 41
+    EXCHANGE WITH PROFESSOR
+    STATUS OF THESIS                                                               current project status
+       topic
+
+    project lead                                                                    state of the art     requirement           development of
+                                                                                       research          management               concepts
+end date thesis
+                                                                                    development of                                 parts
+                                                                                                           simulation
+                                                                                       product                                  procurement
+successfully finished
+                                                                                                                                                  last time  current    forecast
+                                                                                     realization of      verification of
+                                                                                       prototype           prototype                            dd.mm.yyyy dd.mm.yyyy dd.mm.yyyy
+•     Topic 1
+•     …
+
+
+                                                                                                                               responsible                 target date   status
+#               open topics                     risk                          next steps
+                                                                                                                           [name, department]               [dd.mm]      L/C/F
+
+                                                         a.Step a                                                   a.First name Family name, MG-4          a. dd.mm.
+1                                                        b.Step b                                                   b.First name Family name, MG-4          b. dd.mm.          
+                                                         c.Step c                                                   c.First name Family name, MG-4          c. dd.mm.
+
+2                                                                                                                                                                              
+3                                                                                                                                                                              
+4                                                                                                                                                                              
+5                                                                                                                                                                              
+6                                                                                                                                                                              
+
+
+
+27/10/2025         THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                                                 page 42
+    EXCHANGE WITH PROFESSOR
+    STATUS OF THESIS                                                               current project status
+                            Development of a highly efficient on-
+       topic
+                          board charging device for passenger cars
+
+    project lead                         Max Mustermann                             state of the art     requirement           development of
+                                                                                       research          management               concepts
+end date thesis                                SS2023
+                                                                                    development of                                 parts
+                                                                                                           simulation
+                                                                                       product                                  procurement
+successfully finished
+                                                                                                                                                 last time    current       forecast
+                                                                                     realization of      verification of
+                                                                                       prototype                                                10.01.2023   15.03.2023    15.05.2022
+                                                                                                           prototype
+•     Schematics for the charger finished
+
+
+                                                                                                                               responsible                   target date      status
+#              open topics                      risk                          next steps
+                                                                                                                           [name, department]                 [dd.mm]         L/C/F
+
+                                                         a.Try different solvers                                               a.Max Mustermann               a. 08.04.
+1    Simulation unstable and slow               low                                                                                                                               
+                                                         b.Linearize some parts to reduce the complexity                       b.Max Mustermann               b. 15.04.
+
+     Parts have a long shipping time
+                                                         a.Try to find different parts / manufacturer                          a.Max Mustermann               a. 01.04.
+2    because of leakage of                     high                                                                                                                               
+                                                         b.Change design, that it works with other parts                       b.Max Mustermann               b. 01.05.
+     semiconductors
+
+
+
+
+27/10/2025         THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                                                    page 43
+  STATE OF THE ART RESEARCH
+
+  TODO:
+    1. Do a proper and deep research about the state of the art.
+  How to:
+     A proper research includes a wide scope of the state of the
+      art.
+     This includes for example:
+                    IEEE or other papers
+                    Patent search e.g., https://worldwide.espacenet.com/
+                    Library
+                    AI tools e.g., https://www.scienceos.ai/
+                   …
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 44
+  REQUIREMENT MANAGEMENT
+
+  TODO:
+    1. Define what the later developed solution should be
+        capable of with specific goals
+ How to:
+     Ask yourself: What is new? What is better?
+     Requirements must be SMART! See next pages.
+     The requirements must be broken down to the components,
+      not only on system level!
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 45
+  REQUIREMENT MANAGEMENT
+  EXAMPLE
+                        Don’t   write: “Goal is, to     Range e.g.,
+  Which application?                                   minimum, exact,
+   E.g., car, camera,    develop  a charger  with
+                                                         maximum,…
+toy,…?  Different law, 25W.”
+    environment,…!
+                        Right: “Goal is, to develop
+                         a smartphone charging        Measurable (e.g.,
+       Type of
+                         device for minimum 25W      power, efficient, …?)
+ performance (e.g.,
+                         constant power at standard
+   constant, peak,
+                         office conditions over
+     average,…)
+                         product lifetime [see
+       At which          1.2.1].”
+   environment?                                      In which conditions (e.g., lifetime, first 100km, 2 years
+ (freezing, dessert,                                after first setup,…)? In this example, lifetime needs to be
+      sauna,…)                                        specified in another requirement and linked to this one!
+ 27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 46
+ REQUIREMENT MANAGEMENT
+ SMART GOALS
+                                                                                           Goals should be written in
+                                                                                           „SMART“ way:
+                                                                                            Specific
+                                                                                            Measurable
+                                                                                            Achievable
+                                                                                            Reasonable
+                                                                                            Time-Bound
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 47
+ REQUIREMENT MANAGEMENT
+ SMART GOALS
+                                                                                           Specific
+                                                                                            Goals need to be specific,
+                                                                                             precise and tangible.
+                                                                                            No broad requirements
+                                                                                            wrong: „get better“
+                                                                                            right: „get better in 100m-
+                                                                                             sprint“
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka     page 48
+ REQUIREMENT MANAGEMENT
+ SMART GOALS
+                                                                                           Measurable
+                                                                                            Goals need to be measurable
+                                                                                            Wrong: “Be fast”
+                                                                                            Right: “need less then 10s for
+                                                                                             100m sprint”
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 49
+ REQUIREMENT MANAGEMENT
+ SMART GOALS
+                                                                                           Accepted, Aligned or
+                                                                                           Achievable
+                                                                                            Goals need to be aligned and
+                                                                                             accepted
+                                                                                            Clear responsibility
+                                                                                            Motivation to reach the goal
+                                                                                            Right: Need less then 10s for
+                                                                                             100m sprint [R: Usain Bolt,
+                                                                                             aligned, 17.10.2022]
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 50
+ REQUIREMENT MANAGEMENT
+ SMART GOALS
+                                                                                           Reasonable
+                                                                                            Goals need to be achievable
+                                                                                            Can be different for each
+                                                                                             person, based on the given
+                                                                                             situation, background,
+                                                                                             knowledge,…
+                                                                                            Wrong: need less then 5s for
+                                                                                             100m sprint [R: Usain Bolt,
+                                                                                             aligned, 17.10.2022]
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 51
+ REQUIREMENT MANAGEMENT
+ SMART GOALS
+                                                                                           Time-Bound
+                                                                                            Goals need to be given with a
+                                                                                             target date or duration
+                                                                                            Right: Need less then 10s for
+                                                                                             100m sprint at the Olympic
+                                                                                             games 2028 [R: Usain Bolt,
+                                                                                             aligned, 17.10.2022]
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 52
+  REQUIREMENT MANAGEMENT
+
+  Details how to design a proper requirement, can be found
+   in the chapter “Requirement Management” of the lecture notes
+   from Prof. Górka in the course “System Design”.
+      An old version is given in the supporting files.
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 53
+  DEVELOPMENT OF CONCEPTS
+
+  TODO:
+    1. Develop several concepts based on your requirements.
+    2. Decide for one concept based on objective decisions
+  How to:
+     The concept development is theoretically / “on paper” 
+      there is no simulation or build up needed
+     If your stuck to develop a concept, use creative methods
+      like design thinking.
+     Decisions for the right concept need to be done structured
+      for example via a morphological box, preference analysis or
+      weighted sum model
+     No qualitative decision like “A is faster than B this is why we
+      take A”!
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 54
+  DEVELOPMENT OF CONCEPTS
+
+  Details how to create high level system structures, can
+   be found in the chapter “Basics of System Engineering” of the
+   lecture notes from Prof. Górka in the course “System Design”.
+      An old version is given in the supporting files.
+  Details how to create ideas of new concepts and how to
+   rate them, can be found in the chapter “Basics of Ideation”
+   and “Preference-Analysis & Weighted-Sum-Model” of the
+   lecture notes from Prof. Górka in the course “System Design”.
+      An old version is given in the supporting files.
+      This includes templates for the morphological box,
+       Preference Analysis, Weighted Sum Model,…
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 55
+  DEVELOPMENT OF PRODUCT
+
+  TODO:
+    1. Design your product & store the files
+    2. Create a Failure Mode and Effects Analysis - FMEA (risk
+         analysis)
+  How To:
+     Create schematics, technical drawings, optical design,…
+     The resulting documents need to be according to technical
+      and scientific standards. E.g., DON’T create an electronic
+      circuit in PowerPoint.  Use proper tools!
+     Sort your design accordingly into the following folders.
+      Every folder should have content included. If a folder is not
+      relevant, add a text file with “not relevant”!
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 56
+  DEVELOPMENT OF PRODUCT
+
+                                                                                            100_architecture_&_syste
+                                                                                             m_overview:
+                                                                                               Description of the overall
+                                                                                                system (schematic!)
+                                                                                               Description of the sub
+                                                                                                system, components
+                                                                                               Design of the architecture
+                                                                                                - how are (software)
+                                                                                                functions, sub-systems
+                                                                                                and components work
+                                                                                                together
+Figure: easy example of a system schematic (without
+interface description)
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 57
+  DEVELOPMENT OF PRODUCT
+
+                                                                                            150_pictures_system_or_
+                                                                                             prototype:
+                                                                                               Virtual pictures out of a
+                                                                                                drawing software
+                                                                                               Camera pictures and
+                                                                                                photos of your prototype
+
+
+
+
+Figure: example of a camera picture of real prototype
+and virtual picture out of CAD
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 58
+  DEVELOPMENT OF PRODUCT
+
+  200_FMEA_&_safety:
+     Create a safety concept including a Design-FMEA and if
+      relevant Process-FMEA
+     How to create an FMEA see for example here
+     An example including a template for a partly filled FMEA can
+      be found in the supporting files
+
+
+
+
+ Figure: example of a design FMEA
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 59
+  DEVELOPMENT OF PRODUCT
+
+  Details how to do a D-FMEA, can be found in the chapter
+   “Risk Management” of the lecture notes from Prof. Górka in the
+   course “System Design”.
+     An old version is given in the supporting files.
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 60
+  DEVELOPMENT OF PRODUCT
+
+  300_interface_specification:
+     Specifications of the system interfaces to the environment
+     Specifications of the system internal interfaces (e.g., sub-
+      system A to B or function C to D)
+     What kind of data (format!), energy, material,… will be
+      exchanged?
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 61
+  DEVELOPMENT OF PRODUCT
+
+  400_software:
+     Software files / real code e.g., C-Code
+     GPU server:
+              To get access to the GPU server and apply your software e.g.
+               for training of a neural network, there is a small user manual
+               for the GPU server existing.
+              This guideline my not cover all topics, so you need to solve it by
+               yourself, but the manual should help you to get faster into the
+               deployment.
+              The manual is referred in the supporting files.
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 62
+  DEVELOPMENT OF PRODUCT
+
+                                                                                            500_cicuit_digramm:
+                                                                                               PDF-export of the
+                                                                                                schematic
+                                                                                               Schematic file itself
+                                                                                                (editable schematic)
+                                                                                               Possible design software
+                                                                                                can be found in the
+                                                                                                software chapter
+
+
+
+Figure: example of a schematic of an electrical circuit
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka     page 63
+  DEVELOPMENT OF PRODUCT
+
+                                                                                   600_technical_drawing-CAD:
+                                                                                      PDF-export of the drawing
+                                                                                       with proper labeling!
+                                                                                      Drawing file itself (editable
+                                                                                       Drawing)
+                                                                                      Possible design software can
+                                                                                       be found in the software
+                                                                                       chapter
+                                                                                      Example tutorial for
+                                                                                       Fusion360: Fusion 360
+                                                                                       Tutorial for Absolute
+Figure: example of a technical drawing                                                 Beginners— Part 1 - YouTube
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 64
+  DEVELOPMENT OF PRODUCT
+
+                                                                                     600_technical_drawing-CAD:
+                                                                                        Official / engineering drawing
+                                                                                         with all relevant
+                                                                                         characteristics is expected!
+                                                                                         E.g., distances, screw hole, …
+                                                                                        not (only) a 3D picture!
+
+
+
+
+Figure: example of how NOT to do – no labelling of distances of the holes,
+slope/edges, elongated hole,… and anyway a 3D-Drwaing and not a technical
+drawing!
+
+27/10/2025    THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 65
+  DEVELOPMENT OF PRODUCT
+
+  650_3D-printing_files:
+     Step files for a 3D-Printer
+     Possible design software can be found in the software
+      chapter
+     Template for the PrusaSlicer Software is given in the folder
+      to have directly the best settings for our printer in the lab
+      using PETG Material (see supporting files)
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 66
+  SIMULATION
+
+  TODO:
+    1. Simulation of the product and files stored
+  How to:
+     Simulation of concept based on the topic e.g.:
+              MATLAB Simulink for systems
+              Abaqus for stiffness
+         Result is a simulation report that shows if the concept is
+          working or not.
+         Use the simulation to optimize your product design and to
+          apply changes.
+         A simulation is mandatory before the parts procurement
+          to ensure, that you order the right parts.
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 67
+  PARTS PROCUREMENT
+
+                                                                                            The following pages are
+                                                                                             described for university
+                                                                                             thesis.
+                                                                                            If you doing your thesis in a
+                                                                                             company, the process is
+                                                                                             similar – align early
+                                                                                             enough with your
+                                                                                             company supervisor!
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 68
+ PARTS PROCUREMENT
+ BUDGET
+                                                                                            TODO:
+                                                                                              1. Order your parts &
+                                                                                                  equipment!
+                                                                                            Request and align early
+                                                                                             enough the necessary
+                                                                                             project budget for parts,
+                                                                                             test equipment,…
+                                                                                            Try to use as much existing
+                                                                                             parts and device and avoid
+                                                                                             ordering. Ask the lab
+                                                                                             engineers, if your requested
+                                                                                             parts are already available.
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 69
+ PARTS PROCUREMENT
+ TIMELINE
+                                                                                            Be aware pf the ordering
+                                                                                             time (~2 weeks).
+                                                                                            Take care about the delivery
+                                                                                             time! Depending on the shop
+                                                                                             and part could be even
+                                                                                             month(s)!
+                                                                                            If you don't get a feedback,
+                                                                                             ask early enough about the
+                                                                                             status of the ordering! You
+                                                                                             need to take care for delayed
+                                                                                             orderings!
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 70
+ PARTS PROCUREMENT
+ ORDER RESTRICTIONS
+                                                                                            Ordering only on account as
+                                                                                             payment method (“auf
+                                                                                             Rechnung”) e.g., at Conrad -
+                                                                                             no Amazon, no prepayment,
+                                                                                             no credit card,...
+                                                                                            No foreign suppliers. The
+                                                                                             invoicing must be within
+                                                                                             Germany.
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 71
+ PARTS PROCUREMENT
+ HOW TO
+                                                                                            Only fully filled orderings
+                                                                                             will be accepted (all yellow
+                                                                                             fields must be filled)
+                                                                                            Use the file shown in the
+                                                                                             supporting files.
+                                                                                            Don’t order by yourself!
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 72
+ PARTS PROCUREMENT
+ WÜRTH ELEKTRONIK
+                                           Würth Elektronik offers free
+                                            electronic parts (resistor, coils,
+                                            switches,…) for Students
+                                           Only from the categories Components
+                                           How:
+                                               Send an E-Mail to
+                                                Christian.Kapusta@we-online.de
+                                                with the following content:
+                                               Part number
+                                               Amount of parts
+Figure: Logo Würth Elektronik [ON_Logo_Würth]
+                                               Reason / Project content
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 73
+ PARTS PROCUREMENT
+ IGUS
+                                                                              igus offers free joints, bearings,
+                                                                               shafts, chains,… for Students
+                                                                              How:
+                                                                                  Visit the webpage: Studenten-
+                                                                                   und Schülerportal von yes |
+                                                                                   igus GmbH
+
+
+
+
+Figure: Logo igus [ON_Logo_igus]
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 74
+  REALIZATION OF PROTOTYPE
+
+  TODO:
+    1. Build your own prototype!
+  How to:
+     For a thesis, an A-Sample prototype is sufficient
+     A-Sample means, that just base functionally is given in a
+      lab environment and build up with none series processes
+      (e.g., 3D-printer,…)
+     Goal is to prove the concept.
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 75
+  VERIFICATION OF PROTOTYPE
+
+  TODO:
+    1. Verify your concept with measurements of the prototype
+  How to:
+     Consider safety when designing the test (high voltage,
+      heat, rotating mass noise, evaporation,…)
+     You need to verify and test your prototype.
+     The verification needs to done against your requirements
+      (see earlier chapter).
+     Testing needs to be done with real measurements.
+     Design a test specification for your test before you start
+      testing! A “Measurement Design” template [example!] can
+      be found at the SUPPORTING FILES
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 76
+  VERIFICATION OF PROTOTYPE
+
+  How to:
+     Check upfront if the needed test equipment is available.
+     Align the setup with the lab engineer.
+     Test on different levels of your prototype (from low to high)
+              subcomponent test
+              integration test
+              whole system test
+         Measurement values need to be recorded in a machine-
+          readable format! No handwriting, snapshots,…
+         Document each experiment in a measurement minutes file!
+          E.g. date, environment (temperature, humidity, light,…). A
+          “Measurement Minutes” template [example!] can be found
+          at SUPPORTING FILES
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 77
+ VERIFICATION OF PROTOTYPE
+ EXAMPLE
+  Requirement: “Current charging technologies have the
+   disadvantage of roughly low efficiency (~80%). Goal is, to
+   develop a charging device for 500W peak power with an
+   efficiency of >95% at its operating point.”
+  Tests:
+    1. Peak power test at normal environment (25°C, standard
+         humidity) for 30min at 12V input voltage, 24V output
+         voltage. OK-Criteria: minimum of 500W output power
+    2. Efficiency measurement (output to input power) at
+         250W output power, 12V input voltage, 24V output
+         voltage, after 5min run and at normal environment (25°C,
+         standard humidity). OK-Criteria: minimum 95% Efficiency
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 78
+  WRITING THE THESIS
+
+  It is recommended to write in LaTeX / LyX and not in Word
+   otherwise you will get issues with
+      picture arrangement
+      labelling / counting
+      Citing
+     …
+  An example software for writing in LaTeX and to create a
+   literature database can be found in the chapter SOFTWARE
+
+                But you are free of choice which tool you use!
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 79
+ WRITING THE THESIS
+ SUGGESTIONS FOR LYX/LATEX
+  Document class: recommended KOMA-script
+  page layout: Double sided
+  PDF properties:
+     Activate hyperref (hyperlinks) in the document to enable jumping to the
+      corresponding page if clicking a reference e.g., bibliography or chapter or
+      picture
+     Colour the links only in the PDF, NOT in the printed version
+     No boundary box around links
+     Recommended urlcolor=blue, citecolor=cyan
+     Create bookmark
+  Install packages:
+     cm-super  smooth letters (can be seen if you zoom in your PDF if the
+      letters are smooth or pixeled)
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 80
+  WRITING THE THESIS
+
+  Fully read the general guideline for thesis by Campus Cham
+   including the fond size and other things that need to be
+   followed: https://www.th-deg.de/Studierende/Antraege-und-
+   Organisatorisches/NuW/campus_cham_leitfaden_abschlussarb
+   eiten_en.pdf
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 81
+    WRITING THE THESIS
+    SIDED & PAGE NUMBERING
+     ADJUSTMENT to the Campus Cham Guideline concerning chapter 3.2.:
+        All pages of the main body need to be printed double-sided [not one-
+         sided] in DIN A4 format. Detailed overview:
+                                                                     Sided                      Starts on Right-Hand page?           page Numbering
+Title page                                                           single                     Yes                                  NO number
+Confidentiality Note                                                 single                     Yes                                  Roman (I,II…)
+Declaration of Authorship                                            single                     Yes                                  Roman (I,II…)
+Abstract / Summary                                                   Double-sided               Yes                                  Roman (I,II…)
+Preface / Acknowledgements                                           Double-sided               Yes                                  Roman (I,II…)
+Table of Contents                                                    Double-sided               Yes                                  Roman (I,II…)
+List of Abbreviations, Figures, Tables                               Double-sided               optional                             Roman (I,II…)
+Introduction (Chapter 1)                                             Double-sided               Yes                                  Arabian (1,2,…)
+                                                                     Double-sided               Yes for each chapter (not for sub-   Arabian (1,2,…)
+Main Body
+                                                                                                chapter,…)
+                                                                     Double-sided               Yes                                  Arabian (1,2,…)
+Appendices, Bibliography
+   27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                              page 82
+ WRITING THE THESIS
+ PAGE NUMBERING & MARGIN
+  ADJUSTMENT to the Campus Cham Guideline concerning chapter 3.2.:
+     Page numbers: right-aligned on the right-hand page and left-aligned on
+      the left-hand page
+     Be aware that the margin location needs to alter as well for printing
+              bigger inner margin
+              smaller outer margin
+         It is recommended to use the same                                                                    Lorem ipsum dolor sit amet,
+                                                                                                               consetetur sadipscing elitr,
+                                                                                                                                              Lorem ipsum dolor sit amet,
+                                                                                                                                              consetetur sadipscing elitr,
+
+          setup for the PDF version to avoid double                                                            sed diam nonumy eirmod
+                                                                                                               tempor invidunt ut labore et
+                                                                                                                                              sed diam nonumy eirmod
+                                                                                                                                              tempor invidunt ut labore et
+
+          lay outing
+                                                                                                               dolore magna aliquyam erat,    dolore magna aliquyam erat,
+                                                                                                               sed diam voluptua. At vero     sed diam voluptua. At vero
+                                                                                                               eos et accusam et justo duo    eos et accusam et justo duo
+                                                                                                               dolores et ea rebum. Stet      dolores et ea rebum. Stet
+                                                                                                               clita kasd gubergren, no sea   clita kasd gubergren, no sea
+                                                                                                               takimata sanctus est Lorem     takimata sanctus est Lorem
+                                                                                                               ipsum dolor sit amet. Lorem    ipsum dolor sit amet. Lorem
+                                                                                                               ipsum     dolor  sit   amet,   ipsum     dolor  sit   amet,
+                                                                                                               consetetur sadipscing elitr,   consetetur sadipscing elitr,
+                                                                                                               sed diam nonumy eirmod         sed diam nonumy eirmod
+                                                                                                               tempor invidunt ut labore et   tempor invidunt ut labore et
+                                                                                                               dolore magna aliquyam erat,    dolore magna aliquyam erat,
+                                                                                                               sed diam voluptua.             sed diam voluptua.
+
+
+                                                                                                              10                                                 11
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                                                       page 83
+ WRITING THE THESIS
+ PRINTING
+                            Imprinting / style of the front of the book: free of
+                             your own choice
+                            Imprinting / style of the spine of book: preferred
+                             with [Semester (WSxx/yy or SSxx)] & [first name] &
+                             [family name], [title thesis] (if title is fitting full,
+                             otherwise shorten it or leave it without the title if too
+                             long)
+                             e.g. WS23/24 Thomas Müller, kicker design OR
+                             e.g. WS23/24 Thomas Müller
+                            The printed version needs to be colour print of the
+                             inner pages and not black & white e.g. pictures need to
+                             be coloured.
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 84
+ WRITING THE THESIS
+ DELIVERY OF PAPER VERSION
+         In case you are post-mailing:
+         (DON’T send to Dr. Muggenthaler Straße!):
+               Campus Cham
+               z.H. Prof. Dr. Matthias Górka
+               Gebäude A (blaue Gebäude)
+               Badstraße 21
+               93413 Cham
+
+
+         In case you are physical handover to Professor:
+               Campus Cham
+               Building A (blue building)
+               first floor (BE) / second floor (AE), room 1.08, labeled with “Prof. Matthias Górka”
+               Badstraße 21
+               93413 Cham
+
+
+         In case you are physical dropping it in the mailbox of Professor:
+               Campus Cham
+               Building A (blue building)
+               ground floor (BE) / first floor (AE), mailbox in the hallway in front of lecture room Zollner, compartment 40, labeled with “Prof. Matthias Górka”
+               Badstraße 21
+               93413 Cham
+
+27/10/2025    THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                                       page 85
+ WRITING THE THESIS
+ TEMPLATE
+  Information: the template given by the Professor for the
+   paper is not the correct one / same for the thesis itself! There
+   is no template for the thesis given yet, just the regulations
+   from this guideline.
+  This LaTeX template can be used as an initial step (doesn’t
+   mean that it fulfils all requirements like two-sided!!!) into the
+   LaTeX thesis: thd-latex / studienarbeiten · GitLab (th-deg.de)
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 86
+ WRITING THE THESIS
+ PARALLEL WRITING
+  It is strictly recommended to write always in parallel to your
+   thesis work and do at the end of the thesis just the fine tuning.
+   Do not wait until the end and then start writing! You will forget
+   things, sources and references. Typical issues:
+      Where did I find this picture?
+      In which book and page was written that…?
+      What was the result of the measurement?
+      Why did I decided to do it like this and not the other way?
+      How is this software code working (forget annotation)?
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 87
+ WRITING THE THESIS
+ BE AWARE OF…
+  Scientific & methodical approach
+  Structure of thesis itself
+  List of references existing, complete and sorted by
+   appearance
+  List of tables existing, complete and sorted by appearance
+  List of pictures existing, complete and sorted by appearance
+  List of abbreviations existing, complete and sorted
+   alphabetic
+  List of symbols you used in your formulas
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 88
+ WRITING THE THESIS
+ BE AWARE OF…
+  State of the art is fully described
+  Results are evaluated critical
+  Next steps described
+  Formulars in scientific standard and stepwise explained or
+   referred
+  Attachment complete and in a proper format
+  Spelling and grammar checked and ok
+  Continues format (no change within the document)
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 89
+  WRITING THE THESIS
+  STRUCTURE OF THESIS
+1. main page                                                                   11. chapter 3: requirement management
+2. declaration                                                                 12. chapter 4: development of concepts
+3. abstract (1 page summary)                                                   13. chapter 5: development of product
+4. acknowledgement                                                             14. chapter 6: simulation
+5. table of contents                                                           15. chapter 7: realization of prototype
+6. list of figures                                                             16. chapter 8: verification of prototype
+7. list of tables                                                              17. chapter 9: conclusion and outlook
+8. list of abbreviations                                                       18. list of references
+9. list of symbols                                                             19. appendix
+10. chapter 1: introduction
+11. chapter 2: state of the art
+Depending on the specific topic the chapter 3 to 8 can vary or be
+split in more content related sub-chapters.
+ 27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 90
+ WRITING THE THESIS
+ PAGE COUNT
+  Overall page count (only the chapters are counting, NOT the
+   lists or appendix):
+      Master thesis: 80 pages +/-10%
+      Bachelor thesis: 50 pages +/-10%
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 91
+ WRITING THE THESIS
+ PAGE COUNT
+  Focus of the thesis is the development till verification and NOT the state of
+   the art!!! The distribution of the pages should be accordingly. Here a rough
+   proposal – the real distribution depends on the topic.
+      Chapter 1: Introduction                   [~2 pages]
+      Chapter 2: state of the art               [~13 pages]
+      Chapter 3: requirement management         [~3 pages]
+      Chapter 4: development of concepts        [~5 pages]
+      Chapter 5: development of product         [~20 pages]
+      Chapter 6: simulation                     [~10 pages]
+      Chapter 7: realization of prototype       [~10 pages]
+      Chapter 8: verification of prototype      [~15 pages]
+      Chapter 9: Conclusion and outlook         [~2 pages]
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 92
+  WRITING THE THESIS
+ SCIENTIFIC & METHODICAL APPROACH
+  Target is, that another researcher can understand your process how
+   did you get to this data and results and that he/she is able to
+   reproduce your results.
+         Research design: Description of the general approach and structure of
+          the study.
+         Data collection: Methods and techniques used to collect data (e.g.,
+          experiments, surveys, interviews).
+         Data Analysis: Procedures and tools used to analyse the data collected.
+         Sampling: Information about the selection of the sample, including size
+          and selection criteria.
+         Procedure: Detailed description of the steps and protocols performed.
+         Ethics: Mention ethical considerations and approvals where relevant.
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 93
+  WRITING THE THESIS
+ SCIENTIFIC & METHODICAL APPROACH
+ This includes especially:
+  Used analysing methods
+  Which experiment was performed and how is it setup?
+  Conditions like the environment e.g. time, date, temperature,
+   humidity,…
+  Used devices – exact name/type + serial number + version
+  Used software including version
+  Used standards
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 94
+      WRITING THE THESIS
+     SCIENTIFIC & METHODICAL APPROACH
+Wrong                 Issue                                         Good statement
+statement
+Data is split         HOW was it split? How did                     The data was split 80% into A and 20% into B using a random walk with scikit-learn
+                      you decided to put this data                  [source]. To ensure the data is distributed evenly in each groups the data distribution
+                      in to group A and the other                   is visualized in figure 1 showing a similar distribution in group A and B.
+                      into B?
+Standard PC           Which hardware and                            The system contains of an ASUS Zenbook Pro 14 laptop, with i7-6990, 32GB DDR4
+used                  software?                                     2133MHz RAM and M200M graphics card with 4GB running on Windows 10.
+The device x was      Which specific device                         For measuring the frequency the oscilloscope Tektronix TBS2025C, SNR: 357168 was
+used.                 including part number /                       used. OR The DPU server of the university with the following configuration was used
+                      specification.                                [CPU, RAM, GPU type and storage,…]
+Python is used        Which version? Which                          Python 1.0.0 with Ultralytics 2.3.7 and PyTorch 2.8+c117 was used to train the
+                      packages/libraries?                           model.
+The distance was      How? Which device?                            The distance was measured using a calliper “KS Tools 730” with an accuracy of +/-
+measured              Accuracy?                                     0,1mm. [source]
+Roughly 800           Exact number!                                 985 pictures were used for training. Table 1 shows the distribution between the
+pictures                                                            classes.
+Pictures from the     Sources + example picture                     Pictures were added from the following sources [source] with different background
+internet              missing                                       and size. Figure 1 is showing some examples of these pictures.
+    27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                        page 95
+ WRITING THE THESIS
+ CHAPTERS
+  New Chapters starting on a new right side page, not in the
+   middle of a page.
+  A new Chapter, Sub-Chapter,… should be minimum 1 page –
+   DON’T divide your thesis in several super small chapters! This
+   destroys the reading flow.
+  Chapters (and sub-chapters) are getting an Arabic numbering
+   in the headline. The rest of the headlines like “list of…” or
+   Appendix are not numbered e.g.
+               Right                                                              Wrong
+
+               3. Requirement Management                                          Requirement Management
+
+               Appendix                                                           10. Appendix
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 96
+ WRITING THE THESIS
+ CHAPTERS
+  Chapter names / headlines are pure text, especially in the list
+   of contents
+     no “:” at the end
+     no reference number included like “[3]”
+  Wrong: artificial intelligence: or artificial intelligence [3]
+  Right: artificial intelligence
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 97
+ WRITING THE THESIS
+ MAIN PAGE & DECLARATION
+                                                                                            Please be aware of the study
+                                                                                             program specific
+                                                                                             requirements for the first
+                                                                                             page and the restriction
+                                                                                             notice (Sperrvermerk).
+                                                                                             You can find them on THD
+                                                                                             webpage at “Thesis”
+                                                                                             Documents & Organisation |
+                                                                                             DIT (th-deg.de)
+
+
+Figure: Example of lecture specific first page and
+“Sperrvermerk”
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 98
+ WRITING THE THESIS
+ MAIN PAGE & DECLARATION
+                                                                                            THD Logo is only allowed on
+                                                                                             the first page (not at the
+                                                                                             outer surface of the book or
+                                                                                             somewhere else in the thesis!)
+                                                                                            Default is GRAY coloured Logo.
+                                                                                            Logo files see SUPPORTING
+                                                                                             FILES
+
+
+
+Figure: Example of lecture specific first page and
+“Sperrvermerk”
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 99
+ WRITING THE THESIS
+ INTRODUCTION
+  Content:
+     Short overview of the content of the thesis itself
+     Short description of the content of each the chapter
+     !!!Hypothesis!!! See GENERAL
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 100
+ WRITING THE THESIS
+ CONCLUSION AND OUTLOOK
+  Content Conclusion
+     Recapture of the hypothesis from the introduction
+     Critical discussion of your results
+              Are all parts of the hypothesis fulfilled and if yes where was it
+               proven in the thesis (set a reference to the corresponding
+               chapter).
+              If not, why?
+  Content Outlook
+     What would be the next steps if you would continue?
+     Which questions are open?
+     What can be done to improve this topic further?
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 101
+  WRITING THE THESIS
+ LINEBREAK / PAGEBREAK / LINEFEED
+  Take care of words concerning line break / page break /
+   linefeed that words are not divided. This applies for:
+      Words with “-” e.g., 6-DoF
+      Value and unit e.g., 3,7 m or 5%
+      Reference e.g., testing [1]
+      Abbreviations e.g., Internet of Things (IoT)
+  This would be WRONG:
+                                                          3,7
+   m
+                                                          6-
+   DoF
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 102
+ WRITING THE THESIS
+ CITING
+  Appropriate literature is searched and referenced  not just
+   YouTube, Webpages and Wikipedia!
+  Correct / no missing cite
+     Mark clearly what are your words, and what is copied.
+     2 Options:
+             1. Highlighting a word-by-word-citing via "" with the reference
+                number e.g., “to be or not to be?" [5]
+             2. Including the meaning, but not the exact words referring in the
+                sentence e.g., according to [5] the main question is….
+         Details about “how to cite” correctly can be found in this
+          guideline:
+          https://mediatum.ub.tum.de/doc/1236069/1236069.pdf
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 103
+ WRITING THE THESIS
+ CITING
+  Citing of Online sources:
+     [Online] needs to be added
+     Link to the source needs to be added
+     Day of access to this webpage needs to be added and the
+      day it was published
+  Example:
+ M. Alba, "ANSYS Adds Motor-CAD to Electric Machine Design Portfolio - Motor
+ Design Limited and ANSYS team up for an electric motor design.",
+ engineering.com, Oct. 25, 2019. [Online]. available:
+ https://www.engineering.com/story/ansys-adds-motor-cad-to-electric-machine-
+ design-portfolio (accessed: Oct. 16, 2022).
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 104
+ WRITING THE THESIS
+ CITING
+  A citation in the PDF file of the thesis must be a link to the
+   corresponding entry in the bibliography:
+      Wrong:      “…not to be?" [5]
+      Right:      “…not to be?" [5]
+  If a picture is not created by you, the reference must be also
+   included in the description below the picture, not jus tin the
+   text.
+      Wrong:      Figure 1: Logo of Apple
+      Right:      Figure 1: Logo of Apple [5]
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 105
+ WRITING THE THESIS
+ SYNTAX / WORDING
+  Syntax and word order
+     Easy to read
+     No long sentence - maximum 2 lines long sentence
+  Don’t use “I”, “my”, “our”…. For example:
+     Wrong: I developed an AI to…
+     Right: An AI was developed to…
+  Don’t use rating words like “huge memory”, “great capacity”,
+   “very fast”
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 106
+ WRITING THE THESIS
+ COLOR
+  The continuous text needs to be coloured in black e.g., no
+   blue text.
+  Text in pictures can be different coloured.
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 107
+     WRITING THE THESIS
+     PICTURES/FIGURES/GRAPHICS
+                                                                              Expressive and high-quality pictures
+                                                                               Use vector graphics e.g., *.svg, no pixel graphic
+                                                                                (what is a vector graphic:
+                                                                                https://de.wikipedia.org/wiki/Vektorgrafik )
+                                                                               No Screenshots (exception only for software tools
+                                                                                where no export is possible)!
+                                                                               Each picture is explained short below the picture!
+                                                                               Each picture is referenced and explained in the text
+                                                                               Font type is the same as the rest of the thesis
+                                                                               Font size is the same or minimum like the text size
+                                                                                (must be readable!)
+                                                                               Each figure is numbered
+Figure: zoom into a vector graphic (left) and a pixel
+graphic (right)
+
+   27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka         page 108
+ WRITING THE THESIS
+ PICTURES/FIGURES/GRAPHICS
+ Diagram specific topics
+  No missing axis description X, Y and Z axis
+  No missing value and unit at the axis
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 109
+ WRITING THE THESIS
+ TABLES
+  Each table is explained short below the table
+  Each table is referenced and explained in the text
+  Font type is the same as the rest of the thesis
+  Font size is the same or minimum like the text size (must be
+   readable!)
+  Each table is numbered
+  There is no page break allowed for a table - the full table
+   needs to be on one site
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 110
+ WRITING THE THESIS
+ LIST OF SYMBOLS
+  3 Columns
+     Symbol
+     Description
+     Unit – if there is no unit, then write “n.u.”
+  Example:
+                       symbol                               description                                  unit
+
+                          𝑡𝑡beam           Travel time of the laser beam                                   ms
+
+                        𝑛𝑛sample           Amount of test samples                                         n.u.
+
+
+
+ Source: das Symbolverzeichnis in der wissenschaftlichen Arbeit (studium-und-pc.de)
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 111
+ WRITING THE THESIS
+ FORMULA
+  Formulars need to be written in scientific standard and
+   stepwise explained or referred.
+  Every formula needs a number next to it.
+  All formulas need to be described, referenced and explained
+   in the text with the symbol, the meaning and their unit e.g.,
+      The following formula 3 shows the dependency of the
+       motor torque 𝑀𝑀Mot given in Nm.
+  The style in the text must be the same like in the formula
+   e.g., a variable is also italic in the text.
+  No word wrap/line break within a formula or symbol!
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 112
+ WRITING THE THESIS
+ FORMULA
+  Use formulas (MS Office) or LaTeX directly, no text! Not like
+   this: P=U*I or P=UxI  Should be like this in MS Office 𝑃𝑃 = 𝑈𝑈 ⋅ 𝐼𝐼
+  Be aware of the correct scheme of the formulas (details
+   next pages)!
+     None italic: numbers, trigonometric functions, e, i and
+      units…
+     Italic: variables,…
+     E.g., 𝑓𝑓 𝑈𝑈, 𝐼𝐼 = 𝑃𝑃 = 𝑈𝑈 ⋅ 𝐼𝐼 ⋅ sin 𝜙𝜙 = 3 V ⋅ 2 A = 6 W
+  The correct symbol for a multiplication is “⋅” 
+   this symbol is for a vector product “×”!!!                   Figure: How to create
+                                                                formulas in MS Office
+   this symbol is for a convolution: “*”!!!
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 113
+ WRITING THE THESIS
+ SI UNITS
+  In case calculations or numbers are requested, you need to
+   follow these rules:
+    SI-units and symbols need to be used e.g.,
+                  m (meter) not inch
+                  𝑀𝑀 for torque
+         Writing according to DIN 1338:
+                  Decimal separator point e.g. 3,785 not 3.785
+                  Writing of the numbers according to German style to avoid
+                   misunderstanding:
+                    Write like this: 123456789 
+                    Not like this:    I23456789
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 114
+ WRITING THE THESIS
+ FORMULA
+                          Topic                                                 Writing                                             Example
+Numbers written in digits                                           none italic                            1; 1234; 0,734
+Numbers represented by letters with free
+                                                                    italic                                 𝑛𝑛-times; 2𝑛𝑛 ; 𝑎𝑎𝑗𝑗𝑗𝑗
+meaning
+Numbers represented by letters with                                                                        e = 2,71828 … (Euler number)
+                                                                    none italic
+conventional meaning                                                                                       i2 = j2 = −1 (imaginary unit)
+                                                                                                           𝑖𝑖 (electrical. current); 𝑚𝑚 (mass)
+Symbol for physical values, also physical                                                                  𝑒𝑒 ≈ 1,602 ⋅ 10−19 C (elementary charge)
+                                                                    italic
+constants                                                                                                                      H
+                                                                                                           𝜇𝜇0 ≈ 1,257 ⋅ 10−6    (magnetic constant)
+                                                                                                                               m
+Characters for functions and operators if their                                                                                        𝑦𝑦 = 𝑓𝑓 𝑥𝑥
+                                                                    italic
+meaning can be freely selected                                                                                                    𝑢𝑢 𝑡𝑡 = 𝑈𝑈0 sin 𝜔𝜔𝜔𝜔
+Characters for functions and operators when of                                                             d; ∂; Δ; ∑
+                                                                    none italic                            div; lim ; Re (real part); lg; sin
+conventional meaning
+Characters for units                                                none italic                            m (meter); μF (micro farad)
+Chemistry and atomic physics symbols                                none italic                            Fe (iron); e− (electron)
+Word abbreviations                                                  none italic                            𝑝𝑝abs (absolute); 𝐹𝐹min (minimal)
+
+
+Table: Rules for formula symbols according to DIN 1338 (Source: https://de.wikipedia.org/wiki/Formelsatz)
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                                   page 115
+ WRITING THE THESIS
+ FORMULA
+                                                Topic                                                                                Example
+Groups of 3 digits allowed but not mandatory (no point!
+                                                        41 257,325 8 NOT: 41.257,325 8
+Danger of mismatching the decimal point!)
+Decimal separator point or comma (Germany comma is
+                                                        3,785 NOT: 3.785
+the standard!)
+between number and unit (also percent): narrow non-
+breakable space, not a multiplication sign.             2,7 V NOT: 2,7 ⋅ V
+
+„   “ – 5x normal space                                                                                                  15 °C NOT: 15 °C (normal space)
+„ “ – 5x narrow non-breaking space                                                                                       18 % NOT 18% (no space)
+(Word: 202F ALT+C)
+(Latex: \thinspace)                                                                                                      But:
+                                                                                                                         3,7° NOT: 3,7 °
+Exception: ° and ′ and " - are written directly after the                                                                5,2′ NOT: 5,2 ′
+number if no unit follows
+Table: Rules for SI-units
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                              page 116
+ WRITING THE THESIS
+ SI-UNITS
+             name                                   unit symbol                                         symbol                    base unit
+
+ length                                                        m                                              𝑙𝑙         metre
+
+ mass                                                          kg                                            𝑚𝑚          kilogram
+
+ time                                                           s                                             𝑡𝑡         second
+
+ electric current                                               A                                             𝐼𝐼         ampere
+
+ temperature                                                    K                                             𝑇𝑇         kelvin
+
+ Luminous intensity                                            cd                                            𝐼𝐼V         candela
+
+ amount of substance                                          mol                                             𝑛𝑛         mole
+
+
+Table: SI-units
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                        page 117
+ WRITING THE THESIS
+ DERIVED SI-UNITS
+             name                        unit                   in other                    in SI-Base                     symbol            Unit
+                                        symbol                  SI-units                       units
+ plane angle                                rad                     m⁄m                                                    𝛼𝛼; 𝛽𝛽; …        radian
+
+ solid angle                                 sr                   m2 ⁄m2                                                       𝛺𝛺          steradian
+
+ frequency                                   Hz                         -                          s −1                         𝑓𝑓           hertz
+
+ force                                       N                       J⁄m                     kg ⋅ m ⋅ s−2                      𝐹𝐹          newton
+
+ pressure                                    Pa                     N⁄m2                   kg ⋅ m−1 ⋅ s −2                      𝑝𝑝          pascal
+
+ energy, work, heat                           J                N ⋅ m; W ⋅ s                 kg ⋅ m2 ⋅ s −2                𝐸𝐸; 𝑊𝑊; 𝑈𝑈; 𝑄𝑄     joule
+
+
+
+Table: Overview of derived SI-units
+27/10/2025    THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                              page 118
+ WRITING THE THESIS
+ DERIVED SI-UNITS
+             name                        unit                   in other                 in SI-Base units                        symbol                Unit
+                                        symbol                  SI-units
+                                                                                                                          𝑃𝑃 - mechanics & electric
+ power                                       W                   J⁄s ; V ⋅ A                    kg ⋅ m2 ⋅ s−3                                          Watt
+                                                                                                                                  𝑄𝑄̇ heat
+ electric charge                              C                         -                             A⋅s                            𝑄𝑄               coulomb
+
+ voltage                                      V                  W⁄A ; J⁄C                  kg ⋅ m2 ⋅ s −3 ⋅ A−1                     𝑈𝑈                 volt
+ electric
+                                              F                      C⁄V                   kg −1 ⋅ m−2 ⋅ s 4 ⋅ A2                    𝐶𝐶                farad
+ capacitance
+ electric resistance,
+ impedance, reactance
+                                             Ω                       V⁄A                    kg ⋅ m2 ⋅ s −3 ⋅ A−2                  𝑅𝑅; 𝑋𝑋; 𝑍𝑍           ohm
+
+ electrical
+                                              S                      A⁄V                   kg −1 ⋅ m−2 ⋅ s 3 ⋅ A2                    𝐺𝐺               siemens
+ conductance
+ magnetic flux                              Wb                       V⋅s                    kg ⋅ m2 ⋅ s −2 ⋅ A−1                     𝛷𝛷               weber
+Table: Overview of derived SI-units
+27/10/2025    THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                               page 119
+ WRITING THE THESIS
+ DERIVED SI-UNITS
+             name                        unit                   in other                 in SI-Base units                 symbol       Unit
+                                        symbol                  SI-units
+ magnetic flux
+                                              T                   Wb⁄m2                        kg ⋅ s −2 ⋅ A−1               𝐵𝐵        tesla
+ density
+ inductance                                  H                     Wb⁄A                     kg ⋅ m2 ⋅ s −2 ⋅ A−2             𝐿𝐿        henry
+ Celsius-
+                                             °C                         -                                K                 𝑡𝑡 𝜗𝜗   degree Celsius
+ temperature
+ luminous flux                              Lm                      cd ⋅ sr                             cd                  𝛷𝛷𝑣𝑣       lumen
+
+ illuminance                                 lx                    lm⁄m2                           cd ⋅ m−2                 𝐸𝐸𝑣𝑣        lux
+
+
+
+
+Table: Overview of derived SI-units
+27/10/2025    THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                  page 120
+ WRITING THE THESIS
+ DERIVED SI-UNITS
+             name                        unit                   in other                    in SI-Base                    symbol      Unit
+                                        symbol                  SI-units                       units
+ activity referred to
+                                             Bq                         -                          s −1                     𝐴𝐴      becquerel
+ a radionuclide
+ absorbed dose                               Gy                      J⁄kg                      m2 ⋅ s −2                    𝐷𝐷        gray
+
+ equivalent dose                             Sv                      J⁄kg                      m2 ⋅ s −2                   𝐻𝐻; 𝐸𝐸    sievert
+
+ catalytic activity                         kat                         -                      mol ⋅ s −1                  𝑧𝑧; 𝑎𝑎     katal
+
+
+
+
+Table: Overview of derived SI-units
+27/10/2025    THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                        page 121
+ WRITING THE THESIS
+ OTHER DERIVED SI-UNITS
+       name                      unit symbol                            in other                   in SI-Base            symbol       Unit
+                                                                        SI-units                      units
+                                                                                J
+ torque                                   Nm                          (Do not use! For              kg ⋅ m2 ⋅ s −2         𝑀𝑀     newton-metre
+                                                                       energy only!)
+
+                                                                                                                                  revolutions
+                                  1⁄ - physics
+                                    s
+                                                                               Hz                                                 per second;
+ rotational
+                              min - engineering
+                            1⁄
+                                                                      (Do not use! Only                    s −1            𝑛𝑛     revolutions
+ frequency                 (Attention - Conversion in
+                             seconds in equations!)
+                                                                       for frequency!)
+                                                                                                                                  per minute
+                                                                                                                                     (RPM)
+ …
+
+
+
+
+Table: Overview of derived SI-units that do not have an own unit
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                       page 122
+ WRITING THE THESIS
+ FORMULA
+                                                                                                   Little helper tool to translate
+                                                                                                    pictures of a formula, e.g.,
+                                                                                                    from a scientific paper source,
+                                                                                                    into latex code:
+                                                                                                       Python library called
+                                                                                                        Pix2TeX (pip install
+                                                                                                        pix2tex[gui])
+                                                                                                       GitHub - lukas-
+                                                                                                        blecher/LaTeX-OCR:
+                                                                                                        pix2tex: Using a ViT to
+                                                                                                        convert images of
+Source: Aktivitäten von Jacob Thomas auf
+LinkedIn ansehen                                                                                        equations into LaTeX code.
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka       page 123
+ WRITING THE THESIS
+ PROVE OF THESIS
+ (Hypo)thesis are logical consistent and is based on the what,
+  why and prove, e.g.
+    Wrong:
+              I choose Arduino.
+      Still wrong:
+              I choose Arduino because it’s the easiest to use platform.
+      Correct:
+              I choose Arduino because it’s the easiest to use platform as proven
+               in the Tech Journal[Reference literature]
+              I choose Arduino because it’s the easiest to use platform. The
+               following chapter shows the investigation and comparison about the
+               usability of the different platforms.
+27/10/2025    THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 124
+ PAPER
+ HOW TO
+  TODO:
+    1. Write an IEEE paper for publishing in a journal.
+  How to:
+     At the end of the thesis (also possible after handover of the full thesis) it is
+      mandatory to write a paper in IEEE format, see
+      https://journals.ieeeauthorcenter.ieee.org/create-your-ieee-journal-
+      article/create-the-text-of-your-article/structure-your-article/
+     The delivered file needs to be editable e.g. WORD, TEX or Lyx – NO PDF!!!
+     After alignment with the professor the paper will maybe be published.
+     It is recommended to do it after the handover of the thesis (less effort, as
+      its just a compressed version of the thesis)
+     Maximum 10 pages!
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 125
+ PAPER
+ EXAMPLE
+                                                                                            Example:
+                                                                                             An example of a paper can be
+                                                                                              found in the “paper folder”, see
+                                                                                              SUPPORTING FILES
+                                                                                             Also, a template in Word and
+                                                                                              LaTeX is available in the
+                                                                                              SUPPORTING FILES
+                                                                                             Software for writing in LaTeX
+                                                                                              and to create a literature
+                                                                                              database can be found in the
+                                                                                              chapter SOFTWARE
+Picture: Example of a paper „Development and implementation of a
+standalone IR-supported real-time traffic supervision system.“ (published by
+Prof. Wittmann 14.01.2022 LinkedIn)
+27/10/2025    THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka       page 126
+  MASTER SEMINAR
+
+  The master's seminar consists of two parts that must be
+   passed to successfully complete the module.
+  To prepare for the master's thesis, participation in the seminar
+   series "Career Start into German Technology Companies" is
+   mandatory.
+  The seminars / workshops are offered as block events during
+   the first two semesters of study.
+  The events cover a variety of topics that are of great
+   importance for the preparation of the Master's thesis.
+  The second part is the master colloquium.
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 127
+  MASTER COLLOQUIUM
+
+  Sequence:
+     You are presenting and 2 Professors will join to judge.
+     After presentation, you will leave, and the professors will
+      discuss about the grade.
+  Location:
+     Onsite in Cham, only in aligned exceptions via MS Teams
+      or ZOOM.
+  Date:
+     The master colloquium needs to be done after the handover
+      of the written part but should be close to it (~2 weeks). The
+      colloquium can be done after the 6 months period of the
+      thesis.
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 128
+  MASTER COLLOQUIUM
+
+  Dress code:
+     Free of choice / nothing defined.
+     Most students wear a business dress e.g. a suit.
+  Submission:
+     Don’t forget to submit your presentation (PDF/PPTX) of
+      your colloquium to the Professor latest on the day of
+      presentation
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 129
+  MASTER COLLOQUIUM
+
+  Also taken into account:
+     Methodology of presentation
+              Design of the slides
+              Personal expression like (gesture, voice, mimic…)
+  Duration:
+     Maximum 15min time (but also not less)
+     Train upfront your presentation! Time management will
+      also be judged and considered!
+     Take care about your speed – the audience must have the
+      chance to follow you. Less pages with focus on the core of
+      your thesis is better, then many super-fast slide skipping!
+     Think about possible questions from the audience.
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 130
+  MASTER COLLOQUIUM
+
+  Structure:
+     Start with the structure / table of content of the presentation.
+     Same as the structure of the thesis. See above the phases in the
+      “timeline”.
+     It's all about of the topic you developed. Don’t explain 10min
+      theoretical research (state of the art) of your topic!
+     Someone who is not as deep as you are into this topic need to be
+      able to follow you – explain complicated things easy! (2nd
+      Professor is not as deep into this topic as supervisor!)
+     Don’t put too much content on a slide – best practice maximum 7
+      bullet points with each maximum 7 words
+     page number must be on each page for referencing
+     Add chapter headline on each page so that we know in which
+      chapter we are currently.
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 131
+  RATING OF THESIS
+                                                                                                                         Why?
+
+
+
+
+ WHAT WILL BE TAKEN INTO ACCOUNT?
+  Meeting culture (joined in time, prepare yourself,…)
+  Milestones and content delivered in time (no delay) – exceeding the
+   set due dates by 1 day or more results in a lower grad!
+  Content is according to standards e.g., schematics are in
+   professional tools, not power point!
+  Complexity of the topic.
+  Scientific & methodical approach.
+  Set targets achieved.
+  Topic is handled self driven and proactive
+  Structured working on the topic.
+  Paper written properly.
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 132
+  RATING OF THESIS
+                                                                                                                         Why?
+
+
+
+
+ WHAT WILL BE TAKEN INTO ACCOUNT?
+  Written thesis itself
+     Correct / no missing cite
+     Structure of thesis itself
+     List of references existing, complete and sorted by appearance
+     List of tables existing, complete and sorted by appearance
+     List of pictures existing, complete and sorted by appearance
+     List of abbreviations existing, complete and sorted alphabetic
+     Appropriate literature is searched, and state of the art is fully
+      described.
+     Hypothesis are logical consistent.
+     Results are evaluated critical
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 133
+  RATING OF THESIS
+                                                                                                                         Why?
+
+
+
+
+ WHAT WILL BE TAKEN INTO ACCOUNT?
+  Written thesis itself
+     Next steps described
+     Formulars in scientific standard and stepwise explained
+     Attachment complete and in a proper format
+     Spelling and grammar checked and ok
+     Syntax and word order (easy to read, no long sentence).
+     Expressive and high-quality pictures
+              No Screenshots!
+              No missing axis description!
+              Each picture is explained short below the picture!
+              Each picture is referenced in the text
+         Continues format (no change within the document)
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 134
+  RATING OF THESIS
+                                                                                                                         Why?
+
+
+
+
+ WHAT WILL BE TAKEN INTO ACCOUNT?
+  Don’t forget to deliver the machine-readable RAW data at the end of
+   your thesis in the proper folder structure and labelling. E.g.,:
+     WRONG: just the training graph in the thesis
+     RIGHT: additionally, to the graph, the datapoints as machine
+      readable data (CSV, XLSX) added in the folder. Same for each
+      measurement!
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 135
+  LESSONS LEARNED
+
+                                                                                          TODO:
+                                                                                            1. Create lessons learned
+                                                                                                document
+                                                                                          How to:
+                                                                                             At the end of the master
+                                                                                              thesis, you should do a short
+                                                                                              lessons learned:
+                                                                                                         What was good and should
+                                                                                                          be kept?
+                                                                                                         What was bad and need to
+                                                                                                          be changed?
+                                                                                                  Template see supporting files
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka          page 136
+  LESSONS LEARNED
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 137
+ SOFTWARE PROVIDER
+ EXAMPLES!
+  Gantt Chart & Project Management Software:
+     ClickUp: https://clickup.com/features/gantt-chart-view
+     Monday: https://monday.com/lang/de/
+     GanttProject: https://www.ganttproject.biz/
+     OpenProject: https://www.openproject.org/
+     ProjectLibre: https://www.projectlibre.com/product/1-
+      alternative-microsoft-project-open-source
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 138
+ SOFTWARE PROVIDER
+ EXAMPLES!
+  Writing the thesis in LaTeX
+     LyX: https://www.lyx.org/Home
+  Bibliography / literature database:
+     JabRef: https://www.jabref.org/
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 139
+  SOFTWARE PROVIDER
+
+  File Exchange: https://nextcloud.th-deg.de/
+     For company students only: Before uploading something
+      in a cloud, check with the company if this is allowed (data
+      policy). Otherwise, the date needs to be delivered via
+      USB-Stick.
+  Thesis application: PRIMUSS
+         For Student: https://www.primuss.de/portal-thd
+         For Professor: https://app-dd.primuss.rrze.net/
+  Thesis handover: PRIMUSS https://www.primuss.de/portal-
+   thd
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 140
+ SOFTWARE PROVIDER
+ EXAMPLES!
+  Version Management Software:
+     GitHub: https://github.com/
+     BitBucket: https://bitbucket.org/product/de/version-control-
+      software
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 141
+ SOFTWARE PROVIDER
+ EXAMPLES!
+ Design of electrical circuits:
+  EPLAN: https://www.eplan.de/loesungen/eplan-fuer-
+   bildungseinrichtungen/eplan-education-for-students/
+
+ Design of PCB:
+  EAGLE: https://www.autodesk.de/products/eagle/free-
+   download
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 142
+ SOFTWARE PROVIDER
+ EXAMPLES!
+  3D-Design / mechanical design / CAD:
+     CATIA:
+      https://www.3ds.com/de/produkte-und-services/catia/
+     Fusion360:
+      https://www.autodesk.de/products/fusion-360
+     SolidEdge:
+      https://solidedge.siemens.com/de/
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 143
+ SOFTWARE PROVIDER
+ EXAMPLES!
+  Slicer for 3D-Printing:
+     CraftWare Pro:
+      https://craftbot.com/craftware
+     Cura Ultimaker (good for support structures):
+      https://ultimaker.com/de/software/ultimaker-cura
+     OctoPrint:
+      https://all3dp.com/topic/octoprint/
+     Prusa Slicer:
+      https://www.prusa3d.com/de/page/prusaslicer_424/
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 144
+ SOFTWARE PROVIDER
+ EXAMPLES!
+  Slicer for 3D-Printing:
+     Repetier:
+      https://www.repetier.com/download-now/
+     Simplify3D:
+      https://www.simplify3d.com/
+     Slic3r
+      https://slic3r.org/
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 145
+  SUPPORTING FILES
+
+ Additional files delivered together with this guideline:
+                  folder                                                            file                                             content
+
+                                                                                                                         Good example of an abstract /
+ 020_abstract-core_content                             example_of_abstract.pdf                                           core content at the beginning of
+                                                                                                                         a thesis
+                                                                                                                         example of plan for a master
+ 050_timeline                                          projectplan_thesis.pod
+                                                                                                                         thesis made with project libre
+                                                       System_Design_200_Requireme                                       Lecture notes, how to design
+ 200_requirement_management
+                                                       nt_Management.pptx                                                proper requirements.
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                                  page 146
+  SUPPORTING FILES
+
+ Additional files delivered together with this guideline:
+                  folder                                                           file                                               content
+
+                                                      Basics_of_System_Engineering.p                                     Lecture notes, how to create a
+ 300_development_of_concepts
+                                                      ptx                                                                high level system overview.
+                                                                                                                         Lecture notes, how to get ideas
+ 300_development_of_concepts                          Basics_of_Ideation.pptx                                            for concepts and how to rate
+                                                                                                                         them.
+                                                      Preference-
+                                                                                                                         Template for the rating of
+ 300_development_of_concepts                          Analysis_&_Weighted-Sum-
+                                                                                                                         concepts.
+                                                      Model.xlsx
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                                page 147
+  SUPPORTING FILES
+
+ Additional files delivered together with this guideline:
+                  folder                                                           file                                               content
+
+ 400_development_of_product/                                                                                             Lecture notes, how to create a D-
+                                                      Risk Management.pptx
+ 200_FMEA_&_safety                                                                                                       FMEA.
+ 400_development_of_product/                          FMEA_example_of_a_bicycle.xls                                      A template for a FMEA filled with
+ 200_FMEA_&_safety                                    x                                                                  the example of a bicycle.
+                                                                                                                         Manual how to get access to the
+ 400_development_of_product/                                                                                             GPU server and how to get a
+                                                      UserManual_GPU_Server.pdf
+ 400_software                                                                                                            model of a neural network
+                                                                                                                         running.
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                                 page 148
+  SUPPORTING FILES
+
+ Additional files delivered together with this guideline:
+                  folder                                                           file                                               content
+
+                                                                                                                         template for placing orders for
+ 600_parts_procurement                                ordering_thesis.xlsx
+                                                                                                                         parts, tools,…
+                                                                                                                         Template for PrusaSlicer for the
+ 650_3D-printing_files                                Vorlage_MK3S+_PETG.3mf
+                                                                                                                         3D-Printer Lab for PETG material
+                                                                                                                         Template for designing
+ 800_verification_of_prototype                        Measurement_Design.docx
+                                                                                                                         measurements & experiments
+                                                                                                                         Template for structured
+ 800_verification_of_prototype                        Measurment_Minutes.docx
+                                                                                                                         measurement documentation
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                                 page 149
+  SUPPORTING FILES
+
+ Additional files delivered together with this guideline:
+                  folder                                                           file                                               content
+
+                                                      DIT_Logo_Cham_gray
+                                                      DIT_Logo_Cham_white
+ 900_upload_thesis                                                                                                       Logo THD for first page.
+                                                      THD_Logo_Cham_gray
+                                                      THD_Logo_Cham_white
+
+ 920_paper                                            example_paper.pdf                                                  Example of a paper
+
+                                                      Template_Word                                                      Templates for a scientific paper in
+ 920_paper
+                                                      Template_LaTeX                                                     Word or LaTeX.
+                                                                                                                         Template for a lessons learned –
+                                                                                                                         what was good while doing the
+ 950_LeLe                                             lessons_learned_thesis.xlsx
+                                                                                                                         thesis and should be kept, and
+                                                                                                                         what should be improved?
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka                                  page 150
+  REFERENCES
+
+ [ON_Logo_igus]                                  Igus, "Studenten- und Schülerportal", igus.de. [Online]. available:
+                                                 https://www.igus.de/service/young-engineers-support/studenten-portal
+                                                 (accessed: Apr. 29, 2025).
+ [ON_Logo_Würth]                                 Würth Elektronik, "Würth Elektronik", we-online.com. [Online]. available:
+                                                 https://www.we-online.com/de (accessed: Apr. 29, 2025).
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 151
+  THANK YOU FOR YOUR
+  ATTENTION!
+
+
+
+
+27/10/2025   THD | NuW | road to thesis - a guideline about successfully manage your thesis | Prof. Dr. Matthias Górka   page 152
+

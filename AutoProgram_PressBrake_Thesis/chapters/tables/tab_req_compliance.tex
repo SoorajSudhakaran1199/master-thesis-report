@@ -1,8 +1,9 @@
 \begin{landscape}
 \begin{table}[htbp]
 \centering
+\normalsize
 \setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{0.90}
+\renewcommand{\arraystretch}{0.88}
 \begin{tabularx}{\linewidth}{
 L{3.0cm}
 L{8.0cm}
@@ -17,26 +18,26 @@ L{12.9cm}
 FR-00 & Overall system shall automate press brake bending process workflow & 
 Achieved through the integrated planning pipeline, including orientation strategy (Section~\ref{sec:workpiece_orientation}), grip planning (Section~\ref{sec:grip_planning}), regrip planning (Section~\ref{sec:regrip}), and trajectory generation (Section~\ref{sec:trajectory}) \\
  
-FR-01 & Automatic generation of robot programs from geometric input & 
-Implemented through the structured planning pipeline combining orientation determination, grip planning, and trajectory generation (Sections~\ref{sec:workpiece_orientation},~\ref{sec:grip_planning}, and~\ref{sec:trajectory}) \\
+FR-01 & Detect unreachable target poses before robot motion execution & 
+Implemented through reachability validation, pre-execution checking, and controlled error handling before motion dispatch (Section~\ref{Pre-Execution_Safety_Validation}) \\
  
-FR-02 & Support for multiple workpiece orientations and configurations & 
-Handled through the three-level orientation strategy with admissibility validation and fallback mechanism (Section~\ref{sec:workpiece_orientation}) \\
+FR-02 & Allow operator-side selection prior to program execution & 
+Achieved through bend-side selection, execution confirmation, and integrated operator interaction in the drag\&bot cockpit (Section~\ref{sec:operator-interface}) \\
  
-FR-03 & Automatic grip position determination & 
-Achieved through constraint-based grip planning with geometric filtering and force validation (Section~\ref{sec:grip_planning}) \\
- 
-FR-04 & Handling of regrip scenarios for unreachable configurations & 
+FR-03 & Execute a regripping sequence when a target pose is unreachable within the current bend side & 
 Implemented via dynamic regrip planning and execution strategy based on kinematic feasibility evaluation (Section~\ref{sec:regrip}) \\
+ 
+FR-04 & Handle workpiece orientation changes during program execution & 
+Handled through the three-level orientation strategy with admissibility validation and fallback mechanism (Section~\ref{sec:workpiece_orientation}) \\
  
 FR-05 & Support for opposite-side bending operations & 
 Enabled through the flip workflow and reuse of the planning pipeline for secondary operations (Section~\ref{sec:opposite_side}) \\
  
-FR-06 & Seamless communication with robot runtime & 
-Achieved using the AnyRobot Interface with authenticated WebSocket communication (Section~\ref{sec:communication_stack}) \\
+FR-06 & Determine and apply suitable grip positions for each workpiece state & 
+Achieved through constraint-based grip planning with geometric filtering and force validation (Section~\ref{sec:grip_planning}) \\
  
-FR-07 & Pre-execution safety validation before motion execution & 
-Implemented through fixture pose validation, operator confirmation, and runtime monitoring mechanisms (Section~\ref{Pre-Execution_Safety_Validation}) \\
+FR-07 & Detect unsafe conditions and perform replanning or terminate execution & 
+Implemented through fixture pose validation, operator confirmation, replanning logic, and controlled-stop handling (Section~\ref{Pre-Execution_Safety_Validation}) \\
  
 NFR-01 & Minimal operator interaction during normal execution & 
 Achieved through bend-side selection, execution confirmation, and integrated operator interaction in the drag\&bot cockpit (Section~\ref{sec:operator-interface}) \\

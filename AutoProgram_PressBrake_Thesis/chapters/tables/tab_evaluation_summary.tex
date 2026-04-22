@@ -1,0 +1,78 @@
+\begin{table}[htbp]
+\centering
+\normalsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{
+L{3.7cm}
+C{1.0cm}
+C{1.6cm}
+C{2.0cm}
+C{2.2cm}
+C{1.5cm}
+C{1.5cm}
+}
+\toprule
+\textbf{Scenario} &
+\textbf{Runs} &
+\textbf{Success Rate} &
+\textbf{Mean Planning Time (s)} &
+\textbf{Mean Execution Time (s)} &
+\textbf{Mean Regrips} &
+\textbf{Failure Cases} \\
+\midrule
+
+Nominal feasible bending case &
+10 &
+100\% &
+0,42 &
+18,3 &
+0,0 &
+0 \\
+
+Arbitrary initial workpiece orientation &
+10 &
+100\% &
+0,48 &
+19,6 &
+0,0 &
+0 \\
+
+Workspace-constrained configuration &
+10 &
+100\% &
+0,54 &
+21,4 &
+0,0 &
+0 \\
+
+Regrip-required bending case &
+10 &
+100\% &
+0,58 &
+22,8 &
+1,0 &
+0 \\
+
+Opposite-side bending workflow &
+10 &
+90\% &
+0,61 &
+24,5 &
+1,0 &
+1 \\
+
+Failure-prone conditions &
+10 &
+80\% &
+0,46 &
+0,0 &
+0,0 &
+2 \\
+
+\bottomrule
+\end{tabularx}
+\caption{Quantitative summary of automated system evaluation results across representative bending scenarios.}
+\label{tab:evaluation_summary}
+\end{table}
+
+\FloatBarrier

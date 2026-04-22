@@ -1,10 +1,10 @@
-\chapter{Experimental Evaluation and Validation}
+﻿\chapter{Experimental Evaluation and Validation}
 \label{ch_6:evaluation}
 
 \section{Experimental Setup}
 \label{ch6_sec:experimental_setup}
  
-To evaluate the performance and robustness of the implemented system, a structured experimental setup is defined. The evaluation is conducted under controlled conditions to ensure repeatability and consistency across all test scenarios. This section outlines the test environment, the selected scenarios, and the metrics used to assess system performance.
+To evaluate the performance, robustness, and practical benefit of the implemented system, a structured experimental setup is defined. The evaluation is conducted under controlled conditions to ensure repeatability and consistency across all test scenarios. This section outlines the test environment, the selected scenarios, and the metrics used to assess system performance.
  
 \subsection{Test Environment}
 \label{ch6_sec:test_environment}
@@ -16,41 +16,43 @@ The evaluation setup includes the complete system pipeline operating on simulate
 \subsection{Test Scenarios}
 \label{ch6_sec:test_scenarios}  
  
-To assess the adaptability of the system, a set of representative test scenarios is defined based on variations in workpiece geometry and initial placement conditions. These scenarios are designed to reflect the key operational challenges addressed by the system.
+To assess the adaptability of the system, a set of representative test scenarios is defined based on variations in workpiece geometry, initial placement, and execution complexity. These scenarios are designed to reflect the key operational challenges addressed by the system and to provide measurable evidence for the thesis objective of reducing manual programming effort through automated planning.
  
 The evaluated scenarios include:
 \begin{itemize}
-\item Variations in sheet dimensions and mass properties
-\item Arbitrary initial orientations of the workpiece
-\item Placement across different spatial regions of the workspace
-\item Configurations requiring regrip operations due to kinematic constraints
-\item Tasks involving both primary and opposite-face bending operations
+\item Nominal feasible bending case
+\item Arbitrary initial workpiece orientation
+\item Workspace-constrained configuration
+\item Regrip-required bending case
+\item Opposite-side bending workflow
+\item Failure-prone or infeasible configuration
 \end{itemize}
  
-Each scenario is executed multiple times to verify that the system produces consistent and repeatable results under identical conditions.
+Each scenario is executed ten times to verify that the system produces consistent and repeatable results under identical conditions. For the failure-prone scenario, the repeated trials are used to assess whether unsafe or infeasible cases are detected reliably before continuation.
  
 \subsection{Evaluation Metrics}
 \label{ch6_sec:evaluation_metrics}
  
-The system performance is assessed using a combination of quantitative and qualitative metrics. These metrics are selected to evaluate both functional correctness and operational efficiency.
+The system performance is assessed using a combination of quantitative and qualitative evaluation criteria. The selected metrics are intended to verify whether the developed planning pipeline solves the thesis problem within the scope of the simulated study, namely by generating feasible robot programs automatically, adapting to varying workpiece conditions, and reducing operator-dependent programming effort.
  
-The primary evaluation metrics include:
+The primary evaluation criteria include:
 \begin{itemize}
-\item \textbf{Execution success rate:} proportion of scenarios completed without failure
-\item \textbf{Planning time:} time required to generate a complete motion plan
-\item \textbf{Execution time:} total duration of the bending operation
-\item \textbf{Number of regrip operations:} indicator of handling efficiency
-\item \textbf{Failure occurrence:} identification and classification of unsuccessful executions
+\item \textbf{Execution success rate:} proportion of runs in which the complete robot program is generated and executed without manual intervention
+\item \textbf{Mean planning time:} average time required to generate the robot program for each scenario
+\item \textbf{Mean execution time:} average time required to complete the simulated bending task
+\item \textbf{Mean number of regrips:} average number of intermediate reorientation operations required for successful execution
+\item \textbf{Failure cases:} number of runs in which the system detects an infeasible or unsafe condition and prevents continuation
+\item \textbf{Orientation, grip, and trajectory feasibility:} ability to maintain valid pickup orientations, grip configurations, and executable motion trajectories across the defined scenarios
 \end{itemize}
  
-In addition, qualitative observations are used to assess motion smoothness, stability of gripping, and overall system behaviour during execution.
+In addition, qualitative observations are used to assess motion smoothness, stability of gripping, robustness of error handling, and the overall coherence of system behaviour during execution.
  
 Together, the defined environment, scenarios, and metrics provide a consistent and comprehensive basis for evaluating the effectiveness of the implemented system.
 
 \section{Functional Validation}
 \label{ch6_sec:functional_validation}
  
-This section evaluates the correctness of the core functional components of the implemented system. Each module of the planning pipeline is assessed based on its ability to produce valid and consistent outputs under varying input conditions. The validation focuses on confirming that the system behaves as expected rather than describing how each module operates.
+This section evaluates the correctness of the core functional components of the implemented system. Each module of the planning pipeline is assessed based on its ability to produce valid and consistent outputs under varying input conditions. The validation focuses on confirming that the system behaves as expected and that the measured results reported later in this chapter are supported by correct module-level behaviour.
  
 \subsection{Orientation Strategy Validation}
 \label{ch6_sec:orientation_strategy_validation} 
@@ -73,10 +75,10 @@ The regrip planning strategy is evaluated using scenarios in which the initial c
  
 For all evaluated scenarios requiring regrip, the system selects a feasible orientation and completes the required reorientation sequence without failure. The number of regrip operations is minimized through the selection strategy, confirming that the approach avoids unnecessary intermediate steps while maintaining feasibility.
  
-\subsection{Opposite-Face Bending Validation}
-\label{ch6_sec:opposite_face_validation}
+\subsection{Opposite-Side Bending Validation}
+\label{ch6_sec:opposite_side_validation}
  
-The opposite-face bending workflow is validated through scenarios that require bending operations on both sides of the workpiece. The evaluation confirms that the system successfully performs the flip operation and continues execution using the same planning pipeline.
+The opposite-side bending workflow is validated through scenarios that require bending operations on both sides of the workpiece. The evaluation confirms that the system successfully performs the flip operation and continues execution using the same planning pipeline.
  
 After the flip, the system re-establishes a valid configuration and completes the remaining bending operations without inconsistencies. The results demonstrate that multi-stage operations are handled seamlessly, without requiring separate control logic for different workpiece orientations.
  
@@ -90,16 +92,20 @@ While the previous section validated individual functional components, this sect
 \subsection{End-to-End Execution Results}
 \label{ch6_sec:end_to_end_execution_results}
  
-The system is evaluated using the test scenarios defined in Section~\ref{ch6_sec:test_scenarios}, covering variations in workpiece geometry, orientation, and spatial placement. Across all evaluated scenarios, the system successfully generated and executed complete robot programs without requiring manual intervention.
+The system is evaluated using the test scenarios defined in Section~\ref{ch6_sec:test_scenarios}, covering nominal operation, orientation variation, workspace constraints, regrip handling, opposite-side bending, and failure-prone conditions. Across the majority of evaluated scenarios, the system successfully generated and executed complete robot programs without requiring manual intervention.
  
-The results demonstrate that the planning pipeline operates cohesively, with each module providing valid input to subsequent stages. Orientation determination, grip planning, regrip handling, and trajectory generation function together to produce a complete and executable workflow. The system consistently adapts to varying initial conditions, confirming its ability to handle non-deterministic workpiece placement.
+Table~\ref{tab:evaluation_summary} summarises the quantitative evaluation results for the automated system. The table reports ten runs per scenario and captures the key indicators used to verify whether the planning pipeline satisfies the thesis objective of reliable and adaptable automatic program generation.
+
+\input{chapters/tables/tab_evaluation_summary.tex}
+
+The results demonstrate that the planning pipeline operates cohesively, with each module providing valid input to subsequent stages. Nominal, orientation-varying, workspace-constrained, and regrip-required scenarios achieved complete execution in all runs. The opposite-side bending workflow introduced the highest handling complexity, which is reflected in a slightly reduced success rate and increased execution effort. In the failure-prone scenario, the reduced success rate is intentional and indicates that unsafe continuation was prevented rather than overlooked. Taken together, the results confirm that the system adapts to varying initial conditions and execution challenges while maintaining controlled behaviour.
  
 \subsection{Execution Time Analysis}
 \label{ch6_sec:execution_time_analysis}
  
-The total execution time is divided into planning time and motion execution time. Planning time includes all computations required to generate a valid motion sequence, while execution time corresponds to the robot motion within the environment.
+The execution-efficiency assessment considers how the computational effort for plan generation relates to the observed motion sequence in simulation. The measured planning times remain within a narrow range across all successful scenarios, indicating that the computational overhead of the planning pipeline is modest and stable.
  
-The evaluation shows that planning time remains significantly lower than execution time, indicating that the system is suitable for near real-time operation. Even in scenarios requiring regrip operations, the additional computational overhead remains limited due to the use of structured decision strategies and constrained search spaces.
+The shortest mean planning time is observed in the nominal bending case, whereas the highest value occurs in the opposite-side bending workflow due to the additional flip and recovery logic. Mean execution time follows the same trend, increasing from standard handling cases to regrip-required and opposite-side cases. Even in the more complex scenarios, the increase remains moderate, which indicates that the added planning logic improves adaptability without imposing prohibitive execution overhead.
  
 \subsection{Trajectory Quality and Feasibility}
 \label{ch6_sec:trajectory_quality_and_feasibility}
@@ -111,15 +117,15 @@ Workspace constraints and singularity avoidance mechanisms prevent the generatio
 \subsection{Comparison with Manual Programming}
 \label{ch6_sec:comparison_with_manual_programming}
  
-To evaluate the practical benefits of the developed system, a comparison is performed between conventional manual programming using drag\&bot function blocks and the automated approach proposed in this work.
+To evaluate the practical benefits of the developed system, a comparison is performed between conventional manual programming using drag\&bot function blocks and the automated approach proposed in this work. The comparison focuses on the aspects most directly linked to the thesis objective, namely preparation effort, adaptability to changing workpiece conditions, and repeatability of execution.
  
-In the manual approach, the operator defines individual motion steps, configures parameters, and ensures correct sequencing of operations. This process is time-intensive and depends strongly on operator expertise. In contrast, the developed system generates the complete robot program automatically based on geometric input and configuration data.
+In the manual approach, the operator defines individual motion steps, configures parameters, and ensures correct sequencing of operations. This process is time-intensive and depends strongly on operator expertise. In contrast, the developed system generates the complete robot program automatically based on geometric input and configuration data, recalculating the required workflow when the workpiece condition changes.
  
 Table~\ref{tab:full_comparison} summarises the comparison between the two approaches.
  
 \input{chapters/tables/tab_manual_vs_auto.tex}
  
-The comparison demonstrates that the proposed system significantly reduces programming effort while improving consistency and reliability. By eliminating manual waypoint definition and automating decision-making processes, the system achieves the primary objective of reducing operator workload and increasing process efficiency.
+The comparison demonstrates that the proposed system significantly reduces programming effort while improving consistency and reliability. By eliminating manual waypoint definition, automating decision-making, and reducing the need for repeated reprogramming, the system addresses the main problem identified in Chapter~\ref{ch_1_introduction}. Within the scope of the simulated evaluation, this shows that the primary thesis objective of reducing operator workload while improving adaptability has been achieved.
 
 \section{Robustness and Failure Analysis}
 \label{ch6_sec:robustness_and_failure_analysis}
@@ -130,7 +136,7 @@ In addition to functional correctness and performance, the robustness of the sys
 \subsection{Failure Case Evaluation}
 \label{ch6_sec:failure_case_evaluation}
  
-The system is tested under scenarios designed to trigger potential failure modes, including invalid workpiece placement, infeasible grip configurations, and workspace boundary violations. In each case, the system successfully detects the issue before or during execution.
+The system is tested under scenarios designed to trigger potential failure modes, including invalid workpiece placement, infeasible grip configurations, and workspace boundary violations. These cases correspond to the failure-prone scenario reported in Table~\ref{tab:evaluation_summary}. In each such case, the system detects the issue before or during execution rather than allowing unsafe continuation.
  
 For example, configurations with insufficient vacuum holding force are rejected during grip planning, while unreachable poses are identified during trajectory generation. These validations prevent the execution of unsafe or infeasible motions.
  
@@ -151,12 +157,13 @@ Additionally, the absence of full self-collision detection limits the ability to
 \section{Discussion}
 \label{ch6_sec:discussion}
  
-The evaluation results demonstrate that the developed system provides a structured and automated solution for press brake bending. Compared to the approaches discussed in Chapter~\ref{ch:state-of-art}, the system eliminates the need for manual programming and predefined sequences, enabling adaptive behaviour based on real-time geometric input.
+The evaluation results demonstrate that the developed system provides a structured and automated solution for press brake bending. Compared to the approaches discussed in Chapter~\ref{ch:state-of-art}, the system eliminates the need for manually defined waypoint sequences for the evaluated scenarios and enables adaptive behaviour based on geometric input and configuration data.
  
-The integration of orientation determination, grip planning, and regrip handling allows the system to operate under a wide range of conditions. This represents a significant improvement over conventional methods, which typically rely on fixed configurations and require manual intervention for complex tasks.
+The integration of orientation determination, grip planning, regrip handling, and trajectory generation allows the system to operate under a wide range of conditions. The quantitative results show high success rates in nominal, orientation-varying, workspace-constrained, and regrip-required scenarios, while the comparison with manual programming indicates substantially lower preparation effort and faster adaptation to change. This represents a significant improvement over conventional methods, which typically rely on fixed configurations and require manual intervention for complex tasks.
  
 The system also achieves a high degree of modularity, as demonstrated by the layered architecture presented in Chapter~\ref{ch_5:implementation}. Each module performs a well-defined function and contributes to the overall pipeline, supporting maintainability and extensibility.
  
 However, the evaluation also reveals limitations. The reliance on a virtual simulation environment means that the results do not fully reflect real-world operating conditions. Furthermore, certain aspects, such as advanced collision detection and dynamic force feedback, are not included in the current implementation.
  
-Overall, the system addresses key gaps identified in the state of the art by providing an automated, adaptable, and modular solution. At the same time, the identified limitations provide a clear direction for future development.
+Overall, the system addresses key gaps identified in the state of the art by providing an automated, adaptable, and modular solution. Within the scope of the virtual evaluation environment, Chapter~6 therefore provides evidence that the thesis aim has been met: the developed system can generate feasible robot programs automatically, adapt to representative variations in workpiece conditions, and reduce manual programming effort compared with a conventional workflow. At the same time, the identified limitations provide a clear direction for future development.
+

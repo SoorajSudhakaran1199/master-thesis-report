@@ -2469,33 +2469,33 @@
     <bcf:citekey order="93" intorder="2">Gupta1998SheetMetalBending</bcf:citekey>
     <bcf:citekey order="94" intorder="1">quigley2009ros</bcf:citekey>
     <bcf:citekey order="95" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
-    <bcf:citekey order="96" intorder="1">quigley2009ros</bcf:citekey>
-    <bcf:citekey order="97" intorder="1">Pimentel2012</bcf:citekey>
-    <bcf:citekey order="98" intorder="1">Crick2017</bcf:citekey>
+    <bcf:citekey order="95" intorder="2">quigley2009ros</bcf:citekey>
+    <bcf:citekey order="96" intorder="1">Pimentel2012</bcf:citekey>
+    <bcf:citekey order="96" intorder="2">Crick2017</bcf:citekey>
+    <bcf:citekey order="97" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
+    <bcf:citekey order="98" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
     <bcf:citekey order="99" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
     <bcf:citekey order="100" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
     <bcf:citekey order="101" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
     <bcf:citekey order="102" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
     <bcf:citekey order="103" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
+    <bcf:citekey order="103" intorder="2">Tao2021DigitalTwin</bcf:citekey>
     <bcf:citekey order="104" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
-    <bcf:citekey order="105" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
-    <bcf:citekey order="105" intorder="2">Tao2021DigitalTwin</bcf:citekey>
-    <bcf:citekey order="106" intorder="1">dragandbot_anyrobot_2025</bcf:citekey>
-    <bcf:citekey order="106" intorder="2">Macenski2022ROS2</bcf:citekey>
+    <bcf:citekey order="104" intorder="2">Macenski2022ROS2</bcf:citekey>
+    <bcf:citekey order="105" intorder="1">Siciliano2016Robotics</bcf:citekey>
+    <bcf:citekey order="106" intorder="1">Siciliano2016Robotics</bcf:citekey>
     <bcf:citekey order="107" intorder="1">Siciliano2016Robotics</bcf:citekey>
     <bcf:citekey order="108" intorder="1">Siciliano2016Robotics</bcf:citekey>
     <bcf:citekey order="109" intorder="1">Siciliano2016Robotics</bcf:citekey>
     <bcf:citekey order="110" intorder="1">Siciliano2016Robotics</bcf:citekey>
-    <bcf:citekey order="111" intorder="1">Siciliano2016Robotics</bcf:citekey>
-    <bcf:citekey order="112" intorder="1">Siciliano2016Robotics</bcf:citekey>
-    <bcf:citekey order="112" intorder="2">lynch2017modern</bcf:citekey>
-    <bcf:citekey order="113" intorder="1">bicchi2000robotic</bcf:citekey>
-    <bcf:citekey order="114" intorder="1">vacuum_handling_standard</bcf:citekey>
-    <bcf:citekey order="115" intorder="1">lynch2017modern</bcf:citekey>
-    <bcf:citekey order="116" intorder="1">lynch2017modern</bcf:citekey>
-    <bcf:citekey order="117" intorder="1">Shoemake1985Slerp</bcf:citekey>
-    <bcf:citekey order="118" intorder="1">Flash1985MinimumJerk</bcf:citekey>
-    <bcf:citekey order="119" intorder="1">Gasparetto2012Trajectory</bcf:citekey>
+    <bcf:citekey order="110" intorder="2">lynch2017modern</bcf:citekey>
+    <bcf:citekey order="111" intorder="1">bicchi2000robotic</bcf:citekey>
+    <bcf:citekey order="112" intorder="1">vacuum_handling_standard</bcf:citekey>
+    <bcf:citekey order="113" intorder="1">lynch2017modern</bcf:citekey>
+    <bcf:citekey order="114" intorder="1">lynch2017modern</bcf:citekey>
+    <bcf:citekey order="115" intorder="1">Shoemake1985Slerp</bcf:citekey>
+    <bcf:citekey order="116" intorder="1">Flash1985MinimumJerk</bcf:citekey>
+    <bcf:citekey order="117" intorder="1">Gasparetto2012Trajectory</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

@@ -1,4 +1,4 @@
-\chapter{Conclusion and Future Work}
+﻿\chapter{Conclusion and Future Work}
 \label{ch7_conclusion}
 
 \section{Conclusion}
@@ -10,13 +10,13 @@ The analysis of the state of the art in Chapter~\ref{ch:state-of-art} identified
  
 In Chapter~\ref{ch:development-concepts}, multiple solution concepts were evaluated, leading to the selection of Concept~B as the most suitable approach. This concept introduced a structured planning pipeline that integrates orientation determination, grip planning, regrip handling, and trajectory generation into a unified system.
  
-Chapter~\ref{ch_5:implementation} described the complete implementation of the selected concept. The system was realised as a modular software architecture with clearly defined layers, enabling separation of concerns and maintainability. Key functionalities such as constraint-based grip planning, automatic regrip determination, and structured trajectory generation were implemented to support fully automated operation.
+Chapter~\ref{ch_5:implementation} described the complete implementation of the selected concept. The system was realised as a modular software architecture with clearly defined layers, enabling separation of concerns and maintainability. Key functionalities such as constraint-based grip planning, automatic regrip determination, and structured trajectory generation were implemented to support automated operation within the defined thesis scope.
  
-The evaluation presented in Chapter~\ref{ch_6:evaluation} demonstrated that the system successfully fulfils the defined requirements. Functional validation confirmed that each component of the planning pipeline operates correctly under varying conditions. System-level evaluation showed that the integrated solution produces consistent and feasible robot programs without manual intervention.
+The evaluation presented in Chapter~\ref{ch_6:evaluation} showed that the developed system addresses the defined requirements within the scope of the virtual study. Functional validation confirmed that each component of the planning pipeline operates correctly under varying conditions. At the system level, the results showed that the integrated solution can generate consistent and feasible robot programs without manual intervention in the evaluated scenarios.
  
-A comparison with manual programming approaches highlighted a significant reduction in programming effort and adaptation time. Tasks that traditionally require manual adjustment and reprogramming can be handled automatically by the system, enabling faster and more consistent operation. This demonstrates that the primary objective of reducing operator dependency and improving efficiency has been achieved.
+A comparison with manual programming approaches highlighted reduced programming effort and shorter adaptation time within the evaluated workflow. Tasks that would normally require manual adjustment and reprogramming can be handled automatically by the system, leading to faster and more consistent operation in the simulated environment. Taken together, these results indicate that the primary objective of reducing operator dependency and improving efficiency was achieved within the defined evaluation scope.
  
-Overall, the developed system provides a systematic and adaptable solution for robotic press brake bending. By combining automated decision-making with structured validation, the approach addresses key limitations of existing methods and contributes to the advancement of flexible robotic manufacturing systems.
+Overall, the developed system provides a structured and adaptable solution for robotic press brake bending. By combining automated decision-making with structured validation, the approach addresses key limitations of existing methods and contributes to the advancement of flexible robotic manufacturing systems within the scope of simulation-based development and evaluation.
  
 \section{Contributions}
 \label{ch7_sec:contributions}
@@ -24,7 +24,7 @@ Overall, the developed system provides a systematic and adaptable solution for r
 The main contributions of this thesis can be summarised as follows:
  
 \begin{itemize}
-\item Development of a fully automated planning pipeline for press brake bending, integrating orientation determination, grip planning, regrip handling, and trajectory generation
+\item Development of an automated planning pipeline for press brake bending, integrating orientation determination, grip planning, regrip handling, and trajectory generation
  
 \item Introduction of a constraint-based grip planning method that ensures both geometric feasibility and sufficient holding force
  
@@ -55,7 +55,7 @@ Furthermore, the current implementation focuses on a specific class of sheet met
  
 Based on the identified limitations, several directions for future work can be proposed.
  
-Although the developed system achieves a functional and structured approach to robotic sheet handling and bending, it is inherently constrained by a series of simplifying assumptions introduced during the design phase. These constraints, while beneficial for ensuring stability and predictability, limit the system’s applicability to more complex and realistic industrial scenarios. Consequently, several avenues for future work emerge, aimed at improving flexibility, intelligence, and robustness.
+Although the developed system achieves a functional and structured approach to robotic sheet handling and bending, it is inherently constrained by a series of simplifying assumptions introduced during the design phase. These constraints, while beneficial for ensuring stability and predictability, limit the system's applicability to more complex and realistic industrial scenarios. Consequently, several avenues for future work emerge, aimed at improving flexibility, intelligence, and robustness.
 
 A key limitation of the current system lies in its strict assumption of rectangular sheet geometries aligned with the global coordinate frame. In practical manufacturing environments, components often exhibit irregular shapes and arbitrary orientations. Future work should therefore focus on generalizing the geometric representation to support non-rectangular profiles, including polygonal and free-form geometries. Additionally, enabling the system to operate independently of fixed axis alignment would significantly enhance its adaptability. This would require a more advanced geometric abstraction layer capable of handling arbitrary edge definitions and diverse feature types, including non-circular cutouts.
 
@@ -69,7 +69,7 @@ Regrip operations in the present implementation are restricted to discrete rotat
 
 Safety considerations represent a critical gap in the current system. The absence of collision detection and trajectory validation poses a significant limitation for deployment in real-world environments. Future enhancements should prioritize the integration of real-time collision avoidance mechanisms and safe motion planning algorithms. Expanding the scope of the safety monitoring system to account for dynamic interactions between the robot, workpieces, and surrounding infrastructure would also be essential.
 
-Finally, the system’s reliance on fixed object identifiers and predefined configurations reduces its robustness in dynamic environments. Future work should investigate the integration of perception-driven approaches, such as vision-based object recognition and tracking, to enable more flexible and autonomous operation. Additionally, incorporating error detection and recovery strategies would allow the system to handle unexpected deviations more effectively, thereby improving overall resilience.
+Finally, the system's reliance on fixed object identifiers and predefined configurations reduces its robustness in dynamic environments. Future work should investigate the integration of perception-driven approaches, such as vision-based object recognition and tracking, to enable more flexible and autonomous operation. Additionally, incorporating error detection and recovery strategies would allow the system to handle unexpected deviations more effectively, thereby improving overall resilience.
 
 In conclusion, future developments should aim to transition the system from a rigid, rule-based framework toward a more adaptive and intelligent architecture. By addressing limitations in geometry handling, bending flexibility, motion planning, gripping strategies, regrip operations, safety, and system adaptability, the proposed solution can evolve into a more comprehensive and industrially viable robotic automation platform.
  
@@ -79,3 +79,5 @@ In conclusion, future developments should aim to transition the system from a ri
 This thesis demonstrates that automated planning and execution of robotic press brake bending is both feasible and beneficial. By reducing manual programming effort and improving adaptability, the developed system contributes to more efficient and flexible manufacturing processes.
  
 The presented approach provides a structured foundation for future research and development in robotic bending and related automation tasks.
+
+
