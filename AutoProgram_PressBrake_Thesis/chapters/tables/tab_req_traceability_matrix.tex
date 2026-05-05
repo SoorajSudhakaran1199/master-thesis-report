@@ -1,109 +1,152 @@
-\begin{landscape}
-\begin{table}[htbp]
+﻿\begin{landscape}
+
+\begin{table}[p]
 \centering
 \normalsize
 \setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{0.92}
-\hyphenpenalty=10000
-\exhyphenpenalty=10000
-\begin{tabularx}{\linewidth}{
+\renewcommand{\arraystretch}{1.08}
+
+\begin{tabular}{
 L{1.8cm}
-L{6.2cm}
+L{6.0cm}
 L{9.0cm}
 L{5.5cm}
 }
-\toprule
+\hline
 \textbf{Req.\ ID} &
-\textbf{Requirement Description} &
-\textbf{Implemented In} &
-\textbf{Verified In} \\
-\midrule
-
+\textbf{Requirement} &
+\textbf{Implementation} &
+\textbf{Verification} \\
+\hline
 
 FR-00 &
-Automatic robot program generation for press brake operations. &
-Integrated planning pipeline combining geometry processing, trajectory generation, and execution logic &
-End-to-end simulation validation \\
+Generate execution-ready drag\&bot programs from geometry, configuration data, and bend-side input &
+Integrated planning pipeline for configuration processing, orientation selection, grip planning, trajectory generation, and execution logic &
+Manual-versus-automated workflow comparison and automated scenario validation in Chapter~\ref{ch:evaluation-validation} \\
+\hline
 
 FR-01 &
-Detect unreachable target poses before execution. &
-Reachability checking and admissibility validation logic &
-Simulation test case TC-01 \\
+Detect unreachable or infeasible target poses before command dispatch &
+Reachability checks and admissibility validation &
+Workspace-constrained and failure-prone scenario validation with controlled-stop classification \\
+\hline
 
 FR-02 &
-Allow operator-side selection of bending configuration before execution. &
-Operator dialog and configuration collection logic &
-Execution test case TC-02 \\
+Bend-side selection before automated program generation or execution &
+Operator dialog and configuration input logic &
+Side~A direct-bending and Side~E opposite-side workflow validation \\
+\hline
 
 FR-03 &
-Execute regripping sequence when a target pose is unreachable. &
-Automatic regrip cycle logic with I/O and attach/detach control &
-Regrip validation test case TC-03 \\
+Automatically insert a regrip operation when the next target pose is not directly reachable &
+Regrip cycle logic with \acs{io} and attach-detach control &
+Regrip-required and Side~E opposite-side scenario validation \\
+\hline
 
 FR-04 &
-Handle workpiece orientation changes during program execution. &
-Orientation conversion, rotation normalisation, and strategy selection logic &
-Orientation validation test case TC-04 \\
+Automatic orientation validation and correction for changed initial workpiece orientation &
+Orientation conversion, rotation normalisation, and strategy selection &
+Orientation-variation scenario validation \\
+\hline
 
 FR-05 &
-Support opposite-side bending operations when required. &
-Opposite-side bending workflow with sheet-flip and regrip completion logic &
-Opposite-side validation test case TC-05 \\
+Automatically generate flip and reorientation workflow for opposite-side bending &
+Opposite-side workflow with sheet flip, regrip, revalidation, and controlled-stop handling if recovery fails &
+Side~E opposite-side workflow validation \\
+\hline
 
 FR-06 &
-Determine and apply suitable grip positions for each workpiece state. &
-Grip planning logic with edge-clearance, spacing, and vacuum-force feasibility checks &
-Grip validation test case TC-06 \\
+Determine grip positions that satisfy edge-clearance, hole-avoidance, and holding-force checks &
+Grip planning with edge-clearance, spacing, and vacuum-force checks &
+\acs{tc}-06 grip-planning test and functional validation of valid and rejected grips \\
+\hline
 
 FR-07 &
-Detect unsafe conditions and perform replanning or terminate execution. &
-Safety validation and pre-execution checking logic with replanning mechanism and controlled stop handling &
-Safety validation test case TC-07 \\
+Detect unsafe conditions and replan or stop execution before unsafe continuation &
+Safety validation, pre-execution checks, replanning, and controlled stop logic &
+Failure-prone scenario validation and controlled-stop classification \\
+
+\hline
+\end{tabular}
+
+\caption[Requirement Traceability Matrix -- functional requirements]{Requirement Traceability Matrix -- functional requirements (FR-00 to FR-07) mapped to implementation modules and verification scenarios.}
+\label{tab:req-traceability-matrix}
+
+\end{table}
+
+
+\begin{table}[p]
+\centering
+\normalsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+
+\begin{tabular}{
+L{1.8cm}
+L{6.0cm}
+L{9.0cm}
+L{5.5cm}
+}
+\hline
+\textbf{Req.\ ID} &
+\textbf{Requirement} &
+\textbf{Implementation} &
+\textbf{Verification} \\
+\hline
 
 NFR-01 &
-Ensure minimal operator interaction during normal execution. &
-Operator interaction limited to bend-side selection and execution confirmation &
-Usability validation \\
+Limit operator interaction to configuration or input selection and execution confirmation &
+Bend-side selection and execution confirmation only &
+Usability validation and workflow comparison without manual waypoint or block programming \\
+\hline
 
 NFR-02 &
-Allow process parameter changes without source code modification. &
-Configuration reader and YAML-based single-source process configuration &
-Configuration validation test \\
+Configure workpiece geometry, process settings, and safety parameters without source-code modification &
+Configuration reader and \acs{yaml}-based process configuration &
+Geometry-variation and position-change scenario validation through configuration or operator input updates \\
+\hline
 
 NFR-03 &
-Provide clear warning and error messages for unsafe conditions. &
-Warning generation and modal operator notification logic &
+Provide warning or error feedback before continuation for unsafe or infeasible conditions &
+Warning generation and operator notification logic &
 Warning message validation \\
+\hline
 
 NFR-04 &
-Ensure robustness under repeated execution cycles. &
-Deterministic execution loop with automatic waypoint generation and path logging &
-Repeated run validation test \\
+Deterministic execution sequence for a given configuration &
+Deterministic execution loop with automatic waypoint generation and logging &
+Repeated automated scenario validation using completion, failure, or controlled-stop classifications \\
+\hline
 
 NFR-05 &
-Tolerate moderate pose deviations within defined tolerance limits. &
-Configurable pose-deviation threshold and perturbation handling logic &
-Perturbation validation test \\
+Check fixture pose deviations against defined positional and angular tolerance limits &
+Configurable pose-deviation threshold and perturbation handling &
+Fixture perturbation and constrained-placement validation using 5~mm and 0{,}10~rad thresholds \\
+\hline
 
-SR-01 &
-drag\&bot platform shall be the virtual execution environment for robot program validation. &
-Runtime client connection logic for communication with the configured drag\&bot environment &
-Platform integration check: runtime connection and command execution verified \\
+\acs{sr}-01 &
+Connect to and validate generated programs in the configured drag\&bot virtual execution environment &
+Runtime client connection to the configured drag\&bot environment &
+Platform integration check \\
+\hline
 
-SR-02 &
-AnyRobot interface shall be the communication layer between planning system and robot runtime. &
-WebSocket-based communication layer enabling structured command exchange &
-Interface integration check: connection established and commands successfully executed \\
+\acs{sr}-02 &
+Route planning-to-runtime communication through the AnyRobot WebSocket interface &
+WebSocket-based communication layer for structured command exchange &
+Interface integration check \\
+\hline
 
-SR-03 &
-All motion targets shall be defined with respect to the configured TCP. &
-TCP-based transformation applied in all trajectory generation and motion execution steps &
-TCP configuration check: consistent pose transformation verified \\
+\acs{sr}-03 &
+Generate all motion targets using the configured \ac{tcp} identifier \texttt{project\_3\_tcp} &
+\acs{tcp}-based transformations in trajectory generation and execution &
+\acs{tcp} configuration check \\
 
-\bottomrule
-\end{tabularx}
-\caption{Requirement Traceability Matrix --- all requirements (FR-00 to FR-07, NFR-01 to NFR-05, SR-01 to SR-03) mapped to implementation modules and verification scenarios.}
-\label{tab:req_traceability_matrix}
+\hline
+\end{tabular}
+
+\caption[Requirement Traceability Matrix -- non-functional and system requirements]{Requirement Traceability Matrix -- non-functional requirements (NFR-01 to NFR-05) and system requirements (SR-01 to SR-03) mapped to implementation modules and verification scenarios.}
+\label{tab:req-traceability-matrix-nfr-sr}
+
 \end{table}
-\end{landscape}
 
+\end{landscape}

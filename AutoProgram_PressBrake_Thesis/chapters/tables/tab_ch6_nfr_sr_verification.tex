@@ -1,0 +1,27 @@
+\begin{table}[htbp]
+\centering
+\normalsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{tabularx}{\textwidth}{L{1.8cm} L{3.8cm} Y L{3.2cm}}
+\hline
+\textbf{Req.} & \textbf{Verification Scenario} & \textbf{Observed Outcome} & \textbf{Evaluation Result} \\
+\hline
+NFR-01 & Manual versus automated preparation & Average preparation time decreases from \SI{301.0}{\second} to \SI{11.1}{\second}; manual waypoint construction is not required in the automated workflow. & Verified. \\
+\hline
+NFR-02 & Geometry and position variation & The automated workflow adapts to changed geometry and placement through configuration and operator input updates without source-code modification. & Verified within the tested rectangular sheet scope. \\
+\hline
+NFR-03 & Failure-prone cases & Unresolved unsafe continuation results in controlled stop behaviour. & Verified for evaluated failure cases. \\
+\hline
+NFR-04 & Repeated automated scenario runs & Nominal, orientation, workspace-constrained, and regrip-required scenarios each produce consistent completion classifications across 10 of 10 runs. & Verified as deterministic behaviour for tested conditions; broad statistical repeatability is not claimed. \\
+\hline
+NFR-05 & Position-change and constrained placement & Plane~B increases process difficulty and exposes fixture/workspace sensitivity; the validation logic detects constrained continuation and supports controlled operator decisions. & Partly verified; constraint detection is shown, recovery remains limited. \\
+\hline
+SR-01--SR-03 & All automated execution scenarios & Generated workflows execute in the virtual runtime using the configured communication and \ac{tcp} assumptions. & Verified within the implemented virtual cell. \\
+\hline
+\end{tabularx}
+
+\caption{Non-functional and software requirement verification based on evaluated scenarios and observed trial outcomes.}
+\label{tab:ch6-nfr-sr-verification}
+\end{table}

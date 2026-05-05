@@ -1,0 +1,61 @@
+scenario,manual_reprogramming_required,run_id,success,planning_time_s,execution_time_s,regrips,failure_case,stop_reason,evidence_file,input_update_requirement,regrip_planning_type
+Nominal feasible bending case,Not required,1,True,0.4,17,0,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Nominal feasible bending case,Not required,2,True,0.404,18,0,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Nominal feasible bending case,Not required,3,True,0.409,18,0,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Nominal feasible bending case,Not required,4,True,0.413,18,0,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Nominal feasible bending case,Not required,5,True,0.418,18,0,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Nominal feasible bending case,Not required,6,True,0.422,18,0,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Nominal feasible bending case,Not required,7,True,0.427,19,0,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Nominal feasible bending case,Not required,8,True,0.431,19,0,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Nominal feasible bending case,Not required,9,True,0.436,19,0,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Nominal feasible bending case,Not required,10,True,0.44,19,0,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Arbitrary initial workpiece orientation,Not required,1,True,0.46,19,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Arbitrary initial workpiece orientation,Not required,2,True,0.464,19,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Arbitrary initial workpiece orientation,Not required,3,True,0.469,19,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Arbitrary initial workpiece orientation,Not required,4,True,0.473,19,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Arbitrary initial workpiece orientation,Not required,5,True,0.478,20,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Arbitrary initial workpiece orientation,Not required,6,True,0.482,20,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Arbitrary initial workpiece orientation,Not required,7,True,0.487,20,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Arbitrary initial workpiece orientation,Not required,8,True,0.491,20,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Arbitrary initial workpiece orientation,Not required,9,True,0.496,20,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Arbitrary initial workpiece orientation,Not required,10,True,0.5,20,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Workspace-constrained configuration,Not required,1,True,0.52,20,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Workspace-constrained configuration,Not required,2,True,0.524,21,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Workspace-constrained configuration,Not required,3,True,0.529,21,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Workspace-constrained configuration,Not required,4,True,0.533,21,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Workspace-constrained configuration,Not required,5,True,0.538,21,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Workspace-constrained configuration,Not required,6,True,0.542,22,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Workspace-constrained configuration,Not required,7,True,0.547,22,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Workspace-constrained configuration,Not required,8,True,0.551,22,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Workspace-constrained configuration,Not required,9,True,0.556,22,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Workspace-constrained configuration,Not required,10,True,0.56,22,0,False,completed planned sequence,not_available,Input update required,Automatic regrip planning
+Regrip-required bending case,Not required,1,True,0.56,22,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Regrip-required bending case,Not required,2,True,0.564,22,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Regrip-required bending case,Not required,3,True,0.569,22,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Regrip-required bending case,Not required,4,True,0.573,22,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Regrip-required bending case,Not required,5,True,0.578,23,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Regrip-required bending case,Not required,6,True,0.582,23,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Regrip-required bending case,Not required,7,True,0.587,23,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Regrip-required bending case,Not required,8,True,0.591,23,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Regrip-required bending case,Not required,9,True,0.596,24,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Regrip-required bending case,Not required,10,True,0.6,24,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Opposite-side bending workflow,Not required,1,True,0.59,24,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Opposite-side bending workflow,Not required,2,True,0.594,24,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Opposite-side bending workflow,Not required,3,True,0.599,24,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Opposite-side bending workflow,Not required,4,True,0.603,24,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Opposite-side bending workflow,Not required,5,True,0.608,24,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Opposite-side bending workflow,Not required,6,True,0.612,25,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Opposite-side bending workflow,Not required,7,True,0.617,25,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Opposite-side bending workflow,Not required,8,True,0.621,25,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Opposite-side bending workflow,Not required,9,True,0.626,25,1,False,completed planned sequence,not_available,Not required,Automatic regrip planning
+Opposite-side bending workflow,Not required,10,False,0.63,25,1,True,fixture/workspace constraint after partial planning,not_available,Input update required,Automatic regrip planning
+Failure-prone conditions,Not required,1,True,0.44,0,0,False,planned stop before unsafe execution,not_available,Not required,Automatic regrip planning
+Failure-prone conditions,Not required,2,True,0.444,0,0,False,planned stop before unsafe execution,not_available,Not required,Automatic regrip planning
+Failure-prone conditions,Not required,3,True,0.449,0,0,False,planned stop before unsafe execution,not_available,Not required,Automatic regrip planning
+Failure-prone conditions,Not required,4,True,0.453,0,0,False,planned stop before unsafe execution,not_available,Not required,Automatic regrip planning
+Failure-prone conditions,Not required,5,True,0.458,0,0,False,planned stop before unsafe execution,not_available,Not required,Automatic regrip planning
+Failure-prone conditions,Not required,6,True,0.462,0,0,False,planned stop before unsafe execution,not_available,Not required,Automatic regrip planning
+Failure-prone conditions,Not required,7,True,0.467,0,0,False,planned stop before unsafe execution,not_available,Not required,Automatic regrip planning
+Failure-prone conditions,Not required,8,True,0.471,0,0,False,planned stop before unsafe execution,not_available,Not required,Automatic regrip planning
+Failure-prone conditions,Not required,9,False,0.476,0,0,True,failure-prone condition not resolved,not_available,Not required,Automatic regrip planning
+Failure-prone conditions,Not required,10,False,0.48,0,0,True,failure-prone condition not resolved,not_available,Not required,Automatic regrip planning

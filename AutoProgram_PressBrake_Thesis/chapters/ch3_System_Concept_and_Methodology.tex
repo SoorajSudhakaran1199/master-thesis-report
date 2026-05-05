@@ -1,184 +1,101 @@
-﻿% !TeX root = ../main.tex
+% !TeX root = ../main.tex
 \chapter{System Concept and Methodology}
 \label{ch:system-concept-methodology}
 
 \section{Problem Definition and Objectives}
-\label{Problem-Definition-and-Objectives}
+\label{sec:problem-definition-and-objectives}
 
-Industrial robots are already used in press brake sheet metal bending, but in many cases they are still programmed manually or through predefined routines. Those approaches work well as long as part geometry, pickup conditions, and bend sequences remain stable. Their limitations become much more visible in flexible production environments, where frequent part variation leads to repeated manual adjustment, longer setup times, and reduced efficiency.
+The state-of-the-art analysis indicates that existing approaches do not fully provide an integrated solution for robotic sheet metal bending. In particular, planning tasks such as grasp selection, regripping, and trajectory generation are often handled separately, which limits the level of automation.
 
-The main technical challenge comes from the changing geometry of the workpiece. After each bending operation, the shape of the part changes, and that change affects robot reachability, grip feasibility, valid grip locations, and the set of trajectories that can still be executed safely. Handling and regripping therefore cannot be treated as isolated steps. They have to be planned in relation to the full process sequence, which makes robotic bending difficult to scale when programming is performed largely by hand.
+A key challenge arises from the changing geometry of the workpiece during the bending process. Each bending step modifies the part shape, affecting reachability and feasible handling strategies. The problem addressed in this work is the lack of a systematic method for automatically generating robot programs for press brake sheet metal bending that considers changing workpiece geometry, handling feasibility, and regripping requirements within a unified framework.
 
-From a methodological perspective, conventional robot programming still operates at a relatively low level of abstraction. Paths, tool settings, and waypoints are defined explicitly, which ties the resulting program closely to one specific robot setup, one grip configuration, and one process sequence. Programs created in this way are difficult to adapt when reorientation or regripping becomes necessary, and they scale poorly in manufacturing settings that require frequent adjustment \cite{Pan2012Survey}.
+The objective of this thesis is to develop a method for the automatic generation of robot programs that improves adaptability to varying workpiece geometries while reducing manual programming effort and programming time. In addition, the approach aims to enable usability for non-expert operators by requiring only the specification of the desired output. To achieve this, a unified framework is proposed that integrates handling, regripping, and trajectory generation into a single workflow. The approach focuses on generating robot motions directly from process inputs rather than relying on manually defined waypoint sequences, particularly for multi-stage sheet metal bending operations.
 
-Research has already explored higher-level programming approaches that bring planning and motion execution closer together. Even so, these ideas have not been transferred fully into press brake bending scenarios in which changing workpiece geometry and handling conditions must be considered explicitly. A clear gap therefore remains between general robot-programming research and a practical workflow for robotic sheet metal bending.
+The specific objectives are:
+\begin{enumerate}
+    \item Automatic generation of robot programs based on geometry and process parameters.
+    \item Constraint-aware trajectory generation considering workspace and kinematic limitations.
+    \item Support for multi-stage bending, including regripping and reorientation.
+    \item Determination of feasible grip points based on accessibility and process stage.
+    \item Integration with an industrial robot programming environment.
+\end{enumerate}
 
-Based on these observations, the central problem addressed in this thesis can be stated as follows:
-
-There is no systematic method for automatically generating robot programs for press brake sheet metal bending that explicitly considers changing workpiece geometry, handling feasibility, and regripping requirements while also reducing manual programming effort.
-
-The main objective of this thesis is therefore to enable the automatic generation of robot programs for sheet metal handling and bending operations in a way that reduces manual effort and improves adaptability to varying workpiece geometries.
-
-To address this objective, this work develops a conceptual and methodological framework that brings bending, handling, regripping, and orientation management together in one workflow. The intention is to generate robot trajectories and execution logic automatically from process inputs, without relying on manually defined waypoint sequences.
-
-The specific objectives of this work are:
-\begin{itemize}
-    \item Develop a method for the automatic generation of robot programs based on workpiece geometry and process parameters.
-    \item Generate feasible robot trajectories while considering geometric, kinematic, and workspace constraints.
-    \item Support multi-stage bending operations, including reorientation and regripping of the workpiece.
-    \item Develop a method for determining feasible grip points based on geometry, accessibility, and process stage.
-    \item Enable integration with an industrial robot programming environment through a communication interface.
-    \item Reduce manual programming effort while ensuring consistent and reliable system behaviour.
-\end{itemize}
-
-The proposed approach is evaluated in a virtual simulation environment compatible with industrial robot systems. Accordingly, the scope of this thesis is limited to conceptual development and simulation-based validation.
+The proposed method is evaluated in a simulation environment, with a focus on conceptual development and virtual validation.
 
 \section{Requirement Definition and Management}
-\label{Requirement-Definition-and-Management}
+\label{sec:requirement-definition-and-management}
 
-The system concept developed in this thesis is guided by a defined set of requirements derived directly from the problem outlined in Section~\ref{Problem-Definition-and-Objectives}. These requirements specify the expected functionality, describe the intended system behaviour, and make the operational boundaries explicit.
+The system concept developed in this thesis defines a structured set of requirements based on the problem described in Section~\ref{sec:problem-definition-and-objectives}. These requirements specify the expected functionality and describe the intended system behaviour in a clear and transparent manner.
 
-To keep the development process transparent, the requirements are organised into functional, non-functional, system-level, and software-specific categories. This structure supports consistent design, implementation, and validation and also makes later traceability easier to establish.
+The requirements are organised into functional requirements (\acs{fr}), non-functional requirements (\acs{nfr}), and software requirements (\acs{sr}), based on industrial and company-specific criteria. This structured classification supports consistent system design, implementation, and validation, while also enabling traceability throughout the development process.
+
+Furthermore, the defined requirements provide a basis for evaluating whether the developed system satisfies the intended objectives during the validation phase.
+
+For consistent interpretation, several terms are used with fixed meanings throughout the thesis. An execution-ready workflow is a generated or prepared sequence that can be started in the virtual cell without additional manual waypoint teaching or function-block sequencing. A configuration change denotes an update of workpiece, process, or safety parameters without source-code modification. Deterministic behaviour means that repeated runs under the same scenario definition lead to the same completion, failure, or controlled-stop classification. A controlled stop denotes safe interruption before infeasible or unsafe continuation; it is therefore treated as safe system behaviour, but not as a completed execution trial.
 
 \subsection{Functional Requirements}
-\label{functional-Requirement}
+\label{sec:functional-requirements}
 
-The functional requirements define the capabilities that the system must provide in order to generate robot programs automatically for sheet metal bending operations. In practical terms, they describe how the system processes input data, produces robot motion, and maintains feasibility over several stages of the bending process.
+The functional requirements define the capabilities that the system must provide to enable automatic generation of robot programs for sheet metal bending operations. A primary requirement is that the program must be generated from operator-defined inputs. This directly addresses the limitations of manual programming identified in the previous chapters and forms the core of the proposed solution.
 
-The most important requirement is the automatic generation of robot programs from operator-defined inputs. This directly addresses the limitations of manual programming identified in the previous chapters and forms the core of the proposed solution.
+The system must generate feasible robot trajectories for handling and bending operations based on target poses and process parameters. These trajectories must satisfy geometric and kinematic constraints within the defined workspace. Furthermore, the system must support bending on multiple faces of the sheet, requiring multi-stage operations that include reorientation and regripping.
 
-Meeting that requirement involves more than creating a nominal path. The system has to generate feasible robot trajectories for handling and bending operations on the basis of target poses and process parameters, and those trajectories must satisfy the relevant geometric and kinematic constraints within the defined workspace.
+Grip positions must be determined automatically according to the process stage, as variations in workpiece geometry require adaptive grasp selection to ensure stable handling throughout the process sequence. The generated programs and trajectories must be verified prior to execution. If infeasible conditions are detected, such as unreachable poses or invalid configurations, the system must initiate replanning or terminate execution safely when recovery is not possible.
 
-Because the shape of the sheet changes after each bending step, the system must also support multi-stage processes that include reorientation and regripping. Grip points cannot be fixed once at the beginning of the process; they have to be determined according to the current process stage, accessibility, and workpiece state so that stable handling remains possible throughout the sequence.
-
-All generated motions must also be validated before execution. If infeasible conditions are detected, such as unreachable poses or invalid configurations, the system must either trigger replanning or terminate execution safely when recovery is not possible.
-
-Finally, the complete program must be checked in simulation before execution. This makes it possible to verify the generated sequence in a controlled environment and to confirm that the solution remains consistent with the defined system constraints.
-
-The detailed functional requirements corresponding to these capabilities are summarised in Table~\ref{tab:functional_requirements}.
+The complete program must be validated in a simulation environment before execution to ensure that the generated sequence is feasible, consistent, and compliant with system constraints. The detailed functional requirements corresponding to these capabilities are summarised in Table~\ref{tab:functional-requirements}.
 
 \input{chapters/tables/tab_functional_requirements}
 
 \subsection{Non-Functional Requirements}
-\label{non-functional-requirements}
+\label{sec:non-functional-requirements}
 
-The non-functional requirements describe the quality attributes that the system must exhibit in addition to its basic functionality. They define how the system should behave under use and therefore cover aspects such as usability, maintainability, robustness, and repeatability.
+In addition to functional requirements, non-functional requirements define the quality attributes that the system must exhibit. These requirements describe how the system behaves during operation and cover aspects such as usability, maintainability, robustness, consistency, and repeatability.
 
-One important design goal is that operators should be able to define process inputs without detailed knowledge of low-level robot programming. In that sense, usability is not treated as an afterthought, but as a condition for practical adoption.
+A key design objective is to ensure usability, allowing operators to define process inputs without requiring detailed technical knowledge. This ensures that usability is considered as a fundamental requirement for practical adoption. The system must produce deterministic and repeatable results for identical input conditions, thereby ensuring consistent behaviour.
 
-The system is also expected to behave consistently. For identical input conditions, it should produce deterministic results. In an industrial setting, this kind of predictability is essential because repeatable behaviour supports both safe execution and reliable process evaluation.
+The system architecture separates planning, validation, and execution into distinct components, enabling modular development, maintainability, and extensibility without introducing unnecessary dependencies across the system. Maintainability is further supported by a structured design that facilitates modification and future enhancements.
 
-Maintainability is addressed through a modular system structure. Planning, validation, and execution are treated as distinct responsibilities so that individual components can be developed, maintained, and extended without forcing unnecessary changes across the whole system.
+Within the defined scope, the system should tolerate minor variations in input parameters and process conditions while maintaining stable and reliable output. Robustness is addressed by handling variations without compromising system performance or validity of results.
 
-Robustness is equally important. Within the defined scope, the system should tolerate minor variation in inputs and process conditions while still producing stable output. In addition, the approach should remain transferable to comparable process configurations and workpiece variations inside the intended application range.
-
-The detailed non-functional requirements corresponding to these quality attributes are summarised in Table~\ref{tab:nfr_table}.
+The detailed non-functional requirements corresponding to these quality attributes are summarised in Table~\ref{tab:non-functional-requirements}.
 
 \input{chapters/tables/tab_non_functional_requirements}
-
-\subsection{System Constraints and Assumptions}
-\label{System-Constraints-and-Assumptions}
-
-The proposed system is developed within a deliberately limited set of constraints and assumptions. These boundaries define the scope of the work and help keep the resulting behaviour predictable and reproducible.
-
-At the geometric level, the workpiece model is restricted to rectangular sheet metal components with exactly four edges aligned to the global coordinate system. Rotated or non-axis-aligned sheet configurations are excluded. A single global wall height parameter is assumed for all bending operations, so edge-specific wall-height variation is not supported. Internal features are represented only as circular holes defined by centre coordinates and radius; more complex shapes such as polygonal cut-outs or irregular contours are outside the present scope.
-
-The bending process is simplified in a similarly explicit way. Only right-angle ($90^\circ$) bends are considered, and user-defined bend angles are not supported. Each sheet edge can be assigned to only one bending operation, which creates a one-to-one relationship between edges and bends and keeps the sequence deterministic. The number of bends is also limited to four on each side of the workpiece, including both primary and opposite-side bending stages.
-
-On the system side, the robot configuration, tooling setup, and workspace layout are assumed to remain fixed during operation. Motion generation relies on a predefined tool centre point configuration, and all generated trajectories are expressed relative to that reference. The work also assumes a vacuum-based gripping mechanism with a predefined input-output configuration. Changes in tool geometry, \ac{tcp} definition, or wiring are not handled dynamically and therefore require manual reconfiguration.
-
-The execution environment is likewise assumed to remain structured and predefined. The workflow depends on consistent identification and positioning of workpieces and support structures, so deviations from the expected setup may lead to incorrect execution behaviour. For that reason, the present implementation remains tightly coupled to the defined virtual cell.
-
-With respect to gripping, only vacuum-based strategies are considered. Grip feasibility is evaluated using simplified physical considerations such as pressure distribution, friction, and load capacity. Alternative gripping methods, including mechanical, magnetic, or multi-fingered grippers, are excluded.
-
-Finally, the scope of the work is limited to rule-based program generation, geometric reasoning, and simulation-based validation. More advanced capabilities, such as dynamic collision-free trajectory generation, real-time motion adaptation, and environment-aware path optimisation, are intentionally left out. This keeps the system aligned with the thesis focus on deterministic automatic program generation in a controlled industrial setting.
 
 \subsection{Software Platform and Tool Requirements}
 \label{sec:software-platform-tool-requirements}
 
-The software platform and tool requirements describe the technical environment in which the proposed system is implemented and evaluated. They define the execution context, the communication structure, and the reference conditions needed to support automated program generation, validation, and simulated execution.
+The software platform and tool requirements define the technical environment in which the proposed system is implemented and evaluated. They are grouped as \acs{sr}-01 to \acs{sr}-03 because the virtual runtime, communication interface, and tool reference frame must work together for reliable program generation and execution.
 
-These requirements are grouped as SR-01 to SR-03 and are detailed in the following subsections.
+\phantomsection\label{subsubsec:sr-01-virtual-execution-environment}
+\noindent\textbf{\acs{sr}-01 Virtual execution environment.}
+The system shall operate within a virtual robot programming environment that supports simulation, execution, and validation of generated robot programs. In this work, drag\&bot is used as the runtime environment for the virtual UR5e press-brake cell. The acceptance criterion is that a stable connection to the configured runtime is established before execution and that generated motion, service, object-handling, and input-output operations can be validated in the virtual cell.
 
-At a general level, the system has to operate within a virtual robot programming environment that supports simulation, execution, and validation of robot programs. In this thesis, drag\&bot is used as that environment because it provides a structured setting for testing generated trajectories under controlled conditions.
+\phantomsection\label{subsubsec:sr-02-communication-interface-requirement}
+\noindent\textbf{\acs{sr}-02 Communication interface.}
+The planning system shall communicate with the execution environment through the AnyRobot interface using WebSocket (web-based communication protocol). This interface provides a controlled abstraction for robot motion commands, input-output signals, object handling, and runtime feedback without requiring direct access to robot-specific controller interfaces. The acceptance criterion is that every relevant runtime request receives acknowledgement before the workflow continues.
 
-The planning module must also communicate with the execution environment through one unified interface. This role is assigned to the AnyRobot interface, which acts as an abstraction layer between the planning logic and the robot programming environment. Communication is based on the \ac{websocket} protocol and supports bidirectional exchange of target poses, execution commands, and feedback data.
+\phantomsection\label{subsubsec:sr-03-tool-centre-point-definition-requirement}
+\noindent\textbf{\acs{sr}-03 Tool centre point definition.}
+All generated motion targets shall be defined with respect to the configured \ac{tcp}. In this thesis, the required \ac{tcp} identifier is \texttt{project\_3\_tcp}, including the documented offsets and orientation parameters. The acceptance criterion is that any future \ac{tcp} modification is handled through configuration and reflected in the generated poses without structural changes to the planning logic.
 
-All generated robot motion targets must further be defined with respect to a predefined \ac{tcp} configuration. This is necessary to maintain consistency between the planning calculations and the robot representation in the execution environment.
+\subsection{System Constraints and Assumptions}
+\label{sec:system-constraints-and-assumptions}
 
-Beyond that, the software architecture must support structured internal data exchange for process inputs, geometric representations, generated trajectories, and validation results. The implementation therefore follows a modular architecture that separates planning, validation, and execution concerns.
+The proposed system is developed under a defined set of constraints and assumptions. At the geometric level, the workpiece model is restricted to rectangular sheet metal parts with exactly four edges aligned with the global coordinate system. A single global wall height parameter is assumed for all bending operations; therefore, edge-specific wall height variation is not supported.
 
-Simulation-based validation prior to execution is also required at the software level. In this way, the generated trajectories can be checked against process constraints before runtime execution is attempted.
+Internal features such as holes are considered only for avoidance during gripping. Circular holes are defined by their centre coordinates and radius, and rectangular cut-outs can be specified using predefined coordinate inputs. However, more complex geometries, such as polygonal cut-outs or irregular contours, are outside the scope of this work.
 
-\subsubsection{SR-01 Virtual Execution Environment}
-\label{subsubsec:sr-01-virtual-execution-environment}
+The bending process is limited to right-angle ($90^\circ$) bends, and user-defined bend angles are not supported. Each sheet edge can be assigned to only one bending operation. Bending can be performed either on the primary side or the opposite side, but simultaneous selection of both sides is not supported. The total number of bending operations is limited to four edges of the workpiece, including both primary and opposite-side bending stages.
 
-The system shall operate within a virtual robot programming environment that supports simulation, execution, and validation of robot programs. In this work, the drag\&bot platform is used as the designated runtime environment for executing and validating all generated robot trajectories.
+From a system perspective, the robot configuration, tooling setup, and workspace layout are assumed to remain fixed during operation. The system assumes the use of a vacuum-based gripping mechanism with a predefined \ac{tcp} configuration. No external perception systems, such as cameras, \ac{lidar}, or other vision-based sensors, are used. All robot programs, poses, grip points, regripping decisions, and motion sequences are generated computationally based on predefined geometric input parameters, operator-defined inputs, and configuration data. Consequently, the system does not rely on real-time sensing but derives handling strategies through deterministic calculations.
 
-The drag\&bot environment provides a unified interface for robot motion execution, object handling, and input-output operations, allowing the planning system to interact with the robot model in a controlled and structured manner. This ensures that all generated programs can be evaluated consistently within a virtual representation of the target press brake cell without requiring physical hardware access.
+Grip feasibility is evaluated using simplified physical considerations, including pressure distribution, friction, and load capacity. Alternative gripping methods, such as mechanical, magnetic, or multi-fingered grippers, are excluded.
 
-By operating within this environment, the system enables reliable simulation-based validation of robot programs, ensuring that functional requirements related to trajectory generation, handling, and process sequencing are verified prior to execution. The use of a virtual runtime environment also supports reproducibility of results and reduces dependency on physical system availability.
-
-\paragraph{Acceptance Criteria - SR-01}
-The system shall establish a stable connection to the virtual runtime environment, and all generated robot motions, service calls, and input-output operations shall be executed and validated successfully within the simulation environment.
-
-\subsubsection{SR-02 Communication Interface Requirement}
-\label{subsubsec:sr-02-communication-interface-requirement}
-
-The system shall communicate with the robot execution environment through a unified communication interface that enables structured interaction between the planning module and the runtime system. In this work, the AnyRobot interface is used as the exclusive communication layer between the planning system and the execution environment.
-
-The communication shall be implemented using a \acs{websocket}-based protocol, enabling bidirectional data exchange for transmitting robot motion commands, input-output signals, object handling operations, and system feedback. This approach provides a consistent abstraction layer for interacting with the robot programming environment without requiring direct access to robot-specific control interfaces.
-
-By using a unified communication interface, the system ensures that all commands and execution requests are transmitted in a structured and controlled manner, supporting maintainability and compatibility across different system configurations. This abstraction also enables the planning system to remain independent of specific robot controller implementations.
-
-\paragraph{Acceptance Criteria - SR-02}
-All communication between the planning module and the execution environment shall occur through the defined communication interface. A valid connection shall be established before command transmission, and all motion, input-output, and service operations shall be successfully executed and acknowledged within the simulation environment.
-
-\subsubsection{Tool Centre Point Definition Requirement SR-03}
-\label{subsubsec:sr-03-tool-centre-point-definition-requirement}
-
-The system shall define all robot motion targets with respect to a predefined \ac{tcp} configuration. The \ac{tcp} represents the reference frame of the end-effector and is used as the basis for all trajectory generation and motion planning operations.
-
-All generated robot poses, including approach positions, handling configurations, and placement targets, shall be expressed in relation to the \ac{tcp}. This ensures consistency between the planning module and the execution environment and guarantees that the generated trajectories correspond to the physical geometry of the tool.
-
-The \ac{tcp} configuration is defined externally and remains fixed during system operation. Any changes to the tool configuration or \ac{tcp} definition require corresponding updates to ensure alignment between the generated trajectories and the execution environment. This requirement ensures that motion accuracy and handling feasibility are maintained throughout the process.
-
-\paragraph{Acceptance Criteria - SR-03}
-All generated robot motion targets shall be consistent with the predefined \ac{tcp} configuration, and any modification to the \ac{tcp} definition shall be reflected correctly in the generated trajectories without requiring structural changes to the system logic.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/tcp.png}
-    \caption{Tool Centre Point parameters in drag\&bot.}
-    \label{fig:tcp}
-\end{figure}
+Advanced capabilities, including dynamic collision-free trajectory generation, real-time motion adaptation, and environment-aware path optimisation, are not considered. These constraints ensure that the system remains aligned with the objective of deterministic, consistent, and repeatable automatic program generation within a controlled industrial environment.
 
 \subsection{System Traceability}
 \label{sec:system-traceability}
 
-Requirements traceability is essential in a systematic engineering process because it makes the relationship between requirements, implementation, and validation explicit. In the present work, traceability is used to show how the transition from conceptual objectives to executable system behaviour can be followed and verified.
+Traceability is used to keep the transition from requirements to implementation and validation transparent. Each functional, non-functional, and software requirement is assigned an identifier such as \acs{fr}-01, \acs{nfr}-01, or \acs{sr}-01. These identifiers are reused in the implementation chapter and in the validation tables so that every implemented function can be linked back to its requirement and verification activity.
 
-Each requirement defined in Section~\ref{functional-Requirement}, Section~\ref{non-functional-requirements}, and the software requirements SR-01 to SR-03 is assigned a unique identifier such as FR-01, NFR-01, or SR-01. These identifiers are then used consistently throughout development so that requirements can be tracked across design, implementation, and validation.
-
-The identifiers establish clear relationships between requirements, system modules, and validation procedures. In particular:
-
-\begin{itemize}
-    \item Each requirement is implemented within a specific system module.
-    \item Each requirement is verified through a defined test scenario.
-    \item No requirement remains unaddressed in the implementation.
-    \item All implemented functionalities can be traced back to a corresponding requirement.
-\end{itemize}
-
-\paragraph{Forward Traceability}
-Forward traceability means that every defined requirement is realised in a corresponding system component or functional module. It confirms that the system architecture addresses all stated requirements.
-
-\paragraph{Backward Traceability}
-Backward traceability means that every implemented functionality can be linked back to an explicitly defined requirement. This prevents unnecessary or unjustified functionality from being introduced without a clear purpose.
-
-By mapping each requirement to implementation modules and validation scenarios, the development process becomes easier to review, justify, and reproduce. This is particularly important in a system that includes automated decision-making steps such as reachability evaluation, grip-point determination, regripping logic, and opposite-side handling.
-
-Traceability also supports maintainability and future extension. If requirements change, the affected components and validation activities can be identified directly, which makes impact analysis more efficient and reduces development risk.
-
-The complete mapping between requirements, system modules, and validation scenarios is presented in Table~\ref{tab:req_traceability_matrix}.
-\input{chapters/tables/tab_req_traceability_matrix.tex}
-
+Test Case (TC) denotes a validation case in the traceability matrix. The complete mapping between requirements, implementation modules, and validation scenarios is provided in Appendix~\ref{app:req-traceability-compliance}, Table~\ref{tab:req-traceability-matrix}.

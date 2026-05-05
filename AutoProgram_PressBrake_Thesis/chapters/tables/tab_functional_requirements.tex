@@ -1,79 +1,80 @@
-\begin{table}[htbp]
+﻿\begin{sidewaystable}[p]
 \centering
+\small
 
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.0}
-\hyphenpenalty=10000
-\exhyphenpenalty=10000
+\hyphenpenalty=500
+\exhyphenpenalty=500
 
-\begin{tabularx}{\textwidth}{
-L{1.5cm}
-L{6.0cm}
-L{4.5cm}
-L{2.5cm}
+\begin{tabularx}{\textheight}{
+L{1.3cm}
+L{8.0cm}
+L{8.8cm}
+L{4.0cm}
 }
 
-\toprule
+\hline
 \textbf{ID} &
 \textbf{Functional Requirement (SMART)} &
-\textbf{Acceptance Criteria} &
+\textbf{Observable Acceptance Criteria} &
 \textbf{Verification Method} \\
-\midrule
+\hline
 
 FR-00 &
-Automatic robot program generation shall be implemented for press brake operations. &
-The system shall generate robot programs automatically for press brake operations. &
-Simulation based \\
-\midrule
+The system shall generate an execution-ready drag\&bot robot program from workpiece geometry, configuration data, and operator bend-side input for the evaluated press-brake scenarios. &
+For valid evaluated inputs, the generated workflow shall be ready for simulated execution without manual waypoint teaching or function-block sequencing; unresolved infeasible cases shall stop in a controlled way rather than continue blindly. &
+Chapter~\ref{ch:evaluation-validation} workflow comparison and scenario validation \\
+\hline
 FR-01 &
-The system shall detect unreachable target poses before robot motion execution. &
-The robot shall not execute motion to unreachable poses and shall provide an error message. &
-Simulation based \\
+The system shall detect unreachable or infeasible target poses before robot motion commands are dispatched. &
+Unreachable or unsafe target poses shall be rejected before unsafe motion execution and shall generate warning or error feedback for operator decision-making. &
+Workspace-constrained and failure-prone validation \\
 
-\midrule
+\hline
 
 FR-02 &
-The system shall allow operator-side selection prior to program execution. &
-The selected bend side shall be applied correctly to the generated robot program. &
-Simulation based \\
+The system shall allow the operator to select the required bend side before automated program generation or execution. &
+The selected bend side shall be reflected in the generated workflow without manual resequencing, including Side~A direct bending and Side~E opposite-side bending. &
+Chapter~\ref{ch:evaluation-validation} Side~A/Side~E validation \\
 
-\midrule
+\hline
 
 FR-03 &
-The system shall execute a regripping sequence when a target pose is unreachable within the current bend side. &
-Regripping shall be performed successfully and execution shall continue without interruption. &
-Simulation based \\
+The system shall automatically insert a regrip operation when the current workpiece pose cannot directly reach the next target pose. &
+The regrip logic shall be inserted when direct execution is infeasible and shall execute or stop safely in regrip-required and opposite-side scenarios without manual waypoint construction. &
+Regrip-required and Side~E scenario validation \\
 
-\midrule
+\hline
 
 FR-04 &
-The system shall handle workpiece orientation changes during program execution. &
-Orientation changes shall be applied correctly without violating kinematic limits. &
-Simulation based \\
+The system shall handle changes in initial workpiece orientation through automatic orientation validation and correction. &
+The automated workflow shall complete the evaluated orientation-variation scenario without manual correction of the generated sequence. &
+Automated orientation-variation trials \\
 
-\midrule
+\hline
 
 FR-05 &
-The system shall support opposite-side bending operations when required. &
-The system shall correctly execute opposite-side bending operations. &
-Simulation based \\
+The system shall support opposite-side bending by generating the required flip and reorientation workflow automatically. &
+The opposite-side workflow shall generate flip and regrip behaviour automatically and shall complete the evaluated Side~E scenario when no unresolved workspace or fixture constraint remains; otherwise it shall stop in a controlled way. &
+Side~E opposite-side workflow trials \\
 
-\midrule
+\hline
 
 FR-06 &
-The system shall determine and apply suitable grip positions for each workpiece state. &
-Grip positions shall be determined and applied correctly for each workpiece state. &
-Simulation based \\
+The system shall determine grip positions that satisfy edge-clearance, hole-avoidance, and holding-force checks before execution. &
+For evaluated valid workpiece states, selected grips shall pass geometric and holding-force checks before trajectory execution; invalid grips shall be rejected. &
+\acs{tc}-06 grip-planning test \\
 
-\midrule
+\hline
 
 FR-07 &
-Detect unsafe conditions and perform replanning or terminate execution &
-System replans successfully with warning &
-Simulation based \\
+The system shall detect unsafe conditions and either replan or stop execution in a controlled way before unsafe continuation. &
+Unsafe cases shall be handled through warning feedback, replanning where possible, or controlled stop before unsafe continuation; a controlled stop is safe system behaviour but an incomplete execution trial. &
+Failure-prone scenario validation \\
 
-\bottomrule
+\hline
 \end{tabularx}
 \caption{Functional Requirements for Automatic Robot Program Generation.}
-\label{tab:functional_requirements}
-\end{table}
+\label{tab:functional-requirements}
+\end{sidewaystable}

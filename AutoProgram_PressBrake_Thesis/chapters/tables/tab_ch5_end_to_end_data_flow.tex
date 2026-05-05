@@ -1,0 +1,53 @@
+\begin{table}[htbp]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{C{0.8cm} Y Y Y Y}
+\hline
+\textbf{Step} &
+\textbf{Input} &
+\textbf{Processing Stage} &
+\textbf{Output} &
+\textbf{Next Module} \\
+\hline
+1 &
+Workpiece geometry, bend-side selection, \ac{tcp}, gripper, and safety parameters &
+Configuration and operator-input initialisation &
+Structured task and configuration data &
+Safety validation \\
+\hline
+2 &
+Configuration data, fixture states, and operator start decision &
+Pre-execution validation and runtime readiness checks &
+Permission to continue or controlled stop &
+Pose acquisition and zone classification \\
+\hline
+3 &
+Tracked sheet pose and workspace zone &
+Orientation admissibility and pickup-side validation &
+Selected pickup orientation or conservative fallback &
+Grip planning \\
+\hline
+4 &
+Selected orientation, sheet geometry, and gripper parameters &
+Grip candidate generation, filtering, and force validation &
+Feasible grip configuration and pickup poses &
+Regrip and sequence planning \\
+\hline
+5 &
+Current workpiece pose, selected grip, and target bending pose &
+Direct reachability, regrip, and opposite-side handling logic &
+Validated task sequence with required handling actions &
+Trajectory generation \\
+\hline
+6 &
+Ordered task poses and handling actions &
+Interpolation, kinematic validation, path reduction, and command formatting &
+Executable robot motion and gripper commands &
+AnyRobot runtime communication \\
+\hline
+\end{tabularx}
+\caption{End-to-end data flow from workpiece and process input to executable robot commands.}
+\label{tab:ch5-end-to-end-data-flow}
+\end{table}

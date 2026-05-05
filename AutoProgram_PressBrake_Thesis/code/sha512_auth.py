@@ -1,22 +1,25 @@
 import hashlib
 import os
 
-secret = os.getenv('RUNTIME_SECRET')
+secret = os.getenv("DNB_ROS_RUNTIME_SECRET")
 
-id_string = 'library'
-dest = 'interface'
-nonce = 'example_nonce'
+client = "anyrobot-lib"
+dest = "ros"
+rand = "<random-value>"
 timestamp = 0
-role = 'user'
+level = "admin"
+end = 0
 
-raw = secret + id_string + dest + nonce + str(timestamp) + role
-
+raw = secret + client + dest + rand + str(timestamp) + level + str(end)
 mac = hashlib.sha512(raw.encode()).hexdigest()
 
 auth_msg = {
-    'operation': 'auth',
-    'mac': mac,
-    'nonce': nonce,
-    'timestamp': timestamp,
-    'role': role
+    "op": "auth",
+    "client": client,
+    "dest": dest,
+    "end": end,
+    "level": level,
+    "mac": mac,
+    "rand": rand,
+    "t": timestamp,
 }

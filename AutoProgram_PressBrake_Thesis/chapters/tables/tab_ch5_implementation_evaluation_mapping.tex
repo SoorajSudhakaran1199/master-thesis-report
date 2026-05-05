@@ -1,0 +1,56 @@
+\begin{table}[htbp]
+\centering
+\normalsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{L{3.8cm} L{3.0cm} Y Y}
+\hline
+\textbf{Implemented Function} &
+\textbf{Related Requirement} &
+\textbf{Chapter 6 Evaluation Scenario} &
+\textbf{Evidence Type} \\
+\hline
+Automatic program generation from geometry and configuration &
+\acs{fr}-00, \acs{nfr}-01 &
+Manual-versus-automated workflow comparison &
+Preparation time and execution-ready workflow state \\
+\hline
+Bend-side selection and workflow branching &
+\acs{fr}-02 &
+Side~A direct bending and Side~E opposite-side bending &
+Scenario-specific generated workflow behaviour \\
+\hline
+Orientation validation and correction &
+\acs{fr}-04 &
+Arbitrary initial orientation and position-change scenarios &
+Completion classification and planning time \\
+\hline
+Constraint-based grip planning &
+\acs{fr}-06 &
+Nominal, geometry-variation, and regrip-required scenarios &
+Successful execution or rejected infeasible grips \\
+\hline
+Automatic regrip planning and execution &
+\acs{fr}-03 &
+Regrip-required and Side~E scenarios &
+Regrip count, execution time, and success rate \\
+\hline
+Opposite-side flip and reorientation workflow &
+\acs{fr}-05 &
+Side~E opposite-side workflow &
+Success/failure rate and controlled-stop interpretation \\
+\hline
+Safety validation and controlled-stop handling &
+\acs{fr}-07, \acs{nfr}-03, \acs{nfr}-05 &
+Failure-prone and constrained-placement scenarios &
+Controlled-stop behaviour and warning response \\
+\hline
+Configuration-driven adaptation and deterministic execution &
+\acs{nfr}-02, \acs{nfr}-04, \acs{sr}-01--\acs{sr}-03 &
+Geometry variation, position variation, and repeated automated runs &
+Scenario averages, repeated-run classification, and virtual runtime execution \\
+\hline
+\end{tabularx}
+\caption{Mapping between implemented functions and the Chapter~6 evaluation evidence.}
+\label{tab:ch5-implementation-evaluation-mapping}
+\end{table}

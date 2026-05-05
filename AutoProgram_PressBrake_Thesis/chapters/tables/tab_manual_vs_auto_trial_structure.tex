@@ -1,0 +1,42 @@
+\begin{table}[htbp]
+\centering
+\normalsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{
+L{3.0cm}
+L{3.4cm}
+Y
+L{3.0cm}
+}
+\hline
+\textbf{Evaluation Group} &
+\textbf{Scenario Coverage} &
+\textbf{Purpose} &
+\textbf{Measured Metrics} \\
+\hline
+
+Manual workflow trials &
+Side~A, Side~E, geometry variation, and workpiece position variation &
+Quantify manual preparation effort, simulated execution time, and total process time for comparison with automated generation. &
+Preparation, execution, total time, regrip count \\
+\hline
+
+Automated workflow trials &
+Side~A, Side~E, geometry variation, and workpiece position variation &
+Quantify automated preparation effort, simulated execution time, and total process time under the same workflow classes. &
+Preparation, execution, total time, regrip count \\
+\hline
+
+Automated feasibility trials &
+Nominal, orientation variation, workspace-constrained, regrip-required, opposite-side, and failure-prone scenarios &
+Verify scenario-wise completion, controlled-stop behaviour, planning time, and robustness limits of the generated workflow. &
+Success rate, failure rate, planning time, controlled stop \\
+
+\hline
+\end{tabularx}
+\caption{Evaluation trial structure used for the final simulation-based validation.}
+\label{tab:manual-vs-auto-trial-structure}
+\end{table}
+
+\FloatBarrier

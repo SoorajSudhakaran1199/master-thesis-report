@@ -1,0 +1,22 @@
+\begin{table}[H]
+\centering
+\normalsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{L{4.2cm} L{5.2cm} Y}
+\hline
+\textbf{Runtime Function} & \textbf{Interface} & \textbf{Use in the Implemented Workflow} \\
+\hline
+Motion command dispatch & \path{/command_list} & Transmits generated \ac{lin} and \ac{ptp} waypoint sequences to the runtime environment. \\
+\hline
+Motion result feedback & \path{/command_result} & Returns execution results and motion status information after command dispatch. \\
+\hline
+Digital input-output control & \path{/robot/set_digital_ios}, \path{/robot/get_digital_ios} & Controls and queries vacuum gripper signals and related robot input-output states. \\
+\hline
+Object management & \path{/dnb_object_manager/...} & Queries and updates workpiece and fixture states used during attachment, detachment, and validation. \\
+\hline
+Operator interaction & \path{/human_interaction/request_hi} & Requests operator confirmation or warning acknowledgement through the drag\&bot interface. \\
+\hline
+\end{tabularx}
+\caption{Principal AnyRobot runtime interfaces used by the implemented communication layer.}
+\label{tab:anyrobot-runtime-interfaces}
+\end{table}

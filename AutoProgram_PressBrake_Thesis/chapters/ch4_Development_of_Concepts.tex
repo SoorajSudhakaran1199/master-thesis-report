@@ -4,189 +4,200 @@
 
 \section{Purpose and Scope of Concept Development}
 \label{sec:purpose-scope-concept-development}
-Concept development is a fundamental stage in systematic engineering design, in which alternative solution principles are generated and evaluated prior to implementation. By comparing different approaches against defined criteria, the risk of selecting an unsuitable design solution is reduced \cite{Pahl2007EngineeringDesign}.
 
-The research gap identified in Section~\ref{sec:research-gap-motivation} highlights the absence of a systematic approach for automatic robot program generation in press brake sheet metal bending. In particular, existing methods do not adequately address changes in workpiece geometry, gripping, regripping, and pre-execution validation while minimizing manual programming effort. These challenges are translated into measurable engineering objectives and requirements in Chapter~\ref{ch:system-concept-methodology}, including functional requirements (FR-00 to FR-07), non-functional requirements (NFR-01 to NFR-05), and software platform requirements (SR-01 to SR-03), as summarised in Table~\ref{tab:req_traceability_matrix}.
+Concept development is a fundamental stage in systematic engineering design, in which different solution principles are generated and evaluated before implementation. By comparing alternative solutions against defined requirements, the risk of selecting an unsuitable design solution is reduced \cite{Pahl2007EngineeringDesign}.
 
-To address this gap, three conceptually distinct solution approaches are developed and evaluated in this chapter. Concept A represents a structured manual programming workflow, Concept B proposes a rule-based automatic program generation approach, and Concept C explores a \acs{cad}-integrated offline programming methodology \cite{Pan2012Survey,Siciliano2016Robotics}. These concepts are formulated based on different automation paradigms and are evaluated to identify the most suitable approach for the defined problem.
+The research gap identified in Section~\ref{sec:research-gap-motivation} highlights the absence of a systematic approach for automatic robot program generation in press brake sheet metal bending, where existing solutions do not fully address the defined requirements. These challenges are translated into measurable engineering objectives and requirements in Chapter~\ref{ch:system-concept-methodology}, including functional requirements (\acs{fr}-00 to \acs{fr}-07), non-functional requirements (\acs{nfr}-01 to \acs{nfr}-05), and software platform requirements (\acs{sr}-01 to \acs{sr}-03), with the full traceability mapping provided in Appendix~\ref{app:req-traceability-compliance}, Table~\ref{tab:req-traceability-matrix}.
 
-The selection of the final concept is performed using the \ac{wsm}, a quantitative decision-making method in which evaluation criteria are assigned relative weights and each concept is scored accordingly. This ensures that the concept selection process is systematic, transparent, and aligned with the defined requirements.
+To address this gap, three conceptual solution approaches are developed and evaluated in this chapter. Concept A represents a structured manual programming workflow, Concept B proposes a rule-based automatic program generation approach, and Concept C explores a \acs{cad}-integrated offline programming methodology \cite{Pan2012Survey,Siciliano2016Robotics}.
+
+These concepts are first compared qualitatively and subsequently evaluated using a weighted scoring method based on defined evaluation criteria. The final concept is selected using the \ac{wsm}, a quantitative decision-making method in which evaluation criteria are assigned relative weights and each concept is scored accordingly. This ensures that the concept selection process is systematic, transparent, consistent, and aligned with the defined requirements.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Concept A -- Structured Operator Workflow with Guided Teach-In Programming}
 \label{sec:concept-a-guided-teach-programming}
-\subsection{Methodological Framework}
-\label{sec:concept-a-methodological-framework}
-Concept A follows a structured manual programming approach in which the operator defines robot motions and process steps explicitly, supported by a guided workflow. In this approach, robot trajectories, gripper actions, and execution sequences are created manually by the user, while the system provides a structured interface to organise the programming process.
 
-This concept is based on conventional manual robot programming practices, as discussed in Section~\ref{sec:manual-teach-pendant-programming}, where the operator directly defines waypoints and process logic \cite{Siciliano2016Robotics}. The introduction of a guided workflow improves usability by structuring the sequence of operations and reducing unstructured interaction, but it does not change the underlying requirement for manual definition of all robot motions.
+\phantomsection\label{sec:concept-a-methodological-framework}
+\noindent\textbf{Method and workflow.}
 
-Concept A may be implemented within the drag\&bot environment using manually configured function blocks for robot motion, gripper control, and execution sequencing. In this case, the operator constructs the workflow by placing and configuring the required functional blocks, including motion commands and input-output operations. However, all program logic, including waypoint definition, gripping strategy, regripping operations, and process sequencing, remains user-defined.
-As shown in Figure~\ref{fig:manual_dragandbot}, the operator manually constructs the robot program by arranging function blocks for motion commands, gripper control, and execution logic within the drag\&bot environment.
+Concept A follows a structured manual programming approach in which the operator defines robot motions and execution strategies, typically using a teach pendant as described in Section~\ref{sec:manual-teach-pendant-programming}. In this approach, robot trajectories, gripper actions, and execution sequences are created manually by the user, while the system provides a structured interface to organise the programming process \cite{Siciliano2016Robotics}. The created programs are stored and reused for similar future executions.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.85\textwidth]{figures/manual_dragandbot.png}
-    \caption{Overview of manual robot program construction in the drag\&bot environment for Concept A.}
-    \label{fig:manual_dragandbot}
-\end{figure}
+This represents a conventional programming method, which improves usability by structuring the sequence of operations and reducing unstructured workflows. The operator constructs the robot program manually within the drag\&bot environment by assembling function blocks for motion execution, gripper control, and sequencing logic.
+
+In this context, waypoint generation is performed manually by moving the robot \ac{tcp} to the required positions and recording these points as configured function blocks. All operations, including gripping, regripping, handling, and opposite-face bending, are defined manually by the operator. This highlights the high implementation feasibility of Concept A. The arrangement and configuration of function blocks are illustrated in Figure~\ref{fig:function-block-programming}, where motion commands and gripper operations are explicitly defined.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\textwidth]{figures/function_block_programming.png}
     \caption{Detailed function-block configuration for manual motion and gripper sequencing in Concept A.}
-    \label{fig:function_block_programming}
+    \label{fig:function-block-programming}
 \end{figure}
 
+As a result, all handling strategies, execution logic, and process decisions depend entirely on operator expertise. No automated planning or validation is performed prior to execution. Feasibility issues, such as reachability constraints, are identified only at runtime, which may lead to unreachable targets, process interruptions, or system failures. This lack of pre-execution validation increases setup effort and reduces reliability, particularly in complex bending scenarios.
 
+Furthermore, changes in workpiece geometry during the bending process are not automatically considered. The operator must manually adapt the program to account for geometric changes, which requires additional effort and expertise. For operations such as opposite-side handling or sheet flipping, the operator must explicitly teach the robot the required motions at specific stages. Consequently, the programming effort increases significantly, especially for multi-stage bending processes.
 
-As a result, the concept does not provide automatic waypoint generation, grip point calculation, regrip planning, or adaptive decision-making based on workpiece geometry. The role of the software environment is limited to manual program construction and execution support, rather than automated program generation.
+From a system integration perspective, Concept A can be implemented within the drag\&bot environment using function blocks for robot motion, gripper control, and execution sequencing. However, it does not provide native integration with higher-level automation frameworks such as AnyRobot, and \ac{tcp} definitions must be configured manually.
 
-\subsection{System Structure}
-\label{sec:concept-a-system-structure}
-The system structure of Concept A consists of two main layers: a manual workflow construction layer and an execution layer. In the first layer, the operator defines the complete process sequence manually by specifying robot motions, gripper actions, and task order using function blocks or equivalent programming elements within the robot programming environment.
+The concept is relatively easy to implement and does not require complex infrastructure or advanced planning algorithms. However, this simplicity comes at the cost of functionality, as it does not support automatic waypoint generation, regrip planning, geometry-aware adaptation, or integrated validation mechanisms. As a result, Concept A does not address the automation requirements identified in the state-of-the-art analysis.
 
-In the second layer, the execution environment interprets and executes the manually defined sequence. No intermediate planning or decision-making layer exists for automatic trajectory generation, geometric reasoning, or constraint evaluation. As a result, the system relies entirely on operator-defined logic and does not incorporate automated validation or adaptive behaviour prior to execution.
+\phantomsection\label{sec:concept-a-system-structure}
+\noindent\textbf{System structure.}
 
+The system structure of Concept A consists of two main layers: a manual workflow construction layer and an execution layer. In the first layer, the operator defines the complete process sequence by specifying robot motions, gripper actions, and task order using function blocks within the programming environment.
 
-\subsection{Critical Evaluation}
-\label{sec:concept-a-critical-evaluation}
-Concept A is straightforward to implement and can be applied within existing robot programming environments, including drag\&bot. Its operation is transparent and fully controlled by the operator, allowing direct modification of robot motions and process sequences. These characteristics make it suitable for simple and repetitive production scenarios with limited variability.
+In the second layer, the execution environment interprets and executes the manually defined sequence. No intermediate planning layer exists for automatic trajectory generation, geometric reasoning, or constraint evaluation. As a result, the system relies entirely on operator-defined logic and does not incorporate adaptive behaviour or automated validation prior to execution.
 
-However, the limitations of this concept are significant in the context of the research objectives. The programming effort remains high, as all robot motions, handling steps, gripper actions, and process logic must be defined manually for each task. This requires substantial operator expertise in robot kinematics, tooling constraints, and process sequencing \cite{Pan2012Survey,Siciliano2016Robotics}. As a result, the concept does not reduce manual programming effort and therefore fails to address the primary objective of this thesis.
+\phantomsection\label{sec:concept-a-critical-evaluation}
+\noindent\textbf{Assessment.}
 
-Furthermore, the approach lacks scalability and adaptability. Changes in workpiece geometry, process sequence, or setup conditions require manual modification of the program, which limits its applicability in flexible manufacturing environments. In addition, Concept A does not provide automatic grip point determination, regripping strategies, or configuration-driven trajectory generation. Operations such as opposite-side bending and recovery from infeasible configurations remain entirely dependent on operator intervention.
+Concept A is straightforward to implement and provides full transparency and control to the operator. It is suitable for stable and repetitive tasks with minimal variation. However, the limitations of this approach are significant with respect to the objectives of this thesis.
 
-Another limitation is the absence of integrated validation and decision-making. The system does not evaluate geometric feasibility, reachability, or handling constraints prior to execution. As a result, infeasible configurations are typically identified only during execution, which may lead to operational inefficiencies and potential safety risks.
+Although programming effort may be reduced through structured tools such as drag\&bot, the approach still requires substantial expertise in robot kinematics, path generation, and process planning. All robot motions, handling steps, and process logic must be defined manually, resulting in high development effort and increased setup time \cite{Pan2012Survey,Siciliano2016Robotics}.
 
-Although Concept A can utilise the drag\&bot environment as an execution platform, it remains a manually programmed solution and does not support automatic program generation, adaptive planning, or rule-based decision-making. Therefore, it does not satisfy the functional and non-functional requirements defined in Chapter~\ref{ch:system-concept-methodology}, particularly those related to automation, adaptability, and validation.
+Furthermore, the approach lacks scalability and adaptability. Changes in workpiece geometry or process conditions require manual reprogramming, which limits its applicability in flexible manufacturing environments. The concept does not support automatic grip point calculation, regrip planning, or trajectory generation. The operator must manually define all intermediate positions, gripper actions, and motion sequences, which limits the level of automation.
 
-For these reasons, Concept A is not suitable as the final solution for addressing the identified research gap.
+In addition, integrated validation and decision-making are not supported. Feasibility checks are not performed prior to execution, and infeasible configurations are often detected only at runtime, leading to inefficiencies and potential operational risks.
 
+Although Concept A can be implemented using industrial platforms such as drag\&bot, it remains a purely manual programming approach. It does not support automatic program generation, adaptive planning, or constraint-aware decision-making. Consequently, it does not fulfil the functional and non-functional requirements related to automation, adaptability, and validation defined in this work. The evaluation of this concept is quantified in the weighted sum model presented in Section~\ref{sec:weighted-sum-model-result}.
+
+For these reasons, Concept A is not suitable as a final solution for addressing the identified research gap and achieving the objectives of this thesis.
 
 %%%%%%%%%%%%%%%%%%%%
-\section{Concept B -- Automatic Program Generation Based on Rules with Integrated Constraint Validation}
-\label{sec:concept-b-rule-based-validation}
-\subsection{Methodological Framework}
-\label{sec:concept-b-methodological-framework}
-Unlike Concept A, which relies on manual waypoint definition, Concept B eliminates manual programming entirely by introducing a rule-based automatic program generation approach. Concept B differs fundamentally from \acs{cad}-based offline programming approaches by generating robot programs dynamically from configuration parameters and runtime validation, rather than relying on pre-defined digital models of the robot cell.
+\section{Concept B -- Automatic Program Generation with Integrated Constraint Validation}
+\label{sec:concept-b-validation}
 
-In this approach, all robot waypoints, grip positions, regripping sequences, and opposite-side handling strategies are derived automatically from geometric input parameters and a structured configuration file. Operator interaction is limited to selecting process options and confirming execution, while all motion generation and decision-making processes are handled by the system. This significantly reduces manual effort and directly addresses the primary objective of automatic program generation defined in Chapter~\ref{ch:system-concept-methodology}. This approach directly satisfies FR-00 by enabling automatic generation of robot programs without manual intervention.
+\phantomsection\label{sec:concept-b-methodological-framework}
+\noindent\textbf{Method and workflow.}
 
+Unlike Concept A, Concept B introduces automation into the programming workflow. In this approach, robot motion paths and process logic are directly derived from geometric inputs and configuration parameters. Instead of explicitly defining waypoints, the system automatically generates robot trajectories, grip positions, and execution sequences based on defined constraints.
 
-The system communicates with the robot execution environment through the AnyRobot interface provided within the drag\&bot platform, using a \acs{websocket}-based communication mechanism \cite{dragandbot_anyrobot_2025}. This architecture establishes a clear separation between the planning logic and execution environment, which is consistent with modular automation design principles \cite{Thramboulidis2013MDE}. As a result, the system operates independently of specific robot controller implementations while maintaining compatibility with the defined execution platform.
+Waypoint generation is performed algorithmically based on the workpiece position, where intermediate points are determined automatically using planning logic. This reduces direct manual teach-in and is expected to reduce programming effort. The user is required to specify only the target output pose. Regripping operations and opposite-side bending are handled through structured logic that combines sequence control with input-output coordination, enabling consistent handling strategies across different process stages. The number of required regrips and the necessity of sheet flipping are determined automatically based on the desired output configuration.
 
-A key component of the methodology is the evaluation of workpiece orientation and feasibility prior to motion generation. The system retrieves workpiece pose information and evaluates admissible orientations using a structured multi-stage validation strategy. This ensures that valid handling configurations are identified regardless of the initial placement of the workpiece. Additionally, workspace constraints and admissible zones are defined through configuration parameters, allowing adaptation to different setups without modifying the underlying logic. This approach satisfies the adaptability requirement defined in NFR-02.
+Validation is integrated into the planning process and evaluates all trajectories dynamically through constraint checking, including orientation, reachability, and geometric feasibility. This ensures that only executable configurations are considered prior to motion generation, thereby improving reliability and reducing runtime errors. The program adapts to different geometric dimensions, workpiece placements, and process parameters without requiring modifications to the underlying program logic. This enables efficient handling of varying workpieces without full reprogramming or repeated simulation setup.
 
-Grip planning is performed using a parameterised approach based on workpiece geometry, suction cup properties, and physical constraints. Candidate grip positions are evaluated against edge clearance, spacing constraints, and vacuum holding force requirements \cite{VacuumGripperModeling}. Only physically feasible and stable grip configurations are considered for further processing, ensuring safe handling conditions prior to motion planning.
+In accordance with the defined requirements, Concept B is implemented within the drag\&bot virtual environment, satisfying the software requirement \acs{sr}-01. Communication with the execution system is established through the AnyRobot interface using a WebSocket-based architecture \cite{dragandbot_anyrobot_2025}. In the implemented architecture, this interface separates planning logic from runtime command execution.
 
-The system detects unsafe or infeasible conditions prior to execution and initiates replanning where possible, or terminates execution if recovery is not feasible, ensuring safe and reliable operation.
+Grip planning is performed using a parameterised approach based on workpiece geometry, suction cup properties, and physical constraints. Candidate grip positions are evaluated against edge clearance, spacing constraints, and vacuum holding force requirements \cite{VacuumGripperModeling}. Only physically feasible and stable configurations are selected for further processing, ensuring safe handling conditions prior to trajectory generation. If infeasible configurations are detected during planning, the system automatically initiates regripping sequences or adjusts the workpiece orientation to maintain feasibility.
 
-When a target pose cannot be reached with the current grip configuration, the system automatically initiates a regripping sequence. This sequence involves repositioning the workpiece and re-establishing a new grip configuration that restores reachability. This automated handling of regripping directly satisfies functional requirement FR-03.
+Opposite-side bending operations are handled through a structured flipping and repositioning workflow. When opposite-side processing is required, the system automatically determines the need for flipping and executes the corresponding handling sequence. All validation steps, including orientation verification, grip feasibility, and reachability assessment, are consistently applied throughout the process \cite{Gupta1998SheetMetalBending}.
 
-The methodology also supports opposite-side bending operations through a dedicated workflow. After completing primary bending operations, the system evaluates whether opposite-side processing is required and executes a structured sheet reorientation and handling sequence. All validation steps, including orientation checking, grip feasibility, and reachability assessment, are consistently applied throughout the process \cite{Gupta1998SheetMetalBending}.
+Robot trajectories are generated using linear Cartesian motion commands with smooth velocity profiles, ensuring stable handling and predictable execution behaviour \cite{Siciliano2016Robotics}. All motion targets are defined relative to a predefined \ac{tcp}, ensuring consistency across the system and alignment with execution requirements.
 
-Robot trajectories are generated using linear Cartesian motion commands, ensuring smooth and predictable motion execution. The use of smooth motion profiles reduces dynamic loading on the workpiece and supports stable vacuum gripping \cite{VacuumGripperModeling}. In addition, kinematic constraints such as singularity avoidance are considered during motion generation to ensure feasible and safe robot operation \cite{Siciliano2016Robotics}.
+Overall, Concept B represents a configuration-driven approach that enables automatic program generation, integrated validation, and adaptive handling of changing workpiece conditions. The system operates deterministically based on defined input parameters, ensuring consistency, repeatability, and reproducibility of generated robot programs.
 
-All motion targets are defined relative to a predefined \ac{tcp}, ensuring consistency between the planning module and execution environment. This requirement directly satisfies SR-03 and guarantees that generated trajectories are aligned with the physical configuration of the robot tool.
+\phantomsection\label{sec:concept-b-system-structure}
+\noindent\textbf{System structure.}
 
-Overall, Concept B represents a configuration-driven, rule-based methodology that enables automatic program generation, integrated validation, and adaptive handling of changing workpiece conditions. The system operates deterministically based on defined input parameters, ensuring repeatability and reproducibility of generated robot programs.
+The system architecture of Concept B consists of five functional layers. The input and configuration layer collects process parameters and geometric data. The evaluation layer applies constraint checks, including grip feasibility, edge clearance, and workspace limitations.
 
+The planning layer determines the required process sequence, including regripping and orientation changes, based on reachability and feasibility conditions. The trajectory generation layer produces executable robot motions, while the validation layer ensures that all generated poses are feasible prior to execution.
 
-\subsection{System Structure}
-\label{sec:concept-b-system-structure}
-The structure of Concept B consists of five layers, as defined in Section~\ref{sec:system_architecture}. The input and configuration layer collects all required inputs for programming. The geometry and constraints evaluation layer applies grip feasibility rules, edge-clearance checks, and zone-based orientation constraints. The planning and decision logic layer determines whether the program can be executed directly or whether regripping or workpiece flipping is required, based on reachability and orientation validity. The trajectory planning layer produces linear Cartesian waypoints with minimum-jerk velocity profiles. The safety and validation layer applies a pre-execution pose check before the command is published to the robot runtime.
-\par The \ac{websocket} channel of the AnyRobot interface connects all five layers to the drag\&bot virtual simulation runtime \cite{dragandbot_anyrobot_2025}. The configuration-driven approach separates all process parameters from the program logic, allowing the solution to handle new workpiece geometries by modifying configuration files. This directly satisfies non-functional requirement NFR-02, as described in Section~\ref{non-functional-requirements}.
-\subsection{Critical Evaluation} 
-\label{sec:concept-b-critical-evaluation}
-Concept B is aligned with the research gap stated in Section~\ref{sec:research-gap-motivation} for every dimension identified in the literature. It generates robot programs automatically from geometric parameters, plans regrips, sequences opposite-side operations, and applies pre-execution validation before motion starts. This supports FR-00, FR-03, FR-05, and FR-07, while the configuration-driven architecture also satisfies NFR-02 by allowing adaptation to new part geometries without source code changes. The concept further addresses NFR-03, NFR-04, and NFR-05 through structured validation and deterministic execution behaviour. The system operates exclusively within the drag\&bot runtime via the AnyRobot Interface, satisfying SR-01 and SR-02. All motion targets reference the predefined tool centre point, satisfying SR-03. Within the defined thesis scope, the concept design therefore addresses the stated requirements coherently.
-\par The primary constraints under which Concept B operates are identified in Section~\ref{System-Constraints-and-Assumptions}. The system assumes rectangular sheet geometry with fixed 90-degree bend-angle constraints. Integration with the KEBA robot controller hardware, which is part of the KEBA robot driver layer within the drag\&bot software stack \cite{dragandbot_anyrobot_2025}, is identified in the future work section and is outside the scope of this thesis. All validation has been conducted within the drag\&bot virtual simulation environment, which is discussed in this section. The virtual simulation environment used for this evaluation is illustrated in Figure~\ref{fig:Dragandbot_Simulation}. The environment represents a simulated press brake cell configured with the drag\&bot platform, including the robot, workpiece, and interactions required for program execution. These constraints are explicit and not indicative of design flaws but, rather, define the scope within which the design concept operates.
+These layers are connected to the drag\&bot runtime environment through the AnyRobot interface, enabling direct execution of generated programs. The separation between configuration and logic allows the system to adapt to new geometries without modifying core algorithms, thereby supporting scalability and maintainability.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.85\textwidth]{figures/Dragandbot_Simulation.png}
-    \caption{Virtual robotic environment used to evaluate the proposed concept  (drag\&bot platform).}
-    \label{fig:Dragandbot_Simulation}
-\end{figure}
-\FloatBarrier
+\phantomsection\label{sec:concept-b-critical-evaluation}
+\noindent\textbf{Assessment.}
+
+Concept B directly addresses the research gap identified in Section~\ref{sec:research-gap-motivation} by integrating automatic program generation, constraint-aware validation, and adaptive handling within a unified framework. This is intended to reduce programming and reprogramming effort while improving efficiency.
+
+Compared to manual programming approaches, the concept reduces engineering effort by eliminating explicit waypoint definition and manual sequence design. This supports functional requirements such as \acs{fr}-00, \acs{fr}-03, \acs{fr}-05, and \acs{fr}-07, while the configuration-driven architecture satisfies \acs{nfr}-02 by enabling adaptation to new part geometries without modifying source code. The concept also addresses \acs{nfr}-03, \acs{nfr}-04, and \acs{nfr}-05 through structured validation and deterministic execution behaviour.
+
+The system operates within the drag\&bot runtime environment via the AnyRobot interface, satisfying \acs{sr}-01 and \acs{sr}-02. All motion targets are defined relative to the predefined \ac{tcp}, ensuring consistency with execution requirements.
+
+However, the concept operates under defined assumptions, including simplified workpiece geometry and constrained process conditions. Validation has been performed in a virtual simulation environment. Integration with physical hardware and advanced capabilities such as collision detection are identified as areas for future work.
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Concept C -- CAD Integrated Offline Programming with Digital Twin Simulation}
-\label{sec:concept-c-cad-olp-digital-twin}
-\subsection{Methodological Framework}
-\label{sec:concept-c-methodological-framework}
-Unlike Concept B, which performs rule-based program generation dynamically during execution, Concept C relies on a complete CAD-based digital model of the robot cell to generate and validate robot programs offline prior to execution.
+\section{Concept C -- CAD-Based Offline Programming with Simulation}
+\label{sec:concept-c-cad-olp-simulation}
 
-Concept C follows a \ac{cad} integrated \ac{olp} approach, in which a digital representation of the robot, tooling, and workpiece is used to plan and simulate robot operations. In this methodology, robot programs are generated within a simulation environment based on the geometric model of the workpiece and the digital representation of the production cell. All motion planning, collision checking, and feasibility evaluation are performed prior to execution, without requiring direct interaction with the physical robot.
+\phantomsection\label{sec:concept-c-methodological-framework}
+\noindent\textbf{Method and workflow.}
 
-The \ac{olp} system evaluates bending sequences, grip positions, regripping strategies, and kinematic feasibility using the \ac{cad} model of the workpiece and environment. The generated robot program is validated within the simulation environment and then transferred to the robot controller for execution. This approach corresponds to established offline programming methods used in industrial robotics \cite{Pan2012Survey}.
+Concept C follows a \acs{cad}-based offline programming (\acs{olp}) approach in which robot programs are generated and validated within a simulation environment prior to execution. This concept relies on a complete geometric model of the robot cell, including the robot, tooling, press brake, and workpiece.
 
-Industrial \ac{olp} tools such as ABB RobotStudio, KUKA.Sim, and FANUC ROBOGUIDE implement similar methodologies and are widely used in structured production environments \cite{Pan2012Survey}. The use of digital twin-based simulation enables early detection of unreachable poses, collisions, and process inconsistencies before actual execution, thereby reducing operational risks \cite{Bar2018VirtualCommissioning}.
+In this approach, robot trajectories, grip positions, and process sequences are defined and evaluated within a virtual environment based on \acs{cad} models of the workpiece and production setup. Standard formats such as \ac{urdf} are typically used to represent robot and environment models. Motion planning and reachability analysis are performed in advance, without direct interaction with the physical robot, and the generated programs are subsequently transferred to the robot controller for execution.
 
-The key conceptual difference between Concept B and Concept C lies in how robot programs are generated and validated. Concept B follows a configuration-driven and rule-based approach, where robot trajectories and handling strategies are generated dynamically using input parameters and validated at runtime. In contrast, Concept C follows a model-driven approach, where all planning and validation are performed within a \acs{cad}-based simulation environment before execution. As a result, Concept B offers higher flexibility and adaptability to changing workpiece configurations, whereas Concept C depends on accurate digital models and requires significant preparation effort for each new scenario.
+Regripping and opposite-side bending operations are handled within the simulation workflow by defining motion sequences based on the digital model. These operations can be adapted dynamically by updating the \acs{cad} model when changes in geometry or process conditions occur. However, such modifications require updates to the model and repeated simulation cycles.
 
+A key advantage of this approach is the ability to perform comprehensive pre-execution validation. Offline programming and simulation allow robot programs to be tested in a virtual environment before deployment \cite{Pan2012Survey}. Virtual commissioning supports earlier detection of system inconsistencies and reduces commissioning effort \cite{Lechler2019VirtualCommissioning}. Industrial OLP tools such as ABB RobotStudio, KUKA.Sim, and FANUC ROBOGUIDE implement similar methodologies and are widely used in structured production environments \cite{Pan2012Survey}. These systems rely on accurate geometric and kinematic models, including correct \ac{tcp} definitions, to ensure consistency between simulation and execution.
 
-\subsection{System Structure}
-\label{sec:concept-c-system-structure}
-This concept consists of four layers. A \acs{cad} modelling layer provides digital representations of the robot, press brake, tools, and workpiece. An \ac{olp} and simulation layer uses \ac{urdf} representations to plan robot programs through a built-in kinematic solver. A post-processing layer converts the generated programs into controller-specific syntax, and the robot controller layer executes the generated program. Accurate digital-twin representations of all cell components are required at the modelling layer; small modelling errors in the digital twin can propagate as execution errors that require manual reprogramming during commissioning \cite{Siciliano2016Robotics,Pan2012Survey}.
-\subsection{Critical Evaluation}
-\label{sec:concept-c-critical-evaluation}
-Concept C offers meaningful automation advantages for structured, high-volume production environments where accurate cell models are available and \ac{olp} tool investment is justified. Simulation-based validation provides strong pre-execution assurance, and the approach is supported by mature commercial software \cite{Siciliano2016Robotics,Bar2018VirtualCommissioning}. These characteristics make it the dominant paradigm in industrial robotic bending automation at the time of writing.
-\par For the scope of this thesis, Concept C presents three fundamental disadvantages that result in its rejection. First, the implementation requires accurate CAD models of the complete robot cells, including the robot, press brake, tooling, fixtures, and workpieces --- which represents a substantial engineering preparation effort that is not available within the thesis timeframe. 
-\par Second, commercial \ac{olp} systems involve high license fees while demanding expert-level instruction, both of which are unavailable within this project's constraints \cite{Pahl2007EngineeringDesign}. Besides cost, mainstream \ac{olp} platforms lack native compatibility with both the drag\&bot simulation framework and the AnyRobot \ac{websocket} system, which define the core setup targeted here \cite{dragandbot_anyrobot_2025}. Connecting such a tool would require a custom bridge to the drag\&bot engine, adding implementation effort that is not justified by the scope of this thesis. Even if the first two limitations were resolved, this third limitation would disqualify Concept C, because SR-01 and SR-02 are non-negotiable constraints from the industrial partner environment.
+Higher levels of automation can also be achieved in research-oriented \ac{ros}-based planning frameworks. \ac{ros} provides a software infrastructure for robotic system integration \cite{quigley2009ros}. MoveIt supports motion planning and related manipulation-planning functionality within such frameworks \cite{Coleman2014MoveIt}. Unity-based interfaces can be used for simulation or visualisation connectivity with \ac{ros}~2 systems \cite{UnityROS2Docs}. Perception and localisation stacks such as \ac{slam} can further extend robot-system awareness where mapping is required \cite{Cadena2016SLAM}. However, these architectures are outside the implementation scope of this thesis and are considered here only as alternative concept directions.
 
+Most importantly, \acs{cad}-based \acs{olp} systems and \acs{ros}--Unity architectures do not provide direct compatibility with the required execution environment defined in this thesis. They do not integrate with the drag\&bot platform specified in \acs{sr}-01, nor do they support the WebSocket-based AnyRobot communication interface defined in \acs{sr}-02. Therefore, although Concept C is capable of achieving a high level of automation within its own framework, it does not satisfy the required software platform and integration constraints.
 
-%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Structural Comparison of Concepts}
-\label{sec:structural-comparison-concepts}
-\input{chapters/tables/tab_structural_comparison_of_concepts}
-Table~\ref{tab:concept_comparison} provides the structural comparison of the three concepts across the criteria most relevant to this thesis. The table already shows the main pattern clearly: Concept A remains too dependent on manual programming, Concept C offers strong offline-planning capabilities but fits the target platform poorly, and Concept B gives the best overall balance of automation, validation, adaptability, and platform compatibility. This qualitative comparison therefore supports the quantitative selection carried out in Section~\ref{sec:concept-decision-wsm}.
+\phantomsection\label{sec:concept-c-system-structure}
+\noindent\textbf{System structure.}
+
+The system structure of Concept C follows a multi-layer architecture. The \acs{cad} modelling layer provides digital representations of the robot, press brake, tooling, and workpiece. These models form the basis of the digital twin and must accurately represent the physical system, including geometric dimensions and \ac{tcp} configurations.
+
+The offline programming and simulation layer uses these models to perform trajectory planning and reachability analysis. Validation prior to execution is achieved using kinematic solvers and simulation tools. In ROS-based implementations, this layer can also support automated trajectory generation, inverse kinematics, and constraint-aware motion planning.
+
+The communication and integration layer is responsible for transferring generated robot programs from the simulation environment to the execution system. The execution layer consists of the robot controller, which executes the generated program on the physical system.
+
+The overall architecture depends strongly on the accuracy of the digital model. Deviations between the virtual and physical environments may lead to execution errors that require manual correction during commissioning \cite{Siciliano2016Robotics,Pan2012Survey}. Although ROS--Unity-based extensions provide additional capabilities, they operate as separate environments and require custom interfaces for communication with industrial robot controllers. As a result, the system remains loosely coupled and lacks direct integration with the target execution platform defined in this thesis.
+
+\phantomsection\label{sec:concept-c-critical-evaluation}
+\noindent\textbf{Assessment.}
+
+Concept C provides strong advantages in structured industrial environments, particularly where accurate digital models of the robot cell are available. Simulation-based validation enables early detection of collisions, unreachable poses, and process inconsistencies, thereby reducing commissioning effort and improving operational reliability. These characteristics make \acs{cad}-based offline programming a widely adopted approach in industrial robotics.
+
+With the integration of \acs{ros}-based planning frameworks and Unity-based simulation, Concept C can achieve a high level of automation. Automated trajectory generation, inverse kinematics, and constraint-aware motion planning can be performed within the \acs{ros}/MoveIt planning framework \cite{quigley2009ros,Coleman2014MoveIt}, while Unity-based environments can be used as visualisation and simulation interfaces connected to \acs{ros}~2 systems \cite{UnityROS2Docs}.
+
+However, several limitations exist within the context of this thesis. First, the approach depends on accurate and continuously updated \acs{cad} models of the robot cell, including tooling, fixtures, and workpieces. Second, both industrial \acs{olp} platforms and \acs{ros}-based frameworks require specialised expertise and additional development effort for implementation, including \acs{cad} integration and kinematic modelling.
+
+Most importantly, Concept C does not satisfy the defined software platform and tool requirements. The approach depends on external simulation and programming environments that operate independently from the drag\&bot runtime environment specified in \acs{sr}-01. Furthermore, it does not support the WebSocket-based AnyRobot communication interface required in \acs{sr}-02.
+
+As a result, although Concept C enables a high level of automation within its own framework, it cannot be integrated into the required system architecture. This incompatibility represents a fundamental constraint. Therefore, the rejection of Concept C is not based on its technical capability, but on its inability to satisfy the mandatory software requirements. Since \acs{sr}-01 and \acs{sr}-02 are non-negotiable constraints defined by the target industrial environment, Concept C cannot be considered a feasible solution within the scope of this thesis.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Concept Decision Using the Weighted Sum Model}
 \label{sec:concept-decision-wsm}
-\subsection{Methodology}
-\label{sec:wsm-methodology}
+\phantomsection\label{sec:wsm-methodology}
+
 The concept selection in this work is performed using the \ac{wsm}, a structured multi-criteria decision-making method widely used in engineering design. The \ac{wsm} enables quantitative comparison of alternative concepts by evaluating them against a defined set of criteria derived from the system requirements.
 
 Each evaluation criterion is assigned a weighting factor based on its relative importance in addressing the research objectives. The concepts are then evaluated against each criterion using a consistent scoring scale from 1 to 5, where 1 indicates minimal or no satisfaction and 5 indicates a high level of satisfaction. The overall score for each concept is obtained by multiplying the assigned weight with the corresponding score and summing the results across all criteria.
 
 This method ensures that the concept selection process remains transparent, systematic, and aligned with the functional, non-functional, and system-level requirements defined in Chapter~\ref{ch:system-concept-methodology}. It also reduces subjectivity by providing a structured framework for comparing alternative solution approaches.
 
-
-\subsection{Evaluation Criteria and Weights}
-\label{sec:evaluation-criteria-weights}
-The evaluation criteria are derived directly from the functional requirements (FR-00 to FR-07), non-functional requirements (NFR-01 to NFR-05), and software platform requirements (SR-01 to SR-03) defined in Chapter~\ref{ch:system-concept-methodology}. The assigned weights reflect the relative importance of each criterion in addressing the identified research gap.
-
-\paragraph{Programming Effort Reduction (25\%)}
-This criterion carries the highest weight as it directly addresses the primary research objective of reducing manual robot programming effort. In flexible manufacturing environments, frequent changes in part geometry require repeated program modifications, making manual programming a major limitation. Therefore, approaches that minimise or eliminate manual waypoint definition are prioritised.
-
-\paragraph{Automated Regrip and Opposite-Side Handling (20\%)}
-Regripping and opposite-side bending are among the most complex and time-consuming operations in robotic sheet metal bending. These operations are often handled manually in conventional systems and significantly impact process efficiency \cite{Aomura2002RoboticBending,Gupta1998SheetMetalBending}. This criterion evaluates the extent to which a concept supports automated handling of these operations.
-
-\paragraph{Pre-Execution Validation and Safety (20\%)}
-This criterion evaluates the ability of the system to detect infeasible or unsafe conditions prior to execution. It includes validation of reachability, orientation feasibility, and handling constraints, as well as the ability to perform corrective actions such as replanning or safe termination. This is aligned with safety and robustness requirements defined in NFR-03, NFR-04, and NFR-05.
-
-\paragraph{Adaptability to Changing Workpiece Geometry (15\%)}
-This criterion assesses the flexibility of the system in handling variations in workpiece geometry without requiring significant reprogramming. Configuration-driven approaches that allow parameter modification without code changes are considered more adaptable and better suited for dynamic production environments.
-
-\paragraph{Platform Compatibility (10\%)}
-This criterion evaluates whether the concept can operate within the required software environment, specifically the drag\&bot runtime and the AnyRobot Interface, as defined in SR-01 and SR-02. Concepts that do not align with these platform requirements are considered less feasible for implementation within the scope of this work.
-
-\paragraph{Operator Usability (10\%)}
-This criterion evaluates the level of user interaction required during operation. Systems that minimise operator involvement and reduce the need for specialised programming knowledge are considered more user-friendly and suitable for industrial deployment, in accordance with NFR-01.
+For the scoring interpretation, a score of 1 indicates that the concept does not satisfy the criterion or satisfies it only minimally. A score of 2 indicates weak fulfilment with major limitations. A score of 3 indicates partial fulfilment under additional effort or constraints. A score of 4 indicates good fulfilment within the scope of this thesis. A score of 5 indicates complete fulfilment without major remaining limitations. The scores are therefore not experimental measurements, but engineering decision scores based on requirement fulfilment, implementation constraints, platform compatibility, expected programming effort, and the limitations identified in the concept descriptions.
 
 
-\section{Result of the Weighted Sum Model}
-\label{sec:weighted-sum-model-result}
-Table~\ref{tab:weighted_sum_model} presents the complete WSM evaluation with score justifications and weighted totals for all three concepts.
+\phantomsection\label{sec:evaluation-criteria-weights}
+
+The evaluation criteria are derived directly from the functional requirements (\acs{fr}-00 to \acs{fr}-07), non-functional requirements (\acs{nfr}-01 to \acs{nfr}-05), and software platform requirements (\acs{sr}-01 to \acs{sr}-03) defined in Chapter~\ref{ch:system-concept-methodology}. The assigned weight for each criterion reflects its relative importance with respect to the identified research gap and overall system objectives.
+
+\begin{enumerate}
+\item \textbf{Programming effort reduction (20\%):} prioritises concepts that minimise manual waypoint definition and reduce reprogramming effort.
+\item \textbf{Automated regrip and opposite-side handling (15\%):} evaluates whether complex handling operations can be generated automatically rather than manually sequenced. Robotic sheet-metal bending requires coordinated bending-sequence, grasp, and repositioning planning \cite{Gupta1998SheetMetalBending}. Repositioning and regrip timing are important planning aspects in robot-assisted bending \cite{Aomura2002RoboticBending}.
+\item \textbf{Pre-execution validation and safety (15\%):} assesses reachability, orientation feasibility, handling constraints, replanning, and safe termination.
+\item \textbf{Adaptability (10\%):} favours configuration-driven adaptation without changes to the underlying program logic.
+\item \textbf{Platform compatibility (15\%):} checks compliance with drag\&bot and AnyRobot constraints, especially \acs{sr}-01 and \acs{sr}-02.
+\item \textbf{Operator usability (10\%):} rewards approaches that reduce the need for specialised programming knowledge during operation.
+\item \textbf{Level of automation (15\%):} evaluates automatic generation of trajectories, handling decisions, and process sequencing.
+\end{enumerate}
+
+\phantomsection\label{sec:weighted-sum-model-result}
+Table~\ref{tab:weighted-sum-model} presents the complete \ac{wsm} evaluation with score justifications and weighted totals for all three concepts.
 \input{chapters/tables/tab_weighted_sum_model.tex}
 
-\section{Analysis of Results and Concept Decision}
-\label{sec:analysis-concept-decision}
-The \ac{wsm} results confirm the qualitative comparison. Concept B achieves the highest overall score (4,00), followed by Concept C (2,95) and Concept A (1,25). Rather than excelling in only one aspect, Concept B performs consistently well across the criteria that matter most for this thesis, especially programming effort reduction, automated handling support, validation capability, and compatibility with the selected software environment.
+The scores in Table~\ref{tab:weighted-sum-model} are intentionally conservative. Concept~B receives high scores because it fulfils the required automation, regrip, validation, and platform-integration objectives, but it is not scored as perfect because the implementation remains simulation-based and constrained by the defined geometry and workspace assumptions. Concept~C is technically strong in external \acs{cad}, \acs{olp}, or \acs{ros}-based environments, but its ranking is limited by the mandatory drag\&bot and AnyRobot platform constraints. Concept~A remains limited because it depends on manual waypoint and sequence definition even though it is simple to realise.
 
-Concept C remains a technically capable alternative, particularly for simulation-driven offline planning, but its dependence on detailed digital models and its weak fit to the required drag\&bot and AnyRobot setup reduce its suitability for the present work. Concept A is the least suitable because it keeps the workflow largely manual and therefore does not address the main objective of reducing programming effort.
+\phantomsection\label{sec:analysis-concept-decision}
 
-Based on both the structural comparison and the weighted evaluation, Concept B is selected for implementation. Its combination of automation, adaptability, and integration within the defined project scope makes it the most appropriate solution for the thesis. The implementation of Concept B is presented in Chapter~\ref{ch_5:implementation}.
+The \ac{wsm} results confirm the qualitative comparison of the three concepts. Concept B achieves the highest overall score (4,00), followed by Concept C (3,20) and Concept A (1,25). Concept B performs consistently well across all evaluation criteria, particularly in programming effort reduction, automated handling, validation capability, adaptability, and platform compatibility. This balanced performance makes it the most suitable candidate within the defined system constraints.
 
+The low score of Concept A results from its dependence on manual programming. Although the drag\&bot function-block environment can structure the workflow and improve transparency, the operator must still define waypoints, gripper actions, regrip motions, and execution sequences manually. Therefore, Concept A receives low scores for programming effort reduction, level of automation, adaptability, and pre-execution validation. It is not scored higher because it does not generate robot programs automatically and does not provide integrated geometry-aware planning.
+
+Concept B receives the highest score because it directly addresses the central requirements of this thesis. Robot motions, grip points, regrip decisions, and execution sequences are generated from configuration and geometric input rather than manually taught waypoints. It also satisfies the required drag\&bot and AnyRobot integration constraints. However, Concept B is generally scored as 4 rather than 5 because the developed system is evaluated only in simulation and remains limited by predefined configuration data, simplified geometry assumptions, and the absence of physical robot validation.
+
+Concept C receives intermediate-to-high scores for automation and validation because \acs{cad}-based offline programming and simulation environments can support trajectory planning, reachability analysis, and collision checking. However, its score is reduced because it requires \acs{cad} model preparation, simulation setup, specialised engineering knowledge, and repeated model updates when the workpiece or cell configuration changes. Most importantly, Concept C receives the lowest score for platform compatibility because it does not satisfy the mandatory drag\&bot and AnyRobot requirements defined in \acs{sr}-01 and \acs{sr}-02. Therefore, it is technically capable but not suitable for the selected implementation environment.
+
+This distinction is important for the final decision. Concept C is not rejected because it lacks technical capability, but because its main strengths lie in external \acs{cad}, \acs{olp}, or \acs{ros}-based environments that do not satisfy the mandatory platform constraints of this thesis.
+
+Concept A achieves the lowest score, as it relies on manual programming and does not significantly reduce engineering effort. While it is simple to implement and compatible with existing tools, it does not address the primary objective of this thesis, which is the automation of robot program generation.
+
+Based on the weighted evaluation and the defined requirement constraints, Concept B is selected for implementation. The decision is not based solely on achieving the highest score, but on providing the most effective balance between automation, adaptability, validation capability, and full compatibility with the defined software platform.
+
+The implementation of Concept B is presented in Chapter~\ref{ch:implementation}.

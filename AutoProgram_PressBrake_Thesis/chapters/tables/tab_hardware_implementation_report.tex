@@ -1,0 +1,44 @@
+\begin{table}[htbp]
+\centering
+\normalsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{L{4.0cm} Y}
+\hline
+\textbf{Configuration item} & \textbf{Implementation report} \\
+\hline
+drag\&bot platform &
+drag\&bot runtime package 3.6.0, used as the virtual robot-programming and
+execution environment for the thesis implementation. \\
+\hline
+Runtime interface &
+AnyRobot WebSocket-based interface used for command exchange between the
+planning software and the drag\&bot runtime. \\
+\hline
+Simulation setup &
+Virtual press-brake cell containing the UR5e robot model, press brake,
+orientation table, flip station, vacuum gripper, and tracked sheet object. \\
+\hline
+Robot configuration &
+UR5e manipulator model with six degrees of freedom, used for
+all simulated handling and bending-related motion sequences. \\
+\hline
+\ac{tcp} definition &
+Configured TCP \texttt{project\_3\_tcp} with offsets
+$x = 0{,}000$~m, $y = 0{,}034$~m, $z = 0{,}194$~m,
+$RZ = -90{,}0^\circ$, $RY = -75{,}0^\circ$, and $RX = 0{,}0^\circ$. \\
+\hline
+Gripper setup &
+Two-cup vacuum gripper represented in the simulation by digital input-output
+control, vacuum activation and release states, and kinematic object
+attachment-detachment logic. \\
+\hline
+System configuration &
+Workpiece dimensions, bend-side selection, safety limits, admissible workspace
+zones, gripper parameters, and runtime settings are loaded from configuration
+data before execution. \\
+\hline
+\end{tabularx}
+\caption{Hardware and platform configuration used for the simulation-based implementation.}
+\label{tab:hardware-implementation-report}
+\end{table}

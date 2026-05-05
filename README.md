@@ -180,3 +180,7 @@ cd .\AutoProgram_PressBrake_Thesis\
 latexmk -pdfxe main.tex
 
 again ctrl+ s 
+
+
+
+cd "C:\Users\dragandbot\Desktop\MASTER_THESIS_KEBA\THESIS_writings\rewrite thesis\rewrite last self\THD_MEng_Thesis\AutoProgram_PressBrake_Thesis"; latexmk -pdfxe main.tex

@@ -1,36 +1,65 @@
+\begin{landscape}
 \begin{table}[p]
 \centering
-\captionsetup{font=normalsize}
 \normalsize
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.05}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
 
-\begin{tabularx}{\textwidth}{C{0.9cm} C{1.1cm} L{3.6cm} Y}
-\toprule
-\textbf{No.} & \textbf{Layer} & \textbf{Module} & \textbf{Primary Responsibility} \\
-\midrule
-1 & L1 & Session launcher & Starts the session, loads \ac{yaml} data, and opens the 3D viewer. \\
-2 & L1 & Configuration reader & Loads and validates configuration parameters. \\
-3 & L5 & Safety checker & Performs operator confirmation and pre-execution safety checks. \\
-4 & L2 & Zone classifier & Assigns the sheet pose to a workspace zone. \\
-5 & L2 & Orientation selector & Selects a valid pickup orientation. \\
-6 & L2 & Face orientation converter & Converts tracker pose data into a reference-face form. \\
-7 & L2 & Grip position planner & Computes feasible grip positions under geometric constraints. \\
-8 & L2 & Pickup orientation validator & Verifies tool alignment and applies corrections if needed. \\
-9 & L4 & Trajectory generator & Generates waypoint sequences for executable robot motion. \\
-10 & L4 & Regrip motion executor & Executes transport, release, and regrasp motions. \\
-11 & L3 & Primary bending orchestrator & Coordinates the main bending workflow. \\
-12 & L3 & Regrip sequencer & Determines regrip transition sequences. \\
-13 & L3 & Opposite-side runner & Executes opposite-side handling when required. \\
-14 & L3 & Multi-stage regrip loop & Handles repeated repositioning in complex cases. \\
-15 & L3 & Post-bend unload sequencer & Controls unloading of finished workpieces. \\
-16 & L4 & Waypoint data structure & Stores pose, velocity, and blending parameters. \\
-17 & L4 & Digital IO handler & Controls vacuum and related input/output signals. \\
-18 & L4 & WebSocket client & Manages authentication and runtime communication. \\
-19 & L4 & Command type definitions & Defines motion types and \ac{json} message formats. \\
-\bottomrule
+\begin{tabularx}{\linewidth}{L{4.2cm} L{5.6cm} L{5.6cm} X}
+\hline
+\textbf{Layer / Module Group} &
+\textbf{Input} &
+\textbf{Output} &
+\textbf{Failure or Stop Condition} \\
+\hline
+L1 -- Input and configuration setup &
+Operator request, workpiece data, \acs{yaml} parameters &
+Validated task configuration; operator interface &
+Stop if mandatory parameters or runtime settings are missing. \\
+\hline
+L5 -- Safety validation and monitoring &
+Operator decision, fixture pose, safety limits, runtime feedback &
+Continue permission, warning, or status feedback &
+Controlled stop if tolerance or motion feedback fails. \\
+\hline
+L2 -- Zone and pose classification &
+Tracked sheet pose &
+Workspace zone and valid pose status &
+Stop if the sheet is missing or lies in the dead-band region. \\
+\hline
+L2 -- Orientation planning &
+Sheet pose, bend side, zone, reference offsets &
+Pickup orientation or fallback candidate &
+Fallback or stop if no orientation is admissible. \\
+\hline
+L2 -- Grip planning &
+Sheet geometry, holes, gripper data, orientation &
+Feasible suction-cup layout and pickup poses &
+Reject grip if clearance, spacing, or holding-force checks fail. \\
+\hline
+L3 -- Primary workflow orchestration &
+Configuration, bend selection, grip result, target poses &
+Ordered primary-side task sequence &
+Controlled stop if required planning output is infeasible. \\
+\hline
+L3 -- Regrip and opposite-side handling &
+Current pose, target bend, Side~E need, feasibility result &
+Direct path, regrip, or flip-and-continuation sequence &
+Controlled stop if no reachable regrip or post-flip solution is found. \\
+\hline
+L4 -- Trajectory generation and waypoint handling &
+Task poses, handling actions, motion limits &
+Reduced waypoint sequence and motion command list &
+Reject motion if workspace, singularity, or inverse-kinematics checks fail. \\
+\hline
+L4 -- Runtime communication and actuation &
+Commands, gripper actions, object requests, runtime endpoint &
+AnyRobot exchange, \acs{io} state, execution feedback &
+Stop or retry if authentication, command acknowledgement, or \acs{io} action fails. \\
+\hline
 \end{tabularx}
 
-\caption{Software modules across system layers and their primary responsibilities.}
-\label{tab:module_overview}
+\caption{Grouped module contract overview showing the main inputs, outputs, and stop conditions across the implemented system layers.}
+\label{tab:module-overview}
 \end{table}
+\end{landscape}

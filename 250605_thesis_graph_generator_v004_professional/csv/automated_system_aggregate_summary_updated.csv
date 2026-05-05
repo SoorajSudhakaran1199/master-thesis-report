@@ -1,0 +1,7 @@
+scenario,manual_reprogramming_required,runs,success_rate_percent,approx_mean_planning_s,planning_time_min_s,planning_time_max_s,approx_mean_execution_s,execution_time_min_s,execution_time_max_s,mean_regrips,failure_cases,input_update_requirement,regrip_planning_type
+Nominal feasible bending case,Not required,10,100,0.42,0.4,0.44,18.3,17,19,0,0,Not required,Automatic regrip planning
+Arbitrary initial workpiece orientation,Not required,10,100,0.48,0.46,0.5,19.6,19,20,0,0,Input update required,Automatic regrip planning
+Workspace-constrained configuration,Not required,10,100,0.54,0.52,0.56,21.4,20,22,0,0,Input update required,Automatic regrip planning
+Regrip-required bending case,Not required,10,100,0.58,0.56,0.6,22.8,22,24,1,0,Not required,Automatic regrip planning
+Opposite-side bending workflow,Not required,10,90,0.61,0.59,0.63,24.5,24,25,1,1,Not required,Automatic regrip planning
+Failure-prone conditions,Not required,10,80,0.46,0.44,0.48,0.0,0,0,0,2,Not required,Automatic regrip planning

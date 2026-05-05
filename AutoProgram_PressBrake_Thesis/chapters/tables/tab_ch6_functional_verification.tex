@@ -1,0 +1,31 @@
+\begin{table}[htbp]
+\centering
+\normalsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{tabularx}{\textwidth}{L{1.6cm} L{3.6cm} Y L{3.2cm}}
+\hline
+\textbf{Req.} & \textbf{Verification Scenario} & \textbf{Observed Outcome} & \textbf{Evaluation Result} \\
+\hline
+FR-00 & Side~A, geometry variation, position change & For valid evaluated inputs, the automated workflow reaches execution-ready state without manual waypoint construction; average automated preparation is \SI{11.1}{\second}. & Verified within simulation scope. \\
+\hline
+FR-01 & Workspace-constrained and failure-prone cases & Infeasible or constrained cases are detected before unsafe continuation; failure-prone cases complete in 8 of 10 runs and stop safely in unresolved cases. & Verified for warning feedback, detection, and controlled response, not for universal recovery. \\
+\hline
+FR-02 & Side~A and Side~E & Bend-side selection changes the generated workflow: Side~A uses direct bending, while Side~E requires flip and regrip logic. & Verified. \\
+\hline
+FR-03 & Regrip-required and Side~E cases & Regrip-required automated trials complete in 10 of 10 runs; Side~E uses regrip as part of the flip workflow and stops safely if the remaining constraints cannot be resolved. & Verified for evaluated cases. \\
+\hline
+FR-04 & Arbitrary initial orientation & Automated feasibility trials complete in 10 of 10 runs with approximately \SI{0.48}{\second} planning time on average. & Verified for tested orientation variations. \\
+\hline
+FR-05 & Side~E opposite-side workflow & Opposite-side workflow completes in 9 of 10 runs; one run stops in a controlled way because the remaining fixture/workspace condition is not resolvable. & Partly verified; capability shown, robustness gap remains. \\
+\hline
+FR-06 & Side~A, Side~E, geometry variation & Successful trials indicate that grip feasibility checks provide executable grasp selections; unresolved cases are rejected rather than continued blindly. & Verified within simplified gripper and geometry assumptions. \\
+\hline
+FR-07 & Failure-prone conditions & Controlled stops prevent unsafe continuation when constraints cannot be resolved. & Verified as safe behaviour; execution completion is not guaranteed in boundary cases. \\
+\hline
+\end{tabularx}
+
+\caption{Functional requirement verification based on evaluated scenarios and observed trial outcomes.}
+\label{tab:ch6-functional-verification}
+\end{table}

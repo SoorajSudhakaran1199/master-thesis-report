@@ -1,18 +1,20 @@
 \begin{landscape}
-\begin{table}[htbp]
+\begin{table}[p]
 \centering
 \normalsize
 \setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{1.1}
-
+\renewcommand{\arraystretch}{1.05}
 \begin{tabularx}{\linewidth}{
-L{3.0cm}
-L{3.5cm}
-c c c c
-L{3.8cm}
-L{5.5cm}
+L{3.4cm}
+L{2.7cm}
+C{0.7cm}
+C{0.7cm}
+C{0.7cm}
+C{1.0cm}
+L{3.2cm}
+X
 }
-\toprule
+\hline
 \textbf{Failure Mode} &
 \textbf{Effect} &
 \textbf{S} &
@@ -21,57 +23,76 @@ L{5.5cm}
 \textbf{RPN} &
 \textbf{Cause} &
 \textbf{Mitigation} \\
-\midrule
-
-Sheet unreachable during pickup &
-Robot stops mid-trajectory; session aborted &
+\hline
+Unreachable pickup pose &
+Pickup aborted &
 7 & 3 & 3 & 63 &
-Invalid spatial placement or orientation outside admissible zone &
-Spatial zone classification and orientation constraints applied before motion; system halts with operator notification \\
+Pose outside valid zone &
+Zone and orientation checks block motion; operator is notified \\
+\hline
 
-Incorrect grip position (cup over hole) &
-Vacuum failure; sheet may fall during transport &
+Grip over hole &
+Vacuum loss risk &
 8 & 2 & 2 & 32 &
-Incomplete feature detection in hole map &
-Clearance offsets applied around detected holes; final validation ensures no suction cup overlaps with holes \\
+Hole or feature error &
+Hole-clearance and suction-area checks reject invalid grips \\
+\hline
 
-Vacuum holding force insufficient &
-Sheet slips or drops during motion &
+Insufficient holding force &
+Sheet slip or drop &
 8 & 2 & 1 & 16 &
-Insufficient gripping force due to load or acceleration &
-Force feasibility check applied for each candidate grip; safety factor enforced and invalid grips rejected \\
+Load or acceleration too high &
+Force validation with safety factor rejects weak grips \\
+\hline
 
-Motion command rejected by controller &
-Robot stops; process interruption &
+Invalid motion command &
+Execution interrupted &
 6 & 3 & 2 & 36 &
-Invalid or inconsistent motion command format &
-Command validation and structured message formatting ensure consistent communication with controller \\
+Command format error &
+Message formatting and command validation reduce interface errors \\
+\hline
 
-Trajectory exits workspace boundary &
-Motion infeasible; execution halted &
+Workspace limit exceeded &
+Motion rejected &
 6 & 4 & 3 & 72 &
-Target pose near or beyond reachable workspace limits &
-Workspace clamping applied to all trajectory points; limits enforced on radial and vertical reach \\
+Pose beyond reach limits &
+Workspace limits constrain radial and vertical motion \\
+\hline
 
-Inverse kinematics failure due to excessive attachments &
-Robot cannot compute valid configuration &
+Side~E regrip or flip infeasible &
+Opposite-side workflow stops &
+7 & 2 & 3 & 42 &
+Post-flip pose infeasible &
+Pre-flip checks and controlled stops prevent unsafe continuation \\
+\hline
+
+Inverse-kinematics failure &
+No valid robot pose &
 5 & 2 & 3 & 30 &
-Multiple simultaneous object attachments causing solver overload &
-Strict attach-detach discipline enforced; each attachment preceded by release of previous objects \\
+Attachment state conflict &
+Attach-detach discipline limits solver overload \\
+\hline
 
-Self-collision in simulation &
-Invalid motion path generated without warning &
-4 & 3 & 5 & 60 &
-Lack of self-collision detection in simulation environment &
-Three-phase trajectory structure reduces collision risk; limitation acknowledged for physical deployment \\
+Collision not detected in simulation &
+Unsafe path may remain &
+6 & 3 & 5 & 90 &
+Limited collision model &
+Three-phase path reduces risk; collision-aware validation remains future work \\
+\hline
 
-Configuration error (invalid or missing parameters) &
-System fails at startup; no execution &
+Invalid configuration &
+Startup abort &
 3 & 3 & 1 & 9 &
-Missing or incorrectly defined configuration parameters &
-Configuration validation performed at startup; errors detected before motion execution \\
+Missing or invalid parameters &
+Startup validation blocks execution before motion begins \\
+\hline
 
-\bottomrule
+Physical effects not modelled &
+Production readiness not proven &
+6 & 3 & 5 & 90 &
+Springback, slip, force, and calibration effects &
+Simulation scope is stated; physical validation remains future work \\
+\hline
 \end{tabularx}
 \caption{Failure Mode and Effects Analysis (FMEA) of the robotic bending system.}
 \label{tab:fmea}

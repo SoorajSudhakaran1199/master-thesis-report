@@ -1,96 +1,110 @@
-\begin{landscape}
-\begin{table}[htbp]
+﻿\begin{landscape}
+\begin{table}[H]
 \centering
-\normalsize
-\setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{0.92}
-\hyphenpenalty=10000
-\exhyphenpenalty=10000
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.18}
+
 \begin{tabularx}{\linewidth}{
-L{3.0cm} 
-L{0.9cm} 
-L{5.2cm} 
-L{0.7cm} 
-L{5.2cm} 
-L{0.7cm} 
-L{5.2cm} 
-L{0.7cm}
+L{3.2cm}
+C{1.1cm}
+Y
+C{0.7cm}
+Y
+C{0.7cm}
+Y
+C{0.7cm}
 }
-\toprule
+\hline
 \textbf{Evaluation Criterion} &
 \textbf{Wt.} &
-\textbf{Concept A — Justification} &
+\textbf{Concept A} &
 \textbf{Sc.} &
-\textbf{Concept B — Justification} &
+\textbf{Concept B} &
 \textbf{Sc.} &
-\textbf{Concept C — Justification} &
+\textbf{Concept C} &
 \textbf{Sc.} \\
-\midrule
+\hline
 
 Programming Effort Reduction &
-25\% &
-All waypoints and process logic defined manually; no reduction in programming effort &
+20\% &
+Manual programming throughout. &
 1 &
-Waypoints and process logic generated automatically from configuration parameters; minimal manual intervention required &
+Automatic generation from configuration; simulation-scoped. &
 4 &
-CAD-based programming reduces manual teaching but requires model setup and adjustment for each variant &
-3 \\
+High automation but requires \acs{cad} setup and model maintenance. &
+4 \\
+\hline
 
 Automated Regrip and Opposite-Side Handling &
-20\% &
-No automated regrip or opposite-side handling; fully operator-dependent &
+15\% &
+No automation. &
 1 &
-Automated regrip and opposite-side handling implemented through rule-based modules &
+Rule-based regrip and opposite-side workflow; recovery still limited. &
 4 &
-Regrip and handling planned in simulation but not dynamically adapted during execution &
+Predefined in simulation, limited runtime adaptation. &
 3 \\
+\hline
 
 Pre-Execution Validation and Safety &
-20\% &
-No integrated validation; infeasible conditions detected only during execution &
+15\% &
+Detected during execution only. &
 1 &
-Pre-execution validation detects infeasible conditions and supports replanning or safe termination &
+Pre-checks with controlled stop and limited replanning. &
 4 &
-Validation performed in simulation environment; no runtime validation during execution &
-3 \\
+Strong simulation-based validation. &
+4 \\
+\hline
 
 Adaptability to Changing Workpiece Geometry &
-15\% &
-Manual reprogramming required for each geometry change; low adaptability &
+10\% &
+Manual reprogramming required. &
 1 &
-Configuration-driven approach allows adaptation through parameter changes without code modification &
+Parameter-based adaptation within rectangular-sheet scope. &
 4 &
-Requires modification of CAD models and re-simulation for each new geometry &
+Requires \acs{cad} update and re-simulation; partial automation possible. &
 3 \\
+\hline
 
 Platform Compatibility &
-10\% &
-Can be executed within drag\&bot as a manual workflow but does not utilise the AnyRobot Interface; partially satisfies platform requirements &
+15\% &
+Partial compatibility. &
 2 &
-Fully compatible with drag\&bot runtime and AnyRobot Interface as defined in SR-01 and SR-02 &
+Compatible with required drag\&bot + AnyRobot environment. &
 4 &
-Not compatible with drag\&bot runtime or AnyRobot Interface; does not satisfy platform requirements &
+Not compatible with required platform; fails \hyperref[subsubsec:sr-01-virtual-execution-environment]{\acs{sr}-01} and \hyperref[subsubsec:sr-02-communication-interface-requirement]{\acs{sr}-02}. &
 1 \\
+\hline
 
 Operator Usability &
 10\% &
-Requires expert knowledge and continuous manual input; high operator dependency &
+High expertise required. &
 2 &
-Minimal operator interaction; system handles planning and execution logic &
+Minimal operator interaction; engineering setup remains. &
 4 &
-Moderate usability; reduced robot expertise required but requires CAD knowledge &
+Moderate usability; \acs{cad} and simulation knowledge required. &
 3 \\
+\hline
 
-\midrule
-\textbf{Weighted Total Score} &
-\textbf{100\%} &
-Concept A & \textbf{1,25} &
-Concept B --- SELECTED $\checkmark$ & \textbf{4,00} &
-Concept C & \textbf{2,95} \\
-\bottomrule
+Level of Automation &
+15\% &
+No automation; manual teach programming. &
+1 &
+Automatic rule-based program generation in the evaluated scope. &
+4 &
+High automation achievable through \acs{olp} and \acs{ros}-based planning. &
+4 \\
+\hline
+
+\multicolumn{2}{L{4.3cm}}{\textbf{Weighted Total Score (100\%)}} &
+\multicolumn{2}{L{5.0cm}}{\textbf{Concept A:} 1,25} &
+\multicolumn{2}{L{5.0cm}}{\textbf{Concept B (selected):} 4,00} &
+\multicolumn{2}{L{5.0cm}}{\textbf{Concept C:} 3,20} \\
+\hline
+
 \end{tabularx}
+
 \caption{Weighted Sum Model (WSM) evaluation of Concept A, Concept B, and Concept C.}
-\label{tab:weighted_sum_model}
+\label{tab:weighted-sum-model}
 \end{table}
 \end{landscape}
-

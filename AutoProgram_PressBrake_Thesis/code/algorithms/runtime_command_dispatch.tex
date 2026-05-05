@@ -1,0 +1,21 @@
+\begin{lstlisting}[caption={Pseudocode for runtime command dispatch and result handling.}, label={lst:runtime-command-dispatch}]
+Load runtime endpoint and authentication parameters
+Open persistent WebSocket connection to AnyRobot runtime
+Perform ROSAuth handshake using external secret
+Subscribe to the motion result feedback topic
+
+for each validated command group in execution_sequence do
+    serialise motion and handling actions as JSON command list
+    transmit command list through the runtime client
+    wait for blocking result feedback
+
+    if result code indicates failure then
+        stop remaining command dispatch
+        notify operator through human-interaction service
+        record stop reason for evaluation
+        terminate execution safely
+    end if
+end for
+
+Close runtime interaction after all command groups complete
+\end{lstlisting}

@@ -1,13 +1,11 @@
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
- 
-Press brake sheet metal bending is an important manufacturing process, but robotic implementations often still require manual programming. Operators define motion sequences, teach waypoints, and adapt programs for each new workpiece, which increases effort and limits flexibility.
 
-This thesis presents an automated planning system for robotic press brake bending. The approach combines workpiece orientation determination, constraint-based grip planning, automatic regrip handling, and trajectory generation in a modular pipeline driven by geometric input and configuration data. The system generates robot programs without manual waypoint definition and includes validation steps for safe and feasible execution.
+Press brake sheet metal bending is a key manufacturing process; however, despite the availability of robotic programming tools, implementations often rely on manual programming. Operators must define motion sequences, teach waypoints, and adapt programs for each new workpiece, resulting in increased effort and limited flexibility.
 
-Evaluation in a virtual simulation environment covers varying workpiece dimensions, arbitrary initial orientations, regripping, and opposite-face bending. The results show executable robot programs and reduced programming effort compared with manual programming, supporting adaptable press brake automation for flexible manufacturing.
+This thesis presents an automated planning system for robotic press brake bending. The proposed approach integrates workpiece orientation determination, constraint-based grip planning, automatic regrip handling, and trajectory generation within a modular pipeline driven by geometric input and configuration data. The system generates execution-ready robot programs without manual waypoint teaching and incorporates validation steps to ensure safe and feasible operation, requiring only bend-side selection from the operator.
+
+The system is evaluated in a virtual simulation environment using repeated workflow and feasibility trials. The evaluation covers nominal direct bending on Side~A, opposite-side bending on Side~E, geometry variation, workpiece position variation, regrip-required scenarios, and failure-prone conditions. The results show that automated generation substantially reduces preparation effort while maintaining feasible simulated execution within the evaluated scenario set.
 
 \vspace{1em}
 \noindent\textbf{Keywords:} robotic press brake bending; automatic robot program generation; grip planning; regrip planning; trajectory generation; flexible manufacturing.
-
-

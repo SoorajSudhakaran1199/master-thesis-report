@@ -1,21 +1,42 @@
-# Robot configuration (generalised)
-robot:
-  host: <robot_ip_address>
-  port: <port_number>
-  speed_mps: 0.5
-  accel_percent: 20
-  blend_percent: 15
-  io_group: DO
-  io_pin: 1
-# Process and sheet definition
-process:
-  sheet:
-    length_m: 0.4
-    width_m: 0.3
-    thickness_m: 0.005
-    mass_kg: 2.5
+# Runtime communication settings
+runtime:
+  host: <runtime_ip_address>
+  port: <websocket_port>
 
-  grip:
-    cup_count: 2
-    min_edge_clear_m: 0.05
-    min_spacing_m: 0.2
+# Robot and tool configuration
+robot:
+  model: UR5e
+  tcp_id: project_3_tcp
+  tcp_offset_m: [0.000, 0.034, 0.194]
+  tcp_orientation_deg: [-90.0, -75.0, 0.0]
+
+# Workpiece and process definition
+workpiece:
+  length_m: 0.400
+  width_m: 0.300
+  thickness_m: 0.005
+  mass_kg: 2.5
+  selected_bend_sides: [B, C]
+
+# Vacuum gripper and input-output mapping
+gripper:
+  cup_count: 2
+  min_edge_clearance_m: 0.050
+  min_cup_spacing_m: 0.200
+  io_group: DO
+  close_pin: 0
+  open_pin: 1
+
+# Motion parameters
+motion:
+  linear_speed_mps: 0.50
+  ptp_velocity_percent: 20
+  acceleration_percent: 20
+  blending_percent: 15
+  safe_height_m: 0.120
+
+# Safety and validation thresholds
+safety:
+  fixture_position_tolerance_m: 0.005
+  fixture_angle_tolerance_rad: 0.10
+  enable_operator_confirmation: true

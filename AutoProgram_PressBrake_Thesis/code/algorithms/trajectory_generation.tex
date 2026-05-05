@@ -1,0 +1,19 @@
+\begin{lstlisting}[caption={Pseudocode for waypoint generation and path reduction.}, label={lst:trajectory-generation}]
+for each motion segment in the assembled task sequence do
+    define lift pose above start pose using configured safe height
+    define transfer pose above target pose
+    define descent pose at target task pose
+
+    for each phase between consecutive poses do
+        compute path length and required sample count
+        interpolate Cartesian position linearly
+        interpolate orientation using SLERP
+        apply minimum-jerk scaling to interpolation parameter
+        append generated waypoint to dense trajectory
+    end for
+
+    validate dense trajectory against workspace limits
+    remove waypoints below position and rotation change thresholds
+    transmit reduced waypoint sequence as linear motion commands
+end for
+\end{lstlisting}

@@ -1,61 +1,61 @@
-\begin{table}[htbp]
+﻿\begin{table}[htbp]
 \centering
 
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.0}
-\hyphenpenalty=10000
-\exhyphenpenalty=10000
+\hyphenpenalty=500
+\exhyphenpenalty=500
 
 \begin{tabularx}{\textwidth}{
-L{1.5cm}
-L{7.0cm}
-L{5.0cm}
-L{1.5cm}
+L{1.3cm}
+L{5.8cm}
+L{4.4cm}
+L{3.1cm}
 }
 
-\toprule
+\hline
 \textbf{ID} &
 \textbf{Non-Functional Requirement} &
-\textbf{Acceptance Criteria} &
+\textbf{Observable Acceptance Criteria} &
 \textbf{Verification Method} \\
-\midrule
+\hline
 
 NFR-01 &
-The system shall minimise operator interaction during normal execution. Configuration steps prior to execution shall be limited to essential parameters. &
-Operator interaction limited to bend-side selection and execution confirmation. &
-Usability validation \\
+Operator interaction during normal automated generation shall be limited to configuration or input selection and execution confirmation. &
+The automated workflow comparison shall require no manual waypoint teaching, function-block sequencing, or manual reprogramming before simulated execution. &
+Manual-versus-automated workflow validation \\
 
-\midrule
+\hline
 
 NFR-02 &
-The system shall allow process parameters, handling strategies, and system settings to be modified through configuration mechanisms that are fully separated from the core program logic, with no source code changes required. Sufficient terminal logging shall be provided to support systematic debugging, monitoring, and future extension of the system. &
-New workpiece geometry configurable via YAML file update only, without source code modification. Configuration change validated without rebuild. &
-Configuration validation test \\
+Workpiece geometry, process settings, and safety parameters shall be configurable without source-code modification. &
+Geometry-change and position-change scenarios shall be handled through configuration or operator input updates without rebuilding or modifying source code. &
+Geometry and position variation validation \\
 
-\midrule
+\hline
 
 NFR-03 &
-The system shall provide clear warning and error messages for unsafe or infeasible conditions without requiring expert robot programming knowledge. &
-Warning and error messages displayed for all detected unsafe conditions, with controlled continuation or termination. &
-Warning message validation \\
+Unsafe or infeasible conditions shall produce clear warning or error feedback before continuation. &
+Detected unsafe or infeasible conditions shall generate warning or error feedback and shall require operator acknowledgement, replanning, or controlled termination before continuation. &
+Failure-prone and warning-behaviour validation \\
 
-\midrule
+\hline
 
 NFR-04 &
-The system shall exhibit robust behaviour under repeated execution cycles. Small variations in workpiece orientation or timing shall not lead to system failure or unsafe behaviour. The system shall handle deviations in a controlled manner. &
-System completes at least five consecutive bending cycles without failure under nominal variation conditions. &
-Repeated run validation test \\
+The system shall use a deterministic execution sequence for a given configuration. &
+Repeated automated runs under the same scenario definition shall produce consistent completion, failure, or controlled-stop classifications. &
+Repeated automated scenario validation \\
 
-\midrule
+\hline
 
 NFR-05 &
-The system shall tolerate moderate pose deviations within defined limits without triggering an error or aborting execution. Deviations exceeding the threshold shall trigger a warning and controlled stop. &
-Pose deviations within the defined tolerance threshold do not cause execution termination. Deviations exceeding the threshold trigger a warning and controlled stop. &
-Perturbation validation test \\
+Fixture pose deviations shall be checked against defined positional and angular tolerance limits before execution. &
+Position deviation above 5~mm or angular deviation above 0{,}10~rad shall trigger a fixture warning and controlled operator decision before execution. &
+Fixture perturbation and constrained-placement validation \\
 
-\bottomrule
+\hline
 \end{tabularx}
 
 \caption{Non-Functional Requirements -- NFR-01 to NFR-05 with acceptance criteria and verification methods.}
-\label{tab:nfr_table}
+\label{tab:non-functional-requirements}
 \end{table}

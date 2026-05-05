@@ -1,169 +1,217 @@
-﻿\chapter{Experimental Evaluation and Validation}
-\label{ch_6:evaluation}
+\chapter{Evaluation and Validation}
+\label{ch:evaluation-validation}
 
-\section{Experimental Setup}
-\label{ch6_sec:experimental_setup}
- 
-To evaluate the performance, robustness, and practical benefit of the implemented system, a structured experimental setup is defined. The evaluation is conducted under controlled conditions to ensure repeatability and consistency across all test scenarios. This section outlines the test environment, the selected scenarios, and the metrics used to assess system performance.
- 
-\subsection{Test Environment}
-\label{ch6_sec:test_environment}
- 
-All experiments are conducted within the virtual environment used during system development. This ensures consistency between implementation and evaluation, allowing the behaviour of the system to be assessed under identical conditions.
- 
-The evaluation setup includes the complete system pipeline operating on simulated workpiece data. The environment enables controlled testing of different scenarios without external disturbances, ensuring that observed results are attributable to the system behaviour rather than environmental variability. This approach supports repeatable experimentation and reliable comparison across multiple test runs.
- 
-\subsection{Test Scenarios}
-\label{ch6_sec:test_scenarios}  
- 
-To assess the adaptability of the system, a set of representative test scenarios is defined based on variations in workpiece geometry, initial placement, and execution complexity. These scenarios are designed to reflect the key operational challenges addressed by the system and to provide measurable evidence for the thesis objective of reducing manual programming effort through automated planning.
- 
-The evaluated scenarios include:
-\begin{itemize}
-\item Nominal feasible bending case
-\item Arbitrary initial workpiece orientation
-\item Workspace-constrained configuration
-\item Regrip-required bending case
-\item Opposite-side bending workflow
-\item Failure-prone or infeasible configuration
-\end{itemize}
- 
-Each scenario is executed ten times to verify that the system produces consistent and repeatable results under identical conditions. For the failure-prone scenario, the repeated trials are used to assess whether unsafe or infeasible cases are detected reliably before continuation.
- 
-\subsection{Evaluation Metrics}
-\label{ch6_sec:evaluation_metrics}
- 
-The system performance is assessed using a combination of quantitative and qualitative evaluation criteria. The selected metrics are intended to verify whether the developed planning pipeline solves the thesis problem within the scope of the simulated study, namely by generating feasible robot programs automatically, adapting to varying workpiece conditions, and reducing operator-dependent programming effort.
- 
-The primary evaluation criteria include:
-\begin{itemize}
-\item \textbf{Execution success rate:} proportion of runs in which the complete robot program is generated and executed without manual intervention
-\item \textbf{Mean planning time:} average time required to generate the robot program for each scenario
-\item \textbf{Mean execution time:} average time required to complete the simulated bending task
-\item \textbf{Mean number of regrips:} average number of intermediate reorientation operations required for successful execution
-\item \textbf{Failure cases:} number of runs in which the system detects an infeasible or unsafe condition and prevents continuation
-\item \textbf{Orientation, grip, and trajectory feasibility:} ability to maintain valid pickup orientations, grip configurations, and executable motion trajectories across the defined scenarios
-\end{itemize}
- 
-In addition, qualitative observations are used to assess motion smoothness, stability of gripping, robustness of error handling, and the overall coherence of system behaviour during execution.
- 
-Together, the defined environment, scenarios, and metrics provide a consistent and comprehensive basis for evaluating the effectiveness of the implemented system.
+\section{Introduction to Evaluation}
+\label{sec:evaluation-introduction}
 
-\section{Functional Validation}
-\label{ch6_sec:functional_validation}
- 
-This section evaluates the correctness of the core functional components of the implemented system. Each module of the planning pipeline is assessed based on its ability to produce valid and consistent outputs under varying input conditions. The validation focuses on confirming that the system behaves as expected and that the measured results reported later in this chapter are supported by correct module-level behaviour.
- 
-\subsection{Orientation Strategy Validation}
-\label{ch6_sec:orientation_strategy_validation} 
- 
-The orientation strategy is evaluated using scenarios in which the workpiece is placed in arbitrary initial poses across different spatial regions. The results confirm that the system consistently determines a feasible pickup orientation for all tested configurations.
- 
-In cases where the initial orientation satisfies admissibility constraints, the detected pose is preserved. When this is not possible, the system successfully applies corrective transformations or fallback strategies to generate a valid orientation. Across all evaluated scenarios, a feasible pickup orientation is obtained without requiring manual adjustment, demonstrating robust handling of non-deterministic input conditions.
- 
-\subsection{Grip Planning Validation}
-\label{ch6_sec:grip_planning_validation}
- 
-The grip planning module is validated by assessing its ability to generate stable and feasible suction cup placements under geometric and physical constraints. Test cases include variations in workpiece size and configurations containing internal cut-outs.
- 
-The results show that all selected grip configurations satisfy geometric constraints, including edge clearance and exclusion of hole regions. Furthermore, the force validation step ensures that only configurations with sufficient holding force are accepted. In multi-cup scenarios, the system consistently selects configurations that improve stability through appropriate spacing. These results confirm that the grip planner produces reliable and physically feasible solutions.
- 
-\subsection{Regrip Planning Validation}
-\label{ch6_sec:regrip_planning_validation}  
- 
-The regrip planning strategy is evaluated using scenarios in which the initial configuration is not directly executable due to kinematic limitations. The results indicate that the system correctly identifies such cases and determines an alternative configuration that enables successful execution.
- 
-For all evaluated scenarios requiring regrip, the system selects a feasible orientation and completes the required reorientation sequence without failure. The number of regrip operations is minimized through the selection strategy, confirming that the approach avoids unnecessary intermediate steps while maintaining feasibility.
- 
-\subsection{Opposite-Side Bending Validation}
-\label{ch6_sec:opposite_side_validation}
- 
-The opposite-side bending workflow is validated through scenarios that require bending operations on both sides of the workpiece. The evaluation confirms that the system successfully performs the flip operation and continues execution using the same planning pipeline.
- 
-After the flip, the system re-establishes a valid configuration and completes the remaining bending operations without inconsistencies. The results demonstrate that multi-stage operations are handled seamlessly, without requiring separate control logic for different workpiece orientations.
- 
-Overall, the functional validation confirms that all major components of the system operate correctly and produce consistent results across a range of test conditions. The evaluation demonstrates that the implemented system satisfies the core functional requirements defined in Chapter~\ref{ch:system-concept-methodology}.
+This chapter evaluates whether the implemented system satisfies the central hypothesis of this thesis: automated robot-program generation from workpiece geometry should reduce preparation effort while preserving feasible execution in the simulated press-brake cell. The evaluation therefore does not focus only on whether a motion sequence can be generated. It also examines how much effort is saved, how the system behaves when the workpiece geometry or position changes, how regripping and opposite-side bending affect process time, and how the system reacts when a scenario cannot be completed safely.
 
-\section{System-Level Performance Evaluation}
-\label{ch6_sec:system_performance_evaluation}
- 
-While the previous section validated individual functional components, this section evaluates the performance of the complete system pipeline. The objective is to assess how effectively the integrated system operates under realistic conditions, considering execution efficiency, motion quality, and overall system behaviour.
- 
-\subsection{End-to-End Execution Results}
-\label{ch6_sec:end_to_end_execution_results}
- 
-The system is evaluated using the test scenarios defined in Section~\ref{ch6_sec:test_scenarios}, covering nominal operation, orientation variation, workspace constraints, regrip handling, opposite-side bending, and failure-prone conditions. Across the majority of evaluated scenarios, the system successfully generated and executed complete robot programs without requiring manual intervention.
- 
-Table~\ref{tab:evaluation_summary} summarises the quantitative evaluation results for the automated system. The table reports ten runs per scenario and captures the key indicators used to verify whether the planning pipeline satisfies the thesis objective of reliable and adaptable automatic program generation.
+The evaluation is restricted to the simulation-based scope defined in Chapter~\ref{ch:introduction}. Consequently, the chapter validates robot-program generation, simulated execution feasibility, planning behaviour, regrip handling, and safe stopping behaviour. It does not claim validation of physical bending force, material springback, final bend-angle accuracy, gripper slip on real sheet metal, or collision-free operation in a commissioned industrial cell. This distinction is important because the implemented system can be judged rigorously within its intended scope without overstating its readiness for physical production.
 
-\input{chapters/tables/tab_evaluation_summary.tex}
+The analysis is organised around two complementary evaluation layers. First, manual and automated workflows are compared using repeated workflow trials in order to quantify preparation time, execution time, and total process time. Second, automated feasibility trials are evaluated scenario by scenario to assess success rate, failure rate, planning time, and controlled-stop behaviour. Separating these two layers prevents the time-comparison results from being mixed with automated-only feasibility results and keeps the interpretation of each metric consistent.
 
-The results demonstrate that the planning pipeline operates cohesively, with each module providing valid input to subsequent stages. Nominal, orientation-varying, workspace-constrained, and regrip-required scenarios achieved complete execution in all runs. The opposite-side bending workflow introduced the highest handling complexity, which is reflected in a slightly reduced success rate and increased execution effort. In the failure-prone scenario, the reduced success rate is intentional and indicates that unsafe continuation was prevented rather than overlooked. Taken together, the results confirm that the system adapts to varying initial conditions and execution challenges while maintaining controlled behaviour.
- 
-\subsection{Execution Time Analysis}
-\label{ch6_sec:execution_time_analysis}
- 
-The execution-efficiency assessment considers how the computational effort for plan generation relates to the observed motion sequence in simulation. The measured planning times remain within a narrow range across all successful scenarios, indicating that the computational overhead of the planning pipeline is modest and stable.
- 
-The shortest mean planning time is observed in the nominal bending case, whereas the highest value occurs in the opposite-side bending workflow due to the additional flip and recovery logic. Mean execution time follows the same trend, increasing from standard handling cases to regrip-required and opposite-side cases. Even in the more complex scenarios, the increase remains moderate, which indicates that the added planning logic improves adaptability without imposing prohibitive execution overhead.
- 
-\subsection{Trajectory Quality and Feasibility}
-\label{ch6_sec:trajectory_quality_and_feasibility}
- 
-Trajectory quality is assessed based on smoothness, continuity, and kinematic feasibility. The generated trajectories exhibit continuous motion without abrupt changes in direction or velocity. The use of interpolated waypoints and smooth motion profiles ensures stable execution.
- 
-Workspace constraints and singularity avoidance mechanisms prevent the generation of infeasible paths. When target poses approach the limits of the workspace, the system adapts the trajectory to remain within valid bounds. This confirms that the generated motions are both feasible and reliable for execution.
- 
-\subsection{Comparison with Manual Programming}
-\label{ch6_sec:comparison_with_manual_programming}
- 
-To evaluate the practical benefits of the developed system, a comparison is performed between conventional manual programming using drag\&bot function blocks and the automated approach proposed in this work. The comparison focuses on the aspects most directly linked to the thesis objective, namely preparation effort, adaptability to changing workpiece conditions, and repeatability of execution.
- 
-In the manual approach, the operator defines individual motion steps, configures parameters, and ensures correct sequencing of operations. This process is time-intensive and depends strongly on operator expertise. In contrast, the developed system generates the complete robot program automatically based on geometric input and configuration data, recalculating the required workflow when the workpiece condition changes.
- 
-Table~\ref{tab:full_comparison} summarises the comparison between the two approaches.
- 
-\input{chapters/tables/tab_manual_vs_auto.tex}
- 
-The comparison demonstrates that the proposed system significantly reduces programming effort while improving consistency and reliability. By eliminating manual waypoint definition, automating decision-making, and reducing the need for repeated reprogramming, the system addresses the main problem identified in Chapter~\ref{ch_1_introduction}. Within the scope of the simulated evaluation, this shows that the primary thesis objective of reducing operator workload while improving adaptability has been achieved.
+\section{Evaluation Methodology}
+\label{sec:evaluation-methodology}
 
-\section{Robustness and Failure Analysis}
-\label{ch6_sec:robustness_and_failure_analysis}
+\subsection{Measurement Principles}
+\label{subsec:measurement-principles}
 
- 
-In addition to functional correctness and performance, the robustness of the system is evaluated by analysing its behaviour under challenging and failure-prone conditions. This assessment is closely related to the Failure Mode and Effects Analysis (FMEA) presented in Section~\ref{sec:fmea}.
- 
-\subsection{Failure Case Evaluation}
-\label{ch6_sec:failure_case_evaluation}
- 
-The system is tested under scenarios designed to trigger potential failure modes, including invalid workpiece placement, infeasible grip configurations, and workspace boundary violations. These cases correspond to the failure-prone scenario reported in Table~\ref{tab:evaluation_summary}. In each such case, the system detects the issue before or during execution rather than allowing unsafe continuation.
- 
-For example, configurations with insufficient vacuum holding force are rejected during grip planning, while unreachable poses are identified during trajectory generation. These validations prevent the execution of unsafe or infeasible motions.
- 
-\subsection{System Response to Errors}
-\label{ch6_sec:system_response_to_errors}
- 
-When a failure condition is detected, the system responds by halting execution and notifying the operator through the human interaction interface. This behaviour ensures that errors are clearly communicated and prevents the continuation of unsafe operations.
- 
-The runtime error monitoring mechanism further enhances robustness by detecting execution-level failures and providing immediate feedback. This layered approach to error handling ensures that both planning and execution errors are addressed.
- 
-\subsection{Limitations of the System}
-\label{ch6_sec:limitations_of_the_system}
- 
-Despite its robustness, the system exhibits certain limitations. The evaluation is conducted within a virtual environment, and therefore does not capture all real-world uncertainties such as sensor noise, calibration errors, or mechanical tolerances.
- 
-Additionally, the absence of full self-collision detection limits the ability to guarantee collision-free operation in highly constrained scenarios. These limitations highlight areas for future improvement and potential extension of the system.
+All reported values are evaluated as trial-based measurements. Scenario-wise averages are interpreted first because the difficulty of the task changes with the selected bend side, workpiece geometry, workpiece position, and regrip requirement. Overall averages are then used only as compact summary indicators. This avoids treating the complete trial set as if all cases had the same technical difficulty.
 
-\section{Discussion}
-\label{ch6_sec:discussion}
- 
-The evaluation results demonstrate that the developed system provides a structured and automated solution for press brake bending. Compared to the approaches discussed in Chapter~\ref{ch:state-of-art}, the system eliminates the need for manually defined waypoint sequences for the evaluated scenarios and enables adaptive behaviour based on geometric input and configuration data.
- 
-The integration of orientation determination, grip planning, regrip handling, and trajectory generation allows the system to operate under a wide range of conditions. The quantitative results show high success rates in nominal, orientation-varying, workspace-constrained, and regrip-required scenarios, while the comparison with manual programming indicates substantially lower preparation effort and faster adaptation to change. This represents a significant improvement over conventional methods, which typically rely on fixed configurations and require manual intervention for complex tasks.
- 
-The system also achieves a high degree of modularity, as demonstrated by the layered architecture presented in Chapter~\ref{ch_5:implementation}. Each module performs a well-defined function and contributes to the overall pipeline, supporting maintainability and extensibility.
- 
-However, the evaluation also reveals limitations. The reliance on a virtual simulation environment means that the results do not fully reflect real-world operating conditions. Furthermore, certain aspects, such as advanced collision detection and dynamic force feedback, are not included in the current implementation.
- 
-Overall, the system addresses key gaps identified in the state of the art by providing an automated, adaptable, and modular solution. Within the scope of the virtual evaluation environment, Chapter~6 therefore provides evidence that the thesis aim has been met: the developed system can generate feasible robot programs automatically, adapt to representative variations in workpiece conditions, and reduce manual programming effort compared with a conventional workflow. At the same time, the identified limitations provide a clear direction for future development.
+The arithmetic mean is used to obtain the representative value for each scenario. For a measured quantity \(x_i\) in trial \(i\), the average value \(\bar{x}\) is calculated as:
 
+\begin{equation}
+\bar{x}=\frac{1}{N}\sum_{i=1}^{N}x_i .
+\label{eq:evaluation-average}
+\end{equation}
+
+In this equation, \(N\) denotes the number of trials in the evaluated scenario and \(x_i\) denotes the measured value in one trial. This equation is used for preparation time, execution time, total process time, planning time, and regrip count. It is suitable here because the objective is not to model a probability distribution, but to compare repeated workflow observations under defined scenario conditions.
+
+\phantomsection\label{subsec:preparation-time-definition}
+\noindent\textbf{Preparation time.}
+Preparation time measures the effort required before a workflow is ready for simulated execution. In the manual workflow, measurement starts when the operator begins adapting the robot task through waypoint, function-block, or sequence changes. It ends when the manual workflow is execution-ready. In the automated workflow, measurement starts when the operator begins entering or updating the workpiece geometry, pose, and bend-side input. It ends when the system has generated an execution-ready workflow. The measurement includes input selection, configuration updates, manual waypoint editing where applicable, function-block adaptation where applicable, and preparation of regrip or flip logic where applicable. It excludes simulated robot motion, physical bending, post-processing, documentation, and figure preparation. The comparative evaluation uses 48 manual workflow trials and 48 automated workflow trials across direct bending, opposite-side bending, geometry variation, and position-change conditions.
+
+\phantomsection\label{subsec:execution-time-definition}
+\noindent\textbf{Execution time.}
+Execution time measures the simulated robot runtime after the workflow is ready. Measurement starts when the prepared or generated workflow begins execution and ends when the simulated sequence reaches its final state, completes unloading, or stops in a controlled way. It includes robot approach, gripping, transfer motion, bending-position motion, regrip motion, flip motion, retreat, and unloading where applicable. It excludes preparation, manual programming, operator input before execution, physical material deformation, and post-processing. Execution time is therefore interpreted as the simulated runtime of the prepared process, not as the full engineering effort.
+
+\phantomsection\label{subsec:total-process-time-definition}
+\noindent\textbf{Total process time.}
+Total process time combines preparation and execution because a workflow that executes quickly but requires long manual preparation may still be inefficient in practice. For each trial, total process time is calculated as:
+
+\begin{equation}
+t_{\mathrm{total}}=t_{\mathrm{prep}}+t_{\mathrm{exec}} .
+\label{eq:total-process-time}
+\end{equation}
+
+Here, \(t_{\mathrm{total}}\) is the total process time, \(t_{\mathrm{prep}}\) is the preparation time, and \(t_{\mathrm{exec}}\) is the simulated execution time. This equation is used to compare the complete effort from the start of task preparation to the end of simulated execution. It is the most important time metric in this chapter because the thesis objective is to reduce programming and preparation effort, not only robot movement time.
+
+\phantomsection\label{subsec:planning-time-definition}
+\noindent\textbf{Planning time.}
+Planning time is measured only for automated feasibility trials. It starts when the automated planning procedure is triggered after valid inputs are available and ends when the system has either produced a validated sequence or rejected the case. It includes orientation evaluation, grip selection, reachability decision-making, regrip decision-making, flip decision-making where required, and task-sequence generation. It excludes operator input, manual editing, robot motion, communication after dispatch, and physical bending. Ten repeated runs are evaluated for each automated feasibility scenario. Planning time is included as a secondary metric because it remains below one second in the evaluated scenarios; the practical workflow duration is dominated by preparation and execution time.
+
+\phantomsection\label{subsec:success-failure-definition}
+\noindent\textbf{Success rate, failure rate, and controlled stop.}
+Automated feasibility is evaluated using ten repeated runs per scenario. A trial is classified as successful when the intended scenario objective is completed without manual waypoint correction, unresolved feasibility violation, or uncontrolled interruption. In an opposite-side workflow, success also requires that the system inserts the required flip and regrip behaviour correctly.
+
+A trial is classified as failed when the intended execution objective is not completed because of unresolved workspace, fixture, reachability, or feasibility constraints. The success rate \(R_{\mathrm{success}}\) is calculated as:
+
+\begin{equation}
+R_{\mathrm{success}}=\frac{N_{\mathrm{success}}}{N_{\mathrm{total}}}\cdot100 .
+\label{eq:success-rate}
+\end{equation}
+
+In this equation, \(N_{\mathrm{success}}\) is the number of successful trials and \(N_{\mathrm{total}}\) is the number of evaluated trials in the scenario. The failure rate is calculated in the same way using the number of failed trials.
+
+A controlled stop is treated separately in the interpretation. It occurs when the system detects that safe continuation is not possible and prevents the workflow from proceeding. This is a system safety success because unsafe continuation is avoided, but it is also an execution failure because the intended process is not completed. This distinction is used in the requirement verification because safe stopping is evidence for validation logic, even when the process result itself is incomplete.
+
+\phantomsection\label{subsec:regrip-count-definition}
+\noindent\textbf{Regrip count.}
+Regrip count measures how many intermediate regrip operations are required after the initial pickup. The first normal grip used to pick the sheet is not counted as a regrip. Measurement starts at workflow execution start and ends at completion or controlled stop. Regrip count is averaged scenario-wise and is interpreted as an indicator of workflow complexity. A higher regrip count usually increases execution time because each regrip adds approach, release, repositioning, re-approach, gripping, and validation steps.
+
+\section{Experimental Setup and Scenarios}
+\label{sec:experimental-setup-scenarios}
+
+All trials were conducted in the implemented virtual press-brake cell described in Chapter~\ref{ch:implementation}. The evaluation uses the UR5e model, the configured \ac{tcp}, the virtual press brake, the two-cup vacuum gripping concept, and the same general rectangular sheet-metal assumptions used during implementation. The process is evaluated as a simulated right-angle bending workflow; physical forming effects such as springback and bending force are outside the measurement scope.
+
+Five scenario classes are evaluated. The first class is the nominal Side~A direct-bending case. Side~A represents a primary-side bend that is accessible from the initial workpiece orientation. It is the simplest valid case because the robot can generate a direct handling and bending sequence without flipping the sheet. This scenario verifies baseline program generation, bend-side interpretation, grip feasibility, and simulated execution.
+
+The second class is the Side~E opposite-side workflow. This is technically more demanding because the required bending face is not accessible to the press-brake tool in the initial orientation. Direct bending is therefore not possible: the tool would approach the wrong side of the sheet, and the resulting pose would not correspond to the required bend direction. To make the opposite face accessible, the sheet must be transferred to a flip configuration, released, re-approached, and gripped again from a suitable side. The regrip is required because the original grasp cannot simultaneously preserve reachability, maintain a valid sheet orientation, and allow the subsequent opposite-side bend. As a result, Side~E workflows contain additional transfer, release, re-approach, flip, regrip, and validation steps. These steps are expected to increase execution time compared with Side~A, but they are necessary for feasibility.
+
+The third class covers workpiece geometry variation. In these trials, the sheet dimensions and thickness conditions vary within the rectangular workpiece scope. This scenario tests whether the system adapts by updating input parameters rather than requiring manual reteaching of the robot path. Geometry variation is important because changes in size and thickness affect grip-point feasibility, motion distance, and reachability.
+
+The fourth class covers workpiece position changes. Two initial placement conditions are evaluated and referred to as Plane~A and Plane~B in the figures. Plane~B represents a more constrained placement condition and is therefore expected to increase process difficulty. This scenario tests whether the automated system can absorb a placement change through parameterised planning, while the manual workflow requires greater reprogramming effort.
+
+The fifth class covers failure-prone conditions. These trials intentionally test boundary behaviour where the system may not complete the workflow. Such cases are necessary because a strong evaluation must show not only successful operation, but also how the system behaves when the available workspace or fixture condition prevents feasible continuation.
+
+\section{Data Analysis and Graph Interpretation}
+\label{sec:data-analysis-graph-interpretation}
+
+\subsection{Overall Time Performance}
+\label{subsec:overall-time-performance}
+\label{sec:comparison-with-manual-programming}
+
+The main performance question is whether automation reduces the complete process effort. For this reason, the first comparison uses total process time rather than execution time alone. Across the 48 manual workflow trials, the average preparation time is \SI{301.0}{\second}, the average execution time is \SI{40.5}{\second}, and the average total process time is \SI{341.5}{\second}. Across the 48 automated workflow trials, the average preparation time is \SI{11.1}{\second}, the average execution time is \SI{69.7}{\second}, and the average total process time is \SI{80.7}{\second}.
+
+These values show an important engineering trade-off. The automated workflow does not minimise every simulated robot movement. In fact, its average execution time is higher because the generated process includes structured approach motions, validation-driven transitions, and additional handling steps in complex scenarios. However, the preparation time decreases from \SI{301.0}{\second} to \SI{11.1}{\second} on average. As shown in Figure~\ref{fig:ch6-total-process-time}, this preparation-time reduction dominates the complete process result and reduces the average total process time from \SI{341.5}{\second} to \SI{80.7}{\second}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{01_total_process_time_with_preparation.png}
+    \caption{Comparison of mean total process time including preparation for manual and automated workflows. The figure separates preparation time and simulated execution time, showing that the automated workflow reduces the total process time mainly by reducing preparation effort.}
+    \label{fig:ch6-total-process-time}
+\end{figure}
+
+Figure~\ref{fig:ch6-total-process-time} supports the main hypothesis of this thesis. The relevant improvement is not that the robot always moves faster in the automated workflow; rather, the system avoids the large manual preparation effort required for waypoint and sequence adaptation. The average total-time reduction is approximately \SI{76.4}{\percent}, calculated from the manual and automated total process times. The average preparation-time reduction is even larger, approximately \SI{96.3}{\percent}. This indicates that the primary benefit of the proposed system lies in reducing engineering effort before execution.
+
+\subsection{Effect of Workpiece Position}
+\label{subsec:effect-workpiece-position}
+
+The position-change scenario evaluates whether the workflow remains efficient when the initial placement of the workpiece changes. The two placement conditions differ in reachability difficulty. Plane~A represents the easier placement condition, while Plane~B introduces stronger workspace and fixture constraints. If a workflow is highly sensitive to initial placement, the process time should increase significantly when moving from Plane~A to Plane~B.
+
+The measured averages show that the automated workflow is less sensitive to this position change. In the automated case, the average total process time increases from \SI{74.5}{\second} for Plane~A to \SI{87.0}{\second} for Plane~B. This is an increase of approximately \SI{16.8}{\percent}. In the manual workflow, the average total process time increases from \SI{180.5}{\second} to \SI{502.4}{\second}, corresponding to an increase of approximately \SI{178.3}{\percent}. Figure~\ref{fig:ch6-position-effect} shows this difference directly.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{03_effect_workpiece_position_total_process_time.png}
+    \caption{Effect of initial workpiece position on mean total process time for manual and automated workflows. Plane~A and Plane~B denote two placement conditions with different reachability constraints.}
+    \label{fig:ch6-position-effect}
+\end{figure}
+
+The trend in Figure~\ref{fig:ch6-position-effect} demonstrates that the manual workflow is strongly affected by position changes because a new placement requires additional human reasoning, waypoint adaptation, and sequence verification. The automated workflow is also affected, but the increase is much smaller because the changed placement is handled through parameterised planning. This result supports the adaptability objective defined in Chapter~\ref{ch:system-concept-methodology}. It also explains why total process time is the more meaningful metric: position changes influence both preparation and execution, not only robot runtime.
+
+\subsection{Regrip and Opposite-Side Workflow Complexity}
+\label{subsec:regrip-opposite-side-analysis}
+
+Regripping is not interpreted as an error in this evaluation. It is a planned response to reachability and orientation constraints. In Side~A direct bending, the selected face is accessible from the initial orientation, so the workflow normally avoids intermediate regripping. In Side~E opposite-side bending, the sheet must be flipped and regripped because the required face is initially inaccessible. Regrip actions therefore increase workflow complexity, but they also enable tasks that would otherwise be infeasible.
+
+The relationship between regrip count and process time is visible in the constrained placement cases. A regrip adds at least one additional sequence of approach, release, retreat, re-approach, grip confirmation, and continuation motion. For this reason, scenarios with higher regrip counts are expected to have longer execution times. Figure~\ref{fig:ch6-regrip-count} shows the mean regrip count grouped by workflow and placement condition.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{05_regrip_count_by_workflow_position.png}
+    \caption{Mean regrip count for manual and automated workflows under different workpiece placement conditions. The count excludes the initial pickup and represents intermediate regrips required to maintain reachability and orientation feasibility.}
+    \label{fig:ch6-regrip-count}
+\end{figure}
+
+Figure~\ref{fig:ch6-regrip-count} shows that constrained placement increases the need for regripping. The automated workflow has a low mean regrip count in Plane~A and a clearly higher value in Plane~B. This is consistent with the time results in Figure~\ref{fig:ch6-position-effect}: Plane~B is more difficult, and additional regrip actions increase execution time. The conclusion is therefore not that regripping is undesirable in itself. Instead, the result shows that regripping is the mechanism by which the system preserves feasibility when direct handling is not sufficient.
+
+The same reasoning applies to Side~E. Direct bending cannot be used because the required face is not available to the press-brake tool. The flip sequence changes the face orientation, and the regrip establishes a new grasp that is compatible with the subsequent bend. The measured increase in execution time for complex workflows is therefore technically justified by the added manipulation steps. This is an important distinction: longer execution time in Side~E does not indicate inefficient planning alone; it reflects a physically necessary handling sequence within the defined cell.
+
+\subsection{Planning-Time Interpretation}
+\label{subsec:planning-time-interpretation}
+
+Planning time is evaluated as a secondary metric because it represents computational overhead rather than operator effort or robot runtime. The automated feasibility trials show that planning remains below one second on average in all evaluated scenario groups. The nominal case requires approximately \SI{0.42}{\second} on average, arbitrary initial orientation requires \SI{0.48}{\second}, the workspace-constrained case requires \SI{0.54}{\second}, the regrip-required case requires \SI{0.58}{\second}, and the opposite-side workflow requires approximately \SI{0.61}{\second}. The failure-prone case averages approximately \SI{0.46}{\second} because infeasible continuation is detected without completing a longer motion sequence.
+
+These values show that computational planning time is not the limiting factor in the evaluated system. The practical benefit comes from reducing manual preparation time, while the practical cost appears mainly in additional simulated execution time for regrip and flip operations. For this reason, planning time is discussed as evidence of computational feasibility, but it is not used as the primary productivity metric.
+
+\section{Requirement Verification}
+\label{sec:requirement-verification}
+
+The requirement verification links the measured outcomes to the functional, non-functional, and software requirements defined in Chapter~\ref{ch:system-concept-methodology}. Tables~\ref{tab:ch6-functional-verification} and~\ref{tab:ch6-nfr-sr-verification} summarise the verification logic. Requirements that are mainly implementation-based are still evaluated here by linking them to the scenario in which the implemented behaviour becomes observable.
+
+\input{chapters/tables/tab_ch6_functional_verification.tex}
+\input{chapters/tables/tab_ch6_nfr_sr_verification.tex}
+
+The verification shows that the strongest evidence is available for automated program generation, preparation-time reduction, direct bending, orientation handling, regrip insertion, and simulated execution in nominal conditions. The weaker evidence appears in opposite-side and failure-prone scenarios, where the system can identify and stop unsafe continuation but cannot always recover to a completed process. This distinction is important for an honest evaluation: safe failure handling supports the validation requirements, but it does not remove the need for improved recovery logic.
+
+\section{Success and Failure Analysis}
+\label{sec:success-failure-analysis}
+
+The success and failure analysis focuses on the automated feasibility trials because these trials directly test whether the generated workflow completes under different scenario conditions. Each scenario consists of ten repeated runs. Figure~\ref{fig:ch6-success-failure} is introduced here because it summarises the boundary between validated operation and unresolved constraints.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{07_success_failure_rate_comparison.png}
+    \caption{Automated success and failure rate across six feasibility scenarios. Each scenario contains ten repeated runs and is classified according to completion, failure, or controlled-stop behaviour.}
+    \label{fig:ch6-success-failure}
+\end{figure}
+
+As shown in Figure~\ref{fig:ch6-success-failure}, the nominal feasible bending case, arbitrary initial orientation case, workspace-constrained configuration, and regrip-required bending case each achieve 100\% success in the ten-run evaluation. These results indicate that the implemented pipeline is stable when the scenario remains within the intended planning envelope. The regrip-required case is particularly important because it shows that regrip insertion is not only implemented, but also executable in the tested conditions.
+
+The opposite-side workflow achieves 90\% success, with 9 of 10 runs completing successfully. The failed run is not interpreted as uncontrolled system behaviour. It represents a case where the workflow encounters a fixture or workspace constraint after partial planning and cannot continue to a valid completion. This result is significant because Side~E is more complex than Side~A: it requires flipping, regripping, revalidation, and continuation from a changed sheet orientation. The 90\% success rate therefore validates the implemented concept, while also showing that opposite-side recovery remains less robust than direct bending.
+
+The failure-prone scenario achieves 80\% success, with 8 of 10 runs completed and 2 unresolved cases stopped. These failures define the boundary of the current implementation. In both cases, the system prevents continuation rather than forcing an infeasible motion. This is why controlled stops are interpreted as system safety success but execution failure. From an evaluation perspective, this behaviour is preferable to uncontrolled continuation, but it still shows that the current system requires stronger recovery strategies for difficult boundary cases.
+
+\section{Gap Analysis}
+\label{sec:gap-analysis}
+
+The evaluation confirms several strengths. First, the preparation-time reduction is substantial: the average automated preparation time is \SI{11.1}{\second}, compared with \SI{301.0}{\second} for the manual workflow. This directly supports the objective of reducing manual programming effort. Second, the automated workflow remains much less sensitive to workpiece position changes. The total process time increases by approximately \SI{16.8}{\percent} from Plane~A to Plane~B in the automated workflow, while the manual workflow increases by approximately \SI{178.3}{\percent}. Third, the automated feasibility trials show full success in the nominal, orientation, workspace-constrained, and regrip-required scenario groups.
+
+However, the evaluation also reveals clear gaps. The first gap is that physical bending quality is not validated. The chapter evaluates simulated robot-program feasibility, but it does not measure bend angle, springback, deformation, real gripper slip, or forming force. Therefore, the results support simulation-based program generation but not production-ready bending accuracy.
+
+The second gap is the reduced robustness of the opposite-side workflow. Side~E achieves 9 successful runs out of 10, while the nominal and regrip-required cases achieve 10 out of 10. This shows that flipping and regripping are implemented successfully in most cases, but the workflow is more sensitive to fixture and workspace constraints than direct bending.
+
+The third gap is limited recovery in failure-prone conditions. The system correctly stops unresolved cases, but an 80\% success rate means that boundary conditions still exceed the recovery capability of the current planner. The system detects the problem, which is positive for safety, but it does not always find an alternative feasible strategy.
+
+The fourth gap concerns the manual-versus-automated comparison. The measured time reduction is strong, but the evaluation does not isolate operator learning effects, multiple operator skill levels, or long-term usability over a large workpiece family. The result therefore supports reduced workflow effort in the evaluated scenarios, but it should not be interpreted as a complete human-factors validation.
+
+The fifth gap is collision-free industrial deployment. The virtual execution verifies generated motion under the implemented simulation assumptions, but it does not replace physical commissioning, calibrated cell modelling, or certified safety validation. This limitation is consistent with the scope of the thesis, but it remains essential for future transfer to a real cell.
+
+\section{Improvement Plan}
+\label{sec:improvement-plan}
+
+The improvement plan follows directly from the observed gaps.
+
+From a technical perspective, the first priority is stronger recovery for Side~E and constrained placement cases. The current workflow can detect infeasible continuation, but it should be extended with a broader regrip search and alternative flip approaches when the first strategy fails. This would address the observed 90\% success rate in opposite-side bending and improve robustness under fixture constraints.
+
+The second technical improvement is collision-aware path validation. The implemented system validates reachability and workflow feasibility within the virtual cell, but full collision checking would improve confidence before physical deployment. This improvement should be integrated before the command-dispatch stage so that a motion is rejected or replanned before execution.
+
+The third technical improvement is sensor-based pose correction. Position-change trials show that placement affects process time and difficulty. A perception or feedback mechanism could reduce dependence on assumed sheet pose and allow the system to correct deviations before planning. This would strengthen both NFR-05 and the practical transferability of the system.
+
+From a validation perspective, the next step is to increase the number and diversity of trials. Each major scenario should be repeated across more workpiece dimensions, bend-side combinations, placement conditions, and regrip configurations. The current evaluation is sufficient for simulation-based thesis validation, but larger trial matrices would allow stronger claims about robustness.
+
+Physical validation should also be added in future work. Such validation must measure bend angle accuracy, springback, gripper slip, sheet deformation, cycle repeatability, and safety behaviour on real hardware. Without these measurements, the system should continue to be described as simulation-validated rather than production-validated.
+
+Finally, the evaluation should be made more granular. Execution time should be separated into approach, pickup, transfer, regrip, flip, bending-positioning, retreat, and unloading components. This would make it easier to identify which part of the workflow causes the largest time increase in complex scenarios. Similarly, manual preparation trials should include multiple operators to evaluate whether the time reduction remains stable across different skill levels.
+
+\section{Summary of Findings}
+\label{sec:evaluation-summary-findings}
+
+The evaluation supports the thesis hypothesis within the defined simulation-based scope. The automated workflow reduces average preparation time from \SI{301.0}{\second} to \SI{11.1}{\second} and reduces average total process time from \SI{341.5}{\second} to \SI{80.7}{\second}. The main benefit is therefore not faster robot motion in every case, but the removal of manual waypoint and sequence preparation effort.
+
+Scenario analysis shows that the automated system handles nominal Side~A bending, geometry variation, position changes, orientation variation, and regrip-required cases within the evaluated conditions. Position changes affect the automated workflow much less than the manual workflow, which demonstrates the value of parameterised planning. Regrip analysis further shows that additional handling steps increase execution time, but they are necessary to maintain feasibility in constrained and opposite-side workflows.
+
+The success and failure analysis provides a balanced result. Nominal, orientation, workspace-constrained, and regrip-required automated scenarios complete successfully in all ten evaluated runs. The Side~E opposite-side workflow completes in 9 of 10 runs, while failure-prone conditions complete in 8 of 10 runs. Controlled stops are interpreted as safe system behaviour, but they remain execution failures because the process objective is not completed.
+
+Overall, the system demonstrates a clear reduction in preparation effort and feasible simulated execution for the tested workflow classes. At the same time, the evaluation identifies remaining gaps in physical validation, collision-aware deployment, opposite-side robustness, and boundary-case recovery. These limitations do not invalidate the implemented concept; rather, they define the next development steps required before transferring the approach from simulation-based validation to industrial commissioning.

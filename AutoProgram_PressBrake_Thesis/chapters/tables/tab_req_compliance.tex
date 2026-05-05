@@ -1,63 +1,122 @@
-\begin{landscape}
-\begin{table}[htbp]
+﻿\begin{landscape}
+
+% =========================
+% FUNCTIONAL REQUIREMENTS (ONE PAGE)
+% =========================
+\begin{table}[p]
 \centering
 \normalsize
 \setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{0.88}
-\begin{tabularx}{\linewidth}{
-L{3.0cm}
-L{8.0cm}
-L{12.9cm}
-}
-\toprule
-\textbf{Requirement ID} & 
-\textbf{Requirement Description} & 
-\textbf{Implementation Mapping} \\
-\midrule
- 
-FR-00 & Overall system shall automate press brake bending process workflow & 
-Achieved through the integrated planning pipeline, including orientation strategy (Section~\ref{sec:workpiece_orientation}), grip planning (Section~\ref{sec:grip_planning}), regrip planning (Section~\ref{sec:regrip}), and trajectory generation (Section~\ref{sec:trajectory}) \\
- 
-FR-01 & Detect unreachable target poses before robot motion execution & 
-Implemented through reachability validation, pre-execution checking, and controlled error handling before motion dispatch (Section~\ref{Pre-Execution_Safety_Validation}) \\
- 
-FR-02 & Allow operator-side selection prior to program execution & 
-Achieved through bend-side selection, execution confirmation, and integrated operator interaction in the drag\&bot cockpit (Section~\ref{sec:operator-interface}) \\
- 
-FR-03 & Execute a regripping sequence when a target pose is unreachable within the current bend side & 
-Implemented via dynamic regrip planning and execution strategy based on kinematic feasibility evaluation (Section~\ref{sec:regrip}) \\
- 
-FR-04 & Handle workpiece orientation changes during program execution & 
-Handled through the three-level orientation strategy with admissibility validation and fallback mechanism (Section~\ref{sec:workpiece_orientation}) \\
- 
-FR-05 & Support for opposite-side bending operations & 
-Enabled through the flip workflow and reuse of the planning pipeline for secondary operations (Section~\ref{sec:opposite_side}) \\
- 
-FR-06 & Determine and apply suitable grip positions for each workpiece state & 
-Achieved through constraint-based grip planning with geometric filtering and force validation (Section~\ref{sec:grip_planning}) \\
- 
-FR-07 & Detect unsafe conditions and perform replanning or terminate execution & 
-Implemented through fixture pose validation, operator confirmation, replanning logic, and controlled-stop handling (Section~\ref{Pre-Execution_Safety_Validation}) \\
- 
-NFR-01 & Minimal operator interaction during normal execution & 
-Achieved through bend-side selection, execution confirmation, and integrated operator interaction in the drag\&bot cockpit (Section~\ref{sec:operator-interface}) \\
- 
-NFR-02 & Configurability without source code modification & 
-Achieved through centralized YAML configuration architecture and parameter-driven system design (Section~\ref{sec:configuration-architecture}) \\
- 
-NFR-03 & Clear warning and error messages for unsafe or infeasible conditions & 
-Implemented through warning generation, modal operator notifications, and controlled stop handling (Section~\ref{Pre-Execution_Safety_Validation}) \\
- 
-NFR-04 & Robust behaviour under repeated execution cycles & 
-Ensured through a structured modular pipeline and fixed execution order across system layers (Sections~\ref{sec:system_architecture}--\ref{sec:requirement_compliance}) \\
- 
-NFR-05 & Pose deviation tolerance within defined limits & 
-Implemented through configurable pose-deviation thresholds, fixture deviation checks, and controlled-stop handling (Section~\ref{Pre-Execution_Safety_Validation}) \\
- 
-\bottomrule
-\end{tabularx}
-\caption{Requirement compliance matrix linking system requirements to implementation components.}
-\label{tab:req_compliance}
-\end{table}
-\end{landscape}
+\renewcommand{\arraystretch}{1.08}
 
+\begin{tabular}{
+L{3.0cm}
+L{6.8cm}
+L{12.2cm}
+}
+\hline
+\textbf{Requirement ID} &
+\textbf{Requirement} &
+\textbf{Implementation Mapping} \\
+\hline
+
+FR-00 & Generate execution-ready drag\&bot programs from geometry, configuration data, and bend-side input &
+Integrated planning pipeline covering configuration handling, orientation (Section~\ref{sec:workpiece-orientation}), grip planning (Section~\ref{sec:grip-planning}), regrip planning (Section~\ref{sec:regrip}), and trajectory generation (Section~\ref{sec:trajectory}) \\
+\hline
+
+FR-01 & Detect unreachable or infeasible target poses before command dispatch &
+Reachability validation, pre-execution checks, and controlled error handling before motion dispatch (Section~\ref{sec:pre-execution-safety-validation}) \\
+\hline
+
+FR-02 & Allow bend-side selection before automated program generation or execution &
+Implemented through bend-side selection, execution confirmation, and drag\&bot cockpit interaction (Section~\ref{sec:operator-interface}) \\
+\hline
+
+FR-03 & Automatically insert a regrip operation when the next target pose is not directly reachable &
+Dynamic regrip planning and execution based on kinematic feasibility evaluation (Section~\ref{sec:regrip}) \\
+\hline
+
+FR-04 & Handle changed initial workpiece orientation through automatic validation and correction &
+Three-level orientation strategy with admissibility validation and fallback logic (Section~\ref{sec:workpiece-orientation}) \\
+\hline
+
+FR-05 & Generate the flip and reorientation workflow for opposite-side bending &
+Flip workflow, regrip handling, revalidation, and reuse of the planning pipeline for secondary operations (Section~\ref{sec:opposite-side}) \\
+\hline
+
+FR-06 & Determine grip positions that satisfy edge-clearance, hole-avoidance, and holding-force checks &
+Constraint-based grip planning with geometric filtering and force validation (Section~\ref{sec:grip-planning}) \\
+\hline
+
+FR-07 & Detect unsafe conditions and replan or stop execution before unsafe continuation &
+Fixture pose validation, operator confirmation, replanning logic, and controlled-stop handling (Section~\ref{sec:pre-execution-safety-validation}) \\
+
+\hline
+\end{tabular}
+
+\caption{Requirement compliance mapping -- functional requirements}
+\label{tab:req-compliance}
+
+\end{table}
+
+
+% =========================
+% NON-FUNCTIONAL + SYSTEM (ONE PAGE)
+% =========================
+\begin{table}[p]
+\centering
+\normalsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+
+\begin{tabular}{
+L{3.0cm}
+L{6.8cm}
+L{12.2cm}
+}
+\hline
+\textbf{Requirement ID} &
+\textbf{Requirement} &
+\textbf{Implementation Mapping} \\
+\hline
+
+NFR-01 & Limit operator interaction to configuration or input selection and execution confirmation &
+Bend-side selection, execution confirmation, and drag\&bot cockpit interaction (Section~\ref{sec:operator-interface}) \\
+\hline
+
+NFR-02 & Configure workpiece geometry, process settings, and safety parameters without source-code modification &
+Centralised \acs{yaml} configuration architecture, operator input updates, and parameter-driven system design (Section~\ref{sec:configuration-architecture}) \\
+\hline
+
+NFR-03 & Provide warning or error feedback before continuation for unsafe or infeasible conditions &
+Warning generation, modal operator notifications, and controlled stop handling (Section~\ref{sec:pre-execution-safety-validation}) \\
+\hline
+
+NFR-04 & Deterministic execution sequence for a given configuration &
+Structured modular pipeline and fixed execution order across system layers (Sections~\ref{sec:system-architecture}--\ref{sec:requirement-compliance}); repeated automated scenario classifications are evaluated in Chapter~\ref{ch:evaluation-validation} \\
+\hline
+
+NFR-05 & Check fixture pose deviations against defined positional and angular tolerance limits &
+Configurable pose-deviation thresholds, fixture deviation checks, and controlled-stop handling (Section~\ref{sec:pre-execution-safety-validation}) \\
+\hline
+
+\acs{sr}-01 & Connection to and validation in the configured drag\&bot virtual execution environment &
+Implemented through the configured drag\&bot virtual runtime environment for simulated execution and validation of generated robot programs (Sections~\ref{subsubsec:sr-01-virtual-execution-environment} and~\ref{sec:system-architecture}) \\
+\hline
+
+\acs{sr}-02 & Communication through the AnyRobot WebSocket execution interface &
+Implemented through the AnyRobot interface using authenticated WebSocket-based communication for motion commands, service calls, input-output operations, and execution feedback (Sections~\ref{subsubsec:sr-02-communication-interface-requirement} and~\ref{sec:runtime-communication-anyrobot}) \\
+\hline
+
+\acs{sr}-03 & Use of the configured \ac{tcp} identifier \texttt{project\_3\_tcp} for all motion targets &
+Implemented through the configured \ac{tcp} definition \texttt{project\_3\_tcp}, which is used consistently for generated poses and trajectory execution (Sections~\ref{subsubsec:sr-03-tool-centre-point-definition-requirement} and~\ref{sec:simulation-platform}) \\
+
+\hline
+\end{tabular}
+
+\caption{Requirement compliance mapping -- non-functional and system requirements}
+\label{tab:req-compliance-nfr-sr}
+
+\end{table}
+
+\end{landscape}

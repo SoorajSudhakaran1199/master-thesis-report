@@ -1,0 +1,72 @@
+﻿\begin{landscape}
+\begin{table}[p]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+
+\begin{tabularx}{\linewidth}{
+L{3.0cm}
+L{3.1cm}
+L{2.8cm}
+L{3.1cm}
+L{3.1cm}
+Y
+}
+\hline
+\textbf{Approach} &
+\textbf{Automation Level} &
+\textbf{Regrip Support} &
+\textbf{Adaptability} &
+\textbf{Runtime Integration} &
+\textbf{Main Limitation} \\
+\hline
+
+Manual / teach pendant &
+Low; poses and sequence are operator-defined. &
+Manual only. &
+Low; reteaching is required for changed geometry or placement. &
+Direct or platform-specific execution. &
+High programming effort and no integrated planning. \\
+\hline
+
+Offline programming tools &
+Partial; simulation-assisted sequence preparation. &
+Mostly manual or template-based. &
+Moderate; model and sequence updates are still required. &
+Tool-dependent. &
+Expert sequence definition and repeated adjustment remain necessary. \\
+\hline
+
+\acs{cad}/digital twin &
+Medium to high; model-based planning is possible. &
+Possible when modelled explicitly. &
+Moderate; depends on calibrated and updated models. &
+External interfaces. &
+Model preparation and calibration dominate deployment effort. \\
+\hline
+
+Academic planners &
+High for isolated subproblems. &
+Often strong in isolated regrasp planners. &
+Narrow; usually scenario-specific. &
+Usually not industrial runtime. &
+Often not connected to an end-to-end industrial workflow. \\
+\hline
+
+Proposed approach &
+High within the defined simulation scope. &
+Automatic regrip decision and insertion. &
+High for evaluated geometry and placement changes. &
+drag\&bot + AnyRobot. &
+Simulation validation and rectangular-geometry scope. \\
+\hline
+
+\end{tabularx}
+
+\caption{Critical comparison of existing robotic programming and planning approaches with the proposed thesis approach.}
+\label{tab:critical-comparison-existing-approaches}
+\end{table}
+\end{landscape}
+
+\FloatBarrier

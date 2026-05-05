@@ -1,0 +1,23 @@
+\begin{lstlisting}[caption={Pseudocode for regrip decision and insertion logic.}, label={lst:regrip-decision}]
+Evaluate direct trajectory from current grasp to next bending pose
+if direct trajectory is feasible then
+    continue execution without regrip
+else
+    for each configured regrip orientation candidate do
+        update simulated workpiece pose for candidate orientation
+        determine admissible pickup orientation
+        compute feasible grip configuration
+        validate trajectory from regrip pose to bending pose
+
+        if all checks are feasible then
+            select candidate orientation
+            insert deposit, release, re-approach, grasp, and return actions
+            continue bending sequence
+        end if
+    end for
+end if
+
+if no regrip candidate is feasible then
+    trigger controlled stop and operator warning
+end if
+\end{lstlisting}

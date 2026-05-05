@@ -1,69 +1,92 @@
-\newcommand{\printthesissymbols}{%
+﻿\newcommand{\printthesissymbols}{%
   \chapter*{List of Symbols}%
   \addcontentsline{toc}{chapter}{List of Symbols}%
-  \begin{longtable}{@{}L{3.0cm} l L{10.8cm}@{}}
-    $A_{\text{cup}}$ & : & Contact area of one suction cup\tabularnewline
-    $a_{xy}$ & : & Resultant dynamic acceleration in the horizontal plane\tabularnewline
-    $a_z$ & : & Dynamic acceleration in the vertical direction\tabularnewline
-    $\alpha$ & : & Euler angle corresponding to rotation about the Z-axis in the ZYX convention\tabularnewline
-    $\beta$ & : & Euler angle corresponding to rotation about the Y-axis in the ZYX convention\tabularnewline
-    $d_{\text{cup}}$ & : & Diameter of one suction cup\tabularnewline
-    $d_{\text{face}}$ & : & Reference-face angular offset used for orientation correction\tabularnewline
-    $D$ & : & Detectability rating in the FMEA\tabularnewline
-    $\Delta_{\text{ang}}$ & : & Maximum angular deviation between current and reference fixture poses\tabularnewline
-    $\Delta_{\text{pos}}$ & : & Euclidean positional deviation between current and reference fixture poses\tabularnewline
-    $\Delta P$ & : & Pressure differential between ambient pressure and vacuum pressure\tabularnewline
-    $\Delta RX$ & : & Rotational deviation about the X-axis\tabularnewline
-    $\Delta RY$ & : & Rotational deviation about the Y-axis\tabularnewline
-    $\Delta RZ$ & : & Rotational deviation about the Z-axis\tabularnewline
-    $\Delta x$ & : & Positional deviation in the X direction\tabularnewline
-    $\Delta y$ & : & Positional deviation in the Y direction\tabularnewline
-    $\Delta z$ & : & Positional deviation in the Z direction\tabularnewline
-    $\text{dest}$ & : & Destination field used during authentication\tabularnewline
-    $\eta$ & : & Efficiency factor accounting for leakage and surface conditions\tabularnewline
-    $F_{\text{required}}$ & : & Required holding force under gravitational and dynamic loading\tabularnewline
-    $F_{\text{vacuum}}$ & : & Available vacuum holding force\tabularnewline
-    $g$ & : & Gravitational acceleration\tabularnewline
-    $\gamma$ & : & Euler angle corresponding to rotation about the X-axis in the ZYX convention\tabularnewline
-    $\text{id\_string}$ & : & Interface identifier used during authentication\tabularnewline
-    $\lambda$ & : & Interpolation parameter ranging from 0 to 1\tabularnewline
-    $\text{level}$ & : & Access level string used during authentication\tabularnewline
-    $m$ & : & Mass of the handled workpiece\tabularnewline
-    $\mathrm{MAC}$ & : & Message authentication code generated for the AnyRobot authentication handshake\tabularnewline
-    $n$ & : & Number of active suction cups\tabularnewline
-    $\text{nonce}$ & : & Fixed nonce used during authentication\tabularnewline
-    $O$ & : & Occurrence rating in the FMEA\tabularnewline
-    $\parallel$ & : & Concatenation operator\tabularnewline
-    $\mathbf{p}(\lambda)$ & : & Interpolated translational position along a trajectory segment\tabularnewline
-    $\mathbf{p}_s$ & : & Translational component of the start pose\tabularnewline
-    $\mathbf{p}_t$ & : & Translational component of the target pose\tabularnewline
-    $R$ & : & Rotation matrix\tabularnewline
-    $R_{\text{new}}$ & : & Rotation matrix after applying the reference-face offset correction\tabularnewline
-    $R_{\text{raw}}$ & : & Raw rotation matrix from the tracked pose\tabularnewline
-    $R_x, R_y, R_z$ & : & Elementary rotation matrices about the X-, Y-, and Z-axes\tabularnewline
-    $R_{ij}$ & : & Element of a rotation matrix in row $i$ and column $j$\tabularnewline
-    $\mathrm{RPN}$ & : & Risk Priority Number in the FMEA\tabularnewline
-    $RX$ & : & Rotation about the X-axis (\si{\degree} or \si{\radian}, depending on context)\tabularnewline
-    $RX'$ & : & Corrected or fallback rotation about the X-axis\tabularnewline
-    $RY$ & : & Rotation about the Y-axis (\si{\degree} or \si{\radian}, depending on context)\tabularnewline
-    $RY'$ & : & Corrected or fallback rotation about the Y-axis\tabularnewline
-    $RZ$ & : & Rotation about the Z-axis (\si{\degree} or \si{\radian}, depending on context)\tabularnewline
-    $RZ'$ & : & Corrected or fallback rotation about the Z-axis\tabularnewline
-    $RZ_{\max}$ & : & Upper admissible limit for rotation about the Z-axis\tabularnewline
-    $RZ_{\min}$ & : & Lower admissible limit for rotation about the Z-axis\tabularnewline
-    $S$ & : & Severity rating in the FMEA\tabularnewline
-    $SF$ & : & Safety factor for the required holding force\tabularnewline
-    $\mathrm{SHA\text{-}512}$ & : & Hashing function used for generating the authentication token\tabularnewline
-    $\text{secret}$ & : & Shared runtime secret used during authentication\tabularnewline
-    $s(u)$ & : & Minimum-jerk progression function\tabularnewline
-    $\mathbf{T}_s$ & : & Start pose of a trajectory segment\tabularnewline
-    $\mathbf{T}_t$ & : & Target pose of a trajectory segment\tabularnewline
-    $t$ & : & Session timestamp used during authentication\tabularnewline
-    $u$ & : & Normalised progression variable for minimum-jerk interpolation\tabularnewline
-    $x$  & : & Translation along the X-axis (\si{\metre})\tabularnewline
-    $x_{\text{th}}$ & : & Threshold value for workspace classification in the X direction (\si{\metre})\tabularnewline
-    $y$  & : & Translation along the Y-axis (\si{\metre})\tabularnewline
-    $y_{\text{th}}$ & : & Threshold value for workspace classification in the Y direction (\si{\metre})\tabularnewline
-    $z$  & : & Translation along the Z-axis (\si{\metre})\tabularnewline
+  \begin{longtable}{@{}L{3.0cm}L{9.8cm}L{2.2cm}@{}}
+    \textbf{Symbol} & \textbf{Description} & \textbf{Unit} \\
+    \endfirsthead
+
+    \textbf{Symbol} & \textbf{Description} & \textbf{Unit} \\
+    \endhead
+
+    \endfoot
+
+    \endlastfoot
+
+    $A_{\text{cup}}$ & Contact area of one suction cup & \si{\square\metre}\tabularnewline
+    $a_{xy}$ & Resultant dynamic acceleration in the horizontal plane & \si{\metre\per\square\second}\tabularnewline
+    $a_z$ & Dynamic acceleration in the vertical direction & \si{\metre\per\square\second}\tabularnewline
+    $\alpha$ & Euler angle corresponding to rotation about the Z-axis in the ZYX convention & \si{\radian}\tabularnewline
+    $\beta$ & Euler angle corresponding to rotation about the Y-axis in the ZYX convention & \si{\radian}\tabularnewline
+    $d_{\text{cup}}$ & Diameter of one suction cup & \si{\metre}\tabularnewline
+    $d_{\text{face}}$ & Reference-face angular offset used for orientation correction & \si{\radian}\tabularnewline
+    $D$ & Detectability rating in the \acs{fmea} & n.u.\tabularnewline
+    $\Delta_{\text{ang}}$ & Maximum angular deviation between current and reference fixture poses & \si{\radian}\tabularnewline
+    $\Delta_{\text{pos}}$ & Euclidean positional deviation between current and reference fixture poses & \si{\metre}\tabularnewline
+    $\Delta P$ & Pressure differential between ambient pressure and vacuum pressure & \si{\pascal}\tabularnewline
+    $\Delta RX$ & Rotational deviation about the X-axis & \si{\radian}\tabularnewline
+    $\Delta RY$ & Rotational deviation about the Y-axis & \si{\radian}\tabularnewline
+    $\Delta RZ$ & Rotational deviation about the Z-axis & \si{\radian}\tabularnewline
+    $\Delta x$ & Positional deviation in the X direction & \si{\metre}\tabularnewline
+    $\Delta y$ & Positional deviation in the Y direction & \si{\metre}\tabularnewline
+    $\Delta z$ & Positional deviation in the Z direction & \si{\metre}\tabularnewline
+    $\text{client}$ & Client identifier used during authentication & n.u.\tabularnewline
+    $\text{dest}$ & Destination field used during authentication & n.u.\tabularnewline
+    $\text{end}$ & Validity end field used during authentication & n.u.\tabularnewline
+    $\eta$ & Efficiency factor accounting for leakage and surface conditions & n.u.\tabularnewline
+    $F_{\text{required}}$ & Required holding force under gravitational and dynamic loading & \si{\newton}\tabularnewline
+    $F_{\text{vacuum}}$ & Available vacuum holding force & \si{\newton}\tabularnewline
+    $g$ & Gravitational acceleration & \si{\metre\per\square\second}\tabularnewline
+    $\gamma$ & Euler angle corresponding to rotation about the X-axis in the ZYX convention & \si{\radian}\tabularnewline
+    $\lambda$ & Interpolation parameter ranging from 0 to 1 & n.u.\tabularnewline
+    $\text{level}$ & Access level string used during authentication & n.u.\tabularnewline
+    $m$ & Mass of the handled workpiece & \si{\kilogram}\tabularnewline
+    $\mathrm{MAC}$ & Message authentication code generated for the AnyRobot authentication handshake & n.u.\tabularnewline
+    $n$ & Number of active suction cups & n.u.\tabularnewline
+    $N$ & Number of trials used for an average calculation & n.u.\tabularnewline
+    $N_{\mathrm{failure}}$ & Number of failed trials in a scenario & n.u.\tabularnewline
+    $N_{\mathrm{success}}$ & Number of successful trials in a scenario & n.u.\tabularnewline
+    $N_{\mathrm{total}}$ & Total number of evaluated trials in a scenario & n.u.\tabularnewline
+    $O$ & Occurrence rating in the \acs{fmea} & n.u.\tabularnewline
+    $\mathbf{p}(\lambda)$ & Interpolated translational position along a trajectory segment & \si{\metre}\tabularnewline
+    $\mathbf{p}_s$ & Translational component of the start pose & \si{\metre}\tabularnewline
+    $\mathbf{p}_t$ & Translational component of the target pose & \si{\metre}\tabularnewline
+    $R$ & Rotation matrix & n.u.\tabularnewline
+    $R_{\text{new}}$ & Rotation matrix after applying the reference-face offset correction & n.u.\tabularnewline
+    $R_{\text{raw}}$ & Raw rotation matrix from the tracked pose & n.u.\tabularnewline
+    $R_x, R_y, R_z$ & Elementary rotation matrices about the X-, Y-, and Z-axes & n.u.\tabularnewline
+    $R_{ij}$ & Element of a rotation matrix in row $i$ and column $j$ & n.u.\tabularnewline
+    $\text{rand}$ & Random value used during authentication & n.u.\tabularnewline
+    $\mathrm{RPN}$ & Risk Priority Number in the \acs{fmea} & n.u.\tabularnewline
+    $R_{\mathrm{failure}}$ & Failure rate for an evaluated scenario & \si{\percent}\tabularnewline
+    $R_{\mathrm{success}}$ & Success rate for an evaluated scenario & \si{\percent}\tabularnewline
+    $RX$ & Rotation about the X-axis & \si{\radian}\tabularnewline
+    $RX'$ & Corrected or fallback rotation about the X-axis & \si{\radian}\tabularnewline
+    $RY$ & Rotation about the Y-axis & \si{\radian}\tabularnewline
+    $RY'$ & Corrected or fallback rotation about the Y-axis & \si{\radian}\tabularnewline
+    $RZ$ & Rotation about the Z-axis & \si{\radian}\tabularnewline
+    $RZ'$ & Corrected or fallback rotation about the Z-axis & \si{\radian}\tabularnewline
+    $RZ_{\max}$ & Upper admissible limit for rotation about the Z-axis & \si{\radian}\tabularnewline
+    $RZ_{\min}$ & Lower admissible limit for rotation about the Z-axis & \si{\radian}\tabularnewline
+    $S$ & Severity rating in the \acs{fmea} & n.u.\tabularnewline
+    $SF$ & Safety factor for the required holding force & n.u.\tabularnewline
+    $\mathrm{SHA\text{-}512}$ & Hashing function used for generating the authentication token & n.u.\tabularnewline
+    $\text{secret}$ & Shared runtime secret used during authentication & n.u.\tabularnewline
+    $s(u)$ & Minimum-jerk progression function & n.u.\tabularnewline
+    $c_{\mathrm{regrip}}$ & Number of intermediate regrip operations after the initial pickup & n.u.\tabularnewline
+    $t_{\mathrm{exec}}$ & Simulated execution time of a prepared workflow & \si{\second}\tabularnewline
+    $t_{\mathrm{plan}}$ & Automated planning time from planning trigger to accepted or rejected sequence & \si{\second}\tabularnewline
+    $t_{\mathrm{prep}}$ & Preparation time before simulated execution starts & \si{\second}\tabularnewline
+    $t_{\mathrm{total}}$ & Total process time calculated from preparation and execution time & \si{\second}\tabularnewline
+    $\mathbf{T}_s$ & Start pose of a trajectory segment & n.u.\tabularnewline
+    $\mathbf{T}_t$ & Target pose of a trajectory segment & n.u.\tabularnewline
+    $t$ & Session timestamp used during authentication & \si{\second}\tabularnewline
+    $u$ & Normalised progression variable for minimum-jerk interpolation & n.u.\tabularnewline
+    $x$ & Translation along the X-axis & \si{\metre}\tabularnewline
+    $x_i$ & Measured value of a quantity in trial $i$ & context-dependent\tabularnewline
+    $x_{\text{th}}$ & Threshold value for workspace classification in the X direction & \si{\metre}\tabularnewline
+    $\bar{x}$ & Arithmetic mean of a measured trial quantity & context-dependent\tabularnewline
+    $y$ & Translation along the Y-axis & \si{\metre}\tabularnewline
+    $y_{\text{th}}$ & Threshold value for workspace classification in the Y direction & \si{\metre}\tabularnewline
+    $z$ & Translation along the Z-axis & \si{\metre}\tabularnewline
   \end{longtable}%
 }

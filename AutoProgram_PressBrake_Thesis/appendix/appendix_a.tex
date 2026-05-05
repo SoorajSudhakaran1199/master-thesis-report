@@ -1,13 +1,91 @@
-\chapter{AI Prompt Log}
-\label{app:ai-prompt-log}
+\appendix
+\chapter*{Appendix}
+\addcontentsline{toc}{chapter}{Appendix}
+\label{app:supplementary-materials}
 
-The machine-readable prompt log required by the thesis guideline is provided in
-Listing~\ref{lst:ai-prompt-log}. Before final submission, this file should be
-completed with every prompt that materially supported language editing,
-formatting, structure review, or LaTeX-related work for the thesis.
+\setcounter{section}{0}
+\renewcommand{\thesection}{A.\arabic{section}}
+\renewcommand{\thesubsection}{A.\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{A.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
 
-\lstinputlisting[
-  basicstyle=\ttfamily\footnotesize,
-  caption={Machine-readable prompt log for AI-assisted thesis preparation.},
-  label={lst:ai-prompt-log}
-]{appendix/ai_prompt_log.txt}
+This appendix documents the AI-assisted material used during thesis preparation
+and provides supplementary evaluation and traceability information. In line
+with the applicable thesis guidelines, large software artefacts and
+machine-readable logs are retained in the electronic submission rather than
+reproduced in full in the printed appendix.
+
+\section{AI Usage Documentation}
+\label{app:ai-usage}
+
+Generative AI assistance was used in a limited and supportive capacity during
+document preparation. The support was restricted to language refinement,
+grammar correction, structure checking, formatting support, LaTeX assistance,
+and consistency review. It was not used to generate experimental data,
+measurement values, evaluation outcomes, system requirements, implementation
+logic, or scientific conclusions.
+
+All AI-assisted text and formatting suggestions were reviewed by the author
+before use. The author retained responsibility for the technical content,
+interpretation of results, and final thesis wording.
+
+\section{Prompt Log and Supporting Files}
+\label{app:prompt-log}
+
+A machine-readable prompt log is retained in the electronic submission as
+\texttt{appendix/ai\_prompt\_log.txt}. The log is written in a
+YAML-compatible plain-text structure and records the retained AI usage prompts,
+the AI tool, provider, model family, purpose, and associated files where
+applicable. Supporting thesis source files referenced by those entries are
+included in the submission package.
+
+\section{Supplementary Evaluation Documentation}
+\label{app:supplementary-evaluation}
+
+Chapter~\ref{ch:evaluation-validation} presents the simulation-based
+evaluation of the implemented system. The evaluation is based on repeated
+manual-versus-automated workflow trials and automated scenario trials covering
+nominal Side~A bending, opposite-side Side~E bending, geometry variation,
+workpiece position variation, regrip-required workflows, and failure-prone
+conditions. Table~\ref{tab:manual-vs-auto-trial-structure} summarises the
+evaluation groups and the corresponding measured quantities.
+
+\input{chapters/tables/tab_manual_vs_auto_trial_structure.tex}
+
+The table is included to make the measurement structure transparent without
+duplicating the full machine-readable trial records in the printed appendix.
+The complete numerical analysis and interpretation are provided in
+Chapter~\ref{ch:evaluation-validation}.
+
+\section{Requirement Traceability and Compliance Tables}
+\label{app:req-traceability-compliance}
+
+The following tables provide the detailed requirement traceability and
+implementation compliance mappings referenced from
+Chapters~\ref{ch:system-concept-methodology} to~\ref{ch:implementation}.
+They are placed in the appendix to keep the main thesis flow focused while
+preserving the audit trail between requirements, implementation modules, and
+validation activities. The mappings are aligned with the scenario-based
+verification presented in Chapter~\ref{ch:evaluation-validation}. Tables~\ref{tab:req-traceability-matrix}
+and~\ref{tab:req-traceability-matrix-nfr-sr} provide the traceability mapping,
+while Tables~\ref{tab:req-compliance} and~\ref{tab:req-compliance-nfr-sr}
+summarise the corresponding implementation compliance mapping.
+
+\input{chapters/tables/tab_req_traceability_matrix.tex}
+
+\input{chapters/tables/tab_req_compliance.tex}
+
+\section{Hardware Implementation Report}
+\label{app:hardware-implementation-report}
+
+The implemented system was evaluated in a configured virtual press-brake cell
+rather than on a physical production installation. This section records the
+hardware and platform configuration used for the simulation-based
+implementation so that the scope of the results remains transparent and
+consistent with Chapter~\ref{ch:evaluation-validation}.
+
+\input{chapters/tables/tab_hardware_implementation_report.tex}
+
+This configuration supports the reported simulation-based validation, but it
+does not replace physical commissioning. Physical robot validation, bend-angle
+measurement, gripper slip testing, forming-force assessment, and certified
+safety verification remain outside the scope of the present thesis.

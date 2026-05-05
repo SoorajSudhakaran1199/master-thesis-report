@@ -4,190 +4,222 @@
 
 \section{Fundamentals of Industrial Robotics}
 \label{sec:fundamentals-industrial-robotics}
-Industrial robots are a central part of modern manufacturing because they combine repeatability, precision, and the ability to perform physically demanding operations over long production cycles. The international standard ISO 8373 describes an industrial robot as a reprogrammable and multipurpose manipulator with three or more programmable axes \cite{ISO8373}. In practice, such systems are used for handling, assembly, welding, forming, and many other operations in which stable and repeatable motion is required.
+Industrial robots are central components of modern manufacturing systems, as they provide precise execution, reduce effort and processing time, and increase productivity and quality. According to international standards, industrial robots are reprogrammable and capable of performing multiple tasks with three or more programmable axes \cite{ISO8373}.
 
-A typical industrial robot consists of several actuated joints that provide the degrees of freedom (\acs{dof}) needed to position and orient an end-effector in three-dimensional space. The task-relevant reference point is usually defined by the \ac{tcp}, which links the robot motion to the physical tool or gripper. Forward and inverse kinematics describe the relationship between joint variables and the Cartesian pose of this reference point, forming the basis for motion planning and robot control \cite{craig2005robotics}.
+Such systems are widely used in manufacturing operations where stable and repeatable motion is required to ensure high productivity and precision. A typical industrial robot consists of several actuated joints that provide the \ac{dof} capability required to position and orient the end-effector in three-dimensional space. This task is usually defined by specifying the pose of the \ac{tcp}, which represents the reference point for robot motion execution, while the robot flange serves as the physical interface to which the tool is attached \cite{craig2005robotics}.
 
-Robot programming can be understood as a spectrum of abstraction levels. At the lower end, the operator or programmer explicitly defines poses, trajectories, and process sequences. At higher levels, the user specifies the intended task, while the system derives executable actions and motion commands. Industrial practice still relies heavily on manual and offline programming, but research has increasingly moved toward higher levels of abstraction, including task-level programming and skill-based approaches that reduce the need for detailed low-level motion specification \cite{Pan2012Survey,Kruger2019}.
+Robot programming can be understood across different levels of abstraction. At a lower level, the operator manually defines the program by specifying poses, trajectories, and process sequences. At a higher level, the user specifies only the desired output, while the system automatically derives and executes the required motion commands. In industrial practice, manual programming and offline programming are still widely used \cite{Pan2012Survey}. Research on higher-level and skill-based programming aims to reduce the need for low-level programming effort \cite{Kruger2019}.
 
-This shift is especially important for manufacturing tasks that are not simple repetitions of a fixed motion. In applications such as robotic sheet metal bending, the robot must handle changing workpiece geometry, limited workspace, tool access constraints, and possible reorientation steps. These characteristics make the task more demanding than conventional pick-and-place operations and motivate the need for a broader review of robot programming methods, press brake automation, and integrated planning approaches.
+This shift is particularly important for applications that require high repeatability, frequent adaptation to different workpieces, and operation in high-production environments. In applications such as robotic sheet metal bending, the robot must handle varying workpiece geometries, limited workspace, tool access constraints, and required reorientation steps. Consequently, the task becomes more complex and demanding than conventional pick-and-place operations, thereby motivating the need for advanced robot programming methods, press brake automation, and integrated planning approaches.
 
 \section{Sheet Metal Bending and Press Brake Systems}
 \label{sec:sheet-metal-bending-press-brake-systems}
-Sheet metal bending is a forming process in which a flat metal sheet is plastically deformed along one or more bend lines. In a press brake, the sheet is positioned between a punch and a die, and the bending result depends on tool geometry, material properties, sheet thickness, bend sequence, and applied force \cite{Pahl2007EngineeringDesign}. The process is common in industrial production because it can create a wide range of functional parts from relatively simple sheet blanks.
+Sheet metal bending is a simple manufacturing process where a sheet of metal is bent into the required shape through plastic deformation. Sheet metal forming processes are widely used in industrial manufacturing due to their ability to produce a variety of products with different geometrical shapes \cite{KalpakjianManufacturing2014}. In the case of press brake operations, sheet metal is positioned between the forming tools such as the punch and die.
 
-Figure~\ref{fig:press_brake_system} illustrates a typical robotic press brake setup, where an industrial robot is integrated with the bending machine to automate handling operations.
+Industrial robots have been used in modern manufacturing to perform activities such as handling materials, processing, and assembling parts without relying heavily on humans.\cite{Groover2016}
+Figure~\ref{fig:press-brake-system} illustrates a typical robotic press brake setup, where an industrial robot is integrated with the bending machine to automate handling operations.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/press_brake_system.png}
-\caption{Robotic press brake bending system with integrated robot handling (Source: \cite{acieta_press_brake}).}
-\label{fig:press_brake_system}
+\includegraphics[width=0.5\textwidth]{figures/press_brake_system.png}
+\caption[Robotic press brake bending system with integrated robot handling]{Robotic press brake bending system with integrated robot handling \cite{acieta_press_brake}.}
+\label{fig:press-brake-system}
 \end{figure}
 
-In automated press brake cells, the robot usually picks the flat sheet, positions it at the tooling, supports it during bending, reorients it between process steps, and unloads the final component. This automation can improve repeatability and reduce direct operator involvement, particularly in repetitive production settings \cite{Aomura2002RoboticBending}. However, the process is difficult to automate fully because each bend changes the physical shape of the part.
+In automated press brake cells, the robot typically picks the flat sheet, positions it at the tooling, supports it during bending, reorients it between process steps, and unloads the final component. This automation can improve repeatability and reduce direct operator involvement, particularly in repetitive production settings \cite{Aomura2002RoboticBending}. However, the process is difficult to fully automate because each bend alters the physical shape of the part, requiring regripping and repositioning, which in turn necessitate updated grip planning for subsequent process steps.
 
 \subsection{Process Characteristics and Automation Challenges}
 \label{subsec:process-characteristics-challenges}
-The changing geometry of the workpiece is one of the defining characteristics of sheet metal bending. A motion that is feasible before one bend may become infeasible after the sheet has been formed, because the part envelope, tool accessibility, and collision conditions have changed. Process planning must therefore consider the bend sequence, the accessibility of the tooling, and the handling strategy together rather than as isolated decisions \cite{Gupta1998SheetMetalBending}.
 
-For robotic handling, these process characteristics lead to several practical challenges. The robot must maintain a stable grasp, avoid collisions with the press brake and the partially formed workpiece, remain inside its reachable workspace, and preserve a suitable orientation for the next operation. In many cases, a single grasp is not sufficient for the full bending sequence, so the workpiece must be placed down and grasped again in a different configuration. These issues are introduced here as process-level constraints; the detailed planning problems of regripping, grasp selection, and trajectory generation are discussed later in Section~\ref{sec:robotic-sheet-metal-bending-system}.
+The changing geometry throughout the bending process is one of the defining characteristics of sheet metal bending. A motion that is feasible for one bend may become infeasible after the completion of a previous bending step, as the part envelope, tool accessibility, and boundary conditions change. Therefore, process planning must consider the bend sequence, tooling capability, and handling strategy jointly rather than as isolated decisions. These parameters must be continuously adapted in response to geometric changes during the process \cite{Gupta1998SheetMetalBending}.
+
+For robotic handling, these process characteristics introduce several practical challenges. The robot must maintain a stable grasp of the partially formed workpiece, operate within its reachable workspace, and preserve an appropriate orientation for subsequent operations. In many cases, a single grasp is not sufficient to complete the full bending sequence due to varying bending sides and reachability limitations. To address this, the workpiece must be temporarily placed down and regrasped in a different configuration. This requires the generation of additional trajectories and coordinated motion plans to ensure that the process can be completed without violating kinematic and reachability constraints.
+
+These issues are introduced here as process-level constraints; the detailed planning problems of regripping, grasp selection, and trajectory generation are discussed later in Section~\ref{sec:robotic-sheet-metal-bending-system}.
 
 \section{Manual and Teach Pendant Programming}
 \label{sec:manual-teach-pendant-programming}
-Manual programming with teach pendants is one of the most established methods for programming industrial robots. In this approach, an operator defines the robot motion by jogging the robot to desired positions or by entering Cartesian or joint coordinates. The resulting positions are stored as waypoints and executed in a defined sequence by the robot controller \cite{Siciliano2016Robotics}.
 
-Figure~\ref{fig:teach_pendant} illustrates a typical teach pendant interface used for manual robot programming.
+There are several methods for programming industrial robots in manufacturing environments. One common approach is manual programming using a teach pendant. In this approach, the operator defines the robot's desired positions by entering Cartesian or joint coordinates. These positions are stored as waypoints and executed in a predefined sequence, which must be arranged manually using a robot controller or through a virtual simulation environment \cite{Siciliano2016Robotics}.
+
+For this purpose, a robotic controller and \ac{hmi} devices, as shown in Figure~\ref{fig:teach-pendant}, or a virtual simulation environment are required. Teach pendant programming remains useful because it provides the operator with direct control over the robot and allows real-time verification through Cartesian movements or joint-based inputs via \acs{hmi} devices. For stable, repetitive, and well-defined tasks, this method is practical and reliable.
+
+However, when the process involves a large number of motion coordinates or requires frequent adaptation to new workpiece geometries and changing workpiece placements, significant limitations become apparent.
+
+Figure~\ref{fig:teach-pendant} illustrates a typical teach pendant interface used for manual robot programming.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.75\textwidth]{figures/teach_pendant.png}
-\caption{Teach pendant interface for manual robot programming (Source: own work).}
-\label{fig:teach_pendant}
+\caption{Teach pendant interface for manual robot programming.}
+\label{fig:teach-pendant}
 \end{figure}
 \FloatBarrier
 
-Teach pendant programming remains useful because it gives the operator direct control over the robot and allows immediate verification of individual motions. For stable, repetitive, and well-known tasks, this can be a practical and reliable method. Its limitations become more visible when the process requires many coordinated motions or frequent adaptation to new workpieces.
+\subsection{Limitations of Manual Teach Pendant Programming}
+\label{subsec:limitations-manual-teach-pendant-programming}
 
-\subsection{Limitations of Manual Programming}
-\label{subsec:limitations-manual-programming}
-The main limitation of manual programming is the amount of expert effort required. The operator must understand the robot coordinate system, tool frame, reachability limits, process constraints, and possible collision situations. As the number of waypoints grows, the programming task becomes slower and more dependent on individual experience.
+The main limitation of manual teach pendant programming is the high level of expert effort required. The operator must have a thorough understanding of robot kinematics, safety guidelines, coordinate systems, robot specifications, tool frames, reachability, and motion constraints.
 
-Manual programming is also poorly suited to frequent product changes. If the geometry of the workpiece changes, the robot program often has to be adapted or recreated, even when the process logic remains similar. This makes manual programming inefficient for flexible manufacturing environments with high part variation \cite{Pan2012Survey}. In addition, reachability, collision avoidance, and path quality are not automatically guaranteed; they must be checked and corrected by the programmer.
+As task complexity increases, the number of required waypoints also increases. To achieve smooth motion, many intermediate waypoints must be defined, which significantly increases programming effort. Consequently, the programming process becomes slower, highly dependent on individual expertise, and more time-consuming for program generation.
 
-\subsection{Challenges in Complex Manipulation Tasks}
-\label{subsec:challenges-complex-manipulation-tasks}
-Robotic sheet metal bending exposes these limitations clearly. The task is not a single transfer motion, but a sequence of handling, positioning, bending, reorientation, and possibly regripping steps. The operator must anticipate how the sheet will change after each bend and must define motions that remain feasible throughout the process.
+Manual programming also requires frequent reprogramming when the geometry of the workpiece changes. Even if the overall process logic remains similar, the robot program often needs to be adapted, which further increases effort. This makes manual programming inefficient for flexible, high-productivity environments with high part variation \cite{Pan2012Survey}. In addition, constraints related to reachability, safety, and path feasibility must be continuously verified, further increasing the complexity of the programming process.
 
-Regripping is particularly difficult to program manually because it requires coordination between placement, release, new grasp selection, and the next bending operation. Small changes in part dimensions or bend order can alter the required intermediate positions. As a result, manual programming can become time-consuming, difficult to reuse, and vulnerable to inconsistent decisions between operators.
 
 \subsection{Transition Towards Automated Programming}
 \label{subsec:transition-towards-automated-programming}
-The limitations of manual programming have encouraged the development of methods that raise the level of abstraction. Instead of manually defining every pose, engineers increasingly use virtual commissioning, offline programming, task-level programming, and rule-based planning to reduce direct interaction with the robot. These approaches do not remove all engineering effort, but they shift part of the work from manual waypoint teaching toward model-based planning and validation.
+
+Robotic sheet metal bending clearly highlights these limitations. The constraints of manual programming have motivated the development of approaches that increase the level of abstraction. Instead of manually defining every pose, engineers increasingly employ virtual commissioning, offline programming, task-level programming, and rule-based planning to reduce direct interaction with the robot.
+
+These approaches do not eliminate engineering effort entirely; however, they shift a significant portion of the workload from manual waypoint teaching to model-based planning and validation, thereby improving consistency, repeatability, and overall efficiency. These challenges have further led to the adoption of advanced programming strategies, particularly virtual commissioning and offline programming, which shift programming effort from the shop floor to a simulation-driven environment. The following section discusses these approaches in detail.
+
 
 \section{Offline Programming Approaches for Industrial Robots}
 \label{sec:offline-programming-approaches}
-Offline programming (\acs{olp}) enables robot programs to be prepared and tested in a virtual environment before they are executed on the physical robot. In contrast to teach pendant programming, \acs{olp} decouples programming from production, allowing engineers to develop, simulate, and validate robot tasks without occupying the real workcell \cite{Pan2012Survey}.
 
-Figure~\ref{fig:olp_environment} illustrates an offline programming environment, where a virtual model of the robot, tooling, and workcell is used to simulate and validate motion trajectories.
+\ac{olp} approaches enable robot programs to be prepared and tested in a virtual environment before execution on a physical robot. Engineers use \ac{cad} models and simulation tools to define robot motions and generate executable code. These models allow engineers to define paths, evaluate reachability, identify errors, and ensure compliance with safety guidelines. By shifting programming activities to a virtual simulation environment, setup time is reduced and trial-and-error during production is minimised \cite{Pan2012Survey}.
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.85\textwidth]{figures/olp_environment.png}
-\caption{Offline robot programming environment with CAD-based simulation (Source: \cite{RoboDK2024}).}
-\label{fig:olp_environment}
-\end{figure}
+Recent developments in industrial robotics emphasize flexibility and rapid adaptation to new tasks. Offline programming supports these requirements by enabling efficient reprogramming and validation without interrupting ongoing production processes. In applications such as robotic sheet metal bending, offline programming plays a critical role due to the complexity of the process. Each bending operation changes the geometry of the workpiece, requiring careful re-planning of robot motion. Simulation-based validation in offline programming environments allows engineers to evaluate these constraints prior to deployment, thereby improving reliability and process efficiency.
 
-\acs{olp} systems commonly use geometric models of the robot, tooling, fixtures, and surrounding equipment. These models allow engineers to evaluate reachability, motion paths, and possible collisions before deployment. In this way, offline programming can reduce floor trial-and-error and support earlier detection of workcell or path problems before production is interrupted \cite{Pan2012Survey,RoboDK2024}.
+Despite these advantages, offline programming does not fully resolve the programming challenges. The quality of the generated program depends on the accuracy of the virtual model and its calibration with the physical system. Deviations between the virtual and real environments may require additional adjustments during commissioning. Furthermore, many offline programming tools still require the engineer to manually define task sequences, waypoints, and process logic. Although the virtual environment can validate programs without a physical robot, it does not inherently determine optimal grasp positions or automatically adapt to frequent changes, often requiring reprogramming.
+
+These limitations reduce the effectiveness of conventional offline programming for processes such as robotic sheet metal bending, where task geometry and constraints evolve continuously during execution.
 
 \subsection{Digital Twin and Simulation-Based Programming}
 \label{subsec:digital-twin-simulation-programming}
-Digital twin concepts extend simulation-based programming by linking the virtual representation more closely to the physical system. A digital twin can support monitoring, validation, and adjustment by combining model-based simulation with data from the real process. In manufacturing, digital twin approaches have been discussed as an important element of smart production systems because they support analysis, synchronisation, and cyber-physical integration \cite{Tao2019}.
 
-In industrial robotics, tools such as RoboDK, ABB RobotStudio, KUKA.Sim, and drag\&bot provide virtual environments for programming and validation. They support tasks such as visualising the workcell, checking reachability, identifying collisions, and generating executable robot code. These capabilities make simulation-based programming valuable for complex cells where direct trial-and-error programming would be slow or risky.
+The digital twin concept extends offline programming by linking a virtual representation with the physical robot system. A digital twin supports monitoring, validation, and adjustment by combining model-based simulation with data from the real process. In manufacturing, digital twin approaches are considered part of smart production systems, as they support analysis, synchronization, and cyber-physical integration \cite{Tao2021DigitalTwin}.
 
-\subsection{Limitations of Offline Programming}
-\label{subsec:limitations-offline-programming}
-Despite these advantages, offline programming does not automatically solve the programming problem. The quality of the generated program depends strongly on the accuracy of the virtual model. Differences between the simulated workcell and the real cell can lead to deviations during execution, requiring calibration or manual correction.
+In industrial robotics, tools such as RoboDK, ABB RobotStudio, KUKA.Sim, and drag\&bot provide virtual environments for programming and validation. These software platforms include robot models that represent kinematic behaviour and enable the detection of errors within the simulation environment. Such capabilities make simulation-based programming particularly valuable for complex robotic cells, where direct trial-and-error programming would be inefficient or pose operational risks.
 
-Another limitation is that many \acs{olp} tools still require the engineer to define the task sequence, waypoints, and process logic manually. The software can validate and simulate a program, but it does not necessarily decide which grasp to use, when to regrip, or how to generate a complete strategy for a changing workpiece. This limits the usefulness of conventional \acs{olp} for processes such as robotic sheet metal bending, where the task geometry and constraints evolve during execution.
+However, manual intervention is still required, particularly in defining programming and sequencing operations. These approaches do not fully eliminate programming challenges, as waypoints and programs must still be manually defined and implemented. In addition, tasks such as regripping and reorientation often require manual reprogramming, which highlights the limitations of these methods in achieving fully automated and adaptable robot programming.
+
 
 \section{Automatic Robot Program Generation and Rule-Based Approaches}
 \label{sec:automatic-robot-program-generation-rule-based}
-Automatic robot program generation aims to reduce the need for manual waypoint definition by deriving robot actions from task descriptions, process parameters, geometric input, or formal rules. Instead of programming every motion explicitly, the system computes feasible actions based on the available information and the constraints of the process.
+
+Automatic robot program generation aims to reduce the need for manual programming by deriving robot actions from task descriptions, process parameters, geometric inputs, or predefined rules. Instead of explicitly programming every motion, as in manual teach pendant or conventional offline programming methods, the system computes feasible actions based on available information and executes them according to defined rules and constraints.
 
 \subsection{Task-Level Programming and Abstraction}
 \label{subsec:task-level-programming-abstraction}
-Task-level programming is based on the idea that users should describe what the robot should achieve, while the system determines how the task can be executed. Early work on robot programming introduced abstraction layers and symbolic task descriptions as a way to separate task intent from low-level robot motion \cite{LozanoPerez1983}.
 
-More recent approaches use skills, motion primitives, and reusable task modules. A skill may represent an operation such as approaching, grasping, placing, or moving along a constrained path. By combining such skills, complex robot programs can be assembled in a more modular way \cite{Kruger2019}. This improves reusability, but the system still needs reliable mechanisms for selecting valid actions and checking whether the resulting motion is feasible.
+Task-level programming is a key approach used in rule-based systems to automate robot programming. In this approach, the user specifies the desired task outcome, while the system determines how the task should be executed. Early work introduced abstraction layers and symbolic task descriptions to separate task intent from low-level robot motion \cite{LozanoPerez1983}.
+
+Recent approaches utilise skills, motion primitives, and reusable task modules. Operations such as grasping, placing, or constrained motion are represented as modular skills, which can be combined to execute complex robotic programs \cite{Kruger2019}. While this improves flexibility and reduces low-level programming effort, the system still requires mechanisms to select valid actions based on workpiece constraints and to verify whether the resulting motions are feasible and executable.
 
 \subsection{Rule-Based and Constraint-Based Planning}
 \label{subsec:rule-based-constraint-based-planning}
-In structured industrial environments, automatic program generation is often implemented through rules and constraints. Rules may describe how a workpiece should be approached, which orientations are allowed, when a regrip is necessary, or which motion types should be used. Constraint-based planning extends this idea by explicitly evaluating geometric, kinematic, and process-related conditions before selecting a solution.
 
-Such methods are attractive because they can produce deterministic behaviour in well-defined applications. However, when product variants and process constraints increase, the engineering effort required to define, adapt, and validate these rules also increases. In robotic sheet metal bending, this issue is especially relevant because bend sequencing, tooling, grasp selection, and robot motion planning are closely coupled \cite{Pan2012Survey,Gupta1998SheetMetalBending}.
+Rule-based planning is commonly applied in industrial robotics by executing robot programs based on predefined rules. These rules define how a workpiece should be handled during the process, including allowable orientations, grasp configurations, and motion types. Constraint-based planning extends this concept by explicitly evaluating geometric, kinematic, and process-related conditions before selecting a solution \cite{Pan2012Survey}.
 
-For complex manipulation tasks, the main challenge is not only to generate isolated decisions, but to coordinate several planning components. Grasp planning, regrip planning, trajectory generation, reachability checking, and collision avoidance influence each other. If these components are developed separately, a locally valid decision may still lead to an infeasible overall process. Robotic manipulation research therefore emphasizes the importance of integrated planning frameworks, especially when grasping and motion constraints are tightly coupled \cite{bohg2014data}.
+Such methods are widely used because they provide deterministic behaviour in well-defined applications. However, as product variability increases in terms of geometry, positioning, and process constraints, the engineering effort required to define, adapt, and validate these rules also increases. In robotic sheet metal bending, this issue is particularly significant because bend sequencing, tooling, grasp selection, and robot motion planning are closely coupled \cite{Pan2012Survey,Gupta1998SheetMetalBending}.
+
+For complex tasks, the main challenge is not only decision-making but also the reliable coordination of multiple planning components within the process. Grasp planning, regrip planning, trajectory generation, and reachability checking are interdependent and influence each other. If these components are addressed independently, the resulting overall process may become infeasible. Therefore, research in robotic manipulation emphasizes the importance of integrated planning frameworks, particularly in scenarios where grasping and motion constraints are tightly coupled \cite{bohg2014data}.
 
 \section{Robotic Sheet Metal Bending Systems}
 \label{sec:robotic-sheet-metal-bending-system}
-Robotic sheet metal bending systems combine an industrial manipulator with a press brake to automate the handling and positioning of sheet metal parts. The robot transfers the sheet, aligns it with the tooling, supports it during bending, and prepares it for subsequent process steps. This integration can improve repeatability and reduce direct manual handling, but it also creates a planning problem that is more complex than ordinary material transfer.
 
-Figure~\ref{fig:robotic_bending_system} illustrates a typical robotic bending setup, where the robot operates in coordination with the press brake to execute a sequence of manipulation and forming operations.
+Robotic sheet metal bending systems combine an industrial manipulator with a press brake to automate the handling and positioning of sheet metal parts. The robot picks the sheet, aligns it with the tooling, supports it during the bending process, and prepares subsequent process steps. This integration reduces direct human handling and effort while enabling precise product output; however, it also introduces planning challenges that are more complex than conventional material transfer tasks.
+
+The robot typically picks the sheet placed in front of the press brake, as shown in Figure~\ref{fig:press-brake-system}, and supports the workpiece during bending, as illustrated in Figure~\ref{fig:robotic-bending-system}. This setup represents a typical robotic bending system, where the robot operates in coordination with the press brake to execute a sequence of manipulation and forming operations.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.75\textwidth]{figures/robotic_bending_system.png}
-\caption{Robotic sheet metal bending system with integrated robot and press brake (Source: \cite{Neto2013OLP}).}
-\label{fig:robotic_bending_system}
+\caption[Robotic sheet metal bending system with integrated robot and press brake]{Robotic sheet metal bending system with integrated robot and press brake \cite{Neto2013OLP}.}
+\label{fig:robotic-bending-system}
 \end{figure}
 
-The process usually starts with a flat sheet, but after every bend the shape of the workpiece changes. This affects collision boundaries, grasp accessibility, tool clearance, and reachable robot configurations. Research on robotic bending has therefore shown that successful automation depends on coordinating process planning with robot motion planning \cite{Gupta1998SheetMetalBending}. The following subsections discuss the main planning aspects that are relevant for this thesis.
+The process typically starts with a flat sheet, and after each bending operation, the geometry of the workpiece changes. This affects grasp accessibility, tool clearance, and reachable robot configurations, and some grasp positions may become unreachable due to kinematic constraints. Research in robotic bending has shown that successful automation depends on coordinating process planning with robot motion planning \cite{Gupta1998SheetMetalBending}. The following subsections discuss the main planning aspects relevant to this thesis.
 
 \subsection{Regrip Planning in Sheet Metal Bending}
 \label{subsec:regrip-planning-sheet-metal-bending}
-Regripping is often necessary when the robot cannot execute all bending steps with a single grasp. The required orientation for later bends may conflict with the initial grasp, or the formed geometry may make the original grasp unsuitable. In such cases, the robot places the workpiece at an intermediate location, releases it, and grasps it again in a new configuration.
 
-From a robotics perspective, regrasp planning can be formulated as a search over feasible grasps and transitions between them. A valid sequence must consider grasp stability, reachability, collision avoidance, and the availability of intermediate placements \cite{wan2017regrasp}. In industrial bending cells, however, regripping is often handled through predefined sequences or manually designed rules. This can be reliable for known parts, but it reduces flexibility when the workpiece geometry or bend order changes.
+Regripping is often necessary when the robot cannot execute all bending steps using a single grasp. The required orientation for subsequent bends may conflict with the initial grasp, or the formed geometry may make the original grasp unsuitable. In such cases, the robot places the workpiece at an intermediate location and performs a regrip in a new configuration.
 
-\subsection{Challenges of Regrip Integration in Industrial Systems}
-\label{subsec:challenges-regrip-integration-industrial-systems}
-The difficulty of regripping is not limited to selecting a new grasp. A regrip decision affects the following trajectory, the accessibility of the next bend, and the risk of collision with both the workpiece and the press brake. Therefore, regrip planning cannot be treated independently from motion planning. In robotic press brake process planning, tooling, grasping, and moving are coupled planning tasks, so a valid bending strategy has to be checked across the process sequence rather than at one isolated step \cite{Gupta1998SheetMetalBending}.
+From a robotic perspective, a valid regrip sequence must consider grasp stability, reachability, and the availability of intermediate placements \cite{wan2017regrasp}. However, in rule-based approaches, regrip planning is often executed through predefined sequences or manually designed rules, which are reliable for known parts and geometries but reduce flexibility when the workpiece geometry or bend sequence changes.
 
-In many existing workflows, grasp selection, regrip decisions, and trajectory validation are performed as separate steps. This separation can create practical problems: a grasp may be stable but unreachable, a regrip pose may be geometrically valid but difficult to approach, or a trajectory may become infeasible after the part has been bent. These dependencies show why integrated planning is important for scalable robotic bending.
+The challenge is that regrip planning is not limited to selecting a new grasp. A regrip decision directly affects subsequent trajectory generation and the accessibility of future bending steps. Therefore, regrip planning cannot be treated independently from motion planning. In robotic press brake bending, tooling, grasping, and motion planning are tightly coupled, and a valid bending strategy must be evaluated across the entire process sequence rather than at isolated steps \cite{Gupta1998SheetMetalBending}.
+
+In existing workflows, grasp selection, regrip decisions, and trajectory validation are often performed as separate steps. This separation can lead to inconsistencies, such as a grasp that is stable but unreachable, a regrip pose that is geometrically valid but difficult to approach, or a trajectory that becomes infeasible after subsequent bending operations. These dependencies highlight the importance of integrated planning for scalable and consistent robotic bending.
 
 \subsection{Grasp Planning for Sheet Metal Handling}
 \label{subsec:grasp-planning-sheet-metal-handling}
-Sheet metal parts are challenging to handle because they are thin, often large relative to their thickness, and may deform or slip if the grasp is poorly chosen. Vacuum grippers are widely used because they can hold flat sheet surfaces without requiring mechanical clamping around the part. Their performance depends on suction cup placement, contact quality, available holding force, and the distribution of loads during motion \cite{VacuumGripperModeling}.
 
-General grasp planning methods consider object geometry, contact conditions, and task constraints when selecting stable grasp configurations \cite{bohg2014data}. In sheet metal bending, the selected grasp must also leave the bend line and tool access region free. A grasp that is suitable for picking the flat sheet may interfere with a later bending operation, especially after the workpiece geometry has changed. As a result, grasp planning must be linked to the process sequence and not only to the initial sheet geometry.
+Grasp planning for sheet metal handling is particularly challenging because sheet metal parts are thin, often large relative to their thickness, and may deform or slip if the grasp is not properly selected. Vacuum grippers are commonly used to handle flat sheet surfaces without requiring mechanical clamping around the part. Their performance depends on suction cup placement, contact quality, available holding force, and load distribution during motion \cite{VacuumGripperModeling}.
+
+General grasp planning methods consider object geometry, contact conditions, and task constraints when selecting stable grasp configurations \cite{bohg2014data}. In sheet metal bending, the selected grasp must also ensure that the bend line and tool access regions remain unobstructed. A grasp that is suitable for handling the initial flat sheet may interfere with subsequent bending operations, particularly after the workpiece geometry changes. Therefore, grasp planning must be integrated with the process sequence rather than being based solely on the initial geometry.
 
 \subsection{Trajectory Planning in Robotic Bending Systems}
 \label{subsec:trajectory-planning-robotic-bending-systems}
-Trajectory planning in robotic bending must produce motions that are collision-free, reachable, and compatible with the process constraints. The robot operates close to the punch, die, workpiece, and other cell components, leaving limited room for large avoidance motions. At the same time, it must maintain a suitable orientation so that the sheet can be positioned accurately at the tooling.
 
-Classical trajectory generation methods provide useful foundations for creating smooth and continuous robot motions \cite{Biagiotti2008Trajectory}. However, robotic bending introduces additional constraints because the workpiece geometry changes during the process. The planner must account for evolving collision conditions, workspace limits, possible singularities, and the need to coordinate motion with grasp and regrip decisions \cite{Gupta1998SheetMetalBending}.
-In many industrial systems, these challenges are handled by conservative motion templates or manually defined waypoints, which improves reliability but limits adaptability.
+Trajectory planning in robotic bending systems must generate motions that are collision-free, reachable, and compatible with process constraints. The robot operates in close proximity to the punch, die, workpiece, and other cell components, leaving limited space for avoidance maneuvers. At the same time, it must maintain appropriate orientation to ensure accurate positioning of the sheet during bending.
+
+Classical trajectory generation methods provide a foundation for smooth and continuous robot motion \cite{Gasparetto2012Trajectory}. However, robotic bending introduces additional complexity due to continuous changes in workpiece geometry. The planner must account for evolving collision conditions, workspace limitations, potential singularities, and coordination with grasp and regrip decisions \cite{Gupta1998SheetMetalBending}.
+
+In many industrial systems, these challenges are addressed using conservative motion templates or manually defined waypoints. While this improves reliability, it limits adaptability and flexibility when process conditions change.
 
 \subsection{Limitations of Existing Robotic Bending Systems}
 \label{subsec:limitations-existing-robotic-bending-systems}
-Existing robotic bending systems have demonstrated that press brake automation is technically feasible, but several limitations remain. Many systems rely on predefined handling strategies and carefully engineered programs. This makes them effective for stable production scenarios, but less suitable for flexible environments where part geometry and process requirements change frequently.
 
-A central limitation is the separation of planning tasks. Grasp planning, regrip planning, trajectory generation, and process validation are often treated as separate activities. This can produce fragmented workflows in which a decision that is valid in one module creates problems in another. For example, a selected grasp may be stable but unsuitable for the next trajectory, or a manually defined path may work for one part variant but fail when the geometry changes.
+Existing robotic bending systems demonstrate that press brake automation is technically feasible; however, several limitations remain. Many systems rely on predefined handling strategies and carefully engineered programs. While effective for stable production scenarios, they are less suitable for flexible environments where part geometry and process requirements frequently change.
 
-Another limitation is the continued dependence on expert intervention. Even when simulation and offline programming tools are available, engineers commonly define motion sequences, check reachability, adjust waypoints, and validate process logic manually. This increases setup time and makes adaptation to new parts more difficult. These limitations point toward the need for a unified approach that can combine constraint-aware planning, automated trajectory generation, and structured execution.
+Although rule-based approaches reduce effort compared to manual and offline programming, a key limitation is the separation of planning tasks. Grasp planning, regrip planning, trajectory generation, and process validation are often treated independently. This separation can result in fragmented workflows, where decisions that are valid in one stage lead to infeasibility in another. For example, a selected grasp may be stable but unsuitable for subsequent motion, or a predefined trajectory may fail when the workpiece geometry changes.
+
+Another limitation is the continued reliance on expert intervention. Even with simulation and offline programming tools, engineers are often required to define motion sequences, verify reachability, adjust waypoints, and validate process logic manually. This increases setup time and reduces adaptability to new parts.
+
+These limitations highlight the need for a unified approach that integrates constraint-aware planning, automated trajectory generation, and structured execution to ensure consistent, repeatable, and flexible robotic bending operations.
 
 \section{Industrial Software Platforms and System Implementations}
 \label{sec:industrial-software-platforms-system-implementations}
-Industrial robot applications are commonly developed with software platforms that support programming, simulation, validation, and execution. These platforms bridge the gap between theoretical planning methods and practical deployment by giving engineers structured tools for building and testing robotic workflows.
+
+Industrial robot applications are commonly developed using software platforms that support programming, simulation, validation, and execution. These platforms play a central role in bridging theoretical methods and practical deployment by providing structured tools for developing, testing, and deploying robotic workflows in industrial environments.
 
 \subsection{Simulation and Offline Programming Environments}
 \label{subsec:simulation-offline-programming-environments}
-Simulation and offline programming environments allow robot programs to be prepared, simulated, and generated before they are executed in the physical cell. They can support reachability checks, collision evaluation, motion visualisation, and the generation of controller-specific robot code, although the exact capability depends on the software platform \cite{Pan2012Survey,RoboDK2024}. These capabilities reduce commissioning risk and make it easier to identify errors before production is interrupted.
 
-Nevertheless, such environments are usually not fully automatic planning systems. They provide powerful tools for validation and development, but the user often remains responsible for defining the task sequence, selecting key poses, and configuring the logic that connects individual operations. For complex manipulation processes, this manual configuration remains a significant part of the engineering effort.
+Simulation and offline programming environments enable robot programs to be developed, tested, and validated in a virtual environment before execution on a physical system. These environments typically use \acs{cad}-based models of the robot, tooling, and workcell, allowing engineers to evaluate reachability, analyse motion, and visualise robot behaviour prior to deployment. Such capabilities have been widely reported in the literature as key advantages of offline programming, particularly in reducing commissioning time and minimising trial-and-error on the shop floor \cite{Pan2012Survey}.
+
+In addition, modern industrial tools such as RoboDK provide functionalities for motion simulation and integration with multiple robot controllers, further supporting practical deployment in manufacturing environments \cite{RoboDK2024}. However, despite these advantages, offline programming environments are not fully automated planning systems. These systems rely on manual configuration within the software, where the user is responsible for defining task sequences, selecting key poses, and configuring the logical structure of the process. For complex manipulation tasks, this manual configuration remains a significant part of the engineering effort, limiting scalability in flexible production scenarios.
 
 \subsection{Graphical Programming and Integrated Execution Systems}
 \label{subsec:graphical-programming-integrated-execution-systems}
-Graphical programming platforms such as drag\&bot further reduce the barrier to robot programming by allowing users to assemble workflows from modular function blocks \cite{dragandbot_anyrobot_2025}. Such systems can combine user interaction, robot communication, and runtime execution in one environment. They are useful for implementing and operating robotic applications without requiring extensive low-level programming.
 
-At the same time, graphical execution systems usually depend on workflows and logic that are defined by the user. They can execute and monitor a process, but they do not inherently solve the planning problem of deciding where to grasp, when to regrip, or how to generate a complete trajectory sequence for a changing workpiece. This distinction is important for robotic bending, where the main difficulty lies in coordinating several dependent planning decisions.
+Graphical programming platforms, such as drag\&bot, aim to reduce the complexity of robot programming by allowing users to construct workflows using modular function blocks \cite{dragandbot_about_2026}. The AnyRobot interface enables external software to communicate with the drag\&bot runtime through a WebSocket-based interface \cite{dragandbot_anyrobot_2025}. Together, the graphical workflow environment and the runtime interface support the development of robotic applications without requiring extensive low-level programming knowledge.
 
-\subsection{Relevance to This Thesis}
-\label{subsec:relevance-to-this-thesis-software-platforms}
-Existing industrial platforms provide a useful foundation for simulation, communication, and execution. Their limitation is not that they lack practical value, but that they still leave much of the task strategy to the engineer. For press brake bending, this means that grasp selection, regrip handling, and trajectory generation often remain manually configured or only partially automated.
+In the context of this thesis, drag\&bot is relevant because it provides an integrated drag-and-drop programming and execution environment \cite{dragandbot_about_2026}. This environment can be combined with the AnyRobot interface for runtime-connected robotic workflow deployment \cite{dragandbot_anyrobot_2025}. The KEBA/drag\&bot relationship also provides the industrial context for selecting the platform in this work \cite{keba_dragandbot_2022}.
 
-The approach developed in this thesis builds on the strengths of such platforms while adding an automated planning layer. The aim is not to replace industrial execution environments, but to reduce the amount of manual task definition required for robotic bending. By generating and validating motion-relevant decisions within a structured pipeline, the system can use existing runtime tools while improving adaptability to changing workpiece conditions.
+These platforms are effective for structured tasks where predefined modules can be reused and combined efficiently. However, similar to offline programming environments, graphical systems generally rely on user-defined workflows and logic. While they facilitate execution and monitoring, they do not inherently solve the planning problem.
+
+In particular, they do not automatically determine key decisions such as grasp selection, regrip strategies, or trajectory generation in the presence of changing workpiece geometries. These decisions remain dependent on user input or external planning methods. This limitation is especially critical in robotic sheet metal bending, where grasping, regripping, and motion planning are strongly interdependent and must be coordinated across the process sequence.
+
+\subsection{Summary and Limitations of Industrial Platforms}
+\label{subsec:summary-limitations-industrial-platforms}
+
+Existing industrial software platforms provide powerful tools for simulation, validation, and execution of robotic applications. They significantly improve programming efficiency compared to manual approaches and support practical deployment in industrial environments. However, their primary limitation lies in the lack of integrated automatic planning capabilities. While these platforms assist in implementing and validating robot programs, they still require substantial manual input for task definition, decision-making, and coordination of planning components.
+
+This limitation becomes increasingly significant in complex applications such as robotic sheet metal bending, where multiple interdependent planning tasks must be considered simultaneously. These observations highlight the need for approaches that go beyond tool-based programming and provide integrated, constraint-aware, and automated planning capabilities, which motivates the work presented in this thesis.
+
+\subsection{Critical Comparison of Existing Approaches}
+\label{subsec:critical-comparison-existing-approaches}
+
+The reviewed approaches differ not only in their level of automation, but also in the degree to which they integrate planning decisions into an executable industrial workflow. Manual and teach-pendant programming provide direct control but rely heavily on operator expertise. Offline programming and digital-twin approaches improve simulation and validation, but they often still require manual sequence definition, accurate model preparation, and repeated engineering adjustment when workpiece conditions change. Academic planning methods provide strong solutions for individual subproblems such as grasp selection, regripping, or trajectory generation, but they are frequently not connected to the complete runtime workflow of an industrial press-brake cell.
+
+Table~\ref{tab:critical-comparison-existing-approaches} summarises these differences and clarifies the positioning of the proposed thesis approach. The originality of this work therefore lies not in introducing a new general theory of grasping or trajectory planning, but in integrating orientation determination, constraint-based grip selection, automatic regrip handling, opposite-side bending logic, trajectory generation, and drag\&bot runtime execution into one deterministic workflow within the defined simulation-based press-brake cell.
+
+\input{chapters/tables/tab_critical_comparison_existing_approaches}
 
 \section{Research Gap and Motivation}
 \label{sec:research-gap-motivation}
-The literature shows a clear development from manual robot programming toward simulation-supported and partially automated methods. Manual programming remains reliable for stable tasks, but it does not scale well when workpiece geometry changes frequently. Offline programming improves safety and commissioning efficiency, yet it still depends on user-defined task sequences and accurate virtual models. Automatic programming and rule-based methods reduce manual effort further, but many approaches focus on individual decisions rather than on the complete bending workflow.
 
-In robotic sheet metal bending, this separation is a major obstacle. The workpiece changes shape after each bend, and this affects grasp feasibility, regrip requirements, collision conditions, and reachable trajectories. A planning decision cannot be evaluated properly if it is isolated from the rest of the process. A grasp that is acceptable at one stage may block tool access later; a regrip pose may be geometrically possible but difficult to reach; a trajectory may be smooth in isolation but unsuitable once the formed part is attached to the robot.
+The literature shows a clear progression from manual robot programming toward simulation-supported and partially automated methods. Manual programming remains reliable for stable tasks; however, it is not well suited to scenarios where workpiece geometry, position, and regrip orientation change frequently. Offline programming improves safety and commissioning efficiency, yet it still depends on user-defined task sequences and accurate virtual models. Automatic programming and rule-based methods further reduce manual effort, but many approaches focus on individual decisions rather than the complete bending workflow.
 
-The resulting research gap is the lack of a practically deployable workflow that integrates grasp planning, regrip planning, and constraint-aware trajectory generation for robotic press brake bending. Existing methods and tools provide important foundations, but they do not sufficiently address these interdependent planning tasks as one coordinated process under workspace, kinematic, and process constraints.
+In robotic sheet metal bending, this separation represents a major limitation. The workpiece changes shape after each bending step, which affects grasp feasibility, regrip requirements, and reachable trajectories. A grasp that is valid at one stage may obstruct tool access in a later step; a regrip pose may be geometrically feasible but difficult to reach; and a trajectory that is valid in isolation may become infeasible once the formed part is attached to the robot.
 
-Addressing this gap is important for flexible automation. A system that can generate valid target poses, evaluate process constraints, and transform these decisions into executable robot motions can reduce engineering effort and improve adaptability. This thesis therefore proposes an integrated and constraint-aware approach in which automated trajectory generation, workspace-aware planning, and deterministic execution are combined within a structured pipeline.
+The identified research gap is the lack of a practical workflow that integrates grasp planning, regrip planning, and constraint-aware trajectory generation for robotic press brake bending. Existing methods reduce manual effort and improve precision compared to manual press brake operation; however, they do not sufficiently address these interdependent planning tasks as a coordinated process under workspace, kinematic, and process constraints.
+
+Addressing this gap is essential for flexible automation. A system that can generate valid trajectories, intermediate configurations, and decision processes such as regrip calculations, and transform these into executable robot motions, can significantly reduce engineering effort while improving adaptability, consistency, and repeatability.
+
+This thesis therefore proposes an integrated and constraint-aware approach in which automated trajectory generation, workspace-aware planning, and deterministic execution are combined within a structured pipeline. The role of the user is limited to specifying the desired output, while the system processes this input and decomposes it into executable tasks.
 
 The identified gap and the proposed direction form the basis for the concept development presented in the following chapter.

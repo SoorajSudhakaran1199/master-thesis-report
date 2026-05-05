@@ -1,6 +1,5 @@
-\contentsline {lstlisting}{\numberline {5.1}{\ignorespaces Illustrative Python implementation of SHA-512-based authentication token computation following the drag\&bot AnyRobot Interface specification~\blx@tocontentsinit {0}\cite {dragandbot_anyrobot_2025}.}}{50}{lstlisting.5.1}%
-\contentsline {lstlisting}{\numberline {5.2}{\ignorespaces Generalised YAML configuration illustrating robot parameters, process definition, and motion and safety constraints.}}{52}{lstlisting.5.2}%
-\contentsline {lstlisting}{\numberline {5.3}{\ignorespaces Simplified Python implementation of grid-based grip candidate generation, geometric constraint filtering, and final grip position selection.}}{69}{lstlisting.5.3}%
-\contentsline {lstlisting}{\numberline {5.4}{\ignorespaces Illustrative waypoint generation using minimum-jerk interpolation}}{75}{lstlisting.5.4}%
-\contentsline {lstlisting}{\numberline {5.5}{\ignorespaces Illustrative determination of waypoint count based on path length}}{75}{lstlisting.5.5}%
-\contentsline {lstlisting}{\numberline {A.1}{\ignorespaces Machine-readable prompt log for AI-assisted thesis preparation.}}{103}{lstlisting.A.1}%
+\contentsline {lstlisting}{\numberline {5.1}{\ignorespaces Pseudocode for runtime command dispatch and result handling.}}{52}{lstlisting.5.1}%
+\contentsline {lstlisting}{\numberline {5.2}{\ignorespaces Pseudocode for three-level orientation selection.}}{68}{lstlisting.5.2}%
+\contentsline {lstlisting}{\numberline {5.3}{\ignorespaces Pseudocode for grip candidate search and selection.}}{71}{lstlisting.5.3}%
+\contentsline {lstlisting}{\numberline {5.4}{\ignorespaces Pseudocode for regrip decision and insertion logic.}}{77}{lstlisting.5.4}%
+\contentsline {lstlisting}{\numberline {5.5}{\ignorespaces Pseudocode for waypoint generation and path reduction.}}{84}{lstlisting.5.5}%

@@ -1,0 +1,20 @@
+\begin{lstlisting}[caption={Pseudocode for three-level orientation selection.}, label={lst:orientation-selection}]
+Read tracked sheet pose from drag&bot object manager
+Classify sheet centroid into the configured workspace zone
+Correct pickup side if the gripper would approach an invalid face
+
+Generate Level 1 reference-face equivalent orientation
+if Level 1 satisfies zone and pickup admissibility then
+    select Level 1 orientation as confirmed result
+else
+    Test Level 2 using the detected sheet orientation directly
+    if Level 2 satisfies zone and pickup admissibility then
+        select Level 2 orientation as confirmed result
+    else
+        Generate Level 3 inverted fallback orientation
+        select fallback orientation with conservative status flag
+    end if
+end if
+
+Forward selected orientation and status to grip planning
+\end{lstlisting}
